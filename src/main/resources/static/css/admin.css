@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+#wrap {
+    width: 100%;
+    position: relative;
+}
+#wrap::after {
+    content: "";
+    display: block;
+    clear: left;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    background: #002060;
+}
+header .logo {
+    margin-left: 10px;
+}
+header .logo-text {
+    color: #fefefe;
+    font-weight: 900;
+}
+
+#navi {
+    float: left;
+    width: 150px;
+    height: calc(100vh - 100px);
+    background: #0070C0;
+}
+#navi li {
+    padding:  20px 0;
+}
+#navi li a {
+    color :#fefefe;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.container {
+    width: 1140px;
+    float: left;
+    margin: 50px 0 0 30px;
+}
+.container .bread-crum ul li {
+    display: inline-block;
+}
+.container .bread-crum ul li a {
+    color: #333333;
+    font-size: 20px;
+    font-weight: 600;
+}
+.container .content {
+    padding: 30px;
+}
+.container .form-content {
+    padding: 30px 50px;
+}
+
+/* bootstrap fix */
+
+
+.btn-primary {
+    --bs-btn-bg: #002060;
+}
