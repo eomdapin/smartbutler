@@ -1,4 +1,4 @@
-package com.fsm.smartbutler;
+package com.fms.smartbutler;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
