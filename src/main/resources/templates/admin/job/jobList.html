@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>SMARTBUTLER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/img/site.webmanifest">
+</head>
+<body>
+	<div id="wrap">
+		<header class="d-flex align-items-center">
+            <div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
+            <div><h1><a href="/" class="logo-text">SMARTBUTLER</a></h1></div>
+        </header>
+		<div id="navi" class="">
+	            <ul>
+	                <li><a href="#">건물정보</a></li>
+	                <li><a href="#">시설관리</a></li>
+	                <li><a href="#">임대관리</a></li>
+	                <li><a href="#">견적관리</a></li>
+	                <li><a href="#">계약업체</a></li>
+	                <li><a href="#">커뮤니티</a></li>
+	                <li><a href="#">회원정보</a></li>
+	            </ul>
+	        </div>
+		<div class="ms-3">
+			<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">HOME</a></li>
+					<li class="breadcrumb-item"><a href="#">시설관리</a></li>
+					<li class="breadcrumb-item active" aria-current="page">작업목록</li>
+				</ol>
+			</nav>
+		</div>
+		<div class="container">
+			<div class="d-grid justify-content-end my-3">
+				<button type="button" class="btn btn-primary">신규 요청</button>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">요청번호</th>
+						<th scope="col">제목</th>
+						<th scope="col">요청날짜</th>
+						<th scope="col">시설명</th>
+						<th scope="col">요청내용</th>
+						<th scope="col">점검업체</th>
+						<th scope="col">처리상태</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>10010</td>
+						<td><a href="/admin/1/job/list/1">문 안 닫힘</a></td>
+						<td>2024-01-15</td>
+						<td>엘리베이터1호기</td>
+						<td>정원 초과 시...</td>
+						<td>오티스엘리베이터</td>
+						<td>완료</td>
+					</tr>
+					<tr>
+						<td>10009</td>
+						<td><a href="/admin/1/job/list/1">운행 중 정지</a></td>
+						<td>2024-01-14</td>
+						<td>엘리베이터2호기</td>
+						<td>운행 중 ...</td>
+						<td>오티스엘리베이터</td>
+						<td>완료</td>
+					</tr>
+					<tr>
+						<td>10008</td>
+						<td><a href="/admin/1/job/list/1">난방 성능 저하</a></td>
+						<td>2024-01-13</td>
+						<td>냉난방기1호</td>
+						<td>강으로 ...</td>
+						<td>예성이엔지</td>
+						<td>완료</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
