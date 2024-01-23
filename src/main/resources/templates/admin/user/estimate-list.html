@@ -30,32 +30,41 @@
                 <li><a href="#">회원정보</a></li>
             </ul>
         </div>
-		<div class="container">
-			<form action="/admin/user/list">
-				<div>
-					<label>회원번호</label>
-					<input type="text" class="form-control">
-					<label>전화번호</label>
-					<input type="tel" class="form-control">
-				</div>
-				<div>
-					<label>건물명</label>
-					<input type="text" class="form-control">
-					<label>이메일</label>
-					<input type="email" class="form-control">
-				</div>
-				<div>
-					<label>회원명</label>
-					<input type="text" class="form-control">
-					<label>회원유형</label>
-					<input type="text" class="form-control">
-				</div>
-				<div>
-					<input type="button" class="btn btn-dark" value="탈퇴">
-					<input type="submit" class="btn btn-outline-dark" value="목록">
-				</div>
-			</form>
+        <div class="container text-center">
+			<div class="">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th scope="col">번호</th>
+							<th scope="col">작성일자</th>
+							<th scope="col">신청인</th>
+							<th scope="col">건물명</th>
+							<th scope="col">시작호실</th>
+							<th scope="col">종료호실</th>
+							<th scope="col">보증금</th>
+							<th scope="col">월세</th>
+							<th scope="col">입실일자</th>
+							<th scope="col">계약여부</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td scope="row">10001</td>
+							<td>2024-01-01</td>
+							<td>공유오피스</td>
+							<td>[신촌]버티고</td>
+							<td>302</td>
+							<td>304</td>
+							<td>500,000,000</td>
+							<td>8,000,000</td>
+							<td>2024-02-01</td>
+							<td>검토중</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
+
 </body>
 </html>
