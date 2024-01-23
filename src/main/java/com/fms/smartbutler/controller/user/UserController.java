@@ -16,6 +16,16 @@ public class UserController {
 		return "user/mypage/mypage";
 	}
 	
+	@GetMapping("/admin/user/list")
+	public String userList() {
+		return "admin/user/user-list";
+	}
+	
+	@GetMapping("/admin/user/info")
+	public String userInfo() {
+		return "admin/user/user-info";
+	}
+	
 	@GetMapping("/user/estimate")
 	public String estimate() {
 		return "user/estimate/estimate-add";
