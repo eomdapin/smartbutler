@@ -1,6 +1,7 @@
 package com.fms.smartbutler.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,10 @@ public class BuildService {
 	
 	public void insert(Build build) {
 		buildRepository.save(build);
+	}
+	
+	public Optional<Build> findById(Long buildId) {
+		return buildRepository.findById(buildId);
 	}
 	
 	public List<Build> findAll() {
