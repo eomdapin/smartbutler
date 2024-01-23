@@ -20,7 +20,7 @@ public class BuildController {
 	
 	private final BuildService buildService;
 	
-	@GetMapping("/admin/buildlist")
+	@GetMapping("/admin/build/list")
 	public String getBuildList(Model model) {
 		List<Build> build = buildService.findAll();
 		
@@ -28,7 +28,7 @@ public class BuildController {
 		return "admin/build/build-list";
 	}
 	
-	@GetMapping("/admin/buildlist/{buildId}")
+	@GetMapping("/admin/build/list/{buildId}")
 	public String getBuildInfo(@PathVariable Long buildId, Model model) {
 		return "admin/build/build-info";
 	}
@@ -42,6 +42,6 @@ public class BuildController {
 	public String postBuildAdd(@ModelAttribute Build build, Model model) {
 		buildService.insert(build);
 		
-		return "redirect:/admin/buildlist";
+		return "redirect:/admin/build/list";
 	}
 }
