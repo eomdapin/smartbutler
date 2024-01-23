@@ -25,7 +25,6 @@ public class BuildRepositoryJpa implements BuildRepository {
 
 	@Override
 	public void update(Build build) {
-		// TODO Auto-generated method stub
 		
 	}
 	
