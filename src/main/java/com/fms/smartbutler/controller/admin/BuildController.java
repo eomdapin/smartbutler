@@ -1,5 +1,7 @@
 package com.fms.smartbutler.controller.admin;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,13 +22,9 @@ public class BuildController {
 	
 	@GetMapping("/admin/buildlist")
 	public String getBuildList(Model model) {
-		String[] str = new String[10];
+		List<Build> build = buildService.findAll();
 		
-		for(int i=0; i<9; i++) {
-			str[i] = "0";
-		}
-		
-		model.addAttribute("str", str);
+		model.addAttribute("build", build);
 		return "admin/build/build-list";
 	}
 	

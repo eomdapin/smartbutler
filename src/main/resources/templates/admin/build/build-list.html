@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>SMARTBUTLER</title>
@@ -16,7 +16,7 @@
 <body>
     <div id="wrap">
         <div id="header" class="d-flex align-items-center">
-            <div class="logo"><img alt="로고" src="../../../img/logo.png" class="align-middle" width="64"></div>
+            <div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
             <div>SMARTBUTLER</div>
         </div>
         <div id="navi" class="">
@@ -52,19 +52,17 @@
                             <th scope="col">칸수</th>
                             <th scope="col">면적</th>
                             <th scope="col">준공일</th>
-                            <th scope="col">내진설계</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="str: ${str}">
-                            <td><a href=""></a>10001</td>
-                            <td><a href=""></a>강남1호점</td>
-                            <td><a href=""></a>서울시 강남구 강남대로 100</td>
-                            <td><a href=""></a>10층</td>
-                            <td><a href=""></a>100칸</td>
-                            <td><a href=""></a>10,000㎡</td>
-                            <td><a href=""></a>2020-12-31</td>
-                            <td><a href=""></a>2023-12-31</td>
+                        <tr th:each="build: ${build}">
+                            <td><a th:href="@{/admin/buildlist/{buildId}(buildId = ${build.buildId})}">[[${build.buildId}]]</a></td>
+                            <td><a th:href="@{/admin/buildlist/{buildId}(buildId = ${build.buildId})}">[[${build.name}]]</a></td>
+                            <td><a th:href="@{/admin/buildlist/{buildId}(buildId = ${build.buildId})}">[[${build.address}]]</a></td>
+                            <td><a th:href="@{/admin/buildlist/{buildId}(buildId = ${build.buildId})}">[[${build.floor}]]</a></td>
+                            <td><a th:href="@{/admin/buildlist/{buildId}(buildId = ${build.buildId})}">[[${build.room}]]</a></td>
+                            <td><a th:href="@{/admin/buildlist/{buildId}(buildId = ${build.buildId})}">[[${build.area}]]</a></td>
+                            <td><a th:href="@{/admin/buildlist/{buildId}(buildId = ${build.buildId})}">[[${build.comDate}]]</a></td>
                         </tr>
                     </tbody>
                 </table>
