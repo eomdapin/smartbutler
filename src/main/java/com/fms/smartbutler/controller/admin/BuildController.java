@@ -1,5 +1,7 @@
 package com.fms.smartbutler.controller.admin;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +20,15 @@ public class BuildController {
 	
 	private final BuildService buildService;
 	
-	@GetMapping("/admin/buildlist")
+	@GetMapping("/admin/build/list")
 	public String getBuildList(Model model) {
-		String[] str = new String[10];
+		List<Build> build = buildService.findAll();
 		
-		for(int i=0; i<9; i++) {
-			str[i] = "0";
-		}
-		
-		model.addAttribute("str", str);
+		model.addAttribute("build", build);
 		return "admin/build/build-list";
 	}
 	
-	@GetMapping("/admin/buildlist/{buildId}")
+	@GetMapping("/admin/build/list/{buildId}")
 	public String getBuildInfo(@PathVariable Long buildId, Model model) {
 		return "admin/build/build-info";
 	}
@@ -44,6 +42,6 @@ public class BuildController {
 	public String postBuildAdd(@ModelAttribute Build build, Model model) {
 		buildService.insert(build);
 		
-		return "redirect:/admin/buildlist";
+		return "redirect:/admin/build/list";
 	}
 }

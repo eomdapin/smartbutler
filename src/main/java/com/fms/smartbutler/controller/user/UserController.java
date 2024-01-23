@@ -11,16 +11,6 @@ public class UserController {
 		return "user/join/join";
 	}
 	
-	@GetMapping("/admin/user/list")
-	public String userList() {
-		return "admin/user/user-list";
-	}
-	
-	@GetMapping("/admin/user/info")
-	public String userInfo() {
-		return "admin/user/user-info";
-	}
-	
 	@GetMapping("/user/mypage")
 	public String mypage() {
 		return "user/mypage/mypage";
@@ -31,4 +21,8 @@ public class UserController {
 		return "user/estimate/estimate-add";
 	}
 	
+	@GetMapping("/user/build/info")
+	public String getBuildInfo() {
+		return "user/build/build-info";
+	}
 }
