@@ -25,4 +25,10 @@ public class UserController {
 	public String mypage() {
 		return "user/mypage/mypage";
 	}
+	
+	@GetMapping("/user/estimate")
+	public String estimate() {
+		return "user/estimate/estimate-add";
+	}
+	
 }
