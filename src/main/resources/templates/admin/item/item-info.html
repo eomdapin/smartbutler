@@ -30,65 +30,79 @@
                 <li><a href="#">회원정보</a></li>
             </ul>
         </div>
-		<div class="container">
-			<div class="bread-crum">
+        <div class="container">
+        	<div class="bread-crum">
 				<ul class="">
 					<li><a href="#">HOME</a><span> ></span></li>
-					<li><a href="#">회원정보</a><span> ></span></li>
-					<li><a href="#">세부정보</a></li>
+					<li><a href="#">시설관리</a><span> ></span></li>
+					<li><a href="#">시설등록</a></li>
 				</ul>
 			</div>
-			<div class="content form-content">
-				<form action="/admin/user/list">
-					<div class="row align-items-center mb-4">
-						<div class="col-1">
-							<label>회원번호</label>
+	        <div class="content form-content">
+		        <form action="">
+		        	<div class="row align-items-center mb-4">
+			        	<div class="col-2">
+							<label for="" class="ms-5">시설번호</label>
 						</div>
-						<div class="col-5">
+						<div class="col-4">
 							<input type="text" class="form-control">
 						</div>
-						<div class="col-1">
-							<label>전화번호</label>
+						<div class="col-2">
+							<label for="" class="ms-5">사용시작일</label>
 						</div>
-						<div class="col-5">
-							<input type="tel" class="form-control">
+						<div class="col-4">
+							<input type="date" class="form-control">
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
-						<div class="col-1">
-							<label>건물명</label>
+			        	<div class="col-2">
+							<label for="" class="ms-5">시설명</label>
 						</div>
-						<div class="col-5">
+						<div class="col-4">
 							<input type="text" class="form-control">
 						</div>
-						<div class="col-1">
-							<label>이메일</label>
+						<div class="col-2">
+							<label for="" class="ms-5">상태</label>
 						</div>
-						<div class="col-5">
-							<input type="email" class="form-control">
+						<div class="col-4">
+							<input type="text" class="form-control">
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
-						<div class="col-1">
-							<label>회원명</label>
+			        	<div class="col-2">
+							<label for="" class="ms-5">시설종류</label>
 						</div>
-						<div class="col-5">
+						<div class="col-4">
 							<input type="text" class="form-control">
 						</div>
-						<div class="col-1">
-							<label>회원유형</label>
+						<div class="col-2">
+							<label for="" class="ms-5">점검날짜</label>
 						</div>
-						<div class="col-5">
+						<div class="col-4">
+							<input type="date" class="form-control">
+						</div>
+					</div>
+					<div class="row align-items-center mb-4">
+			        	<div class="col-2">
+							<label for="" class="ms-5">시설위치</label>
+						</div>
+						<div class="col-4">
+							<input type="text" class="form-control">
+						</div>
+						<div class="col-2">
+							<label for="" class="ms-5">점검주기</label>
+						</div>
+						<div class="col-4">
 							<input type="text" class="form-control">
 						</div>
 					</div>
 					<div class="row justify-content-end mt-3">
-						<input type="button" class="btn btn-primary col-1 me-3" value="탈퇴">
-						<input type="submit" class="btn btn-outline-dark col-1 me-3" value="목록">
+						<input type="button" class="btn btn-primary col-1 me-3" value="저장">
+						<input type="button" class="btn btn-outline-dark col-1 me-3" value="취소">
 					</div>
-				</form>
-			</div>
-		</div>
+		        </form>
+	        </div>
+        </div>
 	</div>
 </body>
 </html>

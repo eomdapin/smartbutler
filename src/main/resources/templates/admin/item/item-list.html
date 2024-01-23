@@ -30,65 +30,46 @@
                 <li><a href="#">회원정보</a></li>
             </ul>
         </div>
-		<div class="container">
-			<div class="bread-crum">
+        <div class="container">
+        	<div class="bread-crum">
 				<ul class="">
 					<li><a href="#">HOME</a><span> ></span></li>
-					<li><a href="#">회원정보</a><span> ></span></li>
-					<li><a href="#">세부정보</a></li>
+					<li><a href="#">시설관리</a><span> ></span></li>
 				</ul>
 			</div>
-			<div class="content form-content">
-				<form action="/admin/user/list">
-					<div class="row align-items-center mb-4">
-						<div class="col-1">
-							<label>회원번호</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-1">
-							<label>전화번호</label>
-						</div>
-						<div class="col-5">
-							<input type="tel" class="form-control">
-						</div>
-					</div>
-					<div class="row align-items-center mb-4">
-						<div class="col-1">
-							<label>건물명</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-1">
-							<label>이메일</label>
-						</div>
-						<div class="col-5">
-							<input type="email" class="form-control">
-						</div>
-					</div>
-					<div class="row align-items-center mb-4">
-						<div class="col-1">
-							<label>회원명</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-1">
-							<label>회원유형</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="row justify-content-end mt-3">
-						<input type="button" class="btn btn-primary col-1 me-3" value="탈퇴">
-						<input type="submit" class="btn btn-outline-dark col-1 me-3" value="목록">
-					</div>
-				</form>
+			<div class="content">
+				<div class="d-grid justify-content-end my-2">
+					<button type="button" class="btn btn-primary" onClick="">신규 등록</button>
+				</div>
+				<table class="table table-hover text-center">
+					<thead>
+						<tr>
+							<th scope="col">시설번호</th>
+							<th scope="col">시설명</th>
+							<th scope="col">종류</th>
+							<th scope="col">위치</th>
+							<th scope="col">사용시작일</th>
+							<th scope="col">상태</th>
+							<th scope="col">점검날짜</th>
+							<th scope="col">점검주기</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>10001</td>
+							<td>엘레베이터 1호기</td>
+							<td>엘리베이터</td>
+							<td>7층</td>
+							<td>2022-11-01</td>
+							<td>사용</td>
+							<td>2023-12-31</td>
+							<td>1개월</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
