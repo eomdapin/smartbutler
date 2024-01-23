@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title>SMARTBUTLER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" as="style" crossorigin
+	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/admin.css">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/img/favicon-16x16.png">
+<link rel="manifest" href="/img/site.webmanifest">
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="header" class="d-flex align-items-center">
+			<div class="logo">
+				<img alt="로고" src="/img/logo.png" class="align-middle" width="64">
+			</div>
+			<div>SMARTBUTLER</div>
+		</div>
+		<div id="navi" class="">
+			<ul>
+				<li><a href="#">건물정보</a></li>
+				<li><a href="#">시설관리</a></li>
+				<li><a href="#">임대관리</a></li>
+				<li><a href="#">견적관리</a></li>
+				<li><a href="#">계약업체</a></li>
+				<li><a href="#">커뮤니티</a></li>
+				<li><a href="#">회원정보</a></li>
+			</ul>
+		</div>
+		<div class="container">
+			<div class="bread-crum">
+				<ul class="">
+					<li><a href="/">HOME</a><span> ></span></li>
+					<li><a href="#">임대관리</a><span> ></span></li>
+					<li><a href="#">입주등록</a></li>
+				</ul>
+			</div>
+			<div class="content">
+				<form>
+					<div class="container fw-semibold">
+						<div class="row align-items-center mb-4">
+							<div class="col-6">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="resident-id" class="col-form-label ms-3">회원번호</label>
+									</div>
+									<div class="col-8">
+										<input type="text" id="resident-id" name="resident-id"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="from-date" class="col-form-label ms-3">계약시작일</label>
+									</div>
+									<div class="col-8">
+										<input type="text" id="from-date" name="from-date"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row align-items-center mb-4">
+							<div class="col-6">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="name" class="col-form-label ms-3">고객명</label>
+									</div>
+									<div class="col-8">
+										<input type="text" id="name" name="name" class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="to-date" class="col-form-label ms-3">계약종료일</label>
+									</div>
+									<div class="col-8">
+										<input type="text" id="to-date" name="to-date"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row align-items-center mb-4">
+							<div class="col-6">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="phone" class="col-form-label ms-3">휴대폰번호</label>
+									</div>
+									<div class="col-8">
+										<input type="text" id="phone" name="phone"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="deposit" class="col-form-label ms-3">보증금</label>
+									</div>
+									<div class="col-8">
+										<input type="text" id="deposit" name="deposit"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row align-items-center mb-4">
+							<div class="col-6">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="name" class="col-form-label ms-3">건물명</label>
+									</div>
+									<div class="col-8">
+										<input type="text" id="name" name="name" class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="monthly" class="col-form-label ms-3">월세</label>
+									</div>
+									<div class="col-8">
+										<input type="text" id="monthly" name="monthly"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row align-items-center mb-4">
+							<div class="col-6">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="resident-id" class="col-form-label ms-3">입주
+											호실</label>
+									</div>
+									<div class="col-3">
+										<input type="text" id="resident-id" name="resident-id"
+											class="form-control">
+									</div>
+									<div class="col-2 text-center">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+											<path
+												d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+										</svg>
+									</div>
+									<div class="col-3">
+										<input type="text" id="resident-id" name="resident-id"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row align-items-center mt-5">
+							<div class="col-6"></div>
+							<div class="col-6">
+								<div class="d-flex gap-4 justify-items-center">
+
+									<button class="visually-hidden col btn btn-primary" type="submit"
+										formaction="/admin/1/resident/list/1/update" formmethod="get">수정</button>
+									<input class="col btn btn-primary" type="submit" value="저장">
+									<input class="col btn btn-outline-primary" type="reset"
+										value="취소">
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
