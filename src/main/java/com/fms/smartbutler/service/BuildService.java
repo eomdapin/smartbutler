@@ -16,7 +16,6 @@ public class BuildService {
 	private final BuildRepository buildRepository;
 	
 	public void insert(Build build) {
-		log.info("buildRepository : {}", buildRepository);
 		buildRepository.save(build);
 	}
 }
