@@ -3,11 +3,20 @@ package com.fms.smartbutler.controller.admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.fms.smartbutler.dto.Build;
+import com.fms.smartbutler.service.BuildService;
+
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class BuildController {
+	
+	private final BuildService buildService;
 	
 	@GetMapping("/admin/buildlist")
 	public String getBuildList(Model model) {
@@ -32,7 +41,9 @@ public class BuildController {
 	}
 	
 	@PostMapping("/admin/build/add")
-	public String postBuildAdd(Model model) {
+	public String postBuildAdd(@ModelAttribute Build build, Model model) {
+		buildService.insert(build);
+		
 		return "redirect:/admin/buildlist";
 	}
 }
