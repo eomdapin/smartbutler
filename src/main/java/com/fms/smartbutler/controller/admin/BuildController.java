@@ -56,7 +56,7 @@ public class BuildController {
 	// 건물 정보 저장
 	@PostMapping("/admin/build/add")
 	public String postBuildAdd(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
-//		buildService.insert(build);
+		buildService.insert(build);
 		imageService.saveImage(vo);
 		
 		return "redirect:/admin/build/list";
