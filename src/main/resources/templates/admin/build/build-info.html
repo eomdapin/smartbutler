@@ -47,7 +47,7 @@
                 </th:block>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="buildId" class="form-label">건물번호</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="buildId" class="form-control" th:value=${build?.buildId} placeholder="자동 입력" readonly></div>
+                        <div class="col-4 mb-3"><input type="text" name="buildId" class="form-control" th:value=${build?.buildId} readonly></div>
                         
                         <div class="col-1 mb-3"><label for="room" class="form-label">칸수</label></div>
                         <div class="col-4 mb-3"><input type="text" name="room" class="form-control" th:value=${build?.room} required></div>
@@ -57,10 +57,12 @@
                         <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" th:value=${build?.buildName} required></div>
                         
                         <div class="col-1 mb-3"><label for="uploadFile" class="form-label">이미지</label></div>
-                        <div class="col-4 mb-3"><input type="file" name="uploadFile" class="form-control" required></div>
-                        
-                        <div class="col-1 mb-3"><label for="imgId" class="form-label">지.워.</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="imgId" class="form-control" required></div>
+                        <div class="col-4 mb-3">
+                        	<input type="file" id="uploadFile" name="uploadFile" class="form-control" style="display: none;" onchange="ChangeFileName()" required>
+                        	<input type="button" onClick="uploadFile.click()" class="btn btn-secondary" value="파일 추가">
+                        	<input type="text" id="fileName" name="fileName" class="form-control" 
+                        		th:value="${vo.fileName}" placeholder="선택된 파일이 없습니다." style="display: inline; width: 233px;" disabled>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="address" class="form-label">주소</label></div>
@@ -89,6 +91,6 @@
             </div>
         </div>
     </div>
+    <script src="/js/file.js" type="text/javascript"></script> 
 </body>
-
 </html>

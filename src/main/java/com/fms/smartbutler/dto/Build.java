@@ -21,7 +21,7 @@ public class Build {
 	private String address;
 	private Integer floor;
 	private Integer room;
-	private String imgId;
+	private Long imgId;
 	private Integer area;
 	private String comDate;
 }

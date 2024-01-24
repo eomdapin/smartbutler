@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.fms.smartbutler.dto.Build;
+import com.fms.smartbutler.dto.Image;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ImageService;
 import com.fms.smartbutler.vo.FileVo;
@@ -39,8 +40,12 @@ public class BuildController {
 	@GetMapping("/admin/build/list/{buildId}")
 	public String getBuildInfo(@PathVariable Long buildId, Model model) {
 		Build build = buildService.findById(buildId).orElseGet(Build::new);
+		Image image = imageService.findById(build.getImgId()).orElseGet(Image::new);
+		FileVo vo = new FileVo();
 		
+		vo.setFileName(image.getRealName());
 		model.addAttribute("build", build);
+		model.addAttribute("vo", vo);
 		
 		return "admin/build/build-info";
 	}
@@ -56,8 +61,11 @@ public class BuildController {
 	// 건물 정보 저장
 	@PostMapping("/admin/build/add")
 	public String postBuildAdd(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
+		Image image = new Image();
+		imageService.saveImage(vo, image);
+		
+		build.setImgId(image.getImageId());
 		buildService.insert(build);
-		imageService.saveImage(vo);
 		
 		return "redirect:/admin/build/list";
 	}
