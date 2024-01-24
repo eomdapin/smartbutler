@@ -29,7 +29,7 @@
 		<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-4">회원가입</h1>
-			<form action="" class="">
+			<form action="/user/login" method="post" class="">
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
@@ -38,7 +38,7 @@
 						<label for="email" class="">이메일</label>
 					</div>
 					<div class="col-5">
-						<input type="email" class="form-control">
+						<input type="email" name="email" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -46,7 +46,7 @@
 						<label for="password" class="">비밀번호</label>
 					</div>
 					<div class="col-5">
-						<input type="text" class="form-control">
+						<input type="text" name="pw" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -54,7 +54,7 @@
 						<label for="password-check" class="">비밀번호 확인</label>
 					</div>
 					<div class="col-5">
-						<input type="text" class="form-control">
+						<input type="text" name="pw" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -62,7 +62,7 @@
 						<label for="name" class="">이름</label>
 					</div>
 					<div class="col-5">
-						<input type="text" class="form-control">
+						<input type="text" name="name" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -70,11 +70,11 @@
 						<label for="phone" class="">휴대폰 번호</label>
 					</div>
 					<div class="col-5">
-						<input type="tel" class="form-control">
+						<input type="tel" name="phone" class="form-control">
 					</div>
 				</div>
 					<div class="row justify-content-center mt-3">
-						<input type="submit" class="btn btn-dark col-1 me-3" value="회원가입">
+						<input type="submit" class="btn btn-primary col-1 me-3" value="회원가입">
 					</div>
 				</form>
 			</div>
