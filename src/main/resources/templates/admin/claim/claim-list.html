@@ -48,23 +48,14 @@
 							<td> - </td>
 							<td>신청</td>
 						</tr>
-						<tr>
-							<td>10009</td>
-							<td><a href="/admin/1/claim/list/1">운행 중 정지</a></td>
-							<td>2024-01-14</td>
-							<td>강남1호점</td>
-							<td>202</td>
-							<td>2024-01-14</td>
-							<td>완료</td>
-						</tr>
-						<tr>
-							<td>10008</td>
-							<td><a href="/admin/1/claim/list/1">난방 성능 저하</a></td>
-							<td>2024-01-13</td>
-							<td>강남1호점</td>
-							<td>201</td>
-							<td>2024-01-13</td>
-							<td>완료</td>
+						<tr th:each="claim: ${claim}">
+							<td>[[${claim.claimId}]]</td>
+							<td><a th:href="@{/admin/{buildId}/claim/list/{claimId}(buildId = ${claim.buildId}, claimId = ${claim.claimId})}">[[${claim.title}]]</a></td>
+							<td>[[${claim.askDate}]]</td>
+							<td>[[${claim.buildName}]]</td>
+							<td>[[${claim.residentId}]]</td>
+							<td>[[${claim.finDate}]]</td>
+							<td>[[${claim.status}]]</td>
 						</tr>
 					</tbody>
 				</table>

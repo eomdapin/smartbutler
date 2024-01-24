@@ -51,23 +51,14 @@
 							<td>오티스엘리베이터</td>
 							<td>완료</td>
 						</tr>
-						<tr>
-							<td>10009</td>
-							<td><a href="/admin/1/job/list/1">운행 중 정지</a></td>
-							<td>2024-01-14</td>
-							<td>엘리베이터2호기</td>
-							<td>2024-01-14</td>
-							<td>오티스엘리베이터</td>
-							<td>완료</td>
-						</tr>
-						<tr>
-							<td>10008</td>
-							<td><a href="/admin/1/job/list/1">난방 성능 저하</a></td>
-							<td>2024-01-13</td>
-							<td>냉난방기1호</td>
-							<td>2024-01-13</td>
-							<td>예성이엔지</td>
-							<td>완료</td>
+						<tr th:each="job: ${job}">
+							<td>[[${job.jobId}]]</td>
+							<td><a th:href="@{/admin/{buildId}/job/list/{jobId}(buildId = ${job.buildId}, jobId = ${job.jobId})}">[[${job.title}]]</a></td>
+							<td>[[${job.askDate}]]</td>
+							<td>[[${job.itemName}]]</td>
+							<td>[[${job.finDate}]]</td>
+							<td>[[${job.companyName}]]</td>
+							<td>[[${job.status}]]</td>
 						</tr>
 					</tbody>
 				</table>

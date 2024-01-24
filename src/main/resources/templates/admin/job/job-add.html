@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>SMARTBUTLER</title>
@@ -15,21 +15,8 @@
 </head>
 <body>
 	<div id="wrap">
-		<header class="d-flex align-items-center">
-            <div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
-            <div><h1><a href="/" class="logo-text">SMARTBUTLER</a></h1></div>
-        </header>
-		<div id="navi" class="">
-			<ul>
-				<li><a href="#">건물정보</a></li>
-				<li><a href="#">시설관리</a></li>
-				<li><a href="#">임대관리</a></li>
-				<li><a href="#">견적관리</a></li>
-				<li><a href="#">계약업체</a></li>
-				<li><a href="#">커뮤니티</a></li>
-				<li><a href="#">회원정보</a></li>
-			</ul>
-		</div>
+		<div th:replace="~{common/common :: header}"></div>
+		<div th:replace="~{common/common :: sidebar}"></div>
 		<div class="container">
 			<div class="bread-crum">
 				<ul class="">
