@@ -59,7 +59,7 @@ public class BuildController {
 	// 건물 정보 수정
 	@PostMapping("/admin/build/list/{buildId}/insert") // PutMapping으로 변경 시 insert 문구 삭제 예정
 	public String postBuildinsert(@ModelAttribute Build build, Model model) {
-		buildService.insert(build);
+		buildService.update(build);
 		
 		return "redirect:/admin/build/list";
 	}

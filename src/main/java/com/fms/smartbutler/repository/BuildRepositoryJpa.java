@@ -25,8 +25,23 @@ public class BuildRepositoryJpa implements BuildRepository {
 
 	@Override
 	public void update(Build build) {
+//		String sql = "UPDATE Build b "
+//						+ "SET b.name :name, b.address :address"
+//						+ "WHERE b.build_id = :buildId";
+//		
+//		em.createQuery(sql, Build.class)
+//						.setParameter("name", build.getName())
+//						.setParameter("address", build.getAddress())
+//						.setParameter("buildId", build.getBuildId());
 		
+		Build updateBuild = em.find(Build.class, build.getBuildId());
+		
+		updateBuild.setName(build.getName());
+		updateBuild.setAddress(build.getAddress());
+		
+		em.persist(updateBuild);
 	}
+	
 	
 	@Override
 	public Optional<Build> findById(Long buildId) {
