@@ -19,8 +19,8 @@ public class JobRepositoryJpa implements JobRepository {
 	private final EntityManager em;
 	
 	@Override
-	public void save() {
-		
+	public void save(Job job) {
+		em.persist(job);
 	}
 
 	@Override

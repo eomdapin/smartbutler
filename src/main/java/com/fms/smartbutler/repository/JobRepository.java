@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.fms.smartbutler.dto.Job;
 
 public interface JobRepository {
-	void save();
+	void save(Job job);
 	List<Job> findAll();
 	Optional<Job> findById();
 }

@@ -21,7 +21,7 @@ public class Job {
 	private Long buildId;
 	private Long itemId;
 	private Long companyId;
-	//private String kindType;
+//	private String kindType;
 	private String title;
 	private Date askDate;
 	private String content;
