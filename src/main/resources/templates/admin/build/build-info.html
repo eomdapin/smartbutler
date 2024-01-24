@@ -40,10 +40,10 @@
             </div>
             <div class="content form-content">
                	<th:block th:if="${#strings.isEmpty(build.buildId)}">
-                	<form action="/admin/build/add" method="POST">
+                	<form action="/admin/build/add" method="POST" encType="multipart/form-data">
                 </th:block>
                 <th:block th:if="${not #strings.isEmpty(build.buildId)}">
-               		<form th:action="@{/admin/build/list/{buildId}/insert(buildId = ${build.buildId})}" method="POST">
+               		<form th:action="@{/admin/build/list/{buildId}/insert(buildId = ${build.buildId})}" method="POST" encType="multipart/form-data">
                 </th:block>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="buildId" class="form-label">건물번호</label></div>
@@ -56,8 +56,11 @@
                         <div class="col-1 mb-3"><label for="name" class="form-label">건물명</label></div>
                         <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" th:value=${build?.buildName} required></div>
                         
-                        <div class="col-1 mb-3"><label for="imgId" class="form-label">이미지</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="imgId" class="form-control" th:value=${build?.imgId} required></div>
+                        <div class="col-1 mb-3"><label for="uploadFile" class="form-label">이미지</label></div>
+                        <div class="col-4 mb-3"><input type="file" name="uploadFile" class="form-control" required></div>
+                        
+                        <div class="col-1 mb-3"><label for="imgId" class="form-label">지.워.</label></div>
+                        <div class="col-4 mb-3"><input type="text" name="imgId" class="form-control" required></div>
                     </div>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="address" class="form-label">주소</label></div>

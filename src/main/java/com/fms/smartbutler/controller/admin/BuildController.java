@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.fms.smartbutler.dto.Build;
 import com.fms.smartbutler.service.BuildService;
+import com.fms.smartbutler.service.ImageService;
+import com.fms.smartbutler.vo.FileVo;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class BuildController {
 	
 	private final BuildService buildService;
+	private final ImageService imageService;
 	
 	// 건물 정보 조회
 	@GetMapping("/admin/build/list")
@@ -51,8 +55,9 @@ public class BuildController {
 	
 	// 건물 정보 저장
 	@PostMapping("/admin/build/add")
-	public String postBuildAdd(@ModelAttribute Build build, Model model) {
-		buildService.insert(build);
+	public String postBuildAdd(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
+//		buildService.insert(build);
+		imageService.saveImage(vo);
 		
 		return "redirect:/admin/build/list";
 	}

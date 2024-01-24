@@ -9,5 +9,4 @@ public class SmartButlerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SmartButlerApplication.class, args);
 	}
-
 }
