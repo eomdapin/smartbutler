@@ -10,7 +10,9 @@ import com.fms.smartbutler.dto.User;
 import com.fms.smartbutler.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -24,6 +26,7 @@ public class UserController {
 	
 	@PostMapping("/user/login")
 	public String postJoin(@ModelAttribute User user, User.UserLogin userLogin, Model model) {
+		log.info(userLogin.getPw());
 		userService.save(user, userLogin);
 		return "redirect:/user/login";
 	}

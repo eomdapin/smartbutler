@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fms.smartbutler.dto.User;
-import com.fms.smartbutler.dto.User.UserLogin;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,7 @@ public class UserRepositoryJpa implements UserRepository{
 	}
 
 	@Override
-	public void saveUserLogin(UserLogin userLogin) {
+	public void saveUserLogin(User.UserLogin userLogin) {
 		em.persist(userLogin);
 	}
 
