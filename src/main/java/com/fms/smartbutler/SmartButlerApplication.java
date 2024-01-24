@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SmartBulterApplication {
+public class SmartButlerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SmartBulterApplication.class, args);
+		SpringApplication.run(SmartButlerApplication.class, args);
 	}
 
 }
