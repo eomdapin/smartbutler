@@ -37,9 +37,4 @@ public class UserController {
 	public String estimate() {
 		return "user/estimate/estimate-add";
 	}
-	
-	@GetMapping("/user/build/info")
-	public String getBuildInfo() {
-		return "user/build/build-info";
-	}
 }
