@@ -20,7 +20,7 @@ public class BuildController {
 	
 	private final BuildService buildService;
 	
-	// 건물 정보 입력 이동
+	// 건물 정보 조회
 	@GetMapping("/admin/build/list")
 	public String getBuildList(Model model) {
 		List<Build> build = buildService.findAll();
@@ -30,7 +30,7 @@ public class BuildController {
 		return "admin/build/build-list";
 	}
 	
-	// 건물 정보 상세 이동
+	// 건물 정보 상세
 	@GetMapping("/admin/build/list/{buildId}")
 	public String getBuildInfo(@PathVariable Long buildId, Model model) {
 		Build build = buildService.findById(buildId).orElseGet(Build::new);
@@ -40,7 +40,7 @@ public class BuildController {
 		return "admin/build/build-info";
 	}
 	
-	// 건물 정보 입력 이동
+	// 건물 정보 입력
 	@GetMapping("/admin/build/add")
 	public String getBuildAdd(Model model) {
 		model.addAttribute("build", new Build());
