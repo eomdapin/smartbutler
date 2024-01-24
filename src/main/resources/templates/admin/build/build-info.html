@@ -35,7 +35,7 @@
                 <ul class="">
                     <li><a href="#">HOME</a><span> ></span></li>
                     <li><a href="#">건물정보</a><span> ></span></li>
-                    <li><a href="#">건물등록</a></li>
+                    <li><a href="#">건물상세</a></li>
                 </ul>
             </div>
             <div class="content form-content">
@@ -63,6 +63,9 @@
                         	<input type="text" id="fileName" name="fileName" class="form-control" 
                         		th:value="${vo?.fileName}" placeholder="선택된 파일이 없습니다." style="display: inline; width: 233px;" disabled>
                         </div>
+                        <th:block th:if="${not #strings.isEmpty(build.buildId)}">
+                        	<div class="col-2 mb-3"><input type="button" class="btn btn-secondary" value="이미지 보기"></div>
+                        </th:block>
                     </div>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="address" class="form-label">주소</label></div>
