@@ -2,6 +2,7 @@ package com.fms.smartbutler.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ResidentController {
@@ -17,18 +18,29 @@ public class ResidentController {
 	}
 	
 	@GetMapping("/admin/{buildId}/resident/list/{residentId}/update")
-	public String updateResidentInfo() {
+	public String updateResidentInfoForm() {
 		return "admin/resident/update-resident-info";
 	}
 	
-	@GetMapping("/admin/{buildId}/resident/list/delete")
-	public String deleteResidentInfo() {
-		return "admin/resident/delete-resident-info";
+	@PostMapping("/admin/{buildId}/resident/list/{residentId}/update")
+	public String updateResidentInfo() {
+		return "redirect:/admin/{buildId}/resident/list";
 	}
 	
-	@GetMapping("/admin/resident/new")
-	public String addResidentInfo() {
+	@PostMapping("/admin/{buildId}/resident/list/{residentId}/delete")
+	public String deleteResidentInfo() {
+		return "redirect:/admin/{buildId}/resident/list";
+	}
+	
+	@GetMapping("/admin/{buildId}/resident/list/add")
+	public String addResidentInfoForm() {
 		return "admin/resident/add-resident-info";
 	}
+	
+	@PostMapping("/admin/{buildId}/resident/list/{residentId}/add")
+	public String addResidentInfo() {
+		return "redirect:/admin/{buildId}/resident/list";
+	}
+	
 
 }

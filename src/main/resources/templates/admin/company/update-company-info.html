@@ -46,12 +46,13 @@
 			<div class="bread-crum">
 				<ul class="">
 					<li><a href="/">HOME</a><span> ></span></li>
-					<li><a href="#">임대관리</a><span> ></span></li>
-					<li><a href="#">입주등록</a></li>
+					<li><a href="#">계약업체</a><span> ></span></li>
+					<li><a href="#">정보수정</a></li>
 				</ul>
 			</div>
 			<div class="content">
-				<form action="/admin/{buildId}/resident/list/{residentId}/add" method="post">
+				<form action="/admin/{buildId}/resident/list/{residentId}/update"
+					method="post">
 					<div class="container fw-semibold">
 						<div class="row align-items-center mb-4">
 							<div class="col-6">
@@ -175,19 +176,27 @@
 								</div>
 							</div>
 						</div>
-						<div class="row align-items-center mt-5">
-							<div class="col-6"></div>
-							<div class="col-6">
-								<div class="row">
-									<div class="col-4"></div>
-									<div class="col-8 d-flex gap-4">
-										<input class="col btn btn-primary" type="submit" value="등록">
-											<button type="button" class="col btn btn-outline-primary" onclick="history.back()">취소</button>
+
+						<form>
+							<div class="row align-items-center mt-5">
+								<div class="col-6"></div>
+								<div class="col-6">
+									<div class="d-flex gap-4 justify-items-center">
+
+										<button class="col btn btn-primary" type="submit"
+											formaction="/admin/1/company/list/1/update" formmethod="get">수정</button>
+										<button class="col btn btn-info" type="submit"
+											formaction="/admin/1/company/list/1/delete" formmethod="post">삭제</button>
+										<button class="col btn btn-outline-primary" type="submit"
+											formaction="/admin/1/company/list" formmethod="post">목록</button>
+
 									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
+
+
 				</form>
 			</div>
 		</div>
