@@ -21,12 +21,16 @@
 
 <body>
 	<div id="wrap">
-		<div id="header" class="d-flex align-items-center">
+		<header class="d-flex align-items-center">
 			<div class="logo">
 				<img alt="로고" src="/img/logo.png" class="align-middle" width="64">
 			</div>
-			<div>SMARTBUTLER</div>
-		</div>
+			<div>
+				<h1>
+					<a href="/" class="logo-text">SMARTBUTLER</a>
+				</h1>
+			</div>
+		</header>
 		<div id="navi" class="">
 			<ul>
 				<li><a href="#">건물정보</a></li>
@@ -174,13 +178,13 @@
 						<div class="row align-items-center mt-5">
 							<div class="col-6"></div>
 							<div class="col-6">
-								<div class="d-flex gap-4 justify-items-center">
-
-									<button class="visually-hidden col btn btn-primary" type="submit"
-										formaction="/admin/1/resident/list/1/update" formmethod="get">수정</button>
-									<input class="col btn btn-primary" type="submit" value="저장">
-									<input class="col btn btn-outline-primary" type="reset"
-										value="취소">
+								<div class="row">
+									<div class="col-4"></div>
+									<div class="col-8 d-flex gap-4">
+										<input class="col btn btn-primary" type="submit" value="저장">
+										<input class="col btn btn-outline-primary" type="reset"
+											value="취소">
+									</div>
 								</div>
 							</div>
 						</div>
