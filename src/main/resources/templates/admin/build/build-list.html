@@ -57,7 +57,7 @@
                     <tbody>
                         <tr th:each="build: ${build}">
                             <td><a th:href="@{/admin/build/list/{buildId}(buildId = ${build.buildId})}">[[${build.buildId}]]</a></td>
-                            <td><a th:href="@{/admin/build/list/{buildId}(buildId = ${build.buildId})}">[[${build.name}]]</a></td>
+                            <td><a th:href="@{/admin/build/list/{buildId}(buildId = ${build.buildId})}">[[${build.buildName}]]</a></td>
                             <td><a th:href="@{/admin/build/list/{buildId}(buildId = ${build.buildId})}">[[${build.address}]]</a></td>
                             <td><a th:href="@{/admin/build/list/{buildId}(buildId = ${build.buildId})}">[[${build.floor}]]</a></td>
                             <td><a th:href="@{/admin/build/list/{buildId}(buildId = ${build.buildId})}">[[${build.room}]]</a></td>

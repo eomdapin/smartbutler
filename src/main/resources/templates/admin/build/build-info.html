@@ -54,7 +54,7 @@
                     </div>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="name" class="form-label">건물명</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="name" class="form-control" th:value=${build?.name} required></div>
+                        <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" th:value=${build?.buildName} required></div>
                         
                         <div class="col-1 mb-3"><label for="imgId" class="form-label">이미지</label></div>
                         <div class="col-4 mb-3"><input type="text" name="imgId" class="form-control" th:value=${build?.imgId} required></div>
@@ -78,7 +78,7 @@
                         	<div class="col-1"><input type="submit" class="btn btn-primary" value="저장"></div>
                         </th:block>
                         <th:block th:if="${not #strings.isEmpty(build.buildId)}">
-                       		<div th:unless="${#strings.isEmpty(build.buildId)}" class="col-1"><input type="submit" class="btn btn-primary" value="수정"></div>
+                       		<div class="col-1"><input type="submit" class="btn btn-primary" value="수정"></div>
                         </th:block>
                         <div class="col-1"><a onClick="history.back()" class="btn btn-outline-dark">취소</a></div>
                     </div>
