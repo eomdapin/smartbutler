@@ -23,7 +23,7 @@ public class User {
 	private Integer status;
 
 	
-	@Entity(name =  "user_login")
+	@Entity(name = "user_login")
 	@Setter @Getter
 	@AllArgsConstructor @NoArgsConstructor
 	public static class UserLogin {

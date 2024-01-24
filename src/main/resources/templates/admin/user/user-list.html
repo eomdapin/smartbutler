@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>SMARTBUTLER</title>
@@ -51,13 +51,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>10001</td>
-							<td><a href="">[신촌]버티고타워</a></td>
-							<td>커피빈</td>
-							<td>010-0000-0000</td>
-							<td>mail@email.com</td>
-							<td>입주회원</td>
+						<tr th:each="user: ${user}">
+							<td><a th:href="@{/admin/user/list/{userId}(userId = ${user.userId})}">[[${user.userId}]]</a></td>
+							<td>건물</td>
+							<td><a th:href="@{/admin/user/list/{userId}(userId = ${user.userId})}">[[${user.name}]]</a></td>
+							<td><a th:href="@{/admin/user/list/{userId}(userId = ${user.userId})}">[[${user.phone}]]</a></td>
+							<td><a th:href="@{/admin/user/list/{userId}(userId = ${user.userId})}">[[${user.email}]]</a></td>
+							<td><a th:href="@{/admin/user/list/{userId}(userId = ${user.userId})}">[[${user.status}]]</a></td>
 						</tr>
 					</tbody>
 				</table>

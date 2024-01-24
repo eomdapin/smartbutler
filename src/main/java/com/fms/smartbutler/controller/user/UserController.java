@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.fms.smartbutler.dto.User;
 import com.fms.smartbutler.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,8 +33,13 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/mypage")
-	public String mypage() {
+	public String getMypage() {
 		return "user/mypage/mypage";
+	}
+	
+	@PostMapping("/user/mypage")
+	public String postMypage(HttpSession session, @ModelAttribute User user, User.UserLogin userLogin, Model model) {
+		return "redirect:/user/mypage";
 	}
 	
 	@GetMapping("/user/estimate")

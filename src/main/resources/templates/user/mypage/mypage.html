@@ -29,7 +29,7 @@
 		<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-2">내 정보</h1>
-				<form action="">
+				<form action="/user/mypage">
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
@@ -46,7 +46,7 @@
 						<label for="password">비밀번호</label>
 					</div>
 					<div class="col-5">
-						<input type="text" class="form-control">
+						<input type="password" name="pw" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -54,7 +54,7 @@
 						<label for="password-check">비밀번호 확인</label>
 					</div>
 					<div class="col-5">
-						<input type="text" class="form-control">
+						<input type="password" name="pw2" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -62,7 +62,7 @@
 						<label for="name">이름</label>
 					</div>
 					<div class="col-5">
-						<input type="text" class="form-control">
+						<input type="text" name="name" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -70,7 +70,7 @@
 						<label for="phone">휴대폰 번호</label>
 					</div>
 					<div class="col-5">
-						<input type="tel" class="form-control">
+						<input type="tel" name="phone" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -78,18 +78,18 @@
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2">
-						<label>건물명</label>
+						<label for="build_name">건물명</label>
 					</div>
 					<div class="col-5">
-						<input type="text" class="form-control">
+						<input type="text" name="build_name" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2">
-						<label>세대 번호</label>
+						<label for="resident_id">세대 번호</label>
 					</div>
 					<div class="col-5">
-						<input type="text" class="form-control">
+						<input type="text" name="resident_id" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -118,12 +118,12 @@
 				</div>
 				<div>
 					<div class="row justify-content-center mt-3">
-						<input type="button" class="btn btn-primary col-1 me-3" value="수정">
-						<input type="button" class="btn btn-secondary col-1 me-3" value="뒤로가기">
+						<input type="submit" class="btn btn-primary col-1 me-3" value="수정">
+						<input type="button" class="btn btn-secondary col-1 me-3" value="뒤로가기" onclick="history.back();">
 					</div>
 				</div>
 				</form>
-				</div>
+			</div>
 		</div>
 		<footer>
 			<span>스마트버틀러 | 대표 : 홍길동 | 주소 : 서울시 서대문구 연세로 8-1</span><br>
