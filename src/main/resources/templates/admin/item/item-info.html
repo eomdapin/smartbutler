@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>SMARTBUTLER</title>
@@ -39,77 +39,82 @@
 				</ul>
 			</div>
 	        <div class="content form-content">
-		        <form action="">
-		        	<div class="row align-items-center mb-4">
-			        	<div class="col-2">
-							<label for="" class="ms-5">시설번호</label>
-						</div>
-						<div class="col-4">
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-2">
-							<label for="" class="ms-5">사용시작일</label>
-						</div>
-						<div class="col-4">
-							<input type="date" class="form-control">
-						</div>
+		        <th:block th:if="${not #strings.isEmpty(user.userId)}">
+			        <form action="/admin/item/list/{itemId}/insert(itemId = ${item.itemId)})" method="POST"></form>
+			    </th:block>
+	        	<div class="row align-items-center mb-4">
+		        	<div class="col-2">
+						<label for="" class="ms-5">시설번호</label>
 					</div>
-					<div class="row align-items-center mb-4">
-			        	<div class="col-2">
-							<label for="" class="ms-5">건물명</label>
-						</div>
-						<div class="col-4">
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-2">
-							<label for="" class="ms-5">상태</label>
-						</div>
-						<div class="col-4">
-							<input type="text" class="form-control">
-						</div>
+					<div class="col-4">
+						<input type="text" class="form-control">
 					</div>
-					<div class="row align-items-center mb-4">
-			        	<div class="col-2">
-							<label for="" class="ms-5">시설명</label>
-						</div>
-						<div class="col-4">
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-2">
-							<label for="" class="ms-5">점검날짜</label>
-						</div>
-						<div class="col-4">
-							<input type="date" class="form-control">
-						</div>
+					<div class="col-2">
+						<label for="" class="ms-5">사용시작일</label>
 					</div>
-					<div class="row align-items-center mb-4">
-			        	<div class="col-2">
-							<label for="" class="ms-5">시설종류</label>
-						</div>
-						<div class="col-4">
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-2">
-							<label for="" class="ms-5">점검주기</label>
-						</div>
-						<div class="col-4">
-							<input type="text" class="form-control">
-						</div>
+					<div class="col-4">
+						<input type="date" class="form-control">
 					</div>
-					<div class="row align-items-center mb-4">
-			        	<div class="col-2">
-							<label for="" class="ms-5">시설위치</label>
-						</div>
-						<div class="col-4">
-							<input type="text" class="form-control">
-						</div>
+				</div>
+				<div class="row align-items-center mb-4">
+		        	<div class="col-2">
+						<label for="" class="ms-5">건물명</label>
 					</div>
-					<div class="row justify-content-end mt-3">
-						<input type="button" class="btn btn-info text-white col-1 me-3" value="수정">
-						<input type="button" class="btn btn-primary col-1 me-3" value="삭제">
-						<input type="button" class="btn btn-outline-dark col-1 me-3" value="목록">
+					<div class="col-4">
+						<input type="text" class="form-control">
 					</div>
-		        </form>
+					<div class="col-2">
+						<label for="" class="ms-5">상태</label>
+					</div>
+					<div class="col-4">
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="row align-items-center mb-4">
+		        	<div class="col-2">
+						<label for="" class="ms-5">시설명</label>
+					</div>
+					<div class="col-4">
+						<input type="text" class="form-control">
+					</div>
+					<div class="col-2">
+						<label for="" class="ms-5">점검날짜</label>
+					</div>
+					<div class="col-4">
+						<input type="date" class="form-control">
+					</div>
+				</div>
+				<div class="row align-items-center mb-4">
+		        	<div class="col-2">
+						<label for="" class="ms-5">시설종류</label>
+					</div>
+					<div class="col-4">
+						<input type="text" class="form-control">
+					</div>
+					<div class="col-2">
+						<label for="" class="ms-5">점검주기</label>
+					</div>
+					<div class="col-4">
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="row align-items-center mb-4">
+		        	<div class="col-2">
+						<label for="" class="ms-5">시설위치</label>
+					</div>
+					<div class="col-4">
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="row justify-content-end mt-3">
+				<th:block th:if="${not #strings.isEmpty(user.userId)}">
+					<div th:unless="${#strings.isEmpty(user.userId)}" class="col-1 me-3">
+						<input type="submit" class="btn btn-info text-white" value="수정">
+					</div>
+				</th:block>
+					<input type="button" class="btn btn-primary col-1 me-3" value="삭제">
+					<input type="button" class="btn btn-outline-dark col-1 me-3" value="목록">
+				</div>
 	        </div>
         </div>
 	</div>
