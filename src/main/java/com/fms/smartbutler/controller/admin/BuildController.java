@@ -78,14 +78,16 @@ public class BuildController {
 	}
 	
 	// 건물 정보 수정
-	@PostMapping("/{buildId}/insert") // PutMapping으로 변경 시 insert 문구 삭제 예정
+	@PostMapping("/{buildId}/update") // PutMapping으로 변경 시 update 문구 삭제 예정
 	public String postBuildinsert(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
-		buildService.update(build);
-		
-		if(vo.getFileName() != null) {
-			Image image = new Image();
+		if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
+			Long imgid = build.getImgId() == null ? 0L : build.getImgId();
+			Image image = imageService.findById(imgid).orElseGet(Image::new);
 			imageService.updateImage(vo, image);
-		}
+			build.setImgId(image.getImageId());
+		} 
+		
+		buildService.update(build);
 		
 		return "redirect:/admin/buildings";
 	}

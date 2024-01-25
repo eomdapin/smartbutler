@@ -1,6 +1,7 @@
 package com.fms.smartbutler.service;
 
 import java.io.File;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,17 +38,25 @@ public class ImageService {
 			image.setRealSrc(filePath);
 		}
 			return image;
-	}		
+	}
+	
 	
 	public void saveImage(FileVo vo, Image image) throws Exception {
 		uploadImage(vo, image);
-		log.info("image.getName() ::: {}", image.getName());
 		imageRepository.save(image);
 	}
 	
 	public void updateImage(FileVo vo, Image image) throws Exception {
 		uploadImage(vo, image);
 		imageRepository.save(image);
+	}
+	
+	public void deleteImage(Image image) {
+		File delFile = new File(image.getSrc() + image.getName());
+		if(delFile.exists()) {
+			delFile.delete();
+			imageRepository.delete(image);
+		}
 	}
 	
 	public Optional<Image> findById(Long imgId) {

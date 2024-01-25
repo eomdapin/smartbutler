@@ -43,7 +43,7 @@
                 	<form action="/admin/buildings/add" method="POST" encType="multipart/form-data">
                 </th:block>
                 <th:block th:if="${not #strings.isEmpty(build.buildId)}">
-               		<form th:action="@{/admin/buildings/{buildId}/insert(buildId = ${build.buildId})}" method="POST" encType="multipart/form-data">
+               		<form th:action="@{/admin/buildings/{buildId}/update(buildId = ${build.buildId})}" method="POST" encType="multipart/form-data">
                 </th:block>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="buildId" class="form-label">건물번호</label></div>
