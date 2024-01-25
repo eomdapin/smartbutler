@@ -31,6 +31,6 @@ public class UserClaimController {
 		// 민원 등록
 		@PostMapping("/add")
 		public String postClaimAdd() {
-			return "redirect:/user/claim/list";
+			return "redirect:/user/claims";
 		}
 }

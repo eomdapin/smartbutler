@@ -36,6 +36,6 @@ public class JobController {
 	// 작업 등록
 	@PostMapping("/{buildId}/jobs/add")
 	public String postJobAdd(@PathVariable Long buildId) {
-		return "redirect:/admin/" + buildId + "/job/list";
+		return "redirect:/admin/buildings/{buildId}/jobs";
 	}
 }

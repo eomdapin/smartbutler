@@ -30,6 +30,6 @@ public class ClaimController {
 	// 민원 처리
 	@PostMapping("/{buildId}/claims/{claimId}")
 	public String postClaimInfo(@PathVariable("buildId") Long buildId, @PathVariable("claimId") Long claimId) {
-		return "redirect:/admin/{buildId}/claims";
+		return "redirect:/admin/buildings/{buildId}/claims";
 	}
 }

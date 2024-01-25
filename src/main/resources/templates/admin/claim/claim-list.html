@@ -41,7 +41,7 @@
 					<tbody>
 						<tr>
 							<td>10010</td>
-							<td><a href="/admin/1/claim/list/1">문 안 닫힘</a></td>
+							<td><a href="/admin/buildings/1/claims/1">문 안 닫힘</a></td>
 							<td>2024-01-15</td>
 							<td>강남1호점</td>
 							<td>702</td>
@@ -50,7 +50,7 @@
 						</tr>
 						<tr th:each="claim: ${claim}">
 							<td>[[${claim.claimId}]]</td>
-							<td><a th:href="@{/admin/{buildId}/claim/list/{claimId}(buildId = ${claim.buildId}, claimId = ${claim.claimId})}">[[${claim.title}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/claims/{claimId}(buildId = ${claim.buildId}, claimId = ${claim.claimId})}">[[${claim.title}]]</a></td>
 							<td>[[${claim.askDate}]]</td>
 							<td>[[${claim.buildName}]]</td>
 							<td>[[${claim.residentId}]]</td>
