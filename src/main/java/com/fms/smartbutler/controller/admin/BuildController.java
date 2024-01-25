@@ -10,16 +10,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.fms.smartbutler.dto.Build;
+import com.fms.smartbutler.dto.Image;
 import com.fms.smartbutler.service.BuildService;
+import com.fms.smartbutler.service.ImageService;
+import com.fms.smartbutler.vo.FileVo;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class BuildController {
 	
 	private final BuildService buildService;
+	private final ImageService imageService;
 	
 	// 건물 정보 조회
 	@GetMapping("/admin/build/list")
@@ -35,8 +40,12 @@ public class BuildController {
 	@GetMapping("/admin/build/list/{buildId}")
 	public String getBuildInfo(@PathVariable Long buildId, Model model) {
 		Build build = buildService.findById(buildId).orElseGet(Build::new);
+		Image image = imageService.findById(build.getImgId()).orElseGet(Image::new);
+		FileVo vo = new FileVo();
 		
+		vo.setFileName(image.getRealName());
 		model.addAttribute("build", build);
+		model.addAttribute("vo", vo);
 		
 		return "admin/build/build-info";
 	}
@@ -51,7 +60,12 @@ public class BuildController {
 	
 	// 건물 정보 저장
 	@PostMapping("/admin/build/add")
-	public String postBuildAdd(@ModelAttribute Build build, Model model) {
+	public String postBuildAdd(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
+		Image image = new Image();
+		
+		imageService.saveImage(vo, image);
+		
+		build.setImgId(image.getImageId());
 		buildService.insert(build);
 		
 		return "redirect:/admin/build/list";
@@ -59,8 +73,13 @@ public class BuildController {
 	
 	// 건물 정보 수정
 	@PostMapping("/admin/build/list/{buildId}/insert") // PutMapping으로 변경 시 insert 문구 삭제 예정
-	public String postBuildinsert(@ModelAttribute Build build, Model model) {
+	public String postBuildinsert(@ModelAttribute Build build, FileVo vo, Model model) throws Exception {
+		Image image = new Image();
+		
 		buildService.update(build);
+		
+		image.setImageId(build.getImgId());
+		imageService.updateImage(vo, image);
 		
 		return "redirect:/admin/build/list";
 	}

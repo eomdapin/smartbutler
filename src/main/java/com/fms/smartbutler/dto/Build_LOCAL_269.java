@@ -10,15 +10,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter
+@Setter @Getter
 @AllArgsConstructor @NoArgsConstructor
-public class Image {
+public class Build {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long imageId;
-	private String name;
-	private String realName;
-	private String src;
-	private String realSrc;
+	private Long buildId;
+	private String buildName;
+	private String address;
+	private Integer floor;
+	private Integer room;
+	private String imgId;
+	private Integer area;
+	private String comDate;
 }
