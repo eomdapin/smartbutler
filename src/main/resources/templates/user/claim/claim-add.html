@@ -17,8 +17,8 @@
 	<div th:replace="~{common/common :: user-header}"></div>
 	<div class="container" style="float: none;">
 		<div class="content form-content">
-			<h1 class="text-center mt-4">민원 상세</h1>
-			<form action="/user/claim/info/1" method="post">
+			<h1 class="text-center mt-4">민원 신청</h1>
+			<form action="/user/claim/add" method="post">
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
@@ -43,7 +43,7 @@
 						<label for="claimKind" class="col-form-label fw-bold">민원 종류</label>
 					</div>
 					<div class="col-5">
-						<input type="text" name="claimKind" value="엘리베이터" class="form-control">
+						<input type="text" name="claimKind" class="form-control">
 					</div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
@@ -51,7 +51,7 @@
 						<label for="title" class="col-form-label fw-bold">제목</label>
 					</div>
 					<div class="col-7 m-0">
-						<input type="text" name="title" value="문 안 닫힘" class="form-control">
+						<input type="text" name="title" class="form-control">
 					</div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
@@ -59,11 +59,11 @@
 						<label for="content" class="col-form-label fw-bold">내용</label>
 					</div>
 					<div class="col-7 m-0">
-						<textarea rows="5" name="content" class="form-control">정원 초과 시 경고음이 나와야 하나 나오지 않고 문이 닫히지 않음.</textarea>
+						<textarea rows="5" name="content" class="form-control"></textarea>
 					</div>
 				</div>
 				<div class="row justify-content-center mt-3">
-					<button type="button" class="btn btn-primary col-1 me-3" onClick="history.back()">뒤로가기</button>
+					<input type="submit" value="신청하기" class="btn btn-primary col-1 me-3">
 				</div>
 			</form>
 		</div>
