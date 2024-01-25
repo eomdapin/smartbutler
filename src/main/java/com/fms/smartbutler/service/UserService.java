@@ -1,6 +1,7 @@
 package com.fms.smartbutler.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,14 @@ public class UserService {
 	
 	public List<User> findAllUser() {
 		return userRepository.findAllUser();
+	}
+	
+	public Optional<User> findByUserId(Long userId) {
+		return userRepository.findByUserId(userId);
+	}
+	
+	public void deleteUser(Long userId) {
+		userRepository.deleteUser(userId);
 	}
 	
 }

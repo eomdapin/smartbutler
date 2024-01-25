@@ -36,7 +36,7 @@ public class BuildRepositoryJpa implements BuildRepository {
 		
 		Build updateBuild = em.find(Build.class, build.getBuildId());
 		
-		updateBuild.setName(build.getName());
+		updateBuild.setBuildName(build.getBuildName());
 		updateBuild.setAddress(build.getAddress());
 		
 		em.persist(updateBuild);

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.fms.smartbutler.dto.User;
 import com.fms.smartbutler.service.UserService;
@@ -17,7 +19,7 @@ public class AdminUserController {
 	
 	private final UserService userService;
 	
-	// 건물 정보 조회
+	// 회원 정보 조회
 	@GetMapping("/admin/user/list")
 	public String userList(Model model) {
 		List<User> user = userService.findAllUser();
@@ -27,8 +29,20 @@ public class AdminUserController {
 		return "admin/user/user-list";
 	}
 	
-	@GetMapping("/admin/user/info")
-	public String userInfo() {
+	// 회원 정보 상세
+	@GetMapping("/admin/user/list/{userId}")
+	public String userInfo(@PathVariable Long userId, Model model) {
+		User user = userService.findByUserId(userId).orElseGet(User::new);
+		
+		model.addAttribute("user", user);
+		
 		return "admin/user/user-info";
+	}
+	
+	// 회원 탈퇴
+	@PostMapping("/admin/user/list/{userId}/delete")
+	public String userDelete(@PathVariable Long userId) {
+		userService.deleteUser(userId);
+		return "redirect:/admin/user/list";
 	}
 }

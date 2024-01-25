@@ -17,7 +17,7 @@ public class Build {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long buildId;
-	private String name;
+	private String buildName;
 	private String address;
 	private Integer floor;
 	private Integer room;

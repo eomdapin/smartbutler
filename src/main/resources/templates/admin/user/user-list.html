@@ -53,7 +53,7 @@
 					<tbody>
 						<tr th:each="user: ${user}">
 							<td><a th:href="@{/admin/user/list/{userId}(userId = ${user.userId})}">[[${user.userId}]]</a></td>
-							<td>건물</td>
+							<td>건물명</td>
 							<td><a th:href="@{/admin/user/list/{userId}(userId = ${user.userId})}">[[${user.name}]]</a></td>
 							<td><a th:href="@{/admin/user/list/{userId}(userId = ${user.userId})}">[[${user.phone}]]</a></td>
 							<td><a th:href="@{/admin/user/list/{userId}(userId = ${user.userId})}">[[${user.email}]]</a></td>

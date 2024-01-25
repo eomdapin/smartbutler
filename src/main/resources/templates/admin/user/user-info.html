@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>SMARTBUTLER</title>
@@ -39,52 +39,52 @@
 				</ul>
 			</div>
 			<div class="content form-content">
-				<form action="/admin/user/list">
+				<form th:action="@{/admin/user/list/{userId}/delete(userId = ${user.userId})}" method="POST">
 					<div class="row align-items-center mb-4">
 						<div class="col-1">
-							<label>회원번호</label>
+							<label for="userId">회원번호</label>
 						</div>
 						<div class="col-5">
-							<input type="text" class="form-control">
+							<input type="text" name="userId" class="form-control" th:value=${user?.userId} readonly>
 						</div>
 						<div class="col-1">
-							<label>전화번호</label>
+							<label for="phone">전화번호</label>
 						</div>
 						<div class="col-5">
-							<input type="tel" class="form-control">
+							<input type="tel" name="phone" class="form-control" th:value=${user?.phone} readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 						<div class="col-1">
-							<label>건물명</label>
+							<label for="buildName">건물명</label>
 						</div>
 						<div class="col-5">
-							<input type="text" class="form-control">
+							<input type="text" name="buildName" class="form-control" th:value=${build?.name} readonly>
 						</div>
 						<div class="col-1">
-							<label>이메일</label>
+							<label for="email">이메일</label>
 						</div>
 						<div class="col-5">
-							<input type="email" class="form-control">
+							<input type="email" name="email" class="form-control" th:value=${user?.email} readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 						<div class="col-1">
-							<label>회원명</label>
+							<label for="name">회원명</label>
 						</div>
 						<div class="col-5">
-							<input type="text" class="form-control">
+							<input type="text" name="name" class="form-control" th:value=${user?.name} readonly>
 						</div>
 						<div class="col-1">
-							<label>회원유형</label>
+							<label for="status">회원유형</label>
 						</div>
 						<div class="col-5">
-							<input type="text" class="form-control">
+							<input type="text" name="status" class="form-control" th:value=${user?.status} readonly>
 						</div>
 					</div>
 					<div class="row justify-content-end mt-3">
-						<input type="button" class="btn btn-primary col-1 me-3" value="탈퇴">
-						<input type="submit" class="btn btn-outline-dark col-1 me-3" value="목록">
+						<input type="submit" class="btn btn-primary col-1 me-3" value="탈퇴">
+						<input type="button" class="btn btn-outline-dark col-1 me-3" onClick="history.back()" value="목록">
 					</div>
 				</form>
 			</div>

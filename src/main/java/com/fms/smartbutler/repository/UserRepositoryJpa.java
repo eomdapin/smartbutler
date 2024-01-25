@@ -1,6 +1,7 @@
 package com.fms.smartbutler.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,18 @@ public class UserRepositoryJpa implements UserRepository{
 	public List<User> findAllUser() {
 		Query query = em.createQuery("SELECT u FROM User u");
 		return query.getResultList();
+	}
+
+	@Override
+	public Optional<User> findByUserId(Long userId) {
+		User user = em.find(User.class, userId);
+		return Optional.ofNullable(user);
+	}
+
+	@Override
+	public void deleteUser(Long userId) {
+		User user = em.find(User.class, userId);
+		em.remove(user);
 	}
 
 }
