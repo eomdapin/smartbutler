@@ -47,14 +47,14 @@
                 </th:block>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="buildId" class="form-label">건물번호</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="buildId" class="form-control" th:value=${build?.buildId} readonly></div>
+                        <div class="col-4 mb-3"><input type="text" name="buildId" class="form-control" th:value="${build?.buildId}" readonly></div>
                         
                         <div class="col-1 mb-3"><label for="room" class="form-label">칸수</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="room" class="form-control" th:value=${build?.room} required></div>
+                        <div class="col-4 mb-3"><input type="text" name="room" class="form-control" th:value="${build?.room}" required></div>
                     </div>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="name" class="form-label">건물명</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" th:value=${build?.buildName} required></div>
+                        <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" th:value="${build?.buildName}" required></div>
                         
                         <div class="col-1 mb-3"><label for="uploadFile" class="form-label">이미지</label></div>
                         <div class="col-4 mb-3">
@@ -69,10 +69,10 @@
                     </div>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="address" class="form-label">주소</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="address" class="form-control" th:value=${build?.address} required></div>
+                        <div class="col-4 mb-3"><input type="text" name="address" class="form-control" th:value="${build?.address}" required></div>
                         
                         <div class="col-1 mb-3"><label for="area" class="form-label">면적</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="area" class="form-control" th:value=${build?.area} required></div>
+                        <div class="col-4 mb-3"><input type="text" name="area" class="form-control" th:value="${build?.area}" required></div>
                     </div>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="floor" class="form-label">층수</label></div>
