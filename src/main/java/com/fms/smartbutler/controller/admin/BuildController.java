@@ -42,10 +42,13 @@ public class BuildController {
 	@GetMapping("/{buildId}")
 	public String getBuildInfo(@PathVariable Long buildId, Model model) {
 		Build build = buildService.findById(buildId).orElseGet(Build::new);
-		Image image = imageService.findById(build.getImgId()).orElseGet(Image::new);
 		FileVo vo = new FileVo();
 		
-		vo.setFileName(image.getRealName());
+		if(build.getImgId() != null) {
+			Image image = imageService.findById(build.getImgId()).orElseGet(Image::new);
+			vo.setFileName(image.getRealName());
+		}
+		
 		model.addAttribute("build", build);
 		model.addAttribute("vo", vo);
 		
@@ -63,11 +66,14 @@ public class BuildController {
 	// 건물 정보 저장
 	@PostMapping("/add")
 	public String postBuildAdd(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
-		Image image = new Image();
+		log.info("vo.getUploadFile() :: {}", vo.getUploadFile());
+		log.info("vo.getFileName() :: {}", vo.getFileName());
+		if(!vo.getFileName().isEmpty()) {
+			Image image = new Image();
+			imageService.saveImage(vo, image);
+			build.setImgId(image.getImageId());
+		}
 		
-		imageService.saveImage(vo, image);
-		
-		build.setImgId(image.getImageId());
 		buildService.insert(build);
 		
 		return "redirect:/admin/buildings";
@@ -75,13 +81,13 @@ public class BuildController {
 	
 	// 건물 정보 수정
 	@PostMapping("/{buildId}/insert") // PutMapping으로 변경 시 insert 문구 삭제 예정
-	public String postBuildinsert(@ModelAttribute Build build, FileVo vo, Model model) throws Exception {
-		Image image = new Image();
-		
+	public String postBuildinsert(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
 		buildService.update(build);
-		
-		image.setImageId(build.getImgId());
-		imageService.updateImage(vo, image);
+		log.info("vo.getFileName() :: {}", vo.getFileName());
+		if(vo.getFileName() != null) {
+			Image image = new Image();
+			imageService.updateImage(vo, image);
+		}
 		
 		return "redirect:/admin/buildings";
 	}

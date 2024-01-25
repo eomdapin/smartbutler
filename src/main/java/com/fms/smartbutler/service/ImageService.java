@@ -21,7 +21,7 @@ public class ImageService {
 	
 	private final ImageRepository imageRepository;
 	
-	private Image transImage(FileVo vo, Image image) throws Exception {
+	private Image uploadImage(FileVo vo, Image image) throws Exception {
 		MultipartFile file = vo.getUploadFile();
 		
 		if(!file.isEmpty()) {
@@ -29,8 +29,8 @@ public class ImageService {
 			String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\web-img\\";
 			UUID uuid = UUID.randomUUID();
 			String fileName = uuid + originalFileName;
-			file.transferTo(new File(filePath + fileName));
 			
+			file.transferTo(new File(filePath + fileName));
 			image.setName(fileName);
 			image.setRealName(originalFileName);
 			image.setSrc(filePath);
@@ -40,12 +40,13 @@ public class ImageService {
 	}		
 	
 	public void saveImage(FileVo vo, Image image) throws Exception {
-		transImage(vo, image);
+		uploadImage(vo, image);
+		log.info("image.getName() ::: {}", image.getName());
 		imageRepository.save(image);
 	}
 	
 	public void updateImage(FileVo vo, Image image) throws Exception {
-		transImage(vo, image);
+		uploadImage(vo, image);
 		imageRepository.save(image);
 	}
 	
