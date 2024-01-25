@@ -45,11 +45,8 @@ public class ImageService {
 	}
 	
 	public void updateImage(FileVo vo, Image image) throws Exception {
-		log.info("updateImage start !!!");
-		log.info("[updateImage] :: image.getImgId :: {}", image.getImageId());
 		transImage(vo, image);
-		log.info("updateImage transImage good !!!");
-		imageRepository.update(image);
+		imageRepository.save(image);
 	}
 	
 	public Optional<Image> findById(Long imgId) {

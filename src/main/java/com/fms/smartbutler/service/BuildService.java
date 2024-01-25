@@ -21,7 +21,7 @@ public class BuildService {
 	}
 	
 	public void update(Build build) {
-		buildRepository.update(build);
+		buildRepository.save(build);
 	}
 	
 	public Optional<Build> findById(Long buildId) {

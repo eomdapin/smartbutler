@@ -1,12 +1,9 @@
 package com.fms.smartbutler.repository;
 
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.fms.smartbutler.domain.Image;
 
-public interface ImageRepository {
+public interface ImageRepository extends JpaRepository<Image, Long>{
 	
-	void save(Image image);
-	void update(Image image);
-	Optional<Image> findById(Long imgId);
 }
