@@ -70,7 +70,7 @@ public class BuildController {
 		build.setImgId(image.getImageId());
 		buildService.insert(build);
 		
-		return "redirect:/admin/build/list";
+		return "redirect:/admin/buildings";
 	}
 	
 	// 건물 정보 수정
@@ -83,6 +83,6 @@ public class BuildController {
 		image.setImageId(build.getImgId());
 		imageService.updateImage(vo, image);
 		
-		return "redirect:/admin/build/list";
+		return "redirect:/admin/buildings";
 	}
 }

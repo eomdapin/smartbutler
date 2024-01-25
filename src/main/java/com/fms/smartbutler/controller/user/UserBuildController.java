@@ -25,9 +25,9 @@ public class UserBuildController {
 	
 	// 건물 정보
 	@GetMapping("/info")
-	public String getBuildInfo(@RequestParam(required = false) Long BuildId, Model model) {
-		BuildId = BuildId == null ? 1 :BuildId;
-		Build build = buildService.findById(BuildId).orElseGet(Build::new);
+	public String getBuildInfo(@RequestParam(required = false) Long buildId, Model model) {
+		buildId = buildId == null ? 1 :buildId;
+		Build build = buildService.findById(buildId).orElseGet(Build::new);
 		
 		Image image = imageService.findById(build.getImgId()).orElseGet(Image::new);
 		
