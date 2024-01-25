@@ -62,6 +62,7 @@ public class BuildController {
 	@PostMapping("/admin/build/add")
 	public String postBuildAdd(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
 		Image image = new Image();
+		
 		imageService.saveImage(vo, image);
 		
 		build.setImgId(image.getImageId());
@@ -72,8 +73,13 @@ public class BuildController {
 	
 	// 건물 정보 수정
 	@PostMapping("/admin/build/list/{buildId}/insert") // PutMapping으로 변경 시 insert 문구 삭제 예정
-	public String postBuildinsert(@ModelAttribute Build build, Model model) {
+	public String postBuildinsert(@ModelAttribute Build build, FileVo vo, Model model) throws Exception {
+		Image image = new Image();
+		
 		buildService.update(build);
+		
+		image.setImageId(build.getImgId());
+		imageService.updateImage(vo, image);
 		
 		return "redirect:/admin/build/list";
 	}

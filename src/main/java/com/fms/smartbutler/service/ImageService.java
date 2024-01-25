@@ -21,7 +21,7 @@ public class ImageService {
 	
 	private final ImageRepository imageRepository;
 	
-	public void saveImage(FileVo vo, Image image) throws Exception {
+	private Image transImage(FileVo vo, Image image) throws Exception {
 		MultipartFile file = vo.getUploadFile();
 		
 		if(!file.isEmpty()) {
@@ -35,9 +35,21 @@ public class ImageService {
 			image.setRealName(originalFileName);
 			image.setSrc(filePath);
 			image.setRealSrc(filePath);
-			
-			imageRepository.save(image);
 		}
+			return image;
+	}		
+	
+	public void saveImage(FileVo vo, Image image) throws Exception {
+		transImage(vo, image);
+		imageRepository.save(image);
+	}
+	
+	public void updateImage(FileVo vo, Image image) throws Exception {
+		log.info("updateImage start !!!");
+		log.info("[updateImage] :: image.getImgId :: {}", image.getImageId());
+		transImage(vo, image);
+		log.info("updateImage transImage good !!!");
+		imageRepository.update(image);
 	}
 	
 	public Optional<Image> findById(Long imgId) {
