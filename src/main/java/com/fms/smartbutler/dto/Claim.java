@@ -13,21 +13,18 @@ import lombok.Setter;
 @Entity
 @Setter @Getter
 @AllArgsConstructor @NoArgsConstructor
-public class Job {
+public class Claim {
 	
 	@Id
 	@GeneratedValue
-	private Long workId;
+	private Long claimId;
 	private Long buildId;
-	private Long itemId;
-	private Long companyId;
-//	private String kindType;
+	private Long userId;
 	private String title;
-	private Date askDate;
+	private String claimKind;
 	private String content;
+	private Date askDate;
 	private Date finDate;
 	private int status;
-	private Long imgId;
-	private String reportContent;
-	private Long reportImgId;
+	private Long imageId;
 }

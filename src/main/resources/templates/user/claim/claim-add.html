@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SMARTBUTLER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/user.css">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+<link rel="manifest" href="/img/site.webmanifest">
+</head>
+<body>
+	<div th:replace="~{common/common :: userHeader}"></div>
+	<div class="container" style="float: none;">
+		<div class="content form-content">
+			<h1 class="text-center mt-4">민원 신청</h1>
+			<form action="/user/claim/add" method="post">
+				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
+					<div class="col-7 mt-3 border-top border-5 border-black"></div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4 mt-2">
+					<div class="col-2">
+						<label for="residentId" class="col-form-label fw-bold">세대 번호</label>
+					</div>
+					<div class="col-5">
+						<input type="number" name="residentId" value="101" class="form-control" readonly>
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="askDate" class="col-form-label fw-bold">신청 날짜</label>
+					</div>
+					<div class="col-5">
+						<input type="text" name="askDate" value="2024-01-25" class="form-control" readonly>
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="claimKind" class="col-form-label fw-bold">민원 종류</label>
+					</div>
+					<div class="col-5">
+						<input type="text" name="claimKind" class="form-control">
+					</div>
+				</div>
+				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
+					<div class="col-7">
+						<label for="title" class="col-form-label fw-bold">제목</label>
+					</div>
+					<div class="col-7 m-0">
+						<input type="text" name="title" class="form-control">
+					</div>
+				</div>
+				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
+					<div class="col-7">
+						<label for="content" class="col-form-label fw-bold">내용</label>
+					</div>
+					<div class="col-7 m-0">
+						<textarea rows="5" name="content" class="form-control"></textarea>
+					</div>
+				</div>
+				<div class="row justify-content-center mt-3">
+					<input type="submit" value="신청하기" class="btn btn-primary col-1 me-3">
+				</div>
+			</form>
+		</div>
+	</div>
+	<div th:replace="~{common/common :: userFooter}"></div>
+</body>
+</html>

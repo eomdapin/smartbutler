@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+	<div th:fragment="adminHeader">
+ 	   <header class="d-flex align-items-center">
+            <div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
+            <div><h1><a href="/" class="logo-text">SMARTBUTLER</a></h1></div>
+        </header>
+	</div>
+	<div th:fragment="adminSidebar">
+ 	   <div id="navi" class="">
+			<ul>
+				<li><a href="#">건물정보</a></li>
+				<li><a href="#">시설관리</a></li>
+				<li><a href="#">임대관리</a></li>
+				<li><a href="#">견적관리</a></li>
+				<li><a href="#">민원관리</a></li>
+				<li><a href="#">회원정보</a></li>
+			</ul>
+		</div>
+	</div>
+	<div th:fragment="workerSidebar">
+		<div id="navi" class="">
+			<ul>
+				<li><a href="/worker/job/list">작업목록</a></li>
+			</ul>
+		</div>
+	</div>
+	<div th:fragment="userHeader">
+		<header class="d-flex justify-content-between">
+			<div class="d-flex align-items-center">
+        		<div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
+	        	<div><h1><a href="/" class="logo-text">SMARTBUTLER</a></h1></div>
+        	</div>
+	        <div class="d-flex align-items-center" style="gap:50px; margin-right: 200px;">
+	        	<div><a href="#">마이페이지</a></div>
+	        	<div><a href="#">건물 정보 보기</a></div>
+	        	<div><a href="#">견적 신청</a></div>
+	        	<div><a href="#">민원 신청</a></div>
+        	</div>
+    	</header>
+	</div>
+	<div th:fragment="userFooter">
+		<footer>
+			<span>스마트버틀러 | 대표 : 홍길동 | 주소 : 서울시 서대문구 연세로 8-1</span><br>
+			<span>Copyright &copy; 2024 SMARTBUTLER</span>
+		</footer>	
+	</div>
+</body>
+</html>

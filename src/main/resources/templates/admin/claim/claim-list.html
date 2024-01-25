@@ -21,44 +21,41 @@
 			<div class="bread-crum">
 				<ul class="">
 					<li><a href="#">HOME</a><span> ></span></li>
-					<li><a href="#">시설관리</a><span> ></span></li>
-					<li><a href="#">작업목록</a></li>
+					<li><a href="#">민원관리</a><span> ></span></li>
+					<li><a href="#">민원목록</a></li>
 				</ul>
 			</div>
 			<div class="content">
-				<div class="d-grid justify-content-end my-3">
-					<button type="button" class="btn btn-primary" onClick="location.href='/admin/1/job/add'">신규 요청</button>
-				</div>
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">요청번호</th>
+							<th scope="col">민원번호</th>
 							<th scope="col" class="col-md-4">제목</th>
 							<th scope="col">요청날짜</th>
-							<th scope="col">시설명</th>
-							<th scope="col">처리날짜</th>
-							<th scope="col">점검업체</th>
+							<th scope="col">건물명</th>
+							<th scope="col">세대번호</th>
+							<th scope="col">완료날짜</th>
 							<th scope="col">처리상태</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td>10010</td>
-							<td><a href="/admin/1/job/list/1">문 안 닫힘</a></td>
+							<td><a href="/admin/1/claim/list/1">문 안 닫힘</a></td>
 							<td>2024-01-15</td>
-							<td>엘리베이터1호기</td>
-							<td>2024-01-15</td>
-							<td>오티스엘리베이터</td>
-							<td>완료</td>
+							<td>강남1호점</td>
+							<td>702</td>
+							<td> - </td>
+							<td>신청</td>
 						</tr>
-						<tr th:each="job: ${job}">
-							<td>[[${job.jobId}]]</td>
-							<td><a th:href="@{/admin/{buildId}/job/list/{jobId}(buildId = ${job.buildId}, jobId = ${job.jobId})}">[[${job.title}]]</a></td>
-							<td>[[${job.askDate}]]</td>
-							<td>[[${job.itemName}]]</td>
-							<td>[[${job.finDate}]]</td>
-							<td>[[${job.companyName}]]</td>
-							<td>[[${job.status}]]</td>
+						<tr th:each="claim: ${claim}">
+							<td>[[${claim.claimId}]]</td>
+							<td><a th:href="@{/admin/{buildId}/claim/list/{claimId}(buildId = ${claim.buildId}, claimId = ${claim.claimId})}">[[${claim.title}]]</a></td>
+							<td>[[${claim.askDate}]]</td>
+							<td>[[${claim.buildName}]]</td>
+							<td>[[${claim.residentId}]]</td>
+							<td>[[${claim.finDate}]]</td>
+							<td>[[${claim.status}]]</td>
 						</tr>
 					</tbody>
 				</table>
