@@ -1,10 +1,10 @@
-package com.fsm.smartbulter;
+package com.fms.smartbutler;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SmartBulterApplicationTests {
+class SmartButlerApplicationTests {
 
 	@Test
 	void contextLoads() {

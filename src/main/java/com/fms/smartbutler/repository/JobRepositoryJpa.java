@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fms.smartbutler.dto.Job;
+import com.fms.smartbutler.domain.Job;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;

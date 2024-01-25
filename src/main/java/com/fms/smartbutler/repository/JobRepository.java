@@ -3,7 +3,7 @@ package com.fms.smartbutler.repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.fms.smartbutler.dto.Job;
+import com.fms.smartbutler.domain.Job;
 
 public interface JobRepository {
 	void save(Job job);

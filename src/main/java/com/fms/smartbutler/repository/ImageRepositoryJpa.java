@@ -4,8 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.fms.smartbutler.dto.Build;
-import com.fms.smartbutler.dto.Image;
+import com.fms.smartbutler.domain.Image;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;

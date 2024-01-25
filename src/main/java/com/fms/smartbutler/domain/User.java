@@ -1,4 +1,4 @@
-package com.fms.smartbutler.dto;
+package com.fms.smartbutler.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,16 +12,24 @@ import lombok.Setter;
 @Entity
 @Setter @Getter
 @AllArgsConstructor @NoArgsConstructor
-public class Build {
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long buildId;
-	private String buildName;
-	private String address;
-	private Integer floor;
-	private Integer room;
-	private String imgId;
-	private Integer area;
-	private String comDate;
+	private Long userId;
+	private String name;
+	private String phone;
+	private String email;
+	private Integer status;
+
+	
+	@Entity(name = "user_login")
+	@Setter @Getter
+	@AllArgsConstructor @NoArgsConstructor
+	public static class UserLogin {
+		
+		@Id
+		private Long userId;
+		private String pw;
+	}
 }

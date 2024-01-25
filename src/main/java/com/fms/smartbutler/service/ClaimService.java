@@ -2,7 +2,7 @@ package com.fms.smartbutler.service;
 
 import org.springframework.stereotype.Service;
 
-import com.fms.smartbutler.dto.Claim;
+import com.fms.smartbutler.domain.Claim;
 import com.fms.smartbutler.repository.ClaimRepository;
 
 import lombok.RequiredArgsConstructor;

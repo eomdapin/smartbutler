@@ -3,7 +3,7 @@ package com.fms.smartbutler.repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.fms.smartbutler.dto.User;
+import com.fms.smartbutler.domain.User;
 
 public interface UserRepository {
 	

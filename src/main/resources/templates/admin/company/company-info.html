@@ -42,30 +42,63 @@
 				<li><a href="#">회원정보</a></li>
 			</ul>
 		</div>
+
 		<div class="container">
 			<div class="bread-crum">
 				<ul class="">
 					<li><a href="/">HOME</a><span> ></span></li>
-					<li><a href="#">임대관리</a><span> ></span></li>
-					<li><a href="#">입주등록</a></li>
+					<li><a href="#">계약업체</a><span> ></span></li>
+					<li><a href="#">업체정보</a></li>
 				</ul>
 			</div>
 			<div class="content">
-				<form action="/admin/{buildId}/resident/list/{residentId}/add" method="post">
+				<form>
+
 					<div class="container fw-semibold">
+
 						<div class="row align-items-center mb-4">
-							<div class="col-6">
+							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="resident-id" class="col-form-label ms-3">회원번호</label>
+										<label for="company-id" class="col-form-label ms-3">업체번호</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="resident-id" name="resident-id"
+										<input type="text" id="company-id" name="company-id"
 											class="form-control">
 									</div>
 								</div>
 							</div>
-							<div class="col-6">
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="password" class="col-form-label ms-3">비밀번호</label>
+									</div>
+									<div class="col-8">
+										<input type="password" id="password" name="password"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="col-2">
+								<div class="row g-3 align-items-center me-5">
+									<button type="button" class="col btn btn-outline-info">보기</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="row align-items-center mb-4">
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="company-name" class="col-form-label ms-3">업체명</label>
+									</div>
+									<div class="col-8">
+										<input type="text" id="company-name" name="company-name"
+											class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
 										<label for="from-date" class="col-form-label ms-3">계약시작일</label>
@@ -77,18 +110,20 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="row align-items-center mb-4">
-							<div class="col-6">
+							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="name" class="col-form-label ms-3">고객명</label>
+										<label for="manager" class="col-form-label ms-3">담당자명</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="name" name="name" class="form-control">
+										<input type="text" id="manager" name="manager"
+											class="form-control">
 									</div>
 								</div>
 							</div>
-							<div class="col-6">
+							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
 										<label for="to-date" class="col-form-label ms-3">계약종료일</label>
@@ -102,10 +137,10 @@
 						</div>
 
 						<div class="row align-items-center mb-4">
-							<div class="col-6">
+							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="phone" class="col-form-label ms-3">휴대폰번호</label>
+										<label for="phone" class="col-form-label ms-3">전화번호</label>
 									</div>
 									<div class="col-8">
 										<input type="text" id="phone" name="phone"
@@ -113,83 +148,60 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-6">
+							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="deposit" class="col-form-label ms-3">보증금</label>
+										<label for="kind-name" class="col-form-label ms-3">담당업무</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="deposit" name="deposit"
+										<input type="text" id="kind-name" name="kind-name"
 											class="form-control">
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="row align-items-center mb-4">
-							<div class="col-6">
+						<div class="row align-items-center mb-5">
+							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="name" class="col-form-label ms-3">건물명</label>
+										<label for="company-id" class="col-form-label ms-3">로그인번호</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="name" name="name" class="form-control">
+										<input type="text" id="company-id" name="company-id"
+											class="form-control">
 									</div>
 								</div>
 							</div>
-							<div class="col-6">
+							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="monthly" class="col-form-label ms-3">월세</label>
+										<label for="cost" class="col-form-label ms-3">계약비용</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="monthly" name="monthly"
-											class="form-control">
+										<input type="text" id="cost" name="cost" class="form-control">
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="row align-items-center mb-4">
-							<div class="col-6">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="resident-id" class="col-form-label ms-3">입주
-											호실</label>
-									</div>
-									<div class="col-3">
-										<input type="text" id="resident-id" name="resident-id"
-											class="form-control">
-									</div>
-									<div class="col-2 text-center">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-											fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
-											<path
-												d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
-										</svg>
-									</div>
-									<div class="col-3">
-										<input type="text" id="resident-id" name="resident-id"
-											class="form-control">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row align-items-center mt-5">
-							<div class="col-6"></div>
-							<div class="col-6">
-								<div class="row">
-									<div class="col-4"></div>
-									<div class="col-8 d-flex gap-4">
-										<input class="col btn btn-primary" type="submit" value="등록">
-											<button type="button" class="col btn btn-outline-primary" onclick="history.back()">취소</button>
-									</div>
+						<div class="row">
+							<div class="col-5"></div>
+							<div class="col-5">
+								<div class="d-flex gap-4 justify-items-center">
+									<button class="col btn btn-primary" type="submit"
+										formaction="/admin/1/company/list/1/update" formmethod="get">수정</button>
+									<button class="col btn btn-info text-white" type="submit"
+										formaction="/admin/1/company/list/1/delete" formmethod="post">삭제</button>
+									<button class="col btn btn-outline-primary" type="submit"
+										formaction="/admin/1/company/list" formmethod="get">목록</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</form>
 			</div>
+
 		</div>
 	</div>
 </body>

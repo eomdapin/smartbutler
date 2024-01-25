@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fms.smartbutler.dto.Image;
+import com.fms.smartbutler.domain.Image;
 import com.fms.smartbutler.repository.ImageRepository;
 import com.fms.smartbutler.vo.FileVo;
 

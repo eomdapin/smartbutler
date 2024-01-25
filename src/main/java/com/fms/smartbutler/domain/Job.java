@@ -1,4 +1,4 @@
-package com.fms.smartbutler.dto;
+package com.fms.smartbutler.domain;
 
 import java.sql.Date;
 

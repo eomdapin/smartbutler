@@ -2,8 +2,7 @@ package com.fms.smartbutler.repository;
 
 import java.util.Optional;
 
-import com.fms.smartbutler.dto.Build;
-import com.fms.smartbutler.dto.Image;
+import com.fms.smartbutler.domain.Image;
 
 public interface ImageRepository {
 	

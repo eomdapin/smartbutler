@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.fms.smartbutler.dto.User;
+import com.fms.smartbutler.domain.User;
 import com.fms.smartbutler.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;

@@ -3,7 +3,7 @@ package com.fms.smartbutler.repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.fms.smartbutler.dto.Build;
+import com.fms.smartbutler.domain.Build;
 
 public interface BuildRepository {
 	void save(Build build);

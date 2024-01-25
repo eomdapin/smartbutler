@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fms.smartbutler.dto.Build;
+import com.fms.smartbutler.domain.Build;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
