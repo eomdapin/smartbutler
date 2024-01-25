@@ -66,8 +66,6 @@ public class BuildController {
 	// 건물 정보 저장
 	@PostMapping("/add")
 	public String postBuildAdd(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
-		log.info("vo.getUploadFile() :: {}", vo.getUploadFile());
-		log.info("vo.getFileName() :: {}", vo.getFileName());
 		if(!vo.getFileName().isEmpty()) {
 			Image image = new Image();
 			imageService.saveImage(vo, image);
@@ -83,7 +81,7 @@ public class BuildController {
 	@PostMapping("/{buildId}/insert") // PutMapping으로 변경 시 insert 문구 삭제 예정
 	public String postBuildinsert(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
 		buildService.update(build);
-		log.info("vo.getFileName() :: {}", vo.getFileName());
+		
 		if(vo.getFileName() != null) {
 			Image image = new Image();
 			imageService.updateImage(vo, image);
