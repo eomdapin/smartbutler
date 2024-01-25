@@ -84,7 +84,7 @@
 				</div>
 				<h3 class="text-center mt-2"> 세대 현황</h3>
 				<div class="justify-content-center text-center p-1" style="margin: 0 auto;">
-					<div th:each="floor: ${#numbers.sequence(1, build?.floor)}" class="row g-3 align-items-center w-100 m-2">
+					<div th:each="floor: ${#numbers.sequence(1, build?.floor)}" class="row g-3 justify-content-evenly w-100 m-2">
 						<div th:each="room: ${#numbers.sequence(1, build?.room)}" class="m-2 border border-dark-subtle" style="width: 120px; height: 120px;">
 							<span style="font-size:20px; font-weight: 600;">[[${(floor*100) + room}]]호</span><br>
 							<span style="font-size:14px; font-weight: 400;">공실</span>
