@@ -23,46 +23,29 @@
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-2">
-					<div class="col-2">
-						<label for="residentId" class="col-form-label fw-bold">세대 번호</label>
-					</div>
-					<div class="col-5">
-						<input type="number" name="residentId" value="101" class="form-control" readonly>
-					</div>
+					<div class="col-2"><label for="residentId" class="col-form-label fw-bold">세대 번호</label></div>
+					<div class="col-5"><input type="number" value="101" class="form-control" readonly></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
-					<div class="col-2">
-						<label for="askDate" class="col-form-label fw-bold">신청 날짜</label>
-					</div>
-					<div class="col-5">
-						<input type="text" name="askDate" value="2024-01-25" class="form-control" readonly>
-					</div>
+					<div class="col-2"><label for="askDate" class="col-form-label fw-bold">신청 날짜</label></div>
+					<div class="col-5"><input type="date" name="askDate" th:value="${today}" class="form-control" readonly></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
-					<div class="col-2">
-						<label for="claimKind" class="col-form-label fw-bold">민원 종류</label>
-					</div>
-					<div class="col-5">
-						<input type="text" name="claimKind" class="form-control">
-					</div>
+					<div class="col-2"><label for="claimKind" class="col-form-label fw-bold">민원 종류</label></div>
+					<div class="col-5"><input type="text" name="claimKind" class="form-control"></div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
-					<div class="col-7">
-						<label for="title" class="col-form-label fw-bold">제목</label>
-					</div>
-					<div class="col-7 m-0">
-						<input type="text" name="title" class="form-control">
-					</div>
+					<div class="col-7"><label for="title" class="col-form-label fw-bold">제목</label></div>
+					<div class="col-7 m-0"><input type="text" name="title" class="form-control"></div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
-					<div class="col-7">
-						<label for="content" class="col-form-label fw-bold">내용</label>
-					</div>
-					<div class="col-7 m-0">
-						<textarea rows="5" name="content" class="form-control"></textarea>
-					</div>
+					<div class="col-7"><label for="content" class="col-form-label fw-bold">내용</label></div>
+					<div class="col-7 m-0"><textarea rows="5" name="content" class="form-control"></textarea></div>
 				</div>
 				<div class="row justify-content-center mt-3">
+					<input type="hidden" value="1" name="status">
+					<input type="hidden" value="1" name="build.buildId">
+					<input type="hidden" value="1" name="user.userId">
 					<input type="submit" value="신청하기" class="btn btn-primary col-1 me-3">
 				</div>
 			</form>
