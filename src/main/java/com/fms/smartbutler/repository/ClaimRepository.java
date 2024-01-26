@@ -1,12 +1,11 @@
 package com.fms.smartbutler.repository;
 
 import java.util.List;
-import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.fms.smartbutler.domain.Claim;
 
-public interface ClaimRepository {
-	void save(Claim claim);
-	Optional<Claim> findById(Long claimId);
-	List<Claim> findAll();
+public interface ClaimRepository extends JpaRepository<Claim, Long> {
+	List<Claim> findByIdAndBuild_BuildId(Long claimId, Long buildId);
 }

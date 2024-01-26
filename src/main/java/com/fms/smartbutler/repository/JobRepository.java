@@ -1,12 +1,9 @@
 package com.fms.smartbutler.repository;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.fms.smartbutler.domain.Job;
 
-public interface JobRepository {
-	void save(Job job);
-	List<Job> findAll();
-	Optional<Job> findById();
+public interface JobRepository extends JpaRepository<Job, Long> {
+	
 }

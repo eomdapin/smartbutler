@@ -33,7 +33,7 @@
 					<tbody>
 						<tr>
 							<td>10010</td>
-							<td><a href="/worker/job/list/1">문 안 닫힘</a></td>
+							<td><a href="/worker/jobs/1">문 안 닫힘</a></td>
 							<td>2024-01-15</td>
 							<td>엘리베이터1호기</td>
 							<td>강남1호점</td>
@@ -41,7 +41,7 @@
 						</tr>
 						<tr th:each="job: ${job}">
 							<td>[[${job.jobId}]]</td>
-							<td><a th:href="@{/worker/job/list/{jobId}(jobId = ${job.jobId})}">[[${job.title}]]</a></td>
+							<td><a th:href="@{/worker/jobs/{jobId}(jobId = ${job.jobId})}">[[${job.title}]]</a></td>
 							<td>[[${job.askDate}]]</td>
 							<td>[[${job.itemName}]]</td>
 							<td>[[${job.buildName}]]</td>

@@ -1,10 +1,4 @@
-<!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Title</title>
-</head>
-<body>
 	<div th:fragment="adminHeader">
  	   <header class="d-flex align-items-center">
             <div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
@@ -24,9 +18,9 @@
 		</div>
 	</div>
 	<div th:fragment="workerSidebar">
-		<div id="navi" class="">
+		<div id="navi">
 			<ul>
-				<li><a href="/worker/job/list">작업목록</a></li>
+				<li><a href="/worker/jobs">작업목록</a></li>
 			</ul>
 		</div>
 	</div>
@@ -50,5 +44,4 @@
 			<span>Copyright &copy; 2024 SMARTBUTLER</span>
 		</footer>	
 	</div>
-</body>
 </html>

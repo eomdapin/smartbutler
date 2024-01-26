@@ -18,49 +18,29 @@
 	<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-4">민원 상세</h1>
-			<form action="/user/claim/info/1" method="post">
+			<form action="/user/claims/1" method="post">
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-2">
-					<div class="col-2">
-						<label for="residentId" class="col-form-label fw-bold">세대 번호</label>
-					</div>
-					<div class="col-5">
-						<input type="number" name="residentId" value="101" class="form-control" readonly>
-					</div>
+					<div class="col-2"><label for="residentId" class="col-form-label fw-bold">세대 번호</label></div>
+					<div class="col-5"><input type="number" name="residentId" value="101" class="form-control" readonly></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
-					<div class="col-2">
-						<label for="askDate" class="col-form-label fw-bold">신청 날짜</label>
-					</div>
-					<div class="col-5">
-						<input type="text" name="askDate" value="2024-01-25" class="form-control" readonly>
-					</div>
+					<div class="col-2"><label for="askDate" class="col-form-label fw-bold">신청 날짜</label></div>
+					<div class="col-5"><input type="text" name="askDate" th:value="${claim?.askDate}" class="form-control" readonly></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
-					<div class="col-2">
-						<label for="claimKind" class="col-form-label fw-bold">민원 종류</label>
-					</div>
-					<div class="col-5">
-						<input type="text" name="claimKind" value="엘리베이터" class="form-control">
-					</div>
+					<div class="col-2"><label for="claimKind" class="col-form-label fw-bold">민원 종류</label></div>
+					<div class="col-5"><input type="text" name="claimKind" th:value="${claim?.claimKind}" class="form-control"></div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
-					<div class="col-7">
-						<label for="title" class="col-form-label fw-bold">제목</label>
-					</div>
-					<div class="col-7 m-0">
-						<input type="text" name="title" value="문 안 닫힘" class="form-control">
-					</div>
+					<div class="col-7"><label for="title" class="col-form-label fw-bold">제목</label></div>
+					<div class="col-7 m-0"><input type="text" name="title" th:value="${claim?.title}" class="form-control"></div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
-					<div class="col-7">
-						<label for="content" class="col-form-label fw-bold">내용</label>
-					</div>
-					<div class="col-7 m-0">
-						<textarea rows="5" name="content" class="form-control">정원 초과 시 경고음이 나와야 하나 나오지 않고 문이 닫히지 않음.</textarea>
-					</div>
+					<div class="col-7"><label for="content" class="col-form-label fw-bold">내용</label></div>
+					<div class="col-7 m-0"><textarea rows="5" name="content" class="form-control" th:text="${claim?.content}"></textarea></div>
 				</div>
 				<div class="row justify-content-center mt-3">
 					<button type="button" class="btn btn-primary col-1 me-3" onClick="history.back()">뒤로가기</button>

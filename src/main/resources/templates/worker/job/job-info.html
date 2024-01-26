@@ -19,7 +19,7 @@
 		<div th:replace="~{common/common :: workerSidebar}"></div>
 		<div class="container">
 			<div class="content form-content">
-				<form action="/worker/job/list/1" method="post">
+				<form action="/worker/jobs/1" method="post">
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">요청날짜</label></div>
 						<div class="col-5"><input type="text" value="2024-01-15" class="form-control" readonly></div>
@@ -57,7 +57,7 @@
 					</div>
 					<div class="row justify-content-end mt-4">
 						<input type="submit" value="보고 전송" class="btn btn-primary col-1 me-3">
-						<button type="button" class="btn btn-outline-dark col-1 me-3" onClick="location.href='/worker/job/list'">뒤로가기</button>
+						<button type="button" class="btn btn-outline-dark col-1 me-3" onClick="history.back()">뒤로가기</button>
 					</div>
 				</form>
 			</div>
