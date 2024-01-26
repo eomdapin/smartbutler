@@ -22,7 +22,7 @@ public class ImageService {
 	
 	private final ImageRepository imageRepository;
 	
-	private Image uploadImage(FileVo vo, Image image) throws Exception {
+	private Image uploadImage(FileVo vo, Image image, Long outId, String code) throws Exception {
 		MultipartFile file = vo.getUploadFile();
 		
 		if(!file.isEmpty()) {
@@ -33,6 +33,8 @@ public class ImageService {
 			
 			file.transferTo(new File(filePath + fileName));
 			image.setName(fileName);
+//			image.setCode(code);
+			image.setOutId(outId);
 			image.setRealName(originalFileName);
 			image.setSrc(filePath);
 			image.setRealSrc(filePath);
@@ -41,8 +43,8 @@ public class ImageService {
 	}
 	
 	
-	public void saveImage(FileVo vo, Image image) throws Exception {
-		uploadImage(vo, image);
+	public void saveImage(FileVo vo, Image image, Long outId, String code) throws Exception {
+		uploadImage(vo, image, outId, code);
 		imageRepository.save(image);
 	}
 	

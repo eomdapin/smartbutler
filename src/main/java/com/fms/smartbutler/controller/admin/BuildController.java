@@ -66,13 +66,13 @@ public class BuildController {
 	// 건물 정보 저장
 	@PostMapping("/add")
 	public String postBuildAdd(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
+		buildService.insert(build);
+		
 		if(!vo.getFileName().isEmpty()) {
 			Image image = new Image();
-			imageService.saveImage(vo, image);
-			build.setImgId(image.getImageId());
+			imageService.saveImage(vo, image, build.getBuildId(), "b");
 		}
 		
-		buildService.insert(build);
 		
 		return "redirect:/admin/buildings";
 	}
@@ -80,14 +80,13 @@ public class BuildController {
 	// 건물 정보 수정
 	@PostMapping("/{buildId}/update") // PutMapping으로 변경 시 update 문구 삭제 예정
 	public String postBuildinsert(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
-		if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
-			Long imgid = build.getImgId() == null ? 0L : build.getImgId();
-			Image image = imageService.findById(imgid).orElseGet(Image::new);
-			imageService.saveImage(vo, image);
-			build.setImgId(image.getImageId());
-		} 
-		
 		buildService.update(build);
+		
+//		if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
+//			
+//			imageService.saveImage(vo, image, build.getBuildId(), "b");
+//		} 
+		
 		
 		return "redirect:/admin/buildings";
 	}
