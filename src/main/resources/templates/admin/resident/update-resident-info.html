@@ -51,7 +51,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<form action="/admin/{buildId}/resident/list/{residentId}/update" method="post">
+				<form action="/admin/buildings/{buildId}/residents/{residentId}/update" method="post">
 					<div class="container fw-semibold">
 						<div class="row align-items-center mb-4">
 							<div class="col-6">
@@ -183,7 +183,7 @@
 									<div class="col-8 d-flex gap-4">
 										<input class="col btn btn-primary" type="submit" value="저장">
 										<input class="col btn btn-outline-primary" type="reset"
-											value="취소">
+											value="취소" onclick="history.back()">
 									</div>
 								</div>
 							</div>
