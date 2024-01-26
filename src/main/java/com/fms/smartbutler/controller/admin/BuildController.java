@@ -83,7 +83,7 @@ public class BuildController {
 		if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
 			Long imgid = build.getImgId() == null ? 0L : build.getImgId();
 			Image image = imageService.findById(imgid).orElseGet(Image::new);
-			imageService.updateImage(vo, image);
+			imageService.saveImage(vo, image);
 			build.setImgId(image.getImageId());
 		} 
 		

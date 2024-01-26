@@ -46,11 +46,6 @@ public class ImageService {
 		imageRepository.save(image);
 	}
 	
-	public void updateImage(FileVo vo, Image image) throws Exception {
-		uploadImage(vo, image);
-		imageRepository.save(image);
-	}
-	
 	public void deleteImage(Image image) {
 		File delFile = new File(image.getSrc() + image.getName());
 		if(delFile.exists()) {
