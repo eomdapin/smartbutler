@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fms.smartbutler.domain.Build;
 import com.fms.smartbutler.domain.User;
+import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -20,11 +22,12 @@ import lombok.RequiredArgsConstructor;
 public class AdminUserController {
 	
 	private final UserService userService;
+	private final BuildService buildService;
 	
 	// 회원 정보
 	@GetMapping
 	public String getUserList(Model model) {
-		List<User> user = userService.findAllUser();
+		List<User> user = userService.findAll();
 		
 		model.addAttribute("user", user);
 		
@@ -34,7 +37,7 @@ public class AdminUserController {
 	// 회원 정보 상세
 	@GetMapping("/{userId}")
 	public String getUserInfo(@PathVariable Long userId, Model model) {
-		User user = userService.findByUserId(userId).orElseGet(User::new);
+		User user = userService.findById(userId).orElseGet(User::new);
 		
 		model.addAttribute("user", user);
 		
@@ -44,8 +47,9 @@ public class AdminUserController {
 	// 회원 탈퇴
 	@PostMapping("/{userId}/delete")
 	public String postUserDelete(@PathVariable Long userId) {
-		userService.deleteUser(userId);
+		User user = userService.findById(userId).orElseGet(User::new);
+		userService.delete(user);
 		
-		return "redirect:/admin/user/list";
+		return "redirect:/admin/users";
 	}
 }

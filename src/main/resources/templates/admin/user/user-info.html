@@ -39,7 +39,7 @@
 				</ul>
 			</div>
 			<div class="content form-content">
-				<form th:action="@{/admin/user/list/{userId}/delete(userId = ${user.userId})}" method="POST">
+				<form th:action="@{/admin/users/{userId}/delete(userId = ${user.userId})}" method="POST">
 					<div class="row align-items-center mb-4">
 						<div class="col-1">
 							<label for="userId">회원번호</label>
@@ -59,7 +59,7 @@
 							<label for="buildName">건물명</label>
 						</div>
 						<div class="col-5">
-							<input type="text" name="buildName" class="form-control" th:value=${build?.name} readonly>
+							<input type="text" name="buildName" class="form-control" readonly>
 						</div>
 						<div class="col-1">
 							<label for="email">이메일</label>

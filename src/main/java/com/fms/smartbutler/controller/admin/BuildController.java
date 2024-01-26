@@ -42,10 +42,8 @@ public class BuildController {
 	@GetMapping("/{buildId}")
 	public String getBuildInfo(@PathVariable Long buildId, Model model) {
 		Build build = buildService.findById(buildId).orElseGet(Build::new);
-		Image image = imageService.findById(build.getImgId()).orElseGet(Image::new);
 		FileVo vo = new FileVo();
 		
-		vo.setFileName(image.getRealName());
 		model.addAttribute("build", build);
 		model.addAttribute("vo", vo);
 		
@@ -67,7 +65,6 @@ public class BuildController {
 		
 		imageService.saveImage(vo, image);
 		
-		build.setImgId(image.getImageId());
 		buildService.insert(build);
 		
 		return "redirect:/admin/build/list";
@@ -80,7 +77,6 @@ public class BuildController {
 		
 		buildService.update(build);
 		
-		image.setImageId(build.getImgId());
 		imageService.updateImage(vo, image);
 		
 		return "redirect:/admin/build/list";

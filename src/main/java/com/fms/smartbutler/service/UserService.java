@@ -16,22 +16,20 @@ public class UserService {
 	
 	private final UserRepository userRepository;
 	
-	public void save(User user, User.UserLogin userLogin) {
-		userRepository.saveUser(user);
-		userLogin.setUserId(user.getUserId());
-		userRepository.saveUserLogin(userLogin);
+	public void save(User user) {
+		userRepository.save(user);
 	}
 	
-	public List<User> findAllUser() {
-		return userRepository.findAllUser();
+	public List<User> findAll() {
+		return userRepository.findAll();
 	}
 	
-	public Optional<User> findByUserId(Long userId) {
-		return userRepository.findByUserId(userId);
+	public Optional<User> findById(Long userId) {
+		return userRepository.findById(userId);
 	}
 	
-	public void deleteUser(Long userId) {
-		userRepository.deleteUser(userId);
+	public void delete(User user) {
+		userRepository.delete(user);
 	}
 	
 }

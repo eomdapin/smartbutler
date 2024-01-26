@@ -14,7 +14,6 @@ import com.fms.smartbutler.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequestMapping("/user/buildings")
 @RequiredArgsConstructor
@@ -29,10 +28,8 @@ public class UserBuildController {
 		BuildId = BuildId == null ? 1 :BuildId;
 		Build build = buildService.findById(BuildId).orElseGet(Build::new);
 		
-		Image image = imageService.findById(build.getImgId()).orElseGet(Image::new);
 		
 		model.addAttribute("build", build);
-		model.addAttribute("image", image);
 		
 		return "user/build/build-info";
 	}
