@@ -6,5 +6,4 @@ import com.fms.smartbutler.domain.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 	
-	
 }
