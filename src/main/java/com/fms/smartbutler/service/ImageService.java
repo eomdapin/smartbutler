@@ -22,7 +22,7 @@ public class ImageService {
 	
 	private final ImageRepository imageRepository;
 	
-	private Image uploadImage(FileVo vo, Image image, Long outId, String code) throws Exception {
+	private Image uploadImage(FileVo vo, Image image, Long outId) throws Exception {
 		MultipartFile file = vo.getUploadFile();
 		
 		if(!file.isEmpty()) {
@@ -33,7 +33,6 @@ public class ImageService {
 			
 			file.transferTo(new File(filePath + fileName));
 			image.setName(fileName);
-//			image.setCode(code);
 			image.setOutId(outId);
 			image.setRealName(originalFileName);
 			image.setSrc(filePath);
@@ -42,9 +41,8 @@ public class ImageService {
 			return image;
 	}
 	
-	
-	public void saveImage(FileVo vo, Image image, Long outId, String code) throws Exception {
-		uploadImage(vo, image, outId, code);
+	public void saveImage(FileVo vo, Image image, Long outId) throws Exception {
+		uploadImage(vo, image, outId);
 		imageRepository.save(image);
 	}
 	
@@ -58,5 +56,9 @@ public class ImageService {
 	
 	public Optional<Image> findById(Long imgId) {
 		return imageRepository.findById(imgId);
+	}
+	
+	public List<Image> findByOutIdAndCoded(Long outId, String coded) {
+		return imageRepository.findByOutIdAndImageCategory_Coded(outId, coded);
 	}
 }

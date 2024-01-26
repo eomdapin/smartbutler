@@ -59,7 +59,6 @@
                         <div class="col-1 mb-3"><label for="uploadFile" class="form-label">이미지</label></div>
                         <div class="col-4 mb-3">
                         	<input type="file" id="uploadFile" name="uploadFile" class="form-control" style="display: none;" onchange="ChangeFileName()">
-                        	<input type="text" id="imgId" name="imgId" class="form-control" style="display: none;" th:value="${build?.imgId}">
                         	<input type="button" onClick="uploadFile.click()" class="btn btn-secondary" value="파일 추가">
                         	<input type="text" id="fileName" name="fileName" class="form-control" 
                         		th:value="${vo?.fileName}" placeholder="선택된 파일이 없습니다." style="display: inline; width: 233px;" readonly>

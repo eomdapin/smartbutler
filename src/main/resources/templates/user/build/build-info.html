@@ -68,7 +68,9 @@
 				<div id="carouselExampleIndicators" class="carousel slide bg-black">
 					<div class="carousel-inner">
 						<div class="carousel-item" style="min-height: 500px;">
-							<img th:src="@{/web-img/}+${image?.name}" class="d-block w-100" alt="건물 사진">
+						<th:block th:each="images: ${images}">
+							<img th:src="@{/web-img/}+${images?.name}" class="d-block w-100" alt="건물 사진">
+						</th:block>
 						</div>
 					</div>
 					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

@@ -21,11 +21,12 @@ public class Image {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "image_id")
 	private Long imageId;
 	
 	@ManyToOne
-    @JoinColumn(name="code")
-	private ImageCategory code;
+    @JoinColumn(name="coded")
+	private ImageCategory imageCategory = new ImageCategory();
 	
 	@Column(name = "out_id")
 	private Long outId;

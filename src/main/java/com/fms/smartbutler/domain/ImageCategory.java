@@ -16,7 +16,8 @@ import lombok.Setter;
 public class ImageCategory {
 	
 	@Id
-	private String code;
+	@Column(name = "coded", columnDefinition = "char(20)")
+	private String coded;
 	
 	@Column(name = "code_name")
 	private String codeName;

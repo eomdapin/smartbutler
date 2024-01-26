@@ -1,5 +1,7 @@
 package com.fms.smartbutler.controller.user;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +30,10 @@ public class UserBuildController {
 	public String getBuildInfo(@RequestParam(required = false) Long buildId, Model model) {
 		buildId = buildId == null ? 1 :buildId;
 		Build build = buildService.findById(buildId).orElseGet(Build::new);
-		
-		Image image = imageService.findById(build.getImgId()).orElseGet(Image::new);
+		List<Image> images = imageService.findByOutIdAndCoded(build.getBuildId(), "b");
 		
 		model.addAttribute("build", build);
-		model.addAttribute("image", image);
+		model.addAttribute("images", images);
 		
 		return "user/build/build-info";
 	}

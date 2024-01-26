@@ -42,11 +42,11 @@ public class BuildController {
 	@GetMapping("/{buildId}")
 	public String getBuildInfo(@PathVariable Long buildId, Model model) {
 		Build build = buildService.findById(buildId).orElseGet(Build::new);
+		List<Image> images = imageService.findByOutIdAndCoded(build.getBuildId(), "b");
 		FileVo vo = new FileVo();
 		
-		if(build.getImgId() != null) {
-			Image image = imageService.findById(build.getImgId()).orElseGet(Image::new);
-			vo.setFileName(image.getRealName());
+		if(images.size() > 0) {
+			vo.setFileName(images.get(0).getRealName());
 		}
 		
 		model.addAttribute("build", build);
@@ -70,9 +70,9 @@ public class BuildController {
 		
 		if(!vo.getFileName().isEmpty()) {
 			Image image = new Image();
-			imageService.saveImage(vo, image, build.getBuildId(), "b");
+			image.getImageCategory().setCoded("b");
+			imageService.saveImage(vo, image, build.getBuildId());
 		}
-		
 		
 		return "redirect:/admin/buildings";
 	}
@@ -82,11 +82,11 @@ public class BuildController {
 	public String postBuildinsert(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
 		buildService.update(build);
 		
-//		if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
-//			
-//			imageService.saveImage(vo, image, build.getBuildId(), "b");
-//		} 
-		
+		if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
+			Image image = new Image();
+			image.getImageCategory().setCoded("b");
+			imageService.saveImage(vo, image, build.getBuildId());
+		} 
 		
 		return "redirect:/admin/buildings";
 	}
