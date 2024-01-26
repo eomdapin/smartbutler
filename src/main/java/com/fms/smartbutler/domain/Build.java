@@ -33,9 +33,6 @@ public class Build {
 	@Column(name = "room")
 	private Integer room;
 	
-	@Column(name = "imgId")
-	private Long imgId;
-	
 	@Column(name = "area")
 	private Integer area;
 	

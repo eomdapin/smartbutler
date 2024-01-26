@@ -1,5 +1,6 @@
 package com.fms.smartbutler.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,17 +20,9 @@ public class User {
 	private Long userId;
 	private String name;
 	private String phone;
+	@Column(unique = true)
 	private String email;
 	private Integer status;
+	private String pw;
 
-	
-	@Entity(name = "user_login")
-	@Setter @Getter
-	@AllArgsConstructor @NoArgsConstructor
-	public static class UserLogin {
-		
-		@Id
-		private Long userId;
-		private String pw;
-	}
 }

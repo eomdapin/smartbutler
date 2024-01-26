@@ -2,34 +2,23 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>마이페이지</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/user.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-    <link rel="manifest" href="/img/site.webmanifest">
+	<title>SMARTBUTLER</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/css/user.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+	<link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
-	<header class="d-flex justify-content-between">
-		<div class="d-flex align-items-center">
-        	<div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
-        	<div><h1><a href="/" class="logo-text">SMARTBUTLER</a></h1></div>
-        </div>
-        <div class="d-flex align-items-center" style="gap:50px; margin-right: 200px;">
-	        <div><a href="#">마이페이지</a></div>
-	        <div><a href="#">건물 정보 보기</a></div>
-	        <div><a href="#">견적 신청</a></div>
-	        <div><a href="#">민원 신청</a></div>
-        </div>
-    </header>
+	<div th:replace="~{common/common :: userHeader}"></div>
 		<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-2">내 정보</h1>
-				<form action="/user/mypage">
+				<form action="/user/mypage" method="POST">
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
@@ -38,7 +27,7 @@
 						<label for="email">이메일</label>
 					</div>
 					<div class="col-5">
-						<input type="email" name="email" class="form-control" th:value=${user?.email}>
+						<input type="email" name="email" class="form-control" th:value=${user?.email} readonly>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -46,7 +35,7 @@
 						<label for="password">비밀번호</label>
 					</div>
 					<div class="col-5">
-						<input type="password" name="pw" class="form-control">
+						<input type="password" name="pw" class="form-control" th:value=${user?.pw}>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -119,9 +108,10 @@
 				<div>
 					<div class="row justify-content-center mt-3">
 						<input type="submit" class="btn btn-primary col-1 me-3" value="수정">
-						<input type="button" class="btn btn-secondary col-1 me-3" value="뒤로가기" onclick="history.back()">
+						<input type="button" class="btn btn-secondary col-1 me-3" value="뒤로가기" onclick="location.href='/'">
 					</div>
 				</div>
+					<input type="hidden" name="userId" id="userId" th:value="${user.userId}">
 				</form>
 			</div>
 		</div>

@@ -38,3 +38,7 @@ out/
 ### VS Code ###
 .vscode/
 
+src/main/resources/static/index_BACKUP_1945.html
+src/main/resources/static/index_BASE_1945.html
+src/main/resources/static/index_LOCAL_1945.html
+src/main/resources/static/index_REMOTE_1945.html
