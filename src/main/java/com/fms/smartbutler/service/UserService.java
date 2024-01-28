@@ -16,20 +16,24 @@ public class UserService {
 	
 	private final UserRepository userRepository;
 	
-	public void save(User user) {
+	public void insert(User user) {
 		userRepository.save(user);
 	}
 	
-	public List<User> findAll() {
-		return userRepository.findAll();
+	public void update(User user) {
+		userRepository.save(user);
+	}
+	
+	public void delete(User user) {
+		userRepository.delete(user);
 	}
 	
 	public Optional<User> findById(Long userId) {
 		return userRepository.findById(userId);
 	}
 	
-	public void delete(User user) {
-		userRepository.delete(user);
+	public List<User> findAll() {
+		return userRepository.findAll();
 	}
 	
 }
