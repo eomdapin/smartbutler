@@ -15,9 +15,6 @@ header {
     height: 100px;
     background: #002060;
 }
-header .logo {
-    margin-left: 10px;
-}
 header .logo-text {
     color: #fefefe;
     font-weight: 900;

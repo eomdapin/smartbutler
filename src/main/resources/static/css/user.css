@@ -10,9 +10,6 @@ header {
     padding: 0px 10px;
     box-shadow: 0px 1px 5px 1px #ddd;
 }
-header .logo {
-    margin-left: 10px;
-}
 header .logo-text {
     color: #222;
     font-weight: 900;

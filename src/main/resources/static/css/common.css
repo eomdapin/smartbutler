@@ -37,8 +37,9 @@ img {
     font-size: 32px;
     font-weight: 900;
 }
-#header .logo {
+header .logo {
     margin-left: 10px;
+    margin-right: 10px;
 }
 
 #navi {
