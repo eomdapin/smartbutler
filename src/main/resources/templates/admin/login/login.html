@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>SMARTBUTLER</title>
@@ -30,14 +31,16 @@
 			</div>
 		</header>
 		<div class="form-signin w-25 mx-auto" style="margin-top: 25vh;">
-			<form action="/admin/login" method="post">
+			<div th:if="${param.error}">Invalid username and password.</div>
+			<div th:if="${param.logout}">You have been logged out.</div>
+			<form th:action="@{/admin/login}" method="post">
 				<div class="form-floating">
-					<input type="text" class="form-control mb-3" id="id" placeholder="">
-					<label for="id">아이디</label>
+					<input type="text" class="form-control mb-3" id="username"
+						name="username" placeholder=""> <label for="username">아이디</label>
 				</div>
 				<div class="form-floating">
 					<input type="password" class="form-control mb-3" id="password"
-						placeholder=""> <label for="password">비밀번호</label>
+						name="password" placeholder=""> <label for="password">비밀번호</label>
 				</div>
 				<button class="btn btn-primary w-100 p-3" type="submit">로그인</button>
 			</form>
