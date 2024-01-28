@@ -24,7 +24,7 @@
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-2">
 					<div class="col-2"><label for="residentId" class="col-form-label fw-bold">세대 번호</label></div>
-					<div class="col-5"><input type="number" name="residentId" value="101" class="form-control" readonly></div>
+					<div class="col-5"><input type="text" name="residentId" value="101" class="form-control" readonly></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2"><label for="askDate" class="col-form-label fw-bold">신청 날짜</label></div>
@@ -32,7 +32,19 @@
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2"><label for="claimKind" class="col-form-label fw-bold">민원 종류</label></div>
-					<div class="col-5"><input type="text" name="claimKind" th:value="${claim?.claimKind}" class="form-control"></div>
+					<div class="col-5"><input type="text" name="claimKind" th:value="${claim?.claimKind}" class="form-control" readonly></div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2"><label for="askDate" class="col-form-label fw-bold">이미지</label></div>
+					<div class="col-5 d-flex">
+						<input type="file" id="uploadFile" name="uploadFile" class="form-control" style="display: none;" onchange="ChangeFileName()">
+                       	<input type="text" id="fileName" name="fileName" class="form-control col" 
+                       		th:value="${vo?.fileName}" placeholder="이미지가 존재하지 않습니다" style="display: inline;" readonly>
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2"><label for="status" class="col-form-label fw-bold">민원 상태</label></div>
+					<div class="col-5"><input type="text" name="status" th:value="${claim.status == 1} ? '신청' : '완료'" class="form-control" readonly></div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
 					<div class="col-7"><label for="title" class="col-form-label fw-bold">제목</label></div>
