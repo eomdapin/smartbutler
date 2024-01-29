@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,6 +81,20 @@ public class UserClaimController {
 				image.getImageCategory().setCoded("c");
 				imageService.saveImage(vo, image, claimDTO.getClaimId());
 			}
+			
+			return "redirect:/user/claims";
+		}
+		
+		// 민원 수정 폼
+		@GetMapping("/{claimId}/edit")
+		public String getClaimEdit(@PathVariable Long claimId) {
+			return "user/claim/claim-edit";
+		}
+		
+		// 민원 삭제
+		@DeleteMapping("/{claimId}")
+		public String deleteClaim(@ModelAttribute ClaimDTO claimDTO) {
+			claimService.delete(claimDTO);
 			
 			return "redirect:/user/claims";
 		}

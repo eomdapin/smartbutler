@@ -18,7 +18,13 @@ spring:
         show_sql: true
     hibernate:
       ddl-auto: update
-      
+  
+  # HiddenHttpMethodFilter 설정
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+        
 logging:
   level:
     org:
