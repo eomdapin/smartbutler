@@ -11,10 +11,12 @@ import com.fms.smartbutler.domain.Claim;
 import com.fms.smartbutler.dto.ClaimDTO;
 import com.fms.smartbutler.repository.ClaimRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ClaimService {
 
 	private final ClaimRepository claimRepository;
@@ -50,5 +52,11 @@ public class ClaimService {
 											.collect(Collectors.toList());
 		
 		return claimDTOList;
+	}
+	
+	public void delete(ClaimDTO claimDTO) {
+		Claim claim = modelMapper.map(claimDTO, Claim.class);
+		
+		claimRepository.delete(claim);
 	}
 }
