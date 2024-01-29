@@ -26,84 +26,81 @@
 				</ul>
 			</div>
 	        <div class="content form-content">
-		        <th:block th:if="${not #strings.isEmpty(user.userId)}">
-			        <form action="/admin/item/list/{itemId}/insert(itemId = ${item.itemId)})" method="POST"></form>
-			    </th:block>
-	        	<div class="row align-items-center mb-4">
-		        	<div class="col-2">
-						<label for="" class="ms-5">시설번호</label>
+			    <form action="@{/admin/buildings/{buildId}/items/{itemId}(buildId = ${item.buildId}, itemId = ${item.itemId})}" method="post">
+			    	<input type="hidden" name="_method" value="delete">
+		        	<div class="row align-items-center mb-4">
+			        	<div class="col-2">
+							<label for="itemId" class="ms-5">시설번호</label>
+						</div>
+						<div class="col-4">
+							<input type="text" name="itemId" class="form-control" th:value=${item?.itemId} readonly>
+						</div>
+						<div class="col-2">
+							<label for="fromDate" class="ms-5">사용시작일</label>
+						</div>
+						<div class="col-4">
+							<input type="date" name="fromDate" class="form-control" th:value=${item?.fromDate} readonly>
+						</div>
 					</div>
-					<div class="col-4">
-						<input type="text" class="form-control">
+					<div class="row align-items-center mb-4">
+			        	<div class="col-2">
+							<label for="buildName" class="ms-5">건물명</label>
+						</div>
+						<div class="col-4">
+							<input type="text" name="buildName" class="form-control" th:value=${build?.buildName} readonly>
+						</div>
+						<div class="col-2">
+							<label for="status" class="ms-5">상태</label>
+						</div>
+						<div class="col-4">
+							<input type="text" name="status" class="form-control" th:value=${item?.status} readonly>
+						</div>
 					</div>
-					<div class="col-2">
-						<label for="" class="ms-5">사용시작일</label>
+					<div class="row align-items-center mb-4">
+			        	<div class="col-2">
+							<label for="itemName" class="ms-5">시설명</label>
+						</div>
+						<div class="col-4">
+							<input type="text" name="itemName" class="form-control" th:value=${item?.itemName} readonly>
+						</div>
+						<div class="col-2">
+							<label for="checkDate" class="ms-5">점검날짜</label>
+						</div>
+						<div class="col-4">
+							<input type="date" name="checkDate" class="form-control" th:value=${item?.checkDate} readonly>
+						</div>
 					</div>
-					<div class="col-4">
-						<input type="date" class="form-control">
+					<div class="row align-items-center mb-4">
+			        	<div class="col-2">
+							<label for="kindType" class="ms-5">시설종류</label>
+						</div>
+						<div class="col-4">
+							<input type="text" name="kindType" class="form-control" th:value=${item?.kindType} readonly>
+						</div>
+						<div class="col-2">
+							<label for="checkCycle" class="ms-5">점검주기</label>
+						</div>
+						<div class="col-4">
+							<input type="text" name="checkCycle" class="form-control" th:value=${item?.checkCycle} readonly>
+						</div>
 					</div>
-				</div>
-				<div class="row align-items-center mb-4">
-		        	<div class="col-2">
-						<label for="" class="ms-5">건물명</label>
+					<div class="row align-items-center mb-4">
+			        	<div class="col-2">
+							<label for="location" class="ms-5">시설위치</label>
+						</div>
+						<div class="col-4">
+							<input type="text" name="location" class="form-control" th:value=${item?.location} readonly>
+						</div>
 					</div>
-					<div class="col-4">
-						<input type="text" class="form-control">
+					<div class="row justify-content-end mt-3">
+						<button type="button" class="btn btn-info text-white col-1 me-3" th:onclick="|location.href='@{/admin/buildings/{buildId}/items/{itemId}/edit(buildId = ${item.buildId}, itemId = ${item.itemId})}'|">수정</button>
+						<button type="button" class="btn btn-primary col-1 me-3" onclick="deleteClick(); return false;">삭제</button>
+						<button type="button" class="btn btn-outline-dark col-1 me-3" onclick="history.back()">목록</button>
 					</div>
-					<div class="col-2">
-						<label for="" class="ms-5">상태</label>
-					</div>
-					<div class="col-4">
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="row align-items-center mb-4">
-		        	<div class="col-2">
-						<label for="" class="ms-5">시설명</label>
-					</div>
-					<div class="col-4">
-						<input type="text" class="form-control">
-					</div>
-					<div class="col-2">
-						<label for="" class="ms-5">점검날짜</label>
-					</div>
-					<div class="col-4">
-						<input type="date" class="form-control">
-					</div>
-				</div>
-				<div class="row align-items-center mb-4">
-		        	<div class="col-2">
-						<label for="" class="ms-5">시설종류</label>
-					</div>
-					<div class="col-4">
-						<input type="text" class="form-control">
-					</div>
-					<div class="col-2">
-						<label for="" class="ms-5">점검주기</label>
-					</div>
-					<div class="col-4">
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="row align-items-center mb-4">
-		        	<div class="col-2">
-						<label for="" class="ms-5">시설위치</label>
-					</div>
-					<div class="col-4">
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="row justify-content-end mt-3">
-				<th:block th:if="${not #strings.isEmpty(user.userId)}">
-					<div th:unless="${#strings.isEmpty(user.userId)}" class="col-1 me-3">
-						<input type="submit" class="btn btn-info text-white" value="수정">
-					</div>
-				</th:block>
-					<input type="button" class="btn btn-primary col-1 me-3" value="삭제">
-					<input type="button" class="btn btn-outline-dark col-1 me-3" value="목록">
-				</div>
+				</form>
 	        </div>
         </div>
 	</div>
+	<script src="/js/Button.js" type="text/javascript"></script>
 </body>
 </html>

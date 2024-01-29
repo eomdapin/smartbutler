@@ -26,7 +26,7 @@
 			</div>
 			<div class="content">
 				<div class="d-grid justify-content-end my-2">
-					<button type="button" class="btn btn-primary" onClick="location.href='/admin/buildings/{buildId}/items/add'">신규 등록</button>
+					<button type="button" class="btn btn-primary" onClick="location.href='/admin/buildings/${buildId}/items/add'">신규 등록</button>
 				</div>
 				<table class="table table-hover text-center">
 					<thead>
@@ -54,10 +54,10 @@
 							<td>2023-12-31</td>
 							<td>1개월</td>
 						</tr>
-						<tr th:each="item: ${itemDTO}">
+						<tr th:each="item: ${items}">
 							<td>[[${item.itemId}]]</td>
 							<td>[[${item.buildName}]]</td>
-							<td>[[${item.itemName}]]</td>
+							<td><a th:href="@{/admin/buildings/{buildId}/items/{itemId}(buildId = ${item.buildId}, itemId = ${item.itemId})}">[[${item.itemName}]]</a></td>
 							<td>[[${item.kindName}]]</td>
 							<td>[[${item.location}]]</td>
 							<td>[[${item.fromDate}]]</td>
@@ -70,6 +70,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

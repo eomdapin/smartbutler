@@ -22,20 +22,26 @@ public class ItemService {
 	private final ItemRepository itemRepository;
 	private final ModelMapper modelMapper;
 	
-	public void insert(Item item) {
+	public void insert(ItemDTO itemDTO) {
+		Item item = modelMapper.map(itemDTO, Item.class);
+		
 		itemRepository.save(item);
+		itemDTO.setItemId(item.getItemId());
 	}
 	
-	public void update(Item item) {
+	public void update(ItemDTO itemDTO) {
+		Item item = modelMapper.map(itemDTO, Item.class);
+		
 		itemRepository.save(item);
+		itemDTO.setItemId(item.getItemId());
 	}
 	
-	public void delete(Item item) {
-		itemRepository.delete(item);
-	}
 	
-	public Optional<Item> findById(Long itemId) {
-		return itemRepository.findById(itemId);
+	public Optional<ItemDTO> findById(Long itemId) {
+		Optional<Item> item = itemRepository.findById(itemId);
+		ItemDTO itemDTO = modelMapper.map(item, ItemDTO.class);
+		
+		return Optional.ofNullable(itemDTO);
 	}
 	
 	public List<ItemDTO> findAll() {
@@ -50,4 +56,9 @@ public class ItemService {
 		return itemDTOList;
 	}
 
+	public void delete(ItemDTO itemDTO) {
+		Item item = modelMapper.map(itemDTO, Item.class);
+		
+		itemRepository.delete(item);
+	}
 }
