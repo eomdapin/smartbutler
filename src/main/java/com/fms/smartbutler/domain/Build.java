@@ -23,6 +23,7 @@ import lombok.Setter;
 public class Build {
 	
 	@Id
+	@Column(name = "buildId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long buildId;
 	

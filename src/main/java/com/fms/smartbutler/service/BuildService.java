@@ -38,6 +38,6 @@ public class BuildService {
 	
 	public List<BuildDTO> findAll() {
 		return buildRepository.findAll().stream()
-					.map(build -> modelMapper.map(build, BuildDTO.class)).toList();
+				.map(build -> modelMapper.map(build, BuildDTO.class)).toList();
 	}
 }

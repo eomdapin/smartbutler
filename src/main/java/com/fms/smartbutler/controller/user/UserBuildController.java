@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fms.smartbutler.domain.Image;
 import com.fms.smartbutler.dto.BuildDTO;
+import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ImageService;
 
@@ -36,7 +36,7 @@ public class UserBuildController {
 		buildId = buildId == null ? 1 :buildId;
 		BuildDTO build = buildService.findById(buildId);
 		List<BuildDTO> builds = buildService.findAll();
-		List<Image> images = imageService.findByOutIdAndCoded(build.getBuildId(), "b");
+		List<ImageDTO> images = imageService.findByOutIdAndCoded(build.getBuildId(), "b");
 		
 		model.addAttribute("build", build);
 		model.addAttribute("builds", builds);
