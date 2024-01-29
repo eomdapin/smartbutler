@@ -3,11 +3,19 @@ package com.fms.smartbutler.dto;
 
 import java.sql.Date;
 
-import com.fms.smartbutler.domain.Item;
+import com.fms.smartbutler.domain.Build;
+import com.fms.smartbutler.domain.Item.ItemKind;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
+@Setter @Getter
+@AllArgsConstructor 
+@NoArgsConstructor
 public class ItemDTO {
 	
 	private Long itemId;
@@ -19,17 +27,8 @@ public class ItemDTO {
 	private int status;
 	private Date checkDate;
 	private int checkCycle;
+	private String kindName;
 	
-	public ItemDTO(Item item) {
-		this.itemId = item.getItemId();
-		this.buildId = item.getBuild().getBuildId();
-		this.kindType = item.getItemKind().getKindType();
-		this.itemName = item.getItemName();
-		this.location = item.getLocation();
-		this.fromDate = item.getFromDate();
-		this.status = item.getStatus();
-		this.checkDate = item.getCheckDate();
-		this.checkCycle = item.getCheckCycle();
-	}
-
+	private Build build;
+	private ItemKind itemKind;
 }

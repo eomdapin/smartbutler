@@ -32,6 +32,7 @@
 					<thead>
 						<tr>
 							<th scope="col">시설번호</th>
+							<th scope="col">건물명</th>
 							<th scope="col">시설명</th>
 							<th scope="col">종류</th>
 							<th scope="col">위치</th>
@@ -44,6 +45,7 @@
 					<tbody>
 						<tr>
 							<td>10001</td>
+							<td>울트라타워</td>
 							<td>엘레베이터 1호기</td>
 							<td>엘리베이터</td>
 							<td>7층</td>
@@ -51,6 +53,17 @@
 							<td>사용</td>
 							<td>2023-12-31</td>
 							<td>1개월</td>
+						</tr>
+						<tr th:each="item: ${item}">
+							<td>[[${item.itemId}]]</td>
+							<td>[[${build.buildName}]]</td>
+							<td>[[${item.itemName}]]</td>
+							<td>[[${itemKind.kindName}]]</td>
+							<td>[[${item.location}]]</td>
+							<td>[[${item.fromDate}]]</td>
+							<td>[[${item.status}]]</td>
+							<td>[[${item.checkDate}]]</td>
+							<td>[[${item.checkCycle}]]</td>
 						</tr>
 					</tbody>
 				</table>

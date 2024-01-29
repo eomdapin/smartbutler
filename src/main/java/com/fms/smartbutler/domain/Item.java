@@ -58,7 +58,7 @@ public class Item {
 	@Setter @Getter
 	@AllArgsConstructor
 	@NoArgsConstructor
-	public class ItemKind {
+	public static class ItemKind {
 		
 		@Id
 		@Column(name = "kind_type")
