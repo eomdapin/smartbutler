@@ -1,5 +1,10 @@
 package com.fms.smartbutler.dto;
 
+/**
+* @author 송창민
+* @editDate 2024-01-27 ~ 2024-01-28
+*/
+
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;

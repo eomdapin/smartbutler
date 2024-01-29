@@ -1,5 +1,10 @@
 package com.fms.smartbutler.service;
 
+/**
+* @author 송창민
+* @editDate 2024-01-26 ~ 2024-01-29
+*/
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,6 +38,7 @@ public class ClaimService {
 		Claim claim = modelMapper.map(claimDTO, Claim.class);
 		
 		claimRepository.save(claim);
+		claimDTO.setClaimId(claim.getClaimId());
 	}
 	
 	public Optional<ClaimDTO> findById(Long claimId) {
