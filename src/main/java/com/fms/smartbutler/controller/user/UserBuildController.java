@@ -1,5 +1,10 @@
 package com.fms.smartbutler.controller.user;
 
+/**
+* @author 엄다빈
+* @editDate 2024-01-25 ~ 2024-01-29
+*/
+
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -30,9 +35,11 @@ public class UserBuildController {
 	public String getBuildInfo(@RequestParam(required = false) Long buildId, Model model) {
 		buildId = buildId == null ? 1 :buildId;
 		Build build = buildService.findById(buildId).orElseGet(Build::new);
+		List<Build> builds = buildService.findAll();
 		List<Image> images = imageService.findByOutIdAndCoded(build.getBuildId(), "b");
 		
 		model.addAttribute("build", build);
+		model.addAttribute("builds", builds);
 		model.addAttribute("images", images);
 		
 		return "user/build/build-info";

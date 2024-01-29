@@ -1,5 +1,10 @@
 package com.fms.smartbutler.repository;
 
+/**
+* @author 엄다빈
+* @editDate 2024-01-24 ~ 2024-01-25
+*/
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,5 +1,10 @@
 package com.fms.smartbutler.domain;
 
+/**
+* @author 엄다빈
+* @editDate 2024-01-24 ~ 2024-01-25
+*/
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

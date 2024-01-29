@@ -1,10 +1,5 @@
 package com.fms.smartbutler.domain;
 
-/**
-* @author 엄다빈
-* @editDate 2024-01-24 ~ 2024-01-25
-*/
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,32 +14,35 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "image")
-@Getter @Setter
+@Setter @Getter
 @AllArgsConstructor @NoArgsConstructor
-public class Image {
+@Table(name = "resident")
+public class Resident {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "image_id")
-	private Long imageId;
+	private Long residentId;
 	
 	@ManyToOne
-    @JoinColumn(name="coded")
-	private ImageCategory imageCategory = new ImageCategory();
+    @JoinColumn(name="build_id")
+	private Build build;
 	
-	@Column(name = "out_id")
-	private Long outId;
+	@ManyToOne
+    @JoinColumn(name="user_id")
+	private User user;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "status")
+	private int status;
 	
-	@Column(name = "real_name")
-	private String realName;
+	@Column(name = "from_date")
+	private String fromDate;
 	
-	@Column(name = "src")
-	private String src;
+	@Column(name = "to_date")
+	private String toDate;
 	
-	@Column(name = "real_src")
-	private String realSrc;
+	@Column(name = "deposit")
+	private Long deposit;
+	
+	@Column(name = "monthly")
+	private Long monthly;
 }

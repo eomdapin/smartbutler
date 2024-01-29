@@ -10,7 +10,7 @@ spring:
   
   #JPA 설정
   jpa:
-    database-platform: org.hibernate.dialect.MySQL57Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     open-in-view: false
     properties:
       hibernate:
