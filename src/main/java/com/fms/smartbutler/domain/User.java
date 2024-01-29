@@ -12,17 +12,28 @@ import lombok.Setter;
 
 @Entity
 @Setter @Getter
-@AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 	
 	@Id
+	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "phone")
 	private String phone;
-	@Column(unique = true)
+	
+	@Column(name = "email", unique = true)
 	private String email;
-	private Integer status;
+	
+	@Column(name = "status")
+	private int status;
+	
+	@Column(name = "pw")
 	private String pw;
 
 }

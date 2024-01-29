@@ -26,74 +26,74 @@
 				</ul>
 			</div>
 	        <div class="content form-content">
-		        <form action="">
+		        <form action="/admin/buildings/{buildId}/items/add" method="post">
 		        	<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="" class="ms-5">시설번호</label>
+							<label for="itemId" class="ms-5 fw-bold">시설번호</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="number" name="itemId" class="form-control" readonly>
 						</div>
 						<div class="col-2">
-							<label for="" class="ms-5">사용시작일</label>
+							<label for="fromDate" class="ms-5 fw-bold">사용시작일</label>
 						</div>
 						<div class="col-4">
-							<input type="date" class="form-control">
+							<input type="date" name="fromDate" class="form-control">
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="" class="ms-5">건물명</label>
+							<label for="buildName" class="ms-5 fw-bold">건물명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="buildName" class="form-control">
 						</div>
 						<div class="col-2">
-							<label for="" class="ms-5">상태</label>
+							<label for="status" class="ms-5 fw-bold">상태</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="status" class="form-control">
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="" class="ms-5">시설명</label>
+							<label for="itemName" class="ms-5 fw-bold">시설명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="itemName" class="form-control">
 						</div>
 						<div class="col-2">
-							<label for="" class="ms-5">점검날짜</label>
+							<label for="checkDate" class="ms-5 fw-bold">점검날짜</label>
 						</div>
 						<div class="col-4">
-							<input type="date" class="form-control">
+							<input type="date" name="checkDate" class="form-control">
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="" class="ms-5">시설종류</label>
+							<label for="kindType" class="ms-5 fw-bold">시설종류</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="kindType" class="form-control">
 						</div>
 						<div class="col-2">
-							<label for="" class="ms-5">점검주기</label>
+							<label for="checkCycle" class="ms-5 fw-bold">점검주기</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="checkCycle" class="form-control">
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="" class="ms-5">시설위치</label>
+							<label for="location" class="ms-5 fw-bold">시설위치</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="location" class="form-control">
 						</div>
 					</div>
 					<div class="row justify-content-end mt-3">
-						<input type="button" class="btn btn-primary col-1 me-3" value="저장">
-						<input type="button" class="btn btn-outline-dark col-1 me-3" value="취소">
+						<input type="submit" class="btn btn-primary col-1 me-3" value="저장">
+						<button type="button" class="btn btn-outline-dark col-1 me-3" onClick="history.back()">취소</button>
 					</div>
 		        </form>
 	        </div>

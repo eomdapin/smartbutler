@@ -41,7 +41,7 @@ public class UserController {
 	//@PostMapping("/mypage/{userId}")
 	@PostMapping("/mypage")
 	public String postMypage(@ModelAttribute User user, Model model) {
-		userService.save(user);
+		userService.update(user);
 		return "redirect:/user/mypage";
 	}
 	

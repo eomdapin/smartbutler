@@ -28,7 +28,7 @@ public class UserJoinController {
 	// 회원가입 완료
 	@PostMapping("/success")
 	public String postJoin(@ModelAttribute User user, Model model) {
-		userService.save(user);
+		userService.insert(user);
 		return "user/join/join-success";
 	}
 }
