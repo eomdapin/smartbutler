@@ -15,7 +15,9 @@ import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -41,6 +43,7 @@ public class UserController {
 	//@PostMapping("/mypage/{userId}")
 	@PostMapping("/mypage")
 	public String postMypage(@ModelAttribute User user, Model model) {
+		log.info("user :: ", user.getName());
 		userService.update(user);
 		return "redirect:/user/mypage";
 	}
