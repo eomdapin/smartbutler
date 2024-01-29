@@ -10,13 +10,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Setter @Getter
+@Getter
 @AllArgsConstructor 
 @NoArgsConstructor
 public class Item {
@@ -55,9 +55,10 @@ public class Item {
 	
 	
 	@Entity
-	@Setter @Getter
+	@Getter
 	@AllArgsConstructor
 	@NoArgsConstructor
+	@Table(name = "item_kind")
 	public static class ItemKind {
 		
 		@Id

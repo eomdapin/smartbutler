@@ -54,11 +54,11 @@
 							<td>2023-12-31</td>
 							<td>1개월</td>
 						</tr>
-						<tr th:each="item: ${item}">
+						<tr th:each="item: ${itemDTO}">
 							<td>[[${item.itemId}]]</td>
-							<td>[[${build.buildName}]]</td>
+							<td>[[${item.buildName}]]</td>
 							<td>[[${item.itemName}]]</td>
-							<td>[[${itemKind.kindName}]]</td>
+							<td>[[${item.kindName}]]</td>
 							<td>[[${item.location}]]</td>
 							<td>[[${item.fromDate}]]</td>
 							<td>[[${item.status}]]</td>

@@ -30,12 +30,14 @@ public class ItemController {
 	// 시설 목록
 	@GetMapping
 	public String getItemList(@PathVariable Long buildId, Model model) {
-		List<Item> item = itemService.findAll();
+		List<ItemDTO> itemDTO = itemService.findAll();
 		Optional<Build> build = buildService.findById(buildId);
-		ItemDTO itemDTO = new ItemDTO();
-		itemDTO.setBuild(build.get());
 		
-		model.addAttribute("item", item);
+//		for(ItemDTO item: itemDTO) {
+//			item.setBuildName(build.get().getBuildName());
+//		}
+		
+		model.addAttribute("itemDTO", itemDTO);
 		model.addAttribute("build", build);
 		
 		return "admin/item/item-list";
