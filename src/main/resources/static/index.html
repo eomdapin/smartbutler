@@ -1,89 +1,94 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="https://www.thymeleaf.org"
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title>SMARTBUTLER</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" as="style" crossorigin
-	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/admin.css">
-<link rel="apple-touch-icon" sizes="180x180"
-	href="/img/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16"
-	href="/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
 <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
-    <div id="wrap">
-        <header class="d-flex align-items-center">
-            <div class="logo"><img alt="로고" src="../../../img/logo.png" class="align-middle" width="64"></div>
-            <div><h1><a href="/" class="logo-text">SMARTBUTLER</a></h1></div>
-        </header>
-        <div id="navi" class="">
-            <ul>
-                <li><a href="#">건물정보</a></li>
-                <li><a href="#">시설관리</a></li>
-                <li><a href="#">임대관리</a></li>
-                <li><a href="#">견적관리</a></li>
-                <li><a href="#">계약업체</a></li>
-                <li><a href="#">커뮤니티</a></li>
-                <li><a href="#">회원정보</a></li>
-            </ul>
-        </div>
-        <div class="container">
-			<div>
-				<h1 th:inline="text">
-					Hello <span th:remove="tag" sec:authentication="name">여기에 이름 나오게</span>
-				</h1>
-				<form th:action="@{/admin/logout}" method="post">
-					<input type="submit" value="Sign Out" />
-				</form>
+	<div id="wrap">
+		<header class="d-flex align-items-center">
+			<div class="logo">
+				<img alt="로고" src="../../../img/logo.png" class="align-middle" width="64">
 			</div>
-            <h2>테스트 링크</h2>
-            <h3>관리자</h3>
-            <ul>
-            	<li><a href="/admin/login">로그인</a></li>
-            	<li><a href="/admin/buildings">건물목록</a></li>
-            	<li><a href="/admin/users">회원목록</a></li>
-            	<li><a href="/admin/users/1">회원상세</a></li>
-            	<li><a href="/admin/estimates">견적목록</a></li>
-            	<li><a href="/admin/estimates/info">견적상세</a></li>
-            	<li><a href="/admin/buildings/1/items">시설목록</a></li>
-            	<li><a href="/admin/buildings/1/items/1">시설상세</a></li>
-            	<li><a href="/admin/buildings/1/items/add">시설등록</a></li>
-            	<li><a href="/admin/buildings/1/items/edit">시설수정</a></li>
-            	<li><a href="/admin/1/job/list">작업목록</a></li>
-            	<li><a href="/admin/buildings/1/residents/1">입주상세</a></li>
-            	<li><a href="/admin/buildings/1/residents">입주목록</a></li>
-            	<li><a href="/admin/buildings/1/residents/add">입주등록</a></li>
-            	<li><a href="/admin/buildings/1/residents/1/update">입주수정</a></li>
-            	<li><a href="/admin/buildings/1/residents/total">입주현황</a></li>
-            	<li><a href="/admin/buildings/companies">업체현황</a></li>
-            	<li><a href="/admin/buildings/companies/1/add">업체등록</a></li>
-            	<li><a href="/admin/buildings/1/companies/1">업체정보</a></li>
-            	<li><a href="/admin/buildings/companies/1/update">정보수정</a></li>
-           	</ul>
-            <h3>사용자</h3>
-            <ul>
-            	<li><a href="/user/login">로그인</a></li>
-            	<li><a href="/user/mypage">마이페이지</a></li>
-            	<li><a href="/user/join">회원가입</a></li>
-            	<li><a href="/user/estimate">견적신청</a></li>
-            	<li><a href="/user/buildings/info">건물 정보 보기</a></li>
-            </ul>
-            <h3>작업자</h3>
-            <ul>
-            	<li><a href="/worker/login">로그인</a></li>
-            	<li><a href="/worker/job/list">작업목록</a></li>
-            </ul>
-        </div>
-    </div>
+			<div>
+				<h1>
+					<a href="/" class="logo-text">SMARTBUTLER</a>
+				</h1>
+			</div>
+		</header>
+		<div id="navi" class="">
+			<ul>
+				<li><a href="#">건물정보</a></li>
+				<li><a href="#">시설관리</a></li>
+				<li><a href="#">임대관리</a></li>
+				<li><a href="#">견적관리</a></li>
+				<li><a href="#">계약업체</a></li>
+				<li><a href="#">커뮤니티</a></li>
+				<li><a href="#">회원정보</a></li>
+			</ul>
+		</div>
+		<div class="container">
+			<div>
+			  <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name"></span>!</h1>
+				<div>
+					<!-- 인증시 사용된 객체의 username (ID) -->
+					<span>🎁username : </span>
+					<span sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+					<span> / </span>
+					<span sec:authorize="isAuthenticated()" sec:authentication="principal.username"></span>
+				</div>
+			</div>
+			<h2>
+				<a href="/admin/logout">sign out</a>
+			</h2>
+			<h2>테스트 링크</h2>
+			<h3>관리자</h3>
+			<ul>
+				<li><a href="/admin/login">로그인</a></li>
+				<li><a href="/admin/buildings">건물목록</a></li>
+				<li><a href="/admin/users">회원목록</a></li>
+				<li><a href="/admin/users/1">회원상세</a></li>
+				<li><a href="/admin/estimates">견적목록</a></li>
+				<li><a href="/admin/estimates/info">견적상세</a></li>
+				<li><a href="/admin/buildings/1/items">시설목록</a></li>
+				<li><a href="/admin/buildings/1/items/1">시설상세</a></li>
+				<li><a href="/admin/buildings/1/items/add">시설등록</a></li>
+				<li><a href="/admin/buildings/1/items/edit">시설수정</a></li>
+				<li><a href="/admin/1/job/list">작업목록</a></li>
+				<li><a href="/admin/buildings/1/residents/1">입주상세</a></li>
+				<li><a href="/admin/buildings/1/residents">입주목록</a></li>
+				<li><a href="/admin/buildings/1/residents/add">입주등록</a></li>
+				<li><a href="/admin/buildings/1/residents/1/update">입주수정</a></li>
+				<li><a href="/admin/buildings/1/residents/total">입주현황</a></li>
+				<li><a href="/admin/buildings/companies">업체현황</a></li>
+				<li><a href="/admin/buildings/companies/1/add">업체등록</a></li>
+				<li><a href="/admin/buildings/1/companies/1">업체정보</a></li>
+				<li><a href="/admin/buildings/companies/1/update">정보수정</a></li>
+			</ul>
+			<h3>사용자</h3>
+			<ul>
+				<li><a href="/user/login">로그인</a></li>
+				<li><a href="/user/mypage">마이페이지</a></li>
+				<li><a href="/user/join">회원가입</a></li>
+				<li><a href="/user/estimate">견적신청</a></li>
+				<li><a href="/user/buildings/info">건물 정보 보기</a></li>
+			</ul>
+			<h3>작업자</h3>
+			<ul>
+				<li><a href="/worker/login">로그인</a></li>
+				<li><a href="/worker/job/list">작업목록</a></li>
+			</ul>
+		</div>
+	</div>
 </body>
 
 </html>

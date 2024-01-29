@@ -19,7 +19,8 @@ public class WebSecurityConfig {
 		http
 			.csrf((csrf) -> csrf.disable())
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/**", "/user/**").permitAll()
+				.requestMatchers("/admin/login","/css/**","/img/**","/admin/logout","/admin/signout").permitAll()
+				.anyRequest().authenticated()
 			);
 		http
 			.formLogin((form) -> form
@@ -27,8 +28,13 @@ public class WebSecurityConfig {
 			.permitAll()
 			);
 		http
-			.logout((logout) -> logout.permitAll());
-
+			.logout((logout) ->
+				logout
+					.logoutUrl("/admin/logout")
+					.logoutSuccessUrl("/admin/signout")
+					.invalidateHttpSession(true)
+					);
+		
 		return http.build();
 	}
 
