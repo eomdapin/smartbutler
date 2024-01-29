@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>SMARTBUTLER</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/css/user.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+	<link rel="manifest" href="/img/site.webmanifest">
+</head>
+<body>
+	<div th:replace="~{common/common :: userHeader}"></div>
+		<div class="container" style="float: none;">
+		<div class="content form-content">
+			<h1 class="text-center mt-2">내 정보</h1>
+				<form action="/user/mypage" method="POST">
+				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
+					<div class="col-7 mt-3 border-top border-5 border-black"></div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="email">이메일</label>
+					</div>
+					<div class="col-5">
+						<input type="email" name="email" class="form-control" th:value=${user?.email} readonly>
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="password">비밀번호</label>
+					</div>
+					<div class="col-5">
+						<input type="password" name="pw" class="form-control" th:value=${user?.pw}>
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="password-check">비밀번호 확인</label>
+					</div>
+					<div class="col-5">
+						<input type="password" name="pw2" class="form-control">
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="name">이름</label>
+					</div>
+					<div class="col-5">
+						<input type="text" name="name" class="form-control" th:value=${user?.name}>
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="phone">휴대폰 번호</label>
+					</div>
+					<div class="col-5">
+						<input type="tel" name="phone" class="form-control" th:value=${user?.phone}>
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-7 mt-3 border-top border-5 border-black"></div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="build_name">건물명</label>
+					</div>
+					<div class="col-5">
+						<input type="text" name="buildName" class="form-control" th:value=${build?.buildName}>
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="resident_id">세대 번호</label>
+					</div>
+					<div class="col-5">
+						<input type="text" name="resident_id" class="form-control">
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label>계약기간</label>
+					</div>
+					<div class="col-5">
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label>월 사용료</label>
+					</div>
+					<div class="col-5">
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label>보증금</label>
+					</div>
+					<div class="col-5">
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div>
+					<div class="row justify-content-center mt-3">
+						<input type="submit" class="btn btn-primary col-1 me-3" value="수정">
+						<input type="button" class="btn btn-secondary col-1 me-3" value="뒤로가기" onclick="location.href='/'">
+					</div>
+				</div>
+					<input type="hidden" name="userId" id="userId" th:value="${user.userId}">
+				</form>
+			</div>
+		</div>
+	<div th:replace="~{common/common :: userFooter}"></div>
+</body>
+</html>
