@@ -1,5 +1,7 @@
 function putClick() {
-	
+	if(confirm("수정하시겠습니까?")) {
+		document.getElementById("editForm").submit();
+	}
 }
 
 function deleteClick() {
