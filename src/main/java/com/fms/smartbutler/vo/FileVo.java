@@ -7,6 +7,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+* @author 엄다빈
+* @editDate 2024-01-24 ~ 2024-01-25
+*/
+
 @Setter @Getter
 @AllArgsConstructor @NoArgsConstructor
 public class FileVo {
