@@ -32,7 +32,7 @@ public class ImageService {
 	private final ImageRepository imageRepository;
 	private final ModelMapper modelMapper;
 	
-	private void uploadImage(FileVo vo, ImageDTO imageDTO, Long outId) throws Exception {
+	private ImageDTO uploadImage(FileVo vo, ImageDTO imageDTO, Long outId) throws Exception {
 		MultipartFile file = vo.getUploadFile();
 		
 		if(!file.isEmpty()) {
@@ -48,14 +48,17 @@ public class ImageService {
 			imageDTO.setSrc(filePath);
 			imageDTO.setRealSrc(filePath);
 		}
+		return imageDTO;
 	}
 	
 	public void saveImage(FileVo vo, ImageDTO imageDTO, Long outId) throws Exception {
 		uploadImage(vo, imageDTO, outId);
-		Image image = modelMapper.map(imageDTO, Image.class);
-		image.getImageCategory().setCoded(imageDTO.getCoded());
-		
-		imageRepository.save(image);
+
+		if(imageDTO.getName() != null) {
+			Image image = modelMapper.map(imageDTO, Image.class);
+			image.getImageCategory().setCoded(imageDTO.getCoded());
+			imageRepository.save(image);
+		}
 	}
 	
 	public void deleteImage(ImageDTO imageDTO) {

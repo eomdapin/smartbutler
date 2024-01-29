@@ -73,9 +73,7 @@ public class BuildController {
 	// 건물 정보 저장
 	@PostMapping("/add")
 	public String postBuildAdd(@ModelAttribute BuildDTO build, @ModelAttribute FileVo vo, Model model) throws Exception {
-		log.info("buildDTO controller 이전, {}", build);
 		buildService.insert(build);
-		log.info("buildDTO controller 다음, {}", build);
 		
 		if(!vo.getFileName().isEmpty()) {
 			ImageDTO imageDTO = new ImageDTO();
