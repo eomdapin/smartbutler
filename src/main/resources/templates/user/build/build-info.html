@@ -12,12 +12,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
     <link rel="manifest" href="/img/site.webmanifest">
-    <style>
-    	#carouselExampleIndicators {
-    		width: 600px;
-    		margin: 0 auto;
-    	}
-    </style>
 </head>
 <body>
 	<header class="d-flex justify-content-between">
@@ -73,10 +67,10 @@
 				</div>
 				
 				<h3 class="text-center mt-2">건물 사진</h3>
-				<div id="carouselExampleIndicators" class="carousel slide">
+				<div id="carouselExampleIndicators" class="carousel slide" style="height: 800px;">
 					<div class="carousel-inner">
-						<div th:each="images: ${images}" class="carousel-item" style="height: 500px;">
-							<img th:src="@{/web-img/}+${images?.name}" class="d-block w-100" alt="건물 사진">
+						<div th:each="images: ${images}" class="carousel-item">
+							<img th:src="@{/web-img/}+${images?.name}" class="d-block" style="height: 800px; margin: 0 auto;" alt="건물 사진">
 						</div>
 					</div>
 					<button class="carousel-control-prev background-color: rgba(255,255,255,0.3);" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
