@@ -1,7 +1,6 @@
 package com.fms.smartbutler.controller.admin;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fms.smartbutler.domain.Build;
 import com.fms.smartbutler.domain.Item;
+import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ItemDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ItemService;
@@ -31,7 +30,7 @@ public class ItemController {
 	@GetMapping
 	public String getItemList(@PathVariable Long buildId, Model model) {
 		List<ItemDTO> itemDTO = itemService.findAll();
-		Optional<Build> build = buildService.findById(buildId);
+		BuildDTO build = buildService.findById(buildId);
 		
 //		for(ItemDTO item: itemDTO) {
 //			item.setBuildName(build.get().getBuildName());
