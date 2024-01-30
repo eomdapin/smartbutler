@@ -32,33 +32,31 @@ public class AdminLoginController {
 	}
 	
 	// 관리자 로그인
-	@PostMapping("/login")
-	public String login(@RequestParam("id") String id, @RequestParam("password") String password, Model model) {
-		model.addAttribute("id", id);
-		model.addAttribute("password", password);
-		return "/";
-	}
+//	@PostMapping("/login")
+//	public String login() {
+//		return "redirect:/";
+//	}
 	
-	@GetMapping("/join")
-	public String joinAdmin() {
-		return "admin/login/join-admin";
-	}
+//	@GetMapping("/logout")
+//	public String logout() {
+//		return "admin/login/login";
+//	}
 	
-	@PostMapping("/join/{role}")
-	public String createMember(@ModelAttribute AdminDTO adminDTO, Model model) {
-		// DTO to Entity
-		Admin entity = modelMapper.map(adminDTO, Admin.class);
-		
-		// save
-		//Member savedEntity = memberRepository.save(entity);
-		Admin savedEntity = adminService.joinMember(entity);
-		
-		// Entity to DTO
-		AdminDTO savedDTO = modelMapper.map(savedEntity, AdminDTO.class);
-		
-		model.addAttribute("admin", savedDTO);
-		
-		return "admin/login/join-success";	// join/success
-	}
+//	@PostMapping("/join/{role}")
+//	public String createMember(@ModelAttribute AdminDTO adminDTO, Model model) {
+//		// DTO to Entity
+//		Admin entity = modelMapper.map(adminDTO, Admin.class);
+//		
+//		// save
+//		//Member savedEntity = memberRepository.save(entity);
+//		Admin savedEntity = adminService.joinMember(entity);
+//		
+//		// Entity to DTO
+//		AdminDTO savedDTO = modelMapper.map(savedEntity, AdminDTO.class);
+//		
+//		model.addAttribute("admin", savedDTO);
+//		
+//		return "admin/login/join-success";	// join/success
+//	}
 	
 }

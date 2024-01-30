@@ -48,7 +48,7 @@
 	<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-4">로그인</h1>
-			<form action="" class="">
+			<form action="/user/login" method="post" class="">
 				<div
 					class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
@@ -59,7 +59,7 @@
 						<label for="email" class="">이메일</label>
 					</div>
 					<div class="col-5">
-						<input type="email" class="form-control">
+						<input type="email" name="email" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -67,7 +67,7 @@
 						<label for="password" class="">비밀번호</label>
 					</div>
 					<div class="col-5">
-						<input type="text" class="form-control">
+						<input type="text" name="password" class="form-control">
 					</div>
 				</div>
 				<div class="row justify-content-center mt-3">
