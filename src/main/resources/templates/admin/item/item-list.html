@@ -22,11 +22,25 @@
 				<ul class="">
 					<li><a href="#">HOME</a><span> ></span></li>
 					<li><a href="#">시설관리</a><span> ></span></li>
+					<li><a href="#">시설목록</a></li>
 				</ul>
 			</div>
 			<div class="content">
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+                    <div class="col-1 mb-3">
+                    	<label for="buildId" class="fs-5 fw-bold">건물명</label>
+                    </div>
+                    <div class="col-3 mb-3">
+	                    <form action="" id="infoForm">
+	                    	<select class="form-select" id="buildId" name="buildId" onChange="changeBuild()">
+	                    		<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
+	                    			th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
+	                    	</select>
+	                    </form>
+                    </div>
+                </div>
 				<div class="d-grid justify-content-end my-2">
-					<button type="button" class="btn btn-primary" onClick="location.href='/admin/buildings/{buildId}/items/add'">신규 등록</button>
+					<button type="button" class="btn btn-primary" th:onClick="|location.href='@{/admin/buildings/{buildId}/items/add(buildId = ${build.buildId})}'|">신규 등록</button>
 				</div>
 				<table class="table table-hover text-center">
 					<thead>
@@ -54,10 +68,10 @@
 							<td>2023-12-31</td>
 							<td>1개월</td>
 						</tr>
-						<tr th:each="item: ${itemDTO}">
+						<tr th:each="item: ${items}">
 							<td>[[${item.itemId}]]</td>
 							<td>[[${item.buildName}]]</td>
-							<td>[[${item.itemName}]]</td>
+							<td><a th:href="@{/admin/buildings/{buildId}/items/{itemId}(buildId = ${item.buildId}, itemId = ${item.itemId})}">[[${item.itemName}]]</a></td>
 							<td>[[${item.kindName}]]</td>
 							<td>[[${item.location}]]</td>
 							<td>[[${item.fromDate}]]</td>
@@ -70,6 +84,13 @@
 			</div>
 		</div>
 	</div>
-
+	<script type="text/javascript">
+	function changeBuild() {
+		let buildId = document.getElementById('buildId');
+		let formId = document.getElementById('infoForm');
+		
+		formId.submit();
+	}
+	</script>
 </body>
 </html>

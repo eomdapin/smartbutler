@@ -88,7 +88,7 @@ public class UserClaimController {
 			
 			if(!vo.getFileName().isEmpty()) {
 				ImageDTO imageDTO = new ImageDTO();
-				imageDTO.setCoded("b");
+				imageDTO.setCoded("c");
 				imageService.saveImage(vo, imageDTO, claimDTO.getClaimId());
 			}
 			
@@ -99,7 +99,7 @@ public class UserClaimController {
 		@GetMapping("/{claimId}/edit")
 		public String getClaimEdit(@PathVariable Long claimId, Model model) {
 			ClaimDTO claimDTO = claimService.findById(claimId).orElseGet(ClaimDTO::new);
-			List<Image> images = imageService.findByOutIdAndCoded(claimDTO.getClaimId(), "c");
+			List<ImageDTO> images = imageService.findByOutIdAndCoded(claimDTO.getClaimId(), "c");
 			FileVo vo = new FileVo();
 			List<String> options = new ArrayList<String>();
 			
@@ -127,9 +127,9 @@ public class UserClaimController {
 			log.info("vo.geFileName = " + vo.getFileName());
 			
 			if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
-				Image image = new Image();
-				image.getImageCategory().setCoded("c");
-				imageService.saveImage(vo, image, claimDTO.getClaimId());
+				ImageDTO imageDTO = new ImageDTO();
+				imageDTO.setCoded("c");
+				imageService.saveImage(vo, imageDTO, claimDTO.getClaimId());
 			}
 			
 			return "redirect:/user/claims";

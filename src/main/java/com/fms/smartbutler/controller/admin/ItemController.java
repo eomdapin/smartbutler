@@ -4,13 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fms.smartbutler.domain.Item;
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ItemDTO;
 import com.fms.smartbutler.service.BuildService;
@@ -28,54 +30,68 @@ public class ItemController {
 	
 	// 시설 목록
 	@GetMapping
-	public String getItemList(@PathVariable Long buildId, Model model) {
-		List<ItemDTO> itemDTO = itemService.findAll();
-		BuildDTO build = buildService.findById(buildId);
+	public String getItemList(@RequestParam(required = false) Long buildId, Model model) {
+		buildId = buildId == null ? 1 :buildId;
+		BuildDTO buildDTO = buildService.findById(buildId);
+		List<BuildDTO> builds = buildService.findAll();
+		List<ItemDTO> items = itemService.findByBuildId(buildId);
 		
-//		for(ItemDTO item: itemDTO) {
-//			item.setBuildName(build.get().getBuildName());
-//		}
-		
-		model.addAttribute("itemDTO", itemDTO);
-		model.addAttribute("build", build);
+		model.addAttribute("build", buildDTO);
+		model.addAttribute("builds", builds);
+		model.addAttribute("items", items);
 		
 		return "admin/item/item-list";
 	}
 	
 	// 시설 상세
 	@GetMapping("/{itemId}")
-	public String getItemInfo(@PathVariable Long itemId, Model model) {
-		Item item = itemService.findById(itemId).orElseGet(Item::new);
-		
-		model.addAttribute("item", item);
+	public String getItemInfo(@PathVariable("itemId") Long itemId, Model model) {
+		ItemDTO itemDTO = itemService.findById(itemId).orElseGet(ItemDTO::new);
+		model.addAttribute("item", itemDTO);
 		
 		return "admin/item/item-info";
 	}
 	
-	// 시설 등록
+	// 시설 등록 폼
 	@GetMapping("/add")
-	public String getItemAdd(Model model) {
+	public String getItemAdd(@PathVariable Long buildId, Model model) {
+		BuildDTO buildDTO = buildService.findById(buildId);
+		
+		model.addAttribute("build", buildDTO);
+		
 		return "admin/item/item-add";
 	}
 	
-	// 시설 등록 저장
+	// 시설 등록
 	@PostMapping("/add")
-	public String postItemAdd(@ModelAttribute Item item, Model model) {
-		itemService.insert(item);
+	public String postItemAdd(@ModelAttribute ItemDTO itemDTO) throws Exception {
+		itemService.insert(itemDTO);
+		
 		return "redirect:/admin/buildings/{buildId}/items";
 	}
 	
-	// 시설 수정
-	@GetMapping("/edit")
-	public String getItemEdit() {
+	// 시설 수정 폼
+	@GetMapping("/{itemId}/edit")
+	public String getItemEdit(@PathVariable("itemId") Long itemId, Model model) {
+		ItemDTO itemDTO = itemService.findById(itemId).orElseGet(ItemDTO::new);
+		
+		model.addAttribute("item", itemDTO);
+		
 		return "admin/item/item-edit";
 	}
 	
+	// 시설 수정
+	@PutMapping("/{itemId}/edit")
+	public String putItemEdit(@ModelAttribute ItemDTO itemDTO) throws Exception {
+		itemService.update(itemDTO);
+		
+		return "redirect:/admin/buildings/{buildId}/items";
+	}
+	
 	// 시설 삭제
-	@PostMapping("/{itemId}")
-	public String postItemDelete(@PathVariable Long itemId) {
-		Item item = itemService.findById(itemId).orElseGet(Item::new);
-		itemService.delete(item);
+	@DeleteMapping("/{itemId}")
+	public String deleteItem(@ModelAttribute ItemDTO itemDTO) {
+		itemService.delete(itemDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/items";
 	}

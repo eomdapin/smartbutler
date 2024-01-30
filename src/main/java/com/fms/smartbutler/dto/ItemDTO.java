@@ -21,7 +21,7 @@ public class ItemDTO {
 	private Date fromDate;
 	private int status;
 	private Date checkDate;
-	private int checkCycle;
+	private String checkCycle;
 	private String buildName;
 	private String kindName;
 	

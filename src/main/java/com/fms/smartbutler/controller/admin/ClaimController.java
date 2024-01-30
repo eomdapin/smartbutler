@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fms.smartbutler.domain.Image;
 import com.fms.smartbutler.dto.ClaimDTO;
+import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.service.ClaimService;
 import com.fms.smartbutler.service.ImageService;
 import com.fms.smartbutler.vo.FileVo;
@@ -45,7 +45,7 @@ public class ClaimController {
 	@GetMapping("/{buildId}/claims/{claimId}")
 	public String getClaimInfo(@PathVariable("buildId") Long buildId, @PathVariable("claimId") Long claimId, Model model) {
 		ClaimDTO claimDTO = claimService.findById(claimId).orElseGet(ClaimDTO::new);
-		List<Image> images = imageService.findByOutIdAndCoded(claimDTO.getClaimId(), "c");
+		List<ImageDTO> images = imageService.findByOutIdAndCoded(claimDTO.getClaimId(), "c");
 		FileVo vo = new FileVo();
 		
 		if(images.size() > 0) {

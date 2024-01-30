@@ -26,7 +26,8 @@
 				</ul>
 			</div>
 	        <div class="content form-content">
-		        <form action="/admin/buildings/{buildId}/items/add" method="post">
+		        <!-- <form th:action="@{/admin/buildings/{buildId}/items/add(buildId = ${item.buildId})}" method="post"> -->
+		        <form th:action="@{/admin/buildings/2/items/add}" method="post">
 		        	<div class="row align-items-center mb-4">
 			        	<div class="col-2">
 							<label for="itemId" class="ms-5 fw-bold">시설번호</label>
@@ -46,7 +47,7 @@
 							<label for="buildName" class="ms-5 fw-bold">건물명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="buildName" class="form-control">
+							<input type="text" name="buildName" th:value="${build?.buildName}" class="form-control" readonly>
 						</div>
 						<div class="col-2">
 							<label for="status" class="ms-5 fw-bold">상태</label>

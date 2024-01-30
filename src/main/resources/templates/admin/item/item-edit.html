@@ -26,78 +26,79 @@
 				</ul>
 			</div>
 	        <div class="content form-content">
-		        <form action="">
+		        <form th:action="@{/admin/buildings/{buildId}/items/{itemId}(buildId = ${item.buildId}, itemId = ${item.itemId})}" th:method="put" id="editForm">
 		        	<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="" class="ms-5">시설번호</label>
+							<label for="itemId" class="ms-5">시설번호</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="itemId" th:value="${item?.itemId}" class="form-control" readonly>
 						</div>
 						<div class="col-2">
-							<label for="" class="ms-5">사용시작일</label>
+							<label for="fromDate" class="ms-5">사용시작일</label>
 						</div>
 						<div class="col-4">
-							<input type="date" class="form-control">
+							<input type="date" name="fromDate" th:value="${item?.fromDate}" class="form-control">
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="" class="ms-5">건물명</label>
+							<label for="buildName" class="ms-5">건물명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="buildName" th:value="${item?.buildName}" class="form-control" readonly>
 						</div>
 						<div class="col-2">
-							<label for="" class="ms-5">상태</label>
+							<label for="status" class="ms-5">상태</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="status" th:value="${item?.status}" class="form-control">
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="" class="ms-5">시설명</label>
+							<label for="itemName" class="ms-5">시설명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="itemName" th:value="${item?.itemName}" class="form-control">
 						</div>
 						<div class="col-2">
-							<label for="" class="ms-5">점검날짜</label>
+							<label for="checkDate" class="ms-5">점검날짜</label>
 						</div>
 						<div class="col-4">
-							<input type="date" class="form-control">
+							<input type="date" name="checkDate" th:value="${item?.checkDate}" class="form-control">
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="" class="ms-5">시설종류</label>
+							<label for="kindType" class="ms-5">시설종류</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="kindType" th:value="${item?.kindType}" class="form-control">
 						</div>
 						<div class="col-2">
-							<label for="" class="ms-5">점검주기</label>
+							<label for="checkCycle" class="ms-5">점검주기</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="checkCycle" th:value="${item?.checkCycle}" class="form-control">
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="" class="ms-5">시설위치</label>
+							<label for="location" class="ms-5">시설위치</label>
 						</div>
 						<div class="col-4">
-							<input type="text" class="form-control">
+							<input type="text" name="location" th:value="${item?.location}" class="form-control">
 						</div>
 					</div>
 					<div class="row justify-content-end mt-3">
-						<input type="button" class="btn btn-primary col-1 me-3" value="저장">
-						<input type="button" class="btn btn-outline-dark col-1 me-3" value="목록">
+						<button type="button" class="btn btn-primary col-1 me-3" onclick="putClick(); return false;">완료</button>
+						<button type="button" class="btn btn-outline-dark col-1 me-3" onClick="history.back()">목록</button>
 					</div>
 		        </form>
 	        </div>
         </div>
 	</div>
+	<script src="/js/Button.js" type="text/javascript"></script>
 </body>
 </html>
