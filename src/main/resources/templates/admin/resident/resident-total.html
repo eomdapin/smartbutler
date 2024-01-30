@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <title>SMARTBUTLER</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/admin.css">
@@ -14,6 +13,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
     <link rel="manifest" href="/img/site.webmanifest">
+    <style>
+    	.room:first-of-type {
+    		visibility: hidden;
+    	}
+    </style>
 </head>
 
 <body>
@@ -53,13 +57,16 @@
                     </div>
                 </form>
                 <div class="row">
+<!-- 	                <div class="row mx-3 mt-3 px-2" style="display: inline-block">
+                		<div th:each="room: ${#numbers.sequence(0, build?.room)}" class="room m-2 text-center" style="width: 100px; height: 20px; display: inline-block;"><h2>[[${room}]]</h2></div>
+	               	</div> -->
 					<div th:each="floor: ${#numbers.sequence(1, build?.floor)}" class="row m-3 p-2" style="display: inline-block">
-						<div class="col-2"><h2>[[${floor}]] 층</h2></div>
 						<div class="col-auto">
-						<div th:each="room: ${#numbers.sequence(1, build?.room)}" class="m-2 border border-dark-subtle text-center" style="width: 100px; height: 80px; display: inline-block;">
-							<span style="font-size:20px; font-weight: 600;">[[${(floor*100) + room}]]호</span><br>
-							<span style="font-size:14px; font-weight: 400;">공실</span>
-						</div>
+							<div class="floor m-2 text-center" style="width: 100px; height: 80px; display: inline-block;"><h2>[[${floor}]] 층</h2></div>
+							<div th:each="room: ${#numbers.sequence(1, build?.room)}" class="m-2 border border-dark-subtle text-center" style="width: 100px; height: 80px; display: inline-block;">
+								<span style="font-size:18px; font-weight: 600;">[[${(floor*100) + room}]]호</span><br>
+								<span style="font-size:14px; font-weight: 400;">공실</span>
+							</div>
 						</div>
 					</div>
                 </div>

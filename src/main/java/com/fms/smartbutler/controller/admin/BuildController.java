@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fms.smartbutler.domain.Build;
 import com.fms.smartbutler.domain.Image;
+import com.fms.smartbutler.dto.BuildDTO;
+import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ImageService;
 import com.fms.smartbutler.vo.FileVo;
@@ -36,7 +38,7 @@ public class BuildController {
 	// 건물 정보
 	@GetMapping
 	public String getBuildList(Model model) {
-		List<Build> build = buildService.findAll();
+		List<BuildDTO> build = buildService.findAll();
 		
 		model.addAttribute("build", build);
 		
@@ -46,8 +48,8 @@ public class BuildController {
 	// 건물 정보 상세
 	@GetMapping("/{buildId}")
 	public String getBuildInfo(@PathVariable Long buildId, Model model) {
-		Build build = buildService.findById(buildId).orElseGet(Build::new);
-		List<Image> images = imageService.findByOutIdAndCoded(build.getBuildId(), "b");
+		BuildDTO build = buildService.findById(buildId);
+		List<ImageDTO> images = imageService.findByOutIdAndCoded(build.getBuildId(), "b");
 		FileVo vo = new FileVo();
 		
 		if(images.size() > 0) {
@@ -63,20 +65,20 @@ public class BuildController {
 	// 건물 정보 입력 폼
 	@GetMapping("/add")
 	public String getBuildAdd(Model model) {
-		model.addAttribute("build", new Build());
+		model.addAttribute("build", new BuildDTO());
 		
 		return "admin/build/build-info";
 	}
 	
 	// 건물 정보 저장
 	@PostMapping("/add")
-	public String postBuildAdd(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
+	public String postBuildAdd(@ModelAttribute BuildDTO build, @ModelAttribute FileVo vo, Model model) throws Exception {
 		buildService.insert(build);
 		
 		if(!vo.getFileName().isEmpty()) {
-			Image image = new Image();
-			image.getImageCategory().setCoded("b");
-			imageService.saveImage(vo, image, build.getBuildId());
+			ImageDTO imageDTO = new ImageDTO();
+			imageDTO.setCoded("b");
+			imageService.saveImage(vo, imageDTO, build.getBuildId());
 		}
 		
 		return "redirect:/admin/buildings";
@@ -84,13 +86,13 @@ public class BuildController {
 	
 	// 건물 정보 수정
 	@PostMapping("/{buildId}/update") // PutMapping으로 변경 시 update 문구 삭제 예정
-	public String postBuildinsert(@ModelAttribute Build build, @ModelAttribute FileVo vo, Model model) throws Exception {
-		buildService.update(build);
+	public String postBuildinsert(@ModelAttribute BuildDTO build, @ModelAttribute FileVo vo, Model model) throws Exception {
+		buildService.insert(build);
 		
 		if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
-			Image image = new Image();
-			image.getImageCategory().setCoded("b");
-			imageService.saveImage(vo, image, build.getBuildId());
+			ImageDTO imageDTO = new ImageDTO();
+			imageDTO.setCoded("b");
+			imageService.saveImage(vo, imageDTO, build.getBuildId());
 		} 
 		
 		return "redirect:/admin/buildings";

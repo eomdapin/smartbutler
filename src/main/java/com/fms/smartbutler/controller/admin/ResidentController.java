@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fms.smartbutler.domain.Build;
+import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.service.BuildService;
 
 import lombok.RequiredArgsConstructor;
@@ -72,9 +73,9 @@ public class ResidentController {
 	// 입주 현황
 	@GetMapping("/{buildId}/residents/total")
 	public String getResidentsTotal(@PathVariable Long buildId, Model model) {
-		List<Build> builds = buildService.findAll();
+		List<BuildDTO> builds = buildService.findAll();
 		log.info("buildId :: {}", buildId);
-		Build build = buildService.findById(buildId).orElseGet(Build::new);
+		BuildDTO build = buildService.findById(buildId);
 		
 		model.addAttribute("builds", builds);
 		model.addAttribute("build", build);
