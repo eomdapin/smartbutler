@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import com.fms.smartbutler.domain.Build;
 import com.fms.smartbutler.domain.Item;
 import com.fms.smartbutler.dto.ItemDTO;
 import com.fms.smartbutler.repository.ItemRepository;
@@ -36,12 +37,23 @@ public class ItemService {
 		itemDTO.setItemId(item.getItemId());
 	}
 	
-	
 	public Optional<ItemDTO> findById(Long itemId) {
 		Optional<Item> item = itemRepository.findById(itemId);
 		ItemDTO itemDTO = modelMapper.map(item, ItemDTO.class);
 		
 		return Optional.ofNullable(itemDTO);
+	}
+	
+	public List<ItemDTO> findByBuildId(Long buildId) {
+		List<Item> item = itemRepository.findByBuild_BuildId(buildId);
+		List<ItemDTO> itemDTO = item
+									.stream()
+									.map(i ->
+											modelMapper
+											.map(i, ItemDTO.class))
+											.collect(Collectors.toList());
+		
+		return itemDTO;
 	}
 	
 	public List<ItemDTO> findAll() {

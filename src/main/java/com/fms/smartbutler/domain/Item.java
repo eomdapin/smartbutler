@@ -50,7 +50,7 @@ public class Item {
 	private Date checkDate;
 	
 	@Column(name = "check_cycle")
-	private int checkCycle;
+	private String checkCycle;
 	
 	
 	
