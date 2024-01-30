@@ -2,7 +2,7 @@ package com.fms.smartbutler.controller.worker;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -22,8 +22,8 @@ public class WorkerController {
 	}
 	
 	// 작업 완료
-	@PostMapping("/jobs/{jobId}")
-	public String postJobInfo() {
+	@PutMapping("/jobs/{jobId}")
+	public String putJobInfo() {
 		return "redirect:/worker/jobs";
 	}
 }

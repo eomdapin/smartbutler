@@ -147,15 +147,15 @@ create table if not exists job (
 	company_id bigint not null COMMENT '업체 고유 번호',
     item_id bigint not null COMMENT '시설 고유 번호',
     title varchar(200) not null COMMENT '제목',
-    ask_date date not null COMMENT '요청 날짜',
     content text not null COMMENT '요청 내용',
+    report_content text COMMENT '보고 내용',
+    ask_date date not null COMMENT '요청 날짜',
     fin_date date COMMENT '완료 날짜',
     status smallint not null COMMENT '처리 상태',
-    report_content text COMMENT '보고 내용',
     foreign key(build_id) references build(build_id) on delete cascade,
     foreign key(item_id) references item(item_id),
     foreign key(company_id) references company(company_id),
-    primary key(job_id, build_id)
+    primary key(job_id)
 );
 
 drop table if exists image_category;

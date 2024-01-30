@@ -2,9 +2,15 @@ package com.fms.smartbutler.domain;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,22 +18,42 @@ import lombok.Setter;
 
 @Entity
 @Setter @Getter
-@AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Job {
 	
 	@Id
-	@GeneratedValue
-	private Long workId;
-	private Long buildId;
-	private Long itemId;
-	private Long companyId;
-//	private String kindType;
+	@Column(name = "job_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long jobId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "build_id")
+	private Build build;
+	
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "company_id")
+//	private Company company;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "item_id")
+	private Item item;
+	
+	@Column(name = "title")
 	private String title;
-	private Date askDate;
+	
+	@Column(name = "content")
 	private String content;
-	private Date finDate;
-	private int status;
-	private Long imgId;
+	
+	@Column(name = "report_content")
 	private String reportContent;
-	private Long reportImgId;
+	
+	@Column(name = "ask_date")
+	private Date askDate;
+	
+	@Column(name = "fin_date")
+	private Date finDate;
+	
+	@Column(name = "status")
+	private int status;
 }
