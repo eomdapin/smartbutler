@@ -33,7 +33,7 @@
 		<div class="form-signin w-25 mx-auto" style="margin-top: 25vh;">
 			<div th:if="${param.error}">Invalid username and password.</div>
 			<div th:if="${param.logout}">You have been logged out.</div>
-			<form th:action="@{/admin/login}" method="post">
+			<form action="/admin/login" method="post">
 				<div class="form-floating">
 					<input type="text" class="form-control mb-3" id="username"
 						name="username" placeholder=""> <label for="username">아이디</label>

@@ -224,6 +224,9 @@ create table if not exists admin (
     primary key(admin_id)
 );
 
+insert into admin values(null, 'admin', '{noop}1111', 'ADMIN');
+select * from admin;
+
 #######################################################
 insert into user(name, phone, email, pw, status)
 values('홍길동', '010-0000-0000', 'mail@mail.com', '1234', '1');
