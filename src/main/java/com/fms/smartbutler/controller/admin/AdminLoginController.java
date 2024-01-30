@@ -25,9 +25,4 @@ public class AdminLoginController {
 		return "/";
 	}
 	
-	// 관리자 로그아웃
-	@GetMapping("/signout")
-	public String signout() {
-		return "admin/login/login";
-	}
 }
