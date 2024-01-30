@@ -1,9 +1,12 @@
 package com.fms.smartbutler.service;
 
 /**
-* @author 송창민
-* @editDate 2024-01-26 ~ 2024-01-29
-*/
+ * @author 송창민
+ * @editDate 2024-01-26 ~ 2024-01-29
+ */
+
+import java.sql.Date;
+import java.time.LocalDate;
 
 import java.util.List;
 import java.util.Optional;
@@ -58,6 +61,15 @@ public class ClaimService {
 											.collect(Collectors.toList());
 		
 		return claimDTOList;
+	}
+	
+	public void finishClaim(ClaimDTO claimDTO) {
+		claimDTO.setFinDate(Date.valueOf(LocalDate.now()));
+		claimDTO.setStatus(2);
+		
+		Claim claim = modelMapper.map(claimDTO, Claim.class);
+		
+		claimRepository.save(claim);
 	}
 	
 	public void delete(ClaimDTO claimDTO) {

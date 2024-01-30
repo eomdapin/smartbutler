@@ -39,23 +39,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>10010</td>
-							<td><a href="/admin/buildings/1/claims/1">문 안 닫힘</a></td>
-							<td>2024-01-15</td>
-							<td>강남1호점</td>
-							<td>702</td>
-							<td> - </td>
-							<td>신청</td>
-						</tr>
-						<tr th:each="claim: ${claim}">
+						<tr th:each="claim: ${claims}">
 							<td>[[${claim.claimId}]]</td>
 							<td><a th:href="@{/admin/buildings/{buildId}/claims/{claimId}(buildId = ${claim.buildId}, claimId = ${claim.claimId})}">[[${claim.title}]]</a></td>
 							<td>[[${claim.askDate}]]</td>
 							<td>[[${claim.buildName}]]</td>
 							<td>[[${claim.residentId}]]</td>
 							<td>[[${claim.finDate}]]</td>
-							<td>[[${claim.status}]]</td>
+							<td th:text="${claim.status == 1} ? '신청' : '완료'"></td>
 						</tr>
 					</tbody>
 				</table>

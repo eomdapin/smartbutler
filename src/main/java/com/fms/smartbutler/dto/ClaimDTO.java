@@ -24,6 +24,8 @@ public class ClaimDTO {
 	private Date askDate;
 	private Date finDate;
 	private int status;
+	private String buildName;
+	private Long residentId;
 	
 	public ClaimDTO() {
 		status = 1;

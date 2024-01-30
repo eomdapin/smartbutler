@@ -58,7 +58,7 @@ public class UserClaimController {
 			}
 			
 			model.addAttribute("claim", claimDTO);
-			model.addAttribute("image", images.get(0));
+			model.addAttribute("images", images);
 			model.addAttribute("vo", vo);
 			
 			return "user/claim/claim-info";
@@ -125,7 +125,7 @@ public class UserClaimController {
 			claimService.update(claimDTO);
 			log.info("vo.geFileName = " + vo.getFileName());
 			
-			if(!vo.getFileName().isEmpty()) {
+			if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
 				Image image = new Image();
 				image.getImageCategory().setCoded("c");
 				imageService.saveImage(vo, image, claimDTO.getClaimId());
