@@ -5,8 +5,6 @@ package com.fms.smartbutler.dto;
 * @editDate 2024-01-30 ~ 2024-02-03
 */
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,15 +16,10 @@ public class CostDTO {
 	private Long costId;
 	private Long buildId;
 	private String date;
+	private Long electricity;
+	private Long repair;
+	private Long upkeep;
+	private Long consignment;
 	private Integer send;
-	private List<CostKindDTO> costKinds;
-	
-	@Getter @Setter
-	@AllArgsConstructor @NoArgsConstructor
-	public static class CostKindDTO {
-		private Long electricity;
-		private Long repair;
-		private Long upkeep;
-		private Long consignment;
-	}
+	private String buildName;
 }

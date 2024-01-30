@@ -29,14 +29,12 @@ public class CostService {
 	private final ModelMapper modelMapper;
 	
 	public List<CostDTO> findAll() {
-		List<Cost> costt = costRepository.findAll();
-		
-		List<CostDTO> costDTOs = costt.stream()
-				.map(c -> modelMapper.map(c, CostDTO.class)).toList();
-		
-//		log.info(" costt.get(0).getCostKinds().get(0).getElectricity(); :: {}" ,costt.get(0).getCostKinds().get(0).getElectricity());
-		
 		return costRepository.findAll().stream()
 				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
+	}
+	
+	public void save(CostDTO costDTO) {
+		Cost cost = modelMapper.map(costDTO, Cost.class);
+		costRepository.save(cost);
 	}
 }
