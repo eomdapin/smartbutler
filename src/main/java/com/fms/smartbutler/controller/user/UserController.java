@@ -9,32 +9,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fms.smartbutler.domain.Build;
-import com.fms.smartbutler.domain.User;
-import com.fms.smartbutler.service.BuildService;
-import com.fms.smartbutler.service.UserService;
+import com.fms.smartbutler.dto.UsersDTO;
+import com.fms.smartbutler.service.UsersService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
 	
-	private final UserService userService;
-	private final BuildService buildService;
+	private final UsersService usersService;
 	
 	// 내 정보
 	//@GetMapping("/mypage/{userId}")
 	@GetMapping("/mypage")
 	public String getMypage(Model model) {
-		Optional<User> user = userService.findById(2L);
-		//Optional<Build> build = buildService.findById(1L);
+		Optional<UsersDTO> user = usersService.findById(2L);
 		
 		model.addAttribute("user", user.get());
-		//model.addAttribute("build", build.get());
 		
 		return "user/mypage/mypage";
 	}
@@ -42,9 +35,8 @@ public class UserController {
 	// 내정보 수정
 	//@PostMapping("/mypage/{userId}")
 	@PostMapping("/mypage")
-	public String postMypage(@ModelAttribute User user, Model model) {
-		log.info("user :: ", user.getName());
-		userService.update(user);
+	public String postMypage(@ModelAttribute UsersDTO usersDTO, Model model) {
+		usersService.update(usersDTO);
 		return "redirect:/user/mypage";
 	}
 	

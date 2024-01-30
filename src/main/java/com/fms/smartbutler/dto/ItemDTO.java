@@ -25,4 +25,14 @@ public class ItemDTO {
 	private String buildName;
 	private String kindName;
 	
+	@Setter @Getter
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public static class ItemKindDTO {
+		
+		private String kindType;
+		private String kindName;
+		
+	}
+	
 }

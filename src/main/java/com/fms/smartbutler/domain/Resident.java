@@ -29,7 +29,7 @@ public class Resident {
 	
 	@ManyToOne
     @JoinColumn(name="user_id")
-	private User user;
+	private Users user;
 	
 	@Column(name = "status")
 	private int status;
