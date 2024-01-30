@@ -13,14 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 	
-//	@Autowired
-//	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.inMemoryAuthentication()
-//			.withUser("test@test.com").password("{noop}1111").roles("USER");
-//			.and()
-//			.withUser("admin1").password("{noop}1111").roles("ADMIN");
-//	}
-	
 	@Configuration
     @Order(1)
     public static class App1ConfigurationAdapter {
@@ -55,14 +47,6 @@ public class SecurityConfig {
 			return http.build();
 		}
 		
-//		@Bean
-//		protected UserDetailsService userDetailsServiceApp1() {
-//	         UserDetails user = User.withUsername("admin")
-//	             .password("")
-//	             .roles("ADMIN")
-//	             .build();
-//	         return new InMemoryUserDetailsManager(user);
-//	    }
 	}
 	
 	   	@Configuration
@@ -100,20 +84,49 @@ public class SecurityConfig {
 
 			return http.build();
         }
+	 }
 	        
-//        @Bean
-//        protected UserDetailsService userDetailsServiceApp2() {
-//             UserDetails user = User.withUsername("user@user.com")
-//                 .password("")
-//                 .roles("USER")
-//                 .build();
-//             return new InMemoryUserDetailsManager(user);
-//        }
+        @Configuration
+	    @Order(3)
+	    public static class App3ConfigurationAdapter {
 
+	        @Bean
+	        protected SecurityFilterChain securityFilterChain3(HttpSecurity http) throws Exception {
+	        	http
+	        	.securityMatcher("/worker/**")
+				.csrf((csrf) -> csrf.disable())
+				.authorizeHttpRequests((requests) -> requests
+					.requestMatchers("/css/**","/img/**","/worker/login","/worker/logout").permitAll()
+					.requestMatchers("/worker/**").hasRole("WORKER")
+					.anyRequest().authenticated()
+				);
+	        	
+			http
+			.formLogin(formLogin->
+				formLogin
+					.loginPage("/worker/login")
+					.defaultSuccessUrl("/",true)
+					.loginProcessingUrl("/worker/login")
+					.failureUrl("/login?error=true")
+					.usernameParameter("username")
+					.passwordParameter("password")
+			);
+			
+			http
+			.logout(logout->
+				logout
+					.logoutUrl("/worker/logout")
+					.invalidateHttpSession(true)
+					);
+
+			return http.build();
+        }
+        }
+	        
         @Bean
         protected static PasswordEncoder encoder() {
             return new BCryptPasswordEncoder();
         }
-	   	}
 }
+
 

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -20,28 +21,27 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class UsersService {
+public class UsersService implements UserDetailsService {
 	
 	private final UsersRepository usersRepository;
 	private final ModelMapper modelMapper;
-	private final UsersRepository userRepository;
 	
-//	@Override
-//	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-//		
-//		Users user = userRepository.findByName(name);
-//		
-//		if(user == null) {
-//			throw new UsernameNotFoundException(name);
-//		}
-//		
-//		return User
-//				.builder()
-//				.username(user.getName())
-//				.password(user.getPw())
-//				.roles(user.getRole())
-//				.build();
-//	}
+	@Override
+	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+		
+		Users user = usersRepository.findByName(name);
+		
+		if(user == null) {
+			throw new UsernameNotFoundException(name);
+		}
+		
+		return User
+				.builder()
+				.username(user.getName())
+				.password(user.getPw())
+				.roles(user.getRole())
+				.build();
+	}
 	
 	public void insert(UsersDTO usersDTO) {
 		Users users = modelMapper.map(usersDTO, Users.class);

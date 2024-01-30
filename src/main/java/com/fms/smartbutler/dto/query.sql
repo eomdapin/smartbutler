@@ -227,19 +227,6 @@ create table if not exists admin (
 insert into admin values(null, 'admin', '{noop}1111', 'ADMIN');
 select * from admin;
 
-# 작업자
-drop table if exists worker;
-create table if not exists worker (
-	worker_id bigint not null auto_increment COMMENT '작업자 고유 번호',
-    username varchar(255) not null COMMENT '작업자 아이디',
-    password varchar(255) not null COMMENT '비밀번호',
-    role varchar(255) not null COMMENT '작업자 권한',
-    primary key(worker_id)
-);
-
-insert into worker values(null, 'worker', '{noop}1111', 'WORKER');
-select * from worker;
-
 #######################################################
 insert into user(name, phone, email, pw, status)
 values('홍길동', '010-0000-0000', 'mail@mail.com', '1234', '1');

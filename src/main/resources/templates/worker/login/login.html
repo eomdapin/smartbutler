@@ -18,13 +18,13 @@
 		<div th:replace="~{common/fragments :: adminHeader}"></div>
 		<div th:replace="~{common/fragments :: workerSidebar}"></div>
 		<div class="form-signin w-25 mx-auto" style="margin-top: 25vh;">
-			<form action="/admin/login" method="post">
+			<form action="/worker/login" method="post">
 				<div class="form-floating">
-					<input type="email" class="form-control mb-3" id="email" placeholder="">
-					<label for="email">이메일</label>
+					<input type="text" class="form-control mb-3" id="text" placeholder="" name="username">
+					<label for="username">아이디</label>
 				</div>
 				<div class="form-floating">
-					<input type="password" class="form-control mb-3" id="password"
+					<input type="password" class="form-control mb-3" id="password" name="password"
 						placeholder=""> <label for="password">비밀번호</label>
 				</div>
 				<button class="btn btn-primary w-100 p-3" type="submit">로그인</button>
