@@ -34,8 +34,8 @@
             <div class="bread-crum">
                 <ul class="">
                     <li><a href="#">HOME</a><span> ></span></li>
-                    <li><a href="#">건물정보</a><span> ></span></li>
-                    <li><a href="#">건물상세</a></li>
+                    <li><a href="#">임대관리</a><span> ></span></li>
+                    <li><a href="#">관리비목록</a></li>
                 </ul>
             </div>
             <div class="content">
@@ -57,16 +57,16 @@
                     </thead>
                     <tbody>
                         <tr th:each="costs: ${costs}">
-                            <td><a href="#">[[${costs?.buildName}]]</a></td>
-                            <td><a href="#">[[${costs?.date}]]</a></td>
-                            <td><a href="#">합계금액</a></td>
+                            <td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${costs?.buildName}]]</a></td>
+                            <td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${costs?.date}]]</a></td>
+                            <td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">합계금액</a></td>
                             <th:block th:each="kind: ${costs?.costKinds}">
-                            	<td><a href="#">[[${kind?.electricity}]]</a></td>
-                            	<td><a href="#">[[${kind?.repair}]]</a></td>
-                            	<td><a href="#">[[${kind?.upkeep}]]</a></td>
-                            	<td><a href="#">[[${kind?.consignment}]]</a></td>
+                            	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${kind?.electricity}]]</a></td>
+                            	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${kind?.repair}]]</a></td>
+                            	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${kind?.upkeep}]]</a></td>
+                            	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${kind?.consignment}]]</a></td>
                             </th:block>
-                            <td th:if="${costs?.send == 1}"><a href="#">배분 전</a></td>
+                            <td th:if="${costs?.send == 1}">배분 전</td>
                             <td th:unless="${costs?.send == 1}"><a href="#">배분 내역</a></td>
                         </tr>
                     </tbody>
