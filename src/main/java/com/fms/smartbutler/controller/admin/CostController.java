@@ -46,7 +46,6 @@ public class CostController {
 	@GetMapping("/{buildId}/costs/add")
 	public String gerAddCost(@PathVariable Long buildId, @ModelAttribute CostDTO costDTO, Model model) {
 		BuildDTO buildDTO = buildService.findById(buildId);
-		
 		model.addAttribute("build", buildDTO);
 		
 		return "admin/cost/cost-add";
@@ -63,7 +62,13 @@ public class CostController {
 	
 	// 관리비 상세
 	@GetMapping("/{buildId}/costs/{costId}")
-	public String getCostInfo() {
+	public String getCostInfo(@PathVariable Long buildId, @PathVariable Long costId, Model model) {
+		BuildDTO buildDTO = buildService.findById(buildId);
+		CostDTO costDTO = costService.findById(costId);
+		
+		model.addAttribute("build", buildDTO);
+		model.addAttribute("costDTO", costDTO);
+		
 		return "admin/cost/cost-info";
 	}
 }

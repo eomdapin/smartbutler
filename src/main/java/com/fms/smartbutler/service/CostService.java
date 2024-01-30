@@ -37,4 +37,9 @@ public class CostService {
 		Cost cost = modelMapper.map(costDTO, Cost.class);
 		costRepository.save(cost);
 	}
+	
+	public CostDTO findById(Long costId) {
+		Cost cost = costRepository.findById(costId).orElseGet(Cost::new);
+		return modelMapper.map(cost, CostDTO.class); 
+	}
 }
