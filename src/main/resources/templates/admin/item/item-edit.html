@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 	        <div class="content form-content">
-		        <form th:action="@{/admin/buildings/{buildId}/items/{itemId}(buildId = ${item.buildId}, itemId = ${item.itemId})}" th:method="put" id="editForm">
+		        <form th:action="@{/admin/buildings/{buildId}/items/{itemId}/edit(buildId = ${item.buildId}, itemId = ${item.itemId})}" th:method="put" id="editForm">
 		        	<div class="row align-items-center mb-4">
 			        	<div class="col-2">
 							<label for="itemId" class="ms-5">시설번호</label>
@@ -38,7 +38,7 @@
 							<label for="fromDate" class="ms-5">사용시작일</label>
 						</div>
 						<div class="col-4">
-							<input type="date" name="fromDate" th:value="${item?.fromDate}" class="form-control">
+							<input type="date" name="fromDate" th:value="${item?.fromDate}" class="form-control" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -52,7 +52,11 @@
 							<label for="status" class="ms-5">상태</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="status" th:value="${item?.status}" class="form-control">
+							<select name="status" class="form-select" >
+								<option value="1" th:selected="${item.status} == 1"> 정상 </option>
+								<option value="2" th:selected="${item.status} == 2"> 수리 </option>
+								<option value="3" th:selected="${item.status} == 3"> 폐기 </option>
+							</select>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -74,7 +78,8 @@
 							<label for="kindType" class="ms-5">시설종류</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="kindType" th:value="${item?.kindType}" class="form-control">
+							<input type="text" th:value="${item?.kindName}" class="form-control" readonly>
+							<input type="hidden" name="kindType" th:value="${item?.kindType}">
 						</div>
 						<div class="col-2">
 							<label for="checkCycle" class="ms-5">점검주기</label>

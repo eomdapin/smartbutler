@@ -1,6 +1,7 @@
 package com.fms.smartbutler.controller.admin;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,9 @@ import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ItemService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin/buildings/{buildId}/items")
 @RequiredArgsConstructor
@@ -45,8 +48,9 @@ public class ItemController {
 	
 	// 시설 상세
 	@GetMapping("/{itemId}")
-	public String getItemInfo(@PathVariable("itemId") Long itemId, Model model) {
+	public String getItemInfo(@PathVariable Long itemId, Model model) {
 		ItemDTO itemDTO = itemService.findById(itemId).orElseGet(ItemDTO::new);
+		
 		model.addAttribute("item", itemDTO);
 		
 		return "admin/item/item-info";
@@ -55,16 +59,18 @@ public class ItemController {
 	// 시설 등록 폼
 	@GetMapping("/add")
 	public String getItemAdd(@PathVariable Long buildId, Model model) {
-		BuildDTO buildDTO = buildService.findById(buildId);
+		Optional<ItemDTO> itemDTO = itemService.findById(buildId);
+		List<ItemDTO.ItemKindDTO> itemKind = itemService.findAllItemKind();
 		
-		model.addAttribute("build", buildDTO);
+		model.addAttribute("item", itemDTO.get());
+		model.addAttribute("itemKind", itemKind);
 		
 		return "admin/item/item-add";
 	}
 	
 	// 시설 등록
 	@PostMapping("/add")
-	public String postItemAdd(@ModelAttribute ItemDTO itemDTO) throws Exception {
+	public String postItemAdd(@PathVariable Long buildId, @ModelAttribute ItemDTO itemDTO) throws Exception {
 		itemService.insert(itemDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/items";
@@ -72,7 +78,7 @@ public class ItemController {
 	
 	// 시설 수정 폼
 	@GetMapping("/{itemId}/edit")
-	public String getItemEdit(@PathVariable("itemId") Long itemId, Model model) {
+	public String getItemEdit(@PathVariable Long itemId, Model model) {
 		ItemDTO itemDTO = itemService.findById(itemId).orElseGet(ItemDTO::new);
 		
 		model.addAttribute("item", itemDTO);
@@ -82,7 +88,11 @@ public class ItemController {
 	
 	// 시설 수정
 	@PutMapping("/{itemId}/edit")
-	public String putItemEdit(@ModelAttribute ItemDTO itemDTO) throws Exception {
+	public String putItemEdit(@PathVariable Long buildId, @ModelAttribute ItemDTO itemDTO) throws Exception {
+		
+		log.info("itemDTO >> " + itemDTO.getItemName());
+		log.info("itemDTO >> " + itemDTO.getKindType());
+		
 		itemService.update(itemDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/items";

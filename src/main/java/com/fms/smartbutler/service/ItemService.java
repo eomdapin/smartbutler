@@ -7,20 +7,23 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.fms.smartbutler.domain.Build;
 import com.fms.smartbutler.domain.Item;
 import com.fms.smartbutler.dto.ItemDTO;
+import com.fms.smartbutler.repository.ItemKindRepository;
 import com.fms.smartbutler.repository.ItemRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class ItemService {
 	
 	private final ItemRepository itemRepository;
+	private final ItemKindRepository itemKindRepository;
 	private final ModelMapper modelMapper;
 	
 	public void insert(ItemDTO itemDTO) {
@@ -33,6 +36,8 @@ public class ItemService {
 	public void update(ItemDTO itemDTO) {
 		Item item = modelMapper.map(itemDTO, Item.class);
 		
+		log.info("itemService >> " + item.getItemKind().getKindType());
+		
 		itemRepository.save(item);
 		itemDTO.setItemId(item.getItemId());
 	}
@@ -42,6 +47,18 @@ public class ItemService {
 		ItemDTO itemDTO = modelMapper.map(item, ItemDTO.class);
 		
 		return Optional.ofNullable(itemDTO);
+	}
+	
+	public List<ItemDTO.ItemKindDTO> findAllItemKind() {
+		List<Item.ItemKind> itemKind = itemKindRepository.findAll();
+		List<ItemDTO.ItemKindDTO> itemKindDTO = itemKind
+														.stream()
+														.map(i ->
+														modelMapper
+														.map(i, ItemDTO.ItemKindDTO.class))
+														.collect(Collectors.toList());
+		
+		return itemKindDTO;
 	}
 	
 	public List<ItemDTO> findByBuildId(Long buildId) {

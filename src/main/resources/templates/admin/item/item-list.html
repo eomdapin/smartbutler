@@ -75,7 +75,9 @@
 							<td>[[${item.kindName}]]</td>
 							<td>[[${item.location}]]</td>
 							<td>[[${item.fromDate}]]</td>
-							<td>[[${item.status}]]</td>
+							<td th:if="${item.status == 1 }">정상</td>
+							<td th:if="${item.status == 2 }">수리</td>
+							<td th:if="${item.status == 3 }">폐기</td>
 							<td>[[${item.checkDate}]]</td>
 							<td>[[${item.checkCycle}]]</td>
 						</tr>

@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Users {
 	
 	@Id
 	@Column(name = "user_id")

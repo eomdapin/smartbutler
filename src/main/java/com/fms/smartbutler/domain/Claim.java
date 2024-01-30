@@ -38,7 +38,7 @@ public class Claim {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User user;
+	private Users user;
 	
 	@Column(name = "title")
 	private String title;

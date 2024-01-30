@@ -14,9 +14,10 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Getter
+@Getter @Setter
 @AllArgsConstructor 
 @NoArgsConstructor
 public class Item {
@@ -52,10 +53,8 @@ public class Item {
 	@Column(name = "check_cycle")
 	private String checkCycle;
 	
-	
-	
 	@Entity
-	@Getter
+	@Getter @Setter
 	@AllArgsConstructor
 	@NoArgsConstructor
 	@Table(name = "item_kind")
@@ -63,11 +62,10 @@ public class Item {
 		
 		@Id
 		@Column(name = "kind_type")
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private String kindType;
 		
 		@Column(name = "kind_name")
 		private String kindName;
+		
 	}
-
 }
