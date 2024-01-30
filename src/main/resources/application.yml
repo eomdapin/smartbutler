@@ -10,21 +10,31 @@ spring:
   
   #JPA 설정
   jpa:
+    show-sql: true
     database-platform: org.hibernate.dialect.MySQL8Dialect
     open-in-view: false
     properties:
       hibernate:
 #        format_sql: true
-        show_sql: true
+        "[highlight_sql]": true
     hibernate:
       ddl-auto: update
-  
-  # HiddenHttpMethodFilter 설정
+    #defer-datasource-initialization: true
+  #sql:
+    #init:
+      #mode: never
+      #schema-locations:
+      #- classpath:database/schema.sql
+      #data-locations:
+      #- classpath:database/data.sql
+    
+  # put, delete mapping 설정
   mvc:
     hiddenmethod:
       filter:
         enabled: true
-        
+
+# binding 되는 파라미터 보여주기 설정
 logging:
   level:
     org:

@@ -15,18 +15,11 @@
 </head>
 <body>
 	<div th:replace="~{common/common :: userHeader}"></div>
-	<div class="modal" tabindex="-1" id="imageModal">
-		<div class="modal-dialog modal-dialog-centered">
-			<div th:each="images: ${images}" class="modal-content">
-				<img alt="민원이미지" th:src="@{/web-img/}+${images?.name}">
-			</div>
-		</div>
-	</div>
+	<div th:replace="~{common/common :: imageModal}"></div>
 	<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-4">민원 상세</h1>
-			<form th:action="@{/user/claims/{claimId}(claimId = ${claim.claimId})}" method="post" id="deleteForm">
-				<input type="hidden" name="_method" value="delete">
+			<form th:action="@{/user/claims/{claimId}(claimId = ${claim.claimId})}" th:method="delete" id="deleteForm">
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
@@ -66,9 +59,11 @@
 					<div class="col-7 m-0"><textarea rows="5" name="content" class="form-control" th:text="${claim?.content}" readonly></textarea></div>
 				</div>
 				<div class="row justify-content-center mt-3">
-					<button type="button" class="btn btn-primary col-1 me-3" th:onclick="|location.href='@{/user/claims/{claimId}/edit(claimId = ${claim.claimId})}'|">수정</button>
-					<button type="button" class="btn btn-primary col-1 me-3" onclick="deleteClick(); return false;">삭제</button>
-					<button type="button" class="btn btn-outline-dark col-1 me-3" onclick="history.back()">목록</button>
+					<th:block th:if="${claim.status == 1}">
+						<button type="button" class="btn btn-lg btn-primary col-auto me-3" th:onclick="|location.href='@{/user/claims/{claimId}/edit(claimId = ${claim.claimId})}'|">수정</button>
+					</th:block>
+					<button type="button" class="btn btn-lg btn-primary col-auto me-3" onclick="deleteClick(); return false;">삭제</button>
+					<button type="button" class="btn btn-lg btn-outline-dark col-auto me-3" onclick="history.back()">목록</button>
 				</div>
 			</form>
 		</div>

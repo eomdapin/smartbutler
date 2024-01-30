@@ -34,7 +34,6 @@
 					<div class="col-2"><label for="claimKind" class="col-form-label fw-bold">민원 종류</label></div>
 					<div class="col-5">
 						<select name="claimKind" class="form-select">
-							<option value="">선택</option>
 							<option th:each="option : ${options}" th:value="${option}" th:text="${option}"></option>
 						</select>
 					</div>
@@ -59,8 +58,8 @@
 				<div class="row justify-content-center mt-3">
 					<input type="hidden" value="1" name="buildId">
 					<input type="hidden" value="1" name="userId">
-					<input type="submit" value="신청하기" class="btn btn-primary col-1 me-3">
-					<input type="button" value="뒤로가기" class="btn btn-outline-dark col-1 me-3" onClick="history.back()">
+					<input type="submit" value="완료" class="btn btn-lg btn-primary col-auto me-3">
+					<input type="button" value="목록" class="btn btn-lg btn-outline-dark col-auto me-3" onClick="history.back()">
 				</div>
 			</form>
 		</div>

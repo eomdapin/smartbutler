@@ -8,12 +8,12 @@
 	<div th:fragment="adminSidebar">
  	   <div id="navi" class="">
 			<ul>
-				<li><a href="#">건물정보</a></li>
-				<li><a href="#">시설관리</a></li>
-				<li><a href="#">임대관리</a></li>
-				<li><a href="#">견적관리</a></li>
-				<li><a href="#">민원관리</a></li>
-				<li><a href="#">회원정보</a></li>
+				<li><a href="/admin/buildings">건물정보</a></li>
+				<li><a href="/admin/buildings/1/items">시설관리</a></li>
+				<li><a href="/admin/buildings/1/">임대관리</a></li>
+				<li><a href="/admin/buildings/1/">견적관리</a></li>
+				<li><a href="/admin/buildings/1/claims">민원관리</a></li>
+				<li><a href="/admin/users">회원정보</a></li>
 			</ul>
 		</div>
 	</div>
@@ -31,10 +31,10 @@
 	        	<div><h1><a href="/" class="logo-text">SMARTBUTLER</a></h1></div>
         	</div>
 	        <div class="d-flex align-items-center" style="gap:50px; margin-right: 200px;">
-	        	<div><a href="#">마이페이지</a></div>
-	        	<div><a href="#">건물 정보 보기</a></div>
-	        	<div><a href="#">견적 신청</a></div>
-	        	<div><a href="#">민원 신청</a></div>
+	        	<div><a href="/user/mypage">마이페이지</a></div>
+	        	<div><a href="/user/buildings/info">건물 정보 보기</a></div>
+	        	<div><a href="/user/estimate">견적 신청</a></div>
+	        	<div><a href="/user/claims">민원 신청</a></div>
         	</div>
     	</header>
 	</div>
@@ -43,5 +43,14 @@
 			<span>스마트버틀러 | 대표 : 홍길동 | 주소 : 서울시 서대문구 연세로 8-1</span><br>
 			<span>Copyright &copy; 2024 SMARTBUTLER</span>
 		</footer>	
+	</div>
+	<div th:fragment="imageModal">
+		<div class="modal" tabindex="-1" id="imageModal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div th:each="images: ${images}" class="modal-content">
+					<img alt="민원이미지" th:src="@{/web-img/}+${images?.name}">
+				</div>
+			</div>
+		</div>
 	</div>
 </html>
