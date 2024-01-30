@@ -18,7 +18,7 @@
 	<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-4">민원 상세</h1>
-			<form th:action="@{/user/claims/{claimId}(claimId = ${claim.claimId})}" th:method="delete">
+			<form th:action="@{/user/claims/{claimId}/edit(claimId = ${claim.claimId})}" th:method="put" id="editForm" enctype="multipart/form-data">
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
@@ -42,13 +42,10 @@
 					<div class="col-2"><label for="askDate" class="col-form-label fw-bold">이미지</label></div>
 					<div class="col-5 d-flex">
 						<input type="file" id="uploadFile" name="uploadFile" class="form-control" style="display: none;" onchange="ChangeFileName()">
+						<input type="button" onClick="uploadFile.click()" class="btn btn-secondary col-auto" value="파일 추가">
                        	<input type="text" id="fileName" name="fileName" class="form-control col" 
                        		th:value="${vo?.fileName}" placeholder="이미지가 존재하지 않습니다" style="display: inline;" readonly>
 					</div>
-				</div>
-				<div class="row g-3 justify-content-center align-items-center mb-4">
-					<div class="col-2"><label for="status" class="col-form-label fw-bold">민원 상태</label></div>
-					<div class="col-5"><input type="text" name="status" th:value="${claim.status == 1} ? '신청' : '완료'" class="form-control" readonly></div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
 					<div class="col-7"><label for="title" class="col-form-label fw-bold">제목</label></div>
@@ -59,13 +56,16 @@
 					<div class="col-7 m-0"><textarea rows="5" name="content" class="form-control" th:text="${claim?.content}"></textarea></div>
 				</div>
 				<div class="row justify-content-center mt-3">
-					<button type="button" class="btn btn-primary col-1 me-3" onClick="location.href='/user/claims'">수정</button>
-					<button type="button" class="btn btn-primary col-1 me-3" onClick="history.back()">삭제</button>
-					<button type="button" class="btn btn-outline-dark col-1 me-3" onClick="history.back()">뒤로가기</button>
+					<input type="hidden" value="1" name="buildId">
+					<input type="hidden" value="1" name="userId">
+					<button type="button" class="btn btn-primary col-1 me-3" onClick="putClick(); return false;">완료</button>
+					<button type="button" class="btn btn-outline-dark col-1 me-3" onClick="history.back()">목록</button>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div th:replace="~{common/common :: userFooter}"></div>
+	<script src="/js/File.js" type="text/javascript"></script>
+	<script src="/js/Button.js" type="text/javascript"></script>
 </body>
 </html>
