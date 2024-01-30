@@ -19,6 +19,7 @@ public class CostDTO {
 	private Long buildId;
 	private String date;
 	private Integer send;
+	private String buildName;
 	private List<CostKindDTO> costKinds;
 	
 	@Getter @Setter

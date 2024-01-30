@@ -34,7 +34,7 @@ public class CostService {
 		List<CostDTO> costDTOs = costt.stream()
 				.map(c -> modelMapper.map(c, CostDTO.class)).toList();
 		
-//		log.info(" costt.get(0).getCostKinds().get(0).getElectricity(); :: {}" ,costt.get(0).getCostKinds().get(0).getElectricity());
+		log.info(" costt.get(0).getCostKinds().get(0).getElectricity(); :: {}" ,costt.get(0).getCostKinds().get(0).getElectricity());
 		
 		return costRepository.findAll().stream()
 				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();

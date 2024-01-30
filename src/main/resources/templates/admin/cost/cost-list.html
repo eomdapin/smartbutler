@@ -57,7 +57,17 @@
                     </thead>
                     <tbody>
                         <tr th:each="costs: ${costs}">
-                            <td><a href="#">[[${costs?.electricity}]]</a></td>
+                            <td><a href="#">[[${costs?.buildName}]]</a></td>
+                            <td><a href="#">[[${costs?.date}]]</a></td>
+                            <td><a href="#">합계금액</a></td>
+                            <th:block th:each="kind: ${costs?.costKinds}">
+                            	<td><a href="#">[[${kind?.electricity}]]</a></td>
+                            	<td><a href="#">[[${kind?.repair}]]</a></td>
+                            	<td><a href="#">[[${kind?.upkeep}]]</a></td>
+                            	<td><a href="#">[[${kind?.consignment}]]</a></td>
+                            </th:block>
+                            <td th:if="${costs?.send == 1}"><a href="#">배분 전</a></td>
+                            <td th:unless="${costs?.send == 1}"><a href="#">배분 내역</a></td>
                         </tr>
                     </tbody>
                 </table>

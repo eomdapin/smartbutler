@@ -19,7 +19,7 @@ public class AdminSecurityConfig {
 		http
 			.csrf((csrf) -> csrf.disable())
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
+				.requestMatchers("/**").permitAll()
 				.anyRequest().authenticated()
 			);
 		http
