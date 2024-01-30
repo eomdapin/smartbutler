@@ -60,4 +60,10 @@ public class CostController {
 		
 		return "redirect:/admin/buildings/{buildId}/costs";
 	}
+	
+	// 관리비 상세
+	@GetMapping("/{buildId}/costs/{costId}")
+	public String getCostInfo() {
+		return "admin/cost/cost-info";
+	}
 }
