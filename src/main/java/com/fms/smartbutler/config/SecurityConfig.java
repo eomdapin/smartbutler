@@ -33,7 +33,8 @@ public class SecurityConfig {
 				.securityMatcher("/admin/**")
 				.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests
-					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
+//					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
+					.requestMatchers("/**").permitAll()
 					.requestMatchers("/admin/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 				);
