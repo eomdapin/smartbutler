@@ -55,7 +55,11 @@ public class CostController {
 	@PostMapping("/{buildId}/costs/add")
 	public String postAddCost(@PathVariable Long buildId, @ModelAttribute CostDTO costDTO) {
 		costDTO.setBuildId(buildId);
-		costService.save(costDTO);
+		Boolean isSave = costService.save(costDTO);
+		
+//		if(!isSave) {
+//			return "";
+//		}
 		
 		return "redirect:/admin/buildings/{buildId}/costs";
 	}
