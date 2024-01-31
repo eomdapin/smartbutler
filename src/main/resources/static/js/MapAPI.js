@@ -90,13 +90,3 @@ window.onload = function () {
     }
 }
 
-// 사용자 건물 정보 변경
-function changeBuild() {
-	let buildId = document.getElementById('buildId');
-	let formId = document.getElementById('infoForm');
-    let buildIdOptValue = buildId.options[buildId.selectedIndex].value;
-    let buildIdOptText = buildId.options[buildId.selectedIndex].innerText;
-	
-	formId.submit();
-}
-

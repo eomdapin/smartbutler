@@ -26,6 +26,7 @@
                 </ul>
             </div>
             <div class="content">
+				<div th:replace="~{common/fragments :: buildSearch}"></div>           
             	 <div class="text-end pb-3">
                     <a class="btn btn-lg btn-primary" th:href="@{/admin/buildings/{buildId}/costs/add(buildId = ${buildId})}">관리비 등록</a>
                 </div>
@@ -43,7 +44,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
                         <tr th:each="costs: ${costs}">
                             <td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${costs?.buildName}]]</a></td>
                             <td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">
@@ -64,5 +64,6 @@
             </div>
         </div>
     </div>
+    <script src="/js/Build.js" type="text/javascript"></script>
 </body>
 </html>

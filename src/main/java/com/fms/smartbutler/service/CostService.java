@@ -56,4 +56,9 @@ public class CostService {
 		Cost cost = costRepository.findById(costId).orElseGet(Cost::new);
 		return modelMapper.map(cost, CostDTO.class); 
 	}
+	
+	public List<CostDTO> findByBuildId(Long buildId) {
+		return costRepository.findByBuild_BuildId(buildId).stream()
+				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
+	}
 }

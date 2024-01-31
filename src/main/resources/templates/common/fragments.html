@@ -53,4 +53,20 @@
 			</div>
 		</div>
 	</div>
+	<div th:fragment="buildSearch">
+		<div class="row g-3 justify-content-center align-items-center mb-4">
+			<div class="col-1 mb-3">
+				<label for="buildId" class="fs-5 fw-bold">건물명</label>
+			</div>
+			<div class="col-3 mb-3">
+				<form action="" id="infoForm">
+					<select class="form-select" id="buildId" name="buildId" onChange="changeBuild()">
+						<!-- <option value="0">전체 건물 보기</option> -->
+						<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
+							th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
+					</select>
+				</form>
+			</div>
+		</div>
+	</div>
 </html>
