@@ -49,84 +49,84 @@ public class SecurityConfig {
 		
 	}
 	
-	   	@Configuration
-	    @Order(2)
-	    public static class App2ConfigurationAdapter {
-
-	        @Bean
-	        protected SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
-	        	http
-	        	.securityMatcher("/user/**")
-				.csrf((csrf) -> csrf.disable())
-				.authorizeHttpRequests((requests) -> requests
-					.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
-					.requestMatchers("/user/**").hasRole("USER")
-					.anyRequest().authenticated()
-				);
-	        	
-			http
-			.formLogin(formLogin->
-				formLogin
-					.loginPage("/user/login")
-					.defaultSuccessUrl("/",true)
-					.loginProcessingUrl("/user/login")
-					.failureUrl("/login?error=true")
-					.usernameParameter("email")
-					.passwordParameter("password")
-			);
-			
-			http
-			.logout(logout->
-				logout
-					.logoutUrl("/user/logout")
-					.invalidateHttpSession(true)
-					);
-
-			return http.build();
-        }
-	 }
+//   	@Configuration
+//    @Order(2)
+//    public static class App2ConfigurationAdapter {
+//
+//        @Bean
+//        protected SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
+//        	http
+//        	.securityMatcher("/user/**")
+//			.csrf((csrf) -> csrf.disable())
+//			.authorizeHttpRequests((requests) -> requests
+//				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
+//				.requestMatchers("/user/**").hasRole("USER")
+//				.anyRequest().authenticated()
+//			);
+//        	
+//		http
+//		.formLogin(formLogin->
+//			formLogin
+//				.loginPage("/user/login")
+//				.defaultSuccessUrl("/",true)
+//				.loginProcessingUrl("/user/login")
+//				.failureUrl("/login?error=true")
+//				.usernameParameter("email")
+//				.passwordParameter("password")
+//		);
+//		
+//		http
+//		.logout(logout->
+//			logout
+//				.logoutUrl("/user/logout")
+//				.invalidateHttpSession(true)
+//				);
+//
+//		return http.build();
+//    }
+// }
 	        
-        @Configuration
-	    @Order(3)
-	    public static class App3ConfigurationAdapter {
-
-	        @Bean
-	        protected SecurityFilterChain securityFilterChain3(HttpSecurity http) throws Exception {
-	        	http
-	        	.securityMatcher("/worker/**")
-				.csrf((csrf) -> csrf.disable())
-				.authorizeHttpRequests((requests) -> requests
-					.requestMatchers("/css/**","/img/**","/worker/login","/worker/logout").permitAll()
-					.requestMatchers("/worker/**").hasRole("WORKER")
-					.anyRequest().authenticated()
-				);
-	        	
-			http
-			.formLogin(formLogin->
-				formLogin
-					.loginPage("/worker/login")
-					.defaultSuccessUrl("/",true)
-					.loginProcessingUrl("/worker/login")
-					.failureUrl("/login?error=true")
-					.usernameParameter("username")
-					.passwordParameter("password")
-			);
-			
-			http
-			.logout(logout->
-				logout
-					.logoutUrl("/worker/logout")
-					.invalidateHttpSession(true)
-					);
-
-			return http.build();
-        }
-        }
+//    @Configuration
+//    @Order(3)
+//    public static class App3ConfigurationAdapter {
+//
+//        @Bean
+//        protected SecurityFilterChain securityFilterChain3(HttpSecurity http) throws Exception {
+//        	http
+//        	.securityMatcher("/worker/**")
+//			.csrf((csrf) -> csrf.disable())
+//			.authorizeHttpRequests((requests) -> requests
+//				.requestMatchers("/css/**","/img/**","/worker/login","/worker/logout").permitAll()
+//				.requestMatchers("/worker/**").hasRole("WORKER")
+//				.anyRequest().authenticated()
+//			);
+//        	
+//		http
+//		.formLogin(formLogin->
+//			formLogin
+//				.loginPage("/worker/login")
+//				.defaultSuccessUrl("/",true)
+//				.loginProcessingUrl("/worker/login")
+//				.failureUrl("/login?error=true")
+//				.usernameParameter("username")
+//				.passwordParameter("password")
+//		);
+//		
+//		http
+//		.logout(logout->
+//			logout
+//				.logoutUrl("/worker/logout")
+//				.invalidateHttpSession(true)
+//				);
+//
+//		return http.build();
+//        }
+//    }
 	        
-        @Bean
-        protected static PasswordEncoder encoder() {
-            return new BCryptPasswordEncoder();
-        }
+	@Bean
+	protected static PasswordEncoder encoder() {
+	    return new BCryptPasswordEncoder();
+	}
 }
 
 
