@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>SMARTBUTLER</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/css/user.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+	<link rel="manifest" href="/img/site.webmanifest">
+</head>
+<body>
+	<div th:replace="~{common/fragments :: userHeader}"></div>
+	<div class="container" style="float: none;">
+		<div class="content form-content">
+			<form action="/">
+				<div class="text-center">
+					<h1>견적 신청 완료</h1>
+					<h2>견적 신청이 완료 되었습니다.</h2>
+					<h2>검토 후 연락드리겠습니다.</h2>
+				</div>
+				<div class="row justify-content-center mt-3">
+					<input type="submit" class="btn btn-outline-dark col-auto me-3" value="목록으로">
+				</div>
+			</form>
+		</div>
+	</div>
+	<div th:replace="~{common/fragments :: userFooter}"></div>
+</body>
+</html>

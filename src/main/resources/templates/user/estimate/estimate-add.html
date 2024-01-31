@@ -36,7 +36,7 @@
 					</div>
 				</div>
 			</form>
-			<form action="/" method="post">
+			<form action="/user/estimate/success" method="post">
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2">
 						<label for="period" class="ms-4 fw-bold">예상 계약기간</label>
@@ -50,7 +50,7 @@
 						<label for="toDate" class="ms-4 fw-bold">예상 입주 날짜</label>
 					</div>
 					<div class="col-4">
-						<input type="date" name="to_date" class="form-control">
+						<input type="date" name="toDate" class="form-control">
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -65,7 +65,8 @@
 					<input type="submit" value="신청" class="btn btn-primary col-1 me-3">
 					<input type="button" value="뒤로가기" class="btn btn-secondary col-1 me-3" onClick="history.back()">
 					<input type="hidden" name="confirm" value="1">
-					<input type="hidden" name="regDate" th:value="${#temporals.format(#dates.createToday(),'yyyy.MM.dd HH:mm')}">
+					<input type="hidden" name="BuildId" th:value="${build?.buildId}">
+					<input type="hidden" name="userId" value="2">
 				</div>
 			</form>
 		</div>
