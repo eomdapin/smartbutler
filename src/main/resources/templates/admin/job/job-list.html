@@ -27,38 +27,31 @@
 			</div>
 			<div class="content">
 				<div class="d-grid justify-content-end my-3">
-					<button type="button" class="btn btn-primary" onClick="location.href='/admin/buildings/1/jobs/add'">신규 요청</button>
+					<button type="button" class="btn btn-lg btn-primary" onClick="location.href='/admin/buildings/1/jobs/add'">요청</button>
 				</div>
 				<table class="table">
 					<thead>
 						<tr>
 							<th scope="col">요청번호</th>
 							<th scope="col" class="col-md-4">제목</th>
-							<th scope="col">요청날짜</th>
+							<th scope="col">건물명</th>
 							<th scope="col">시설명</th>
-							<th scope="col">처리날짜</th>
 							<th scope="col">점검업체</th>
+							<th scope="col">요청날짜</th>
+							<th scope="col">처리날짜</th>
 							<th scope="col">처리상태</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>10010</td>
-							<td><a href="/admin/buildings/1/jobs/1">문 안 닫힘</a></td>
-							<td>2024-01-15</td>
-							<td>엘리베이터1호기</td>
-							<td>2024-01-15</td>
-							<td>오티스엘리베이터</td>
-							<td>완료</td>
-						</tr>
-						<tr th:each="job: ${job}">
+						<tr th:each="job: ${jobs}">
 							<td>[[${job.jobId}]]</td>
 							<td><a th:href="@{/admin/buildings/{buildId}/jobs/{jobId}(buildId = ${job.buildId}, jobId = ${job.jobId})}">[[${job.title}]]</a></td>
-							<td>[[${job.askDate}]]</td>
+							<td>[[${job.buildName}]]</td>
 							<td>[[${job.itemName}]]</td>
+							<td>job.companyName</td>
+							<td>[[${job.askDate}]]</td>
 							<td>[[${job.finDate}]]</td>
-							<td>[[${job.companyName}]]</td>
-							<td>[[${job.status}]]</td>
+							<td th:text="${job.status == 1} ? '신청' : '완료'"></td>
 						</tr>
 					</tbody>
 				</table>

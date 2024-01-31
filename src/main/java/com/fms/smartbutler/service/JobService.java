@@ -2,6 +2,7 @@ package com.fms.smartbutler.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -21,27 +22,34 @@ public class JobService {
 	private final JobRepository jobRepository;
 	private final ModelMapper modelMapper;
 	
-	public void save(JobDTO jobDTO) {
+	public void insert(JobDTO jobDTO) {
 		Job job = modelMapper.map(jobDTO, Job.class);
 		
 		jobRepository.save(job);
+		jobDTO.setJobId(job.getJobId());
 	}
 	
 	public void update(JobDTO jobDTO) {
 		Job job = modelMapper.map(jobDTO, Job.class);
 		
 		jobRepository.save(job);
+		jobDTO.setJobId(job.getJobId());
 	}
 	
 	public List<JobDTO> findAll() {
-		jobRepository.findAll();
+		List<Job> jobList = jobRepository.findAll();
+		List<JobDTO> jobDTOList = jobList
+									.stream()
+									.map(j -> modelMapper.map(j, JobDTO.class))
+									.collect(Collectors.toList());
 		
-		return null;
+		return jobDTOList;
 	}
 	
 	public Optional<JobDTO> findById(Long jobId) {
-		jobRepository.findById(jobId);
+		Optional<Job> job = jobRepository.findById(jobId);
+		JobDTO jobDTO = modelMapper.map(job, JobDTO.class);
 		
-		return null;
+		return Optional.ofNullable(jobDTO);
 	}
 }

@@ -33,7 +33,14 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
-
+        
+  # 업로드 파일 크기 설정
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 50MB
+        
 # binding 되는 파라미터 보여주기 설정
 logging:
   level:

@@ -54,10 +54,8 @@ public class ClaimService {
 		List<Claim> claimList = claimRepository.findAll();
 		List<ClaimDTO> claimDTOList = claimList
 										.stream()
-										.map(c -> 
-											modelMapper
-											.map(c, ClaimDTO.class))
-											.collect(Collectors.toList());
+										.map(c -> modelMapper.map(c, ClaimDTO.class))
+										.collect(Collectors.toList());
 		
 		return claimDTOList;
 	}
