@@ -27,12 +27,12 @@ public class UsersService implements UserDetailsService {
 	private final ModelMapper modelMapper;
 	
 	@Override
-	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
-		Users user = usersRepository.findByName(name);
+		Users user = usersRepository.findByEmail(email);
 		
 		if(user == null) {
-			throw new UsernameNotFoundException(name);
+			throw new UsernameNotFoundException(email);
 		}
 		
 		return User
