@@ -15,13 +15,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 	
-	@Autowired
-	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-			.withUser("test@test.com").password("{noop}1111").roles("USER")
-			.and()
-			.withUser("admin1").password("{noop}1111").roles("ADMIN");
-	}
+//	@Autowired
+//	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.inMemoryAuthentication()
+//			.withUser("test@test.com").password("{noop}1111").roles("USER")
+//			.and()
+//			.withUser("admin1").password("{noop}1111").roles("ADMIN");
+//	}
 	
 	@Configuration
     @Order(1)
