@@ -15,9 +15,14 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 	
 	@Autowired
-	protected void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService usersService, UserDetailsService adminService) throws Exception {
-		auth.userDetailsService(usersService);
+	protected void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService usersService, UserDetailsService adminService, UserDetailsService companyService) throws Exception {
 		auth.userDetailsService(adminService);
+		auth.userDetailsService(usersService);
+		auth.userDetailsService(companyService);
+		
+		
+//		auth.inMemoryAuthentication()
+//		.withUser("1").password("{noop}1").roles("WORKER");
 	}
 	
 	@Configuration
@@ -115,7 +120,7 @@ public class SecurityConfig {
 						.loginProcessingUrl("/worker/login")
 						.defaultSuccessUrl("/",true)
 						.failureUrl("/login?error=true")
-						.usernameParameter("company-id")
+						.usernameParameter("company-name")
 						.passwordParameter("password")
 				);
 				http

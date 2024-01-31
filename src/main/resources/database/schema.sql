@@ -14,7 +14,7 @@ create table if not exists build (
     primary key(build_id)
 );
 
-drop table if exists user;
+drop table if exists users;
 create table if not exists user (
 	user_id bigint not null auto_increment COMMENT '회원 고유 번호',
     name varchar(30) not null COMMENT '회원명',
@@ -22,6 +22,7 @@ create table if not exists user (
     email varchar(100) not null unique COMMENT '이메일 주소',
     status smallint not null default 1 COMMENT '회원 유형',
     pw text not null COMMENT '비밀번호',
+    role varchar(20) not null COMMENT '권한',
     primary key(user_id)
 );
 
@@ -75,6 +76,7 @@ create table if not exists company (
     to_date date not null COMMENT '계약 종료일',
     cost bigint not null COMMENT '계약 비용',
     pw text not null COMMENT '비밀번호',
+    roles text not null COMMENT '권한',
     foreign key(build_id) references build(build_id) on delete cascade,
     foreign key(kind_type) references company_kind(kind_type) on update cascade,
     primary key(company_id, build_id, kind_type)

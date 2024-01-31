@@ -4,10 +4,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,18 +20,21 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Company {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "company_id")
 	private Long companyId;
 
-	@Column(name = "build_id")
-	private Long buildId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "build_id")
+	private Build build;
 
-	@Column(name = "kind_type")
-	private String kindType;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "kind_type")
+	private CompanyKind companyKind;
 
 	@Column(name = "pw")
 	private String password;
@@ -48,10 +56,26 @@ public class Company {
 
 	@Column(name = "cost")
 	private Long cost;
-	
+
 	@Column(name = "role")
 	private String role;
-	
+
+	@Entity
+	@Getter
+	@Setter
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Table(name = "company_kind")
+	public static class CompanyKind {
+
+		@Id
+		@Column(name = "kind_type")
+		private String kindType;
+
+		@Column(name = "kind_name")
+		private String kindName;
+	}
+
 	public void encodePassword(PasswordEncoder passwordEncoder) {
 		this.password = "{noop}" + this.password;
 	}

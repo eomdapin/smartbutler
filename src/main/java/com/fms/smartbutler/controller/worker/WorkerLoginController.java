@@ -12,4 +12,9 @@ public class WorkerLoginController {
 	public String getLogin() {
 		return "worker/login/login";
 	}
+	
+	@GetMapping("/login/hello")
+	public String hello() {
+		return "worker/login/hello";
+	}
 }
