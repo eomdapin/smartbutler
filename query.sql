@@ -20,14 +20,15 @@ create table if not exists build (
 # 회원
 # status = 회원 유형
 # 1 = 일반 회원, 2 = 입주 회원
-drop table if exists user;
-create table if not exists user (
+drop table if exists users;
+create table if not exists users (
 	user_id bigint not null auto_increment COMMENT '회원 고유 번호',
     name varchar(30) not null COMMENT '회원명',
     phone char(13) not null COMMENT '휴대폰 번호',
     email varchar(100) not null unique COMMENT '이메일 주소',
     status smallint not null default 1 COMMENT '회원 유형',
     pw text not null COMMENT '비밀번호',
+    role varchar(30) not null COMMENT '권한',
     primary key(user_id)
 );
 
@@ -241,14 +242,14 @@ insert into worker values(null, 'worker', '{noop}1111', 'WORKER');
 select * from worker;
 
 #######################################################
-insert into user(name, phone, email, pw, status)
-values('홍길동', '010-0000-0000', 'mail@mail.com', '1234', '1');
+insert into users(name, phone, email, pw, status, role)
+values('홍길동', '010-0000-0000', 'mail@mail.com', '1234', '1', 'USER');
 
-insert into user(name, phone, email, pw, status)
-values('홍박사', '010-1111-1111', 'mail1@mail.com', '1111','1');
+insert into users(name, phone, email, pw, status, role)
+values('홍박사', '010-1111-1111', 'mail1@mail.com', '1111','1', 'USER');
 
-insert into user(name, phone, email, pw, status)
-values('빅보검', '010-2222-2222', 'mail2@mail.com', '1111', '1');
+insert into users(name, phone, email, pw, status, role)
+values('빅보검', '010-2222-2222', 'mail2@mail.com', '1111', '1', 'USER');
 
 ###########################################################################
 insert into build(build_name, address, floor, room, area, com_date)
