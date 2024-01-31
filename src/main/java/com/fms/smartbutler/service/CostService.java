@@ -37,15 +37,14 @@ public class CostService {
 	public boolean save(CostDTO costDTO) {
 		Optional<Cost> findCost = costRepository.findByBuild_BuildIdAndDate(costDTO.getBuildId(), costDTO.getDate());
 		
-		log.info("findCost :: {}", findCost.get().getCostId());
-		
 		if(findCost.isEmpty()) {
 			Cost cost = modelMapper.map(costDTO, Cost.class);
 			costRepository.save(cost);
 		} else {
-			return false;
+			costDTO.setCostId(findCost.get().getCostId());
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public void updateCost(CostDTO costDTO) {

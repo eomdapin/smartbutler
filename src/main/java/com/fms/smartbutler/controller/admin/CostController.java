@@ -53,13 +53,15 @@ public class CostController {
 	
 	// 관리비 저장
 	@PostMapping("/{buildId}/costs/add")
-	public String postAddCost(@PathVariable Long buildId, @ModelAttribute CostDTO costDTO) {
+	public String postAddCost(@PathVariable Long buildId, @ModelAttribute CostDTO costDTO, Model model) {
 		costDTO.setBuildId(buildId);
-		Boolean isSave = costService.save(costDTO);
 		
-//		if(!isSave) {
-//			return "";
-//		}
+		if(costService.save(costDTO)) {
+			log.info("costDTO.getCostId() :::: {} ", costDTO.getCostId());
+			model.addAttribute("costId", costDTO.getCostId());
+			model.addAttribute("buildId", buildId);
+			return "/admin/cost/cost-error";
+		}
 		
 		return "redirect:/admin/buildings/{buildId}/costs";
 	}

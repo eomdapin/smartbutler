@@ -5,11 +5,13 @@
 <title>SMARTBUTLER</title>
 </head>
 <body>
-	<form th:action="@{}">
-		<input type="hidden" id="src" name="src">
+	<form th:action="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${buildId}, costId = ${costId})}" id="costInfo" method="get">
 	</form>
 	<script>
-		
+		window.onload = () => {
+			alert('해당 월의 관리비가 이미 존재하여 해당페이지로 이동합니다.');
+			document.getElementById('costInfo').submit();
+		};
 	</script>
 </body>
 </html>

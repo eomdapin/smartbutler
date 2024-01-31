@@ -69,7 +69,7 @@
 					</div>
 					<div class="text-end pt-3 row">
 						<div class="col-auto"><input type="submit" class="btn btn-lg btn-primary" value="저장"></div>
-						<div class="col-auto"><a onClick="history.back()" class="btn btn-lg btn-outline-dark">목록</a></div>
+						<div class="col-auto"><a th:href="@{/admin/buildings/{buildId}/costs(buildId = ${buildId})}" class="btn btn-lg btn-outline-dark">목록</a></div>
 					</div>
 				</form>
             </div>
