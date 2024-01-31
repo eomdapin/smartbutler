@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,14 +69,16 @@ public class JobController {
 	
 	// 작업 등록
 	@PostMapping("/{buildId}/jobs/add")
-	public String postJobAdd(@PathVariable Long buildId, @ModelAttribute JobDTO jobDTO, @ModelAttribute FileVo vo) throws Exception {
+	public String postJobAdd(@PathVariable Long buildId, @ModelAttribute JobDTO jobDTO) {
 		jobService.insert(jobDTO);
 		
-		if(!vo.getFileName().isEmpty()) {
-			ImageDTO imageDTO = new ImageDTO();
-			imageDTO.setCoded("j");
-			imageService.saveImage(vo, imageDTO, jobDTO.getJobId());
-		}
+		return "redirect:/admin/buildings/{buildId}/jobs";
+	}
+	
+	// 작업 삭제
+	@DeleteMapping("/{buildId}/jobs/{jobId}")
+	public String deleteJob(@PathVariable Long buildId, @ModelAttribute JobDTO jobDTO) {
+		jobService.delete(jobDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/jobs";
 	}

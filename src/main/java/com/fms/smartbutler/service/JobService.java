@@ -52,4 +52,10 @@ public class JobService {
 		
 		return Optional.ofNullable(jobDTO);
 	}
+	
+	public void delete(JobDTO jobDTO) {
+		Job job = modelMapper.map(jobDTO, Job.class);
+		
+		jobRepository.delete(job);
+	}
 }
