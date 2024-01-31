@@ -15,52 +15,69 @@
 </head>
 <body>
 	<div th:replace="~{common/fragments :: userHeader}"></div>
-    	<div class="container" style="float: none;">
-    		<div class="content form-content mt-5">
-			<h1 class="text-center mt-5">견적 신청</h1>
-				<form action="">
-					<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
-						<div class="col-7 mt-3 border-top border-5 border-black"></div>
-					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4 mt-2">
-						<div class="col-1">
-							<label for="bildingName" class="">건물명</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
-						<div class="col-1">
-							<label for="Period" class="">계약기간</label>
-						</div>
-						<div class="col-5">
-							<input type="date" class="form-control">
-						</div>
-					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
-						<div class="col-1">
-							<label for="" class="">입주 날짜</label>
-						</div>
-						<div class="col-5">
-							<input type="date" class="form-control">
-						</div>
-					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
-						<div class="col-1">
-							<label for="name" class="">보증금</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="row justify-content-center mt-3">
-						<input type="submit" class="btn btn-primary col-1 me-3" value="신청">
-						<input type="submit" class="btn btn-secondary col-1 me-3" value="뒤로가기">
-					</div>
-				</form>
-			</div>
+   	<div class="container" style="float: none;">
+   		<div class="content form-content mt-5">
+		<h1 class="text-center mt-5">견적 신청</h1>
+		<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
+			<div class="col-7 mt-3 border-top border-5 border-black"></div>
 		</div>
+			<form action="" id="infoForm">
+				<div class="row g-3 justify-content-center align-items-center mb-4 mt-2">
+					<div class="col-2">
+						<label for="buildName" class="ms-4 fw-bold">건물명</label>
+					</div>
+					
+					<div class="col-4">
+                    	<select class="form-select" id="buildId" name="buildId" onChange="changeBuild()">
+                    		<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
+                    			th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
+                    	</select>
+						<!-- <input type="text" name="buildName"  class="form-control"> -->
+					</div>
+				</div>
+			</form>
+			<form action="/" method="post">
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="period" class="ms-4 fw-bold">예상 계약기간</label>
+					</div>
+					<div class="col-4">
+						<input type="text" name="period" class="form-control">
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="toDate" class="ms-4 fw-bold">예상 입주 날짜</label>
+					</div>
+					<div class="col-4">
+						<input type="date" name="to_date" class="form-control">
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2">
+						<label for="deposit" class="ms-4 fw-bold">보증금</label>
+					</div>
+					<div class="col-4">
+						<input type="text" name="deposit" class="form-control">
+					</div>
+				</div>
+				<div class="row justify-content-center mt-5">
+					<input type="submit" value="신청" class="btn btn-primary col-1 me-3">
+					<input type="button" value="뒤로가기" class="btn btn-secondary col-1 me-3" onClick="history.back()">
+					<input type="hidden" name="confirm" value="1">
+					<input type="hidden" name="regDate" th:value="${#temporals.format(estimateDTO.regDate, 'yyyy.MM.dd HH:mm')}">
+				</div>
+			</form>
+		</div>
+	</div>
 	<div th:replace="~{common/fragments :: userFooter}"></div>
+	<script type="text/javascript">
+	function changeBuild() {
+		let buildId = document.getElementById('buildId');
+		let formId = document.getElementById('infoForm');
+		
+		formId.submit();
+	}
+	</script>
 </body>
 </html>
