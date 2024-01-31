@@ -24,6 +24,7 @@ public class UsersJoinController {
 	// 회원 가입
 	@GetMapping
 	public String getJoin(Model model) {
+		
 		return "user/join/join";
 	}
 	
@@ -31,6 +32,7 @@ public class UsersJoinController {
 	@PostMapping("/success")
 	public String postJoin(@ModelAttribute UsersDTO usersDTO, Model model) {
 		usersService.insert(usersDTO);
+		
 		return "user/join/join-success";
 	}
 }
