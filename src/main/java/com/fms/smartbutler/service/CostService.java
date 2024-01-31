@@ -1,6 +1,7 @@
 package com.fms.smartbutler.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 
@@ -33,7 +34,19 @@ public class CostService {
 				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
 	}
 	
-	public void save(CostDTO costDTO) {
+	public boolean save(CostDTO costDTO) {
+		Optional<Cost> findCost = costRepository.findByBuild_BuildIdAndDate(costDTO.getBuildId(), costDTO.getDate());
+		
+		if(findCost.isEmpty()) {
+			Cost cost = modelMapper.map(costDTO, Cost.class);
+			costRepository.save(cost);
+		} else {
+			return false;
+		}
+		return true;
+	}
+	
+	public void updateCost(CostDTO costDTO) {
 		Cost cost = modelMapper.map(costDTO, Cost.class);
 		costRepository.save(cost);
 	}
