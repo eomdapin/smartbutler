@@ -11,8 +11,6 @@ function sumCost() {
 
 	total.value = totalSum;
 	totalSum = 0;
-
-	console.log('total >>> ', total.value);
 }
 
 function addCost() {
@@ -21,4 +19,5 @@ function addCost() {
 	let dateMonth =  ('0' + (dateInput.getMonth() + 1)).slice(-2);
 	let dateSum = dateYear + '-' + dateMonth + '-' + '01';
 	
+	document.getElementById('date').value = dateSum;
 }

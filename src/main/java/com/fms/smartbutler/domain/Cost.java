@@ -1,5 +1,7 @@
 package com.fms.smartbutler.domain;
 
+import java.sql.Date;
+
 /**
 * @author 엄다빈
 * @editDate 2024-01-30 ~ 2024-02-03
@@ -33,7 +35,7 @@ public class Cost {
 	@JoinColumn(name = "build_id")
 	private Build build;
 	
-	@Column(name = "date")
+	@Column(name = "cost_date")
 	private String date;
 	
 	@Column(name = "electricity")

@@ -59,14 +59,13 @@
 						<div class="col-4 mb-3"><input type="number" id="repair" name="repair" class="form-control" onChange="sumCost()" th:value="${costDTO?.repair}" required></div>
 						
 						<div class="col-2 mb-3"><label for="date" class="form-label">관리비개월</label></div>
-						<div class="col-4 mb-3"><input type="date" name="date" class="form-control" onChange="sumCost()" th:value="${costDTO?.date}" readonly></div>
+						<div class="col-4 mb-3"><input type="date" name="date" class="form-control" th:value="${costDTO?.date}" readonly></div>
 					</div>
 					<div class="row">
 						<th:block th:with="total = ${costDTO?.upkeep} + ${costDTO?.electricity} + ${costDTO?.electricity} + ${costDTO?.repair}">
-					    <div class="col-2 mb-3"><label for="total" class="form-label">합계금액　</label></div>
+					    <div class="col-2 mb-3"><label for="total" class="form-label">합계금액</label></div>
 					    <div class="col-4 mb-3"><input type="text" id="total" name="total" class="form-control" th:value="${total}" disabled></div>
 					    </th:block>
-					    <input type="hidden" name="date" class="form-control" th:value="${costDTO?.date}">
 					</div>
 					<div class="text-end pt-3 row">
 						<div class="col-auto"><input type="submit" class="btn btn-lg btn-primary" value="저장"></div>
