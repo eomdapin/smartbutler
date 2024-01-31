@@ -33,8 +33,8 @@ public class SecurityConfig {
 				.securityMatcher("/admin/**")
 				.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests
-					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
-//					.requestMatchers("/**").permitAll()
+//					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
+					.requestMatchers("/**").permitAll()
 					.requestMatchers("/admin/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 				);
@@ -70,7 +70,8 @@ public class SecurityConfig {
         	.securityMatcher("/user/**")
 			.csrf((csrf) -> csrf.disable())
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
+//				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
+				.requestMatchers("/**").permitAll()
 				.requestMatchers("/user/**").hasRole("USER")
 				.anyRequest().authenticated()
 			);

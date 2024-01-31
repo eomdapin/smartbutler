@@ -65,7 +65,7 @@
 					<input type="submit" value="신청" class="btn btn-primary col-1 me-3">
 					<input type="button" value="뒤로가기" class="btn btn-secondary col-1 me-3" onClick="history.back()">
 					<input type="hidden" name="confirm" value="1">
-					<input type="hidden" name="regDate" th:value="${#temporals.format(estimateDTO.regDate, 'yyyy.MM.dd HH:mm')}">
+					<input type="hidden" name="regDate" th:value="${#temporals.format(#dates.createToday(),'yyyy.MM.dd HH:mm')}">
 				</div>
 			</form>
 		</div>

@@ -30,9 +30,17 @@ public class UsersJoinController {
 	
 	// 회원가입 완료
 	@PostMapping("/success")
-	public String postJoin(@ModelAttribute UsersDTO usersDTO, Model model) {
+	public String postJoin(@ModelAttribute UsersDTO usersDTO) {
 		usersService.insert(usersDTO);
+		
+		return "redirect:/user/join/success";
+	}
+	
+	// 회원가입 성공
+	@GetMapping("/success")
+	public String getJoinSuccess(Model model) {
 		
 		return "user/join/join-success";
 	}
+	
 }

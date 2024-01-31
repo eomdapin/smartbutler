@@ -23,8 +23,8 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "user_name")
+	private String userName;
 	
 	@Column(name = "phone")
 	private String phone;

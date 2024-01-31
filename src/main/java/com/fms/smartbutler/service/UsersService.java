@@ -27,17 +27,17 @@ public class UsersService implements UserDetailsService {
 	private final ModelMapper modelMapper;
 	
 	@Override
-	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		
-		Users user = usersRepository.findByName(name);
+		Users user = usersRepository.findByUserName(userName);
 		
 		if(user == null) {
-			throw new UsernameNotFoundException(name);
+			throw new UsernameNotFoundException(userName);
 		}
 		
 		return User
 				.builder()
-				.username(user.getName())
+				.username(user.getUserName())
 				.password(user.getPw())
 				.roles(user.getRole())
 				.build();

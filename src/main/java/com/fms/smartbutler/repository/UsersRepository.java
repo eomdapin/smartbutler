@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.fms.smartbutler.domain.Users;
 
 public interface UsersRepository extends JpaRepository<Users, Long>{
-	Users findByName(String name);
+	Users findByUserName(String userName);
 }
