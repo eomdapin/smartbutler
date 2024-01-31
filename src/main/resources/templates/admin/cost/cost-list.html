@@ -57,7 +57,7 @@
                            	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${costs?.upkeep}]]</a></td>
                            	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${costs?.consignment}]]</a></td>
                             <td th:if="${costs?.send == 1}">배분 전</td>
-                            <td th:unless="${costs?.send == 1}"><a href="#">배분 내역</a></td>
+                            <td th:unless="${costs?.send == 1}">배분 완료</td>
                         </tr>
                     </tbody>
                 </table>
