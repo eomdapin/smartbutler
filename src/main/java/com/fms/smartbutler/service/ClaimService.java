@@ -12,6 +12,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Claim;
@@ -75,19 +77,16 @@ public class ClaimService {
 		claimRepository.delete(claim);
 	}
 	
-	public List<ClaimDTO> findByBuildId(Long buildId) {
-		List<Claim> claimList;
+	public Page<ClaimDTO> findByBuildId(Long buildId, Pageable pageable) {
+		Page<Claim> claimList;
 		
 		if(buildId == 0) {
-			claimList = claimRepository.findAll();
+			claimList = claimRepository.findAllByOrderByClaimIdDesc(pageable);
 		} else {
-			claimList = claimRepository.findByBuild_BuildId(buildId);
+			claimList = claimRepository.findByBuild_BuildIdOrderByClaimIdDesc(buildId, pageable);
 		}
 		
-		List<ClaimDTO> claimDTOList = claimList
-										.stream()
-										.map(c -> modelMapper.map(c, ClaimDTO.class))
-										.collect(Collectors.toList());
+		Page<ClaimDTO> claimDTOList = claimList.map(c -> modelMapper.map(c, ClaimDTO.class));
 		
 		return claimDTOList;
 	}

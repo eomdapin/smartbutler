@@ -27,8 +27,8 @@
 			</div>
 			<div class="content">
 				<div th:replace="~{common/fragments :: buildSearch}"></div>
-				<div class="d-grid justify-content-end my-3">
-					<button type="button" class="btn btn-lg btn-primary" th:onClick="|location.href='@{/admin/buildings/{buildId}/jobs/add(buildId = ${build.buildId})}'|">요청</button>
+				<div class="d-grid justify-content-end mb-3">
+					<button type="button" class="btn btn-lg btn-primary" th:onClick="|location.href='@{/admin/buildings/{buildId}/jobs/add(buildId = ${buildId})}'|">요청</button>
 				</div>
 				<table class="table">
 					<thead>
@@ -44,7 +44,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="job: ${jobs}">
+						<tr th:each="job: ${list}">
 							<td>[[${job.jobId}]]</td>
 							<td><a th:href="@{/admin/buildings/{buildId}/jobs/{jobId}(buildId = ${job.buildId}, jobId = ${job.jobId})}">[[${job.title}]]</a></td>
 							<td>[[${job.buildName}]]</td>
@@ -56,6 +56,21 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="mt-4" th:if="${endPage != 0}">
+					<nav>
+      					<ul class="pagination justify-content-center">
+            				<li th:class="${list.first} ? 'disabled'" class="page-item">
+                				<a th:href="@{/admin/buildings/{buildId}/jobs(buildId = ${buildId}, page = ${list.number - 1})}" class="page-link">&laquo;</a>
+            				</li>
+            				<li th:each="page : ${#numbers.sequence(startPage, endPage)}" class="page-item" th:class="${page == list.number + 1} ? 'active'" >
+ 								<a th:href="@{/admin/buildings/{buildId}/jobs(buildId = ${buildId}, page = ${page - 1})}" th:text="${page}" class="page-link"></a>
+ 							</li>
+            				<li th:class="${list.last} ? 'disabled'" class="page-item" >
+                				<a th:href="@{/admin/buildings/{buildId}/jobs(buildId = ${buildId}, page = ${list.number + 1})}" class="page-link">&raquo;</a>
+            				</li>
+        				</ul>
+    				</nav>
+				</div>
 			</div>
 		</div>
 	</div>

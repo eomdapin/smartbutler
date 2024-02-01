@@ -7,6 +7,10 @@ package com.fms.smartbutler.controller.admin;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ClaimDTO;
@@ -36,14 +41,22 @@ public class ClaimController {
 	
 	// 민원 목록
 	@GetMapping("/{buildId}/claims")
-	public String getClaimList(@PathVariable Long buildId, Model model) {
+	public String getClaimList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size, Model model) {
+		
+		Pageable pageable = PageRequest.of(page, size, Sort.by("claimId").descending());
 		List<BuildDTO> builds = buildService.findAll();
 		BuildDTO build = buildService.findById(buildId);
-		List<ClaimDTO> claims = claimService.findByBuildId(buildId);
-		
-		model.addAttribute("claims", claims);
+		Page<ClaimDTO> claims = claimService.findByBuildId(buildId, pageable);
+		int startPage = Math.max(1, claims.getPageable().getPageNumber() - 3);
+        int endPage = Math.min(claims.getPageable().getPageNumber() + 3, claims.getTotalPages());
+
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+		model.addAttribute("list", claims);
 		model.addAttribute("builds", builds);
 		model.addAttribute("build", build);
+		model.addAttribute("buildId", (buildId == 0 || buildId == null) ? 0L : buildId);
 		
 		return "admin/claim/claim-list";
 	}
