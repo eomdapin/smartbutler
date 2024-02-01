@@ -70,6 +70,13 @@ public class CompanyService implements UserDetailsService {
 		CompanyDTO savedCompanyDTO = modelMapper.map(savedCompany, CompanyDTO.class);
 		return savedCompanyDTO;
 	}
+	
+	public CompanyDTO findByCompanyName(String companyName) {
+		
+		Company company = companyRepository.findByCompanyName(companyName);
+		CompanyDTO companyDTO = modelMapper.map(company, CompanyDTO.class);
+		return companyDTO;
+	}
 
 	public Optional<Company> findById(Long companyId) {
 		return companyRepository.findById(companyId);

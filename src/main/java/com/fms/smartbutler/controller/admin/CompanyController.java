@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,8 +24,10 @@ public class CompanyController {
 	private final CompanyService companyService;
 
 	// 계약 업체 상세
-	@GetMapping("/{buildId}/companies/{companyId}")
-	public String getCompanyInfo() {
+	@GetMapping("/companies/{companyName}")
+	public String getCompanyInfo(@PathVariable String companyName, Model model) {
+		CompanyDTO companyDTO = companyService.findByCompanyName(companyName);
+		model.addAttribute("company", companyDTO);
 		return "admin/company/company-info";
 	}
 

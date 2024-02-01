@@ -51,7 +51,8 @@
 					<tbody>
 						<tr th:each="company:${companies}">
 							<td th:text="${company.companyId}"></td>
-							<td th:text="${company.companyName}"></td>
+							<!-- <td th:text="${company.companyName}" th:href="@{/admin/buildings/companies/{companyId}(companyId=${company.companyId})}"></td> -->
+							<td><a th:text="${company.companyName}" th:href="@{/admin/buildings/companies/{companyName}(companyName=${company.companyName})}"></a></td>
 							<td th:text="${company.manager}"></td>
 							<td th:text="${company.phone}"></td>
 							<td th:text="${company.fromDate}"></td>
