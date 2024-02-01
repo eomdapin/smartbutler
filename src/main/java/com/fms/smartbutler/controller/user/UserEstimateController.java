@@ -39,11 +39,19 @@ public class UserEstimateController {
 	}
 	
 	// 견적 신청
-	@PostMapping
-	public String putEstimate(@ModelAttribute EstimateDTO estimateDTO) {
+	@PostMapping("/success")
+	public String postEstimate(@ModelAttribute EstimateDTO estimateDTO) throws Exception {
 		estimateService.insert(estimateDTO);
 		
-		return "redirect:/user/estimate";
+		return "redirect:/user/estimate/success";
 	}
+	
+	// 견적신청 완료
+	@GetMapping("/success")
+	public String getEstimateSuccess(Model model) {
+		
+		return "user/estimate/estimate-success";
+	}
+	
 
 }

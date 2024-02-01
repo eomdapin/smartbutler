@@ -22,37 +22,35 @@
 				<ul class="">
 					<li><a href="#">HOME</a><span> ></span></li>
 					<li><a href="#">견적관리</a><span> ></span></li>
-					<li><a href="#">견적신청현황</a></li>
+					<li><a href="#">견적신청목록</a></li>
 				</ul>
 			</div>
 			<div class="content">
 				<table class="table table-hover text-center">
 					<thead>
 						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">작성일자</th>
+							<th scope="col">견적 번호</th>
 							<th scope="col">신청인</th>
 							<th scope="col">건물명</th>
-							<th scope="col">시작호실</th>
-							<th scope="col">종료호실</th>
-							<th scope="col">보증금</th>
-							<th scope="col">월세</th>
+							<th scope="col">계약기간</th>
 							<th scope="col">입실일자</th>
+							<th scope="col">보증금</th>
+							<th scope="col">작성일자</th>
 							<th scope="col">계약여부</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>10001</td>
-							<td>2024-01-01</td>
-							<td>공유오피스</td>
-							<td>[신촌]버티고</td>
-							<td>302</td>
-							<td>304</td>
-							<td>500,000,000</td>
-							<td>8,000,000</td>
-							<td>2024-02-01</td>
-							<td>검토중</td>
+						<tr th:each="estimate: ${estimate}">
+							<td>[[${estimate.estimateId}]]</td>
+							<td><a th:href="@{/admin/estimates/{estimateId}(estimateId = ${estimate.estimateId})}">[[${estimate.userName}]]</a></td>
+							<td><a th:href="@{/admin/estimates/{estimateId}(estimateId = ${estimate.estimateId})}">[[${estimate.buildName}]]</a></td>
+							<td>[[${estimate.period}]]</td>
+							<td>[[${estimate.toDate}]]</td>
+							<td>[[${estimate.deposit}]]</td>
+							<td>[[${estimate.regDate}]]</td>
+							<td th:if="${estimate.confirm == 1 }">신청</td>
+							<td th:if="${estimate.confirm == 2 }">승인</td>
+							<td th:if="${estimate.confirm == 3 }">반려</td>
 						</tr>
 					</tbody>
 				</table>

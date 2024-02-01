@@ -1,6 +1,8 @@
 package com.fms.smartbutler.dto;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,10 +17,17 @@ public class EstimateDTO {
 	private Long userId;
 	private Long deposit;
 	private String period;
-	private Date regDate;
+	private String regDate;
 	private Date toDate;
 	private int confirm;
 	private String content;
 	private String buildName;
-	private String name;
+	private String userName;
+	
+	public EstimateDTO() {
+		
+		LocalDateTime time = LocalDateTime.now();
+		
+		regDate = time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+	}
 }

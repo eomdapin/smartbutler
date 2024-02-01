@@ -40,8 +40,8 @@ public class Estimate {
 	@Column(name = "period")
 	private String period;
 	
-	@Column(name = "add_date")
-	private Date regDate;
+	@Column(name = "reg_date")
+	private String regDate;
 	
 	@Column(name = "to_date")
 	private Date toDate;

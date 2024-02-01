@@ -18,7 +18,8 @@
 		<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-2">내 정보</h1>
-				<form action="/user/mypage" method="POST">
+				<form th:action="@{/user/mypage/{userId}/edit(userId = ${user.userId})}" th:method="put" id="editForm">
+				<!-- <form th:action="@{/user/mypage/{userId}/edit(userId = ${user.userId})}" th:method="put" id="multipart/form-data"> -->
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
@@ -48,10 +49,10 @@
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2">
-						<label for="name">이름</label>
+						<label for="userName">이름</label>
 					</div>
 					<div class="col-5">
-						<input type="text" name="name" class="form-control" th:value=${user?.name} readonly>
+						<input type="text" name="userName" class="form-control" th:value=${user?.userName} readonly>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -107,8 +108,8 @@
 				</div>
 				<div>
 					<div class="row justify-content-center mt-3">
-						<input type="submit" class="btn btn-primary col-1 me-3" value="수정">
-						<input type="button" class="btn btn-secondary col-1 me-3" value="뒤로가기" onclick="location.href='/'">
+						<button type="button" class="btn btn-primary col-1 me-3" onClick="putClick(); return false;">완료</button>
+						<button type="button" class="btn btn-secondary col-1 me-3" th:onclick="|location.href='@{/user/mypage/{userId}(userId = ${user.userId})}'|">뒤로가기</button>
 					</div>
 				</div>
 					<input type="hidden" name="userId" id="userId" th:value="${user.userId}">
@@ -116,5 +117,6 @@
 			</div>
 		</div>
 	<div th:replace="~{common/fragments :: userFooter}"></div>
+	<script src="/js/Button.js" type="text/javascript"></script>
 </body>
 </html>
