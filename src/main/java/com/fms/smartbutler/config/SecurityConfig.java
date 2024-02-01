@@ -7,21 +7,23 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 	
-//	@Autowired
-//	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	@Autowired
+	protected void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService usersService, UserDetailsService adminService, UserDetailsService companyService) throws Exception {
+		auth.userDetailsService(adminService);
+		auth.userDetailsService(usersService);
+		auth.userDetailsService(companyService);
+		
+		
 //		auth.inMemoryAuthentication()
-//			.withUser("test@test.com").password("{noop}1111").roles("USER")
-//			.and()
-//			.withUser("admin1").password("{noop}1111").roles("ADMIN");
-//	}
+//		.withUser("1").password("{noop}1").roles("WORKER");
+	}
 	
 	@Configuration
     @Order(1)
@@ -60,20 +62,21 @@ public class SecurityConfig {
 		
 	}
 	
-   	@Configuration
-    @Order(2)
-    public static class App2ConfigurationAdapter {
+	@Configuration
+	@Order(2)
+	public static class App2ConfigurationAdapter {
 
-        @Bean
-        protected SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
-        	http
-        	.securityMatcher("/user/**")
+		@Bean
+		protected SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
+			http
+			.securityMatcher("/user/**")
 			.csrf((csrf) -> csrf.disable())
 			.authorizeHttpRequests((requests) -> requests
-					.requestMatchers("/**").permitAll()
+				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
+				.requestMatchers("/user/**").hasRole("USER")
 				.anyRequest().authenticated()
 			);
-        	
+			
 		http
 		.formLogin(formLogin->
 			formLogin
@@ -93,11 +96,44 @@ public class SecurityConfig {
 				);
 
 		return http.build();
-        }
-   	}
-   	
-    @Bean
-    protected static PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
+	}
+		
 }
+	
+	@Configuration
+	@Order(3)
+	public static class App3ConfigurationAdapter {
+	
+		@Bean
+		protected SecurityFilterChain securityFilterChain3(HttpSecurity http) throws Exception {
+			http
+				.securityMatcher("/worker/**")
+				.csrf((csrf) -> csrf.disable())
+				.authorizeHttpRequests((requests) -> requests
+					.requestMatchers("/css/**","/img/**","/worker/login","/worker/logout").permitAll()
+					.requestMatchers("/worker/**").hasRole("WORKER")
+					.anyRequest().authenticated()
+				);
+			http
+			.formLogin(formLogin->
+				formLogin
+					.loginPage("/worker/login")
+					.loginProcessingUrl("/worker/login")
+					.defaultSuccessUrl("/",true)
+					.failureUrl("/login?error=true")
+					.usernameParameter("company-name")
+					.passwordParameter("password")
+			);
+			http
+			.logout(logout->
+				logout
+					.logoutUrl("/worker/logout")
+					.invalidateHttpSession(true)
+					);
+	
+			return http.build();
+		}
+		
+	}
+}
+

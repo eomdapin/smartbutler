@@ -90,6 +90,7 @@ create table if not exists company (
     to_date date not null COMMENT '계약 종료일',
     cost bigint not null COMMENT '계약 비용',
     pw text not null COMMENT '비밀번호',
+    role text not null COMMENT '권한',
     foreign key(build_id) references build(build_id) on delete cascade,
     foreign key(kind_type) references company_kind(kind_type) on update cascade,
     primary key(company_id, build_id, kind_type)
