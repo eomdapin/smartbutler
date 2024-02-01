@@ -27,8 +27,7 @@
 			</div>
 			<div class="content">
 				<div class="d-flex justify-content-end mb-3">
-					<a class="col-2 btn btn-primary" type="button"
-						th:href="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}">신규등록</a>
+					<a class="col-2 btn btn-primary" type="button" th:href="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}">신규등록</a>
 				</div>
 				<table class="table table-hover">
 					<thead>
@@ -45,14 +44,14 @@
 					</thead>
 					<tbody>
 						<tr th:each ="residents: ${residents}">
-							<td>[[${residents?.buildName}]]</td>
-							<td>[[${residents?.residentNum}]]</td>
-							<td>[[${residents?.users?.userName}]]</td>
-							<td>[[${residents?.users?.phone}]]</td>
-							<td>[[${residents?.fromDate}]]</td>
-							<td>[[${residents?.toDate}]]</td>
-							<td>[[${residents?.deposit}]]</td>
-							<td>[[${residents?.monthly}]]</td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.buildName}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.residentNum}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.users?.userName}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.users?.phone}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.fromDate}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.toDate}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.deposit}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.monthly}]]</a></td>
 						</tr>
 					</tbody>
 				</table>

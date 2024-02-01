@@ -22,7 +22,7 @@
 				<ul class="">
 					<li><a href="/">HOME</a><span> ></span></li>
 					<li><a href="#">임대관리</a><span> ></span></li>
-					<li><a href="#">입주 등록</a></li>
+					<li><a href="#">입주등록</a></li>
 				</ul>
 			</div>
 			<div class="content">
@@ -32,11 +32,11 @@
                         <div class="col-4 mb-3"><input type="text" name="userName" class="form-control" th:value="${resident?.userName}" ></div>
                         
                         <div class="col-1 mb-3"><label for="fromDate" class="form-label">계약시작일</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="fromDate" class="form-control" th:value="${resident?.fromDate}" ></div>
+                        <div class="col-4 mb-3"><input type="date" name="fromDate" class="form-control" th:value="${resident?.fromDate}" ></div>
                     </div>
 					<div class="row">
                         <div class="col-1 mb-3"><label for="buildName" class="col-form-label ms-3">건물명</label></div>
-                        <div class="col-4 mb-3"><input type="date" name="buildName" class="form-control" th:value="${resident?.buildName}" ></div>
+                        <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" th:value="${resident?.buildName}" ></div>
                         
                         <div class="col-1 mb-3"><label for="toDate" class="form-label">계약 종료일</label></div>
                         <div class="col-4 mb-3"><input type="date" name="toDate" class="form-control" th:value="${resident?.toDate}" ></div>

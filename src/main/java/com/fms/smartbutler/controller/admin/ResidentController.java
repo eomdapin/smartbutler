@@ -57,20 +57,28 @@ public class ResidentController {
 	
 	// 입주 상세
 	@GetMapping("/{buildId}/residents/{residentId}")
-	public String getResidentInfo() {
+	public String getResidentInfo(@PathVariable Long buildId, @PathVariable Long residentId, Model model) {
+		ResidentDTO resident = residentService.findById(residentId);
+		model.addAttribute("resident", resident);
+		
 		return "admin/resident/resident-info";
 	}
 	
 	// 입주 수정 폼
 	@GetMapping("/{buildId}/residents/{residentId}/update")
-	public String getUpdateResidentInfoForm() {
-		return "admin/resident/update-resident-info";
+	public String getUpdateResidentInfoForm(@PathVariable Long buildId, @PathVariable Long residentId, Model model) {
+		ResidentDTO resident = residentService.findById(residentId);
+		model.addAttribute("resident", resident);
+		
+		return "admin/resident/resident-edit";
 	}
 	
 	// 입주 수정
 	@PostMapping("/{buildId}/residents/{residentId}/update")
-	public String postUpdateResidentInfo() {
-		return "redirect:/admin/{buildId}/resident/list";
+	public String postUpdateResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
+		residentService.save(residentDTO, buildId);
+		
+		return "redirect:/admin/buildings/{buildId}/residents";
 	}
 	
 	// 입주 삭제

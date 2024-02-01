@@ -31,8 +31,14 @@ public class ResidentService {
 		residentRepository.save(resident);
 	}
 	
-	public Optional<Resident> findById(Long residentId) {
-		return residentRepository.findById(residentId);
+	public ResidentDTO findById(Long residentId) {
+		Resident resident = residentRepository.findById(residentId).orElseGet(Resident::new);
+		
+		ResidentDTO residentDTO = modelMapper.map(resident, ResidentDTO.class);
+		residentDTO.setUsers(resident.getUsers());
+		residentDTO.setBuild(resident.getBuild());
+		
+		return residentDTO;
 	}
 	
 	public List<ResidentDTO> findAll() {
