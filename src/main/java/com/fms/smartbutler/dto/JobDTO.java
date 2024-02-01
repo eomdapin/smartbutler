@@ -4,17 +4,15 @@ import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class JobDTO {
 	
 	private Long jobId;
 	private Long buildId;
-	private Long companyId;
+//	private Long companyId;
 	private Long itemId;
 	private String title;
 	private String content;
@@ -22,4 +20,14 @@ public class JobDTO {
 	private Date askDate;
 	private Date finDate;
 	private int status;
+	private String itemName;
+//	private String companyName;
+//	private String manager;
+	private String buildName;
+	
+	public JobDTO() {
+		this.status = 1;
+		this.itemId = 1L;
+		
+	}
 }
