@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title>SMARTBUTLER</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/common.css">
-	<link rel="stylesheet" href="/css/user.css">
-	<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-	<link rel="manifest" href="/img/site.webmanifest">
+<meta charset="UTF-8">
+<title>SMARTBUTLER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" as="style" crossorigin
+	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/user.css">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/img/favicon-16x16.png">
+<link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
 	<div th:replace="~{common/fragments :: userHeader}"></div>
-		<div class="container" style="float: none;">
+	<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-4">회원가입</h1>
 			<form action="/user/join/success" method="post">
@@ -27,7 +31,7 @@
 						<label for="email" class="ms-4 fw-bold">이메일</label>
 					</div>
 					<div class="col-4">
-						<input type="email" name="email" class="form-control">
+						<input type="email" name="email" class="form-control" required>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -35,15 +39,15 @@
 						<label for="password" class="ms-4 fw-bold">비밀번호</label>
 					</div>
 					<div class="col-4">
-						<input type="password" name="pw" class="form-control">
+						<input type="password" name="pw" id="password" class="form-control" required>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2">
-						<label for="password-check" class="ms-4 fw-bold">비밀번호 확인</label>
+						<label for="passwordCheck" class="ms-4 fw-bold">비밀번호 확인</label>
 					</div>
 					<div class="col-4">
-						<input type="password" name="pw2" class="form-control">
+						<input type="password" name="pw" id="passwordCheck" class="form-control" required>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -51,7 +55,7 @@
 						<label for="userName" class="ms-4 fw-bold">이름</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="userName" class="form-control">
+						<input type="text" name="userName" class="form-control" required>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -59,15 +63,36 @@
 						<label for="phone" class="ms-4 fw-bold">휴대폰 번호</label>
 					</div>
 					<div class="col-4">
-						<input type="tel" name="phone" class="form-control">
+						<input type="tel" name="phone" oninput="hypenTel(this)" maxlength="13" pattern="(010)-\d{3,4}-\d{4}" title="형식 010-0000-0000" class="form-control" required>
 					</div>
 				</div>
-					<div class="row justify-content-center mt-5">
-						<input type="submit" class="btn btn-primary col-1 me-3" value="회원가입">
-					</div>
-				</form>
-			</div>
+				<div class="row justify-content-center mt-5">
+					<input type="submit" class="btn btn-primary col-1 me-3" value="회원가입">
+					<input type="hidden" name="role" value="USER">
+				</div>
+			</form>
 		</div>
+	</div>
 	<div th:replace="~{common/fragments :: userFooter}"></div>
+	<script type="text/javascript">
+	var password = document.getElementById("password")
+	  , passwordCheck = document.getElementById("passwordCheck");
+
+	function confirmPassword(){
+	  if(password.value != passwordCheck.value) {
+		  passwordCheck.setCustomValidity("비밀번호가 다릅니다");
+	  } else {
+		  passwordCheck.setCustomValidity('');
+	  }
+	}
+	password.onchange = confirmPassword;
+	passwordCheck.onkeyup = confirmPassword;
+	
+	const hypenTel = (target) => {
+		 target.value = target.value
+		   .replace(/[^0-9]/g, '')
+		   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+		}
+	</script>
 </body>
 </html>
