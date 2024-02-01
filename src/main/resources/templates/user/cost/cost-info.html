@@ -18,43 +18,88 @@
 		<div class="container" style="float: none;">
 			<div class="content form-content">
 				<h2 class="text-center mt-2">건물 정보</h2>
-				<form id="infoForm" class="infoForm" action="" method="get">
-					<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
-						<div class="col-7 mt-3 border-top border-5 border-black"></div>
-					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
-	                    <div class="col-2 mb-3"><label for="buildId" class="form-label">관리비 일자 선택</label></div>
-	                    <div class="col-5 mb-3">
+				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
+					<div class="col-7 mt-3 border-top border-5 border-black"></div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+                    <div class="col-2 mb-3"><label for="buildId" class="form-label">관리비 일자 선택</label></div>
+                    <div class="col-5 mb-3">
+	                    <form id="infoForm" class="infoForm" action="" method="get">
 	                    	<select class="form-select" id="costId" name="costId" onChange="changeBuild()">
 	                    		<option class="form-option" th:each="costs: ${costs}" th:value="${costs?.costId}"
 	                    			th:selected="${cost?.costId} == ${costs?.costId}">[[${#strings.substring(costs?.date, 0, 4)}]]년 [[${#strings.substring(costs?.date, 5, 7)}]]월</option>
 	                    	</select>
-	                    </div>
-	                </div>
-	                <div class="row g-3 justify-content-center align-items-center mb-4">
-                    	<table th:with="roomSize = ${build?.area} / (${build?.floor} * ${build?.room}),
-										avgCost = (${roomSize} * 30)">
-                    		<thead>
-	                    		<tr>
-	                    			<th>구분</th>
-	                    			<th>전월 관리비</th>
-	                    			<th>당월 관리비</th>
-	                    			<th>증감액</th>
-                    			</tr>
-                    		</thead>
-                    		<tbody>
-                    			<tr>
-	                    			<th>전기료</th>
-	                    			<th></th>
-	                    			<th>[[${#numbers.formatDecimal((cost?.electricity / avgCost / 30) * roomSize * 30, 1, 0)}]]</th>
-	                    			<th></th>
-                    			</tr>
-                    		</tbody>
-                    	</table>
+	                    </form>
                     </div>
-				</form>
+                </div>
+                <div class="row g-3 justify-content-center align-items-center mb-4">
+                   	<table th:with="roomSize = ${build?.area} / (${build?.floor} * ${build?.room}),
+									avgCost = (${roomSize} * 30)">
+                   		<thead>
+                    		<tr>
+                    			<th>구분</th>
+                    			<th>전월 관리비</th>
+                    			<th>당월 관리비</th>
+                    			<th>증감액</th>
+                   			</tr>
+                   		</thead>
+                   		<tbody th:with="
+                   			electricity = ${#numbers.formatDecimal((cost?.electricity / avgCost / 30) * roomSize * 30, 1, 0)},
+                   			prevElectricity = ${#numbers.formatDecimal((prevCost?.electricity / avgCost / 30) * roomSize * 30, 1, 0)},
+                   			
+                   			upkeep = ${#numbers.formatDecimal((cost?.upkeep / avgCost / 30) * roomSize * 30, 1, 0)},
+                   			prevUpkeep = ${#numbers.formatDecimal((prevCost?.upkeep / avgCost / 30) * roomSize * 30, 1, 0)},
+                   			
+                   			repair = ${#numbers.formatDecimal((cost?.repair / avgCost / 30) * roomSize * 30, 1, 0)},
+                   			prevRepair = ${#numbers.formatDecimal((prevCost?.repair / avgCost / 30) * roomSize * 30, 1, 0)},
+                   			
+                   			consignment = ${#numbers.formatDecimal((cost?.consignment / avgCost / 30) * roomSize * 30, 1, 0)},
+                   			prevConsignment = ${#numbers.formatDecimal((prevCost?.consignment / avgCost / 30) * roomSize * 30, 1, 0)}
+                  		">
+                   			<tr>
+                    			<th>전기료</th>
+                    			<td>[[${prevElectricity}]]</td>
+                    			<td>[[${electricity}]]</td>
+                    			<td class="sumCost">
+                    				[[${prevElectricity} - ${electricity}]]
+                    			</td>
+                   			</tr>
+                   			<tr>
+                    			<th>유지관리비</th>
+                    			<td>[[${prevRepair}]]</td>
+                    			<td>[[${repair}]]</td>
+                    			<td class="sumCost">
+                    				[[${prevRepair} - ${repair}]]
+                    			</td>
+                   			</tr>
+                   			<tr>
+                    			<th>수선비</th>
+                    			<td>[[${prevUpkeep}]]</td>
+                    			<td>[[${upkeep}]]</td>
+                    			<td class="sumCost">
+                    				[[${prevUpkeep} - ${upkeep}]]
+                    			</td>
+                   			</tr>
+                   			<tr>
+                    			<th>전문위탁비</th>
+                    			<td>[[${prevConsignment}]]</td>
+                    			<td>[[${consignment}]]</td>
+                    			<td class="sumCost">
+                    				[[${prevConsignment} - ${consignment}]]
+                    			</td>
+                   			</tr>
+                   		</tbody>
+                   	</table>
+				</div>
 			</div>
 		</div>
 	<div th:replace="~{common/fragments :: userFooter}"></div>
+	<script>
+	function changeBuild() {
+		let formId = document.getElementById('infoForm');
+		
+		formId.submit();
+	}
+	</script>
 </body>
 </html>

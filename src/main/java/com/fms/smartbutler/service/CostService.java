@@ -1,5 +1,6 @@
 package com.fms.smartbutler.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,5 +61,14 @@ public class CostService {
 	public List<CostDTO> findByBuildId(Long buildId) {
 		return costRepository.findByBuild_BuildIdOrderByDateDesc(buildId).stream()
 				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
+	}
+	
+	public CostDTO findByBuildIdAndDate(Long buildId, LocalDate date) {
+		Optional<Cost> cost = costRepository.findByBuild_BuildIdAndDate(buildId, date);
+		if(cost.isEmpty()) {
+			return null;
+		} else {
+			return modelMapper.map(cost.get(), CostDTO.class); 
+		}
 	}
 }

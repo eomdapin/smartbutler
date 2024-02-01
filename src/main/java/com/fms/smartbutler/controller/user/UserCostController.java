@@ -13,7 +13,9 @@ import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.CostService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class UserCostController {	
@@ -29,10 +31,13 @@ public class UserCostController {
 		
 		costId = costId == null ? costs.get(0).getCostId() :costId;
 		CostDTO cost = costService.findById(costId);
+		CostDTO prevCost = costService.findByBuildIdAndDate(buildId, cost.getDate().minusMonths(1));
 		
 		model.addAttribute("costs", costs);
 		model.addAttribute("cost", cost);
+		model.addAttribute("prevCost", prevCost);
 		model.addAttribute("build", build);
+		
 		return "/user/cost/cost-info";
 	}
 }
