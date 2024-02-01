@@ -32,6 +32,7 @@ public class CompanyController {
 		List<Company> companies = companyService.findAll();
 		System.out.println("[p1] companies : " + companies);
 		model.addAttribute("companies", companies);
+		System.out.println("[p2] model addAttribute");
 		return "admin/company/company-info";
 	}
 
