@@ -28,7 +28,7 @@
             <div class="content">
 				<div th:replace="~{common/fragments :: buildSearch}"></div>           
             	 <div class="text-end pb-3">
-                    <a class="btn btn-lg btn-primary" th:href="@{/admin/buildings/{buildId}/costs/add(buildId = ${buildId})}">관리비 등록</a>
+                    <a class="btn btn-lg btn-primary" th:href="@{/admin/buildings/{buildId}/costs/add(buildId = ${build?.buildId})}">관리비 등록</a>
                 </div>
                 <table class="table text-center">
                     <thead>
