@@ -218,8 +218,12 @@ create table if not exists admin (
 );
 
 #######################################################
+insert into admin values(null, 'admin', '{noop}1111', 'ADMIN');
+#######################################################
+
+#######################################################
 insert into users(user_name, phone, email, pw, status, role)
-values('홍길동', '010-0000-0000', 'mail@mail.com', '{noop}1234', '1', 'USER');
+values('홍길동', '010-0000-0000', 'mail@mail.com', '{noop}1111', '1', 'USER');
 
 insert into users(user_name, phone, email, pw, status, role)
 values('홍박사', '010-1111-1111', 'mail1@mail.com', '{noop}1111','1', 'USER');
@@ -266,6 +270,11 @@ insert into cost(build_id, cost_date, electricity, repair, upkeep, consignment, 
 (3, '2024-01-01', 40000, 50000, 60000, 10000, 1),
 (4, '2024-01-01', 50000, 60000, 70000, 20000, 1);
 
+#######################################################
+insert into company_kind values('1', '공조');
+insert into company values('1', '1', '1', '한일공조', '지디', '010-1111-2222', '2024-01-01', '2024-12-12', '1000', '{noop}1111', 'WORKER');
+#######################################################
+
 select * from users;	
 select * from build;
 select * from item;
@@ -273,7 +282,3 @@ select * from item_kind;
 select * from image;
 select * from image_category;
 
-insert into company_kind values('1', '공조');
-insert into company values('1', '1', '1', '한일공조', '지디', '010-1111-2222', '2024-01-01', '2024-12-12', '1000', '{noop}1', 'WORKER');
-
-insert into admin values(null, 'admin', '{noop}1111', 'ADMIN');
