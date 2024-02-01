@@ -23,18 +23,29 @@ public class ResidentService {
 	private final ResidentRepository residentRepository;
 	private final ModelMapper modelMapper;
 	
+	public void save(ResidentDTO residentDTO, Long buildId) {
+		residentDTO.getBuild().setBuildId(buildId);
+		residentDTO.getUsers().setUserId(buildId);
+		Resident resident = modelMapper.map(residentDTO, Resident.class);
+		
+		residentRepository.save(resident);
+	}
+	
 	public Optional<Resident> findById(Long residentId) {
 		return residentRepository.findById(residentId);
 	}
 	
 	public List<ResidentDTO> findAll() {
-		 log.info("residentRepository.findAll().get(0).getUsers().getUserName() ::: {}", residentRepository.findAll().get(0).getUsers().getUserName());
-		
-		return residentRepository.findAll().stream()
+		 List<ResidentDTO> residentList = residentRepository.findAll().stream()
 				.map(resident -> {
 					ResidentDTO residentDTO = modelMapper.map(resident, ResidentDTO.class);
 					residentDTO.setUsers(resident.getUsers());
+					residentDTO.setBuild(resident.getBuild());
 					return residentDTO;
 				}).toList();
+		 
+		 residentList.get(0).getUsers().getUserName();
+		 
+		 return residentList;
 	}
 }

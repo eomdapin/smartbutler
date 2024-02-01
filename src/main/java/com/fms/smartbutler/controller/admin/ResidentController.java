@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +32,6 @@ public class ResidentController {
 	public String getResidentList(@PathVariable Long buildId, Model model) {
 		List<ResidentDTO> residents = residentService.findAll();
 		
-		log.info(">>>> {}", residents.get(0).getUsers().getUserName());
-		
 		model.addAttribute("residents", residents);
 		model.addAttribute("buildId", buildId);
 		
@@ -50,7 +49,9 @@ public class ResidentController {
 	
 	// 입주 등록
 	@PostMapping("/{buildId}/residents/add")
-	public String postResidentInfo() {
+	public String postResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
+		residentService.save(residentDTO, buildId);
+		
 		return "redirect:/admin/buildings/{buildId}/residents";
 	}
 	

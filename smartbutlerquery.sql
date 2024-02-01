@@ -37,16 +37,17 @@ create table if not exists users (
 # 1 = 입실, 2 = 공실
 drop table if exists resident;
 create table if not exists resident (
-	resident_id bigint not null COMMENT '방 고유 번호',
+	resident_id bigint not null auto_increment COMMENT '입주 고유 번호',
+    resident_num bigint not null COMMENT '방 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
     user_id bigint not null COMMENT '회원 고유 번호',
-    status smallint not null COMMENT '입실 여부',
+    entered smallint not null COMMENT '입실 여부',
     from_date date not null COMMENT '계약 시작일',
     to_date date not null COMMENT '계약 종료일',
     deposit bigint not null COMMENT '보증금',
     monthly bigint not null COMMENT '월세',
-    foreign key(build_id) references build(build_id) on delete cascade,
-    foreign key(user_id) references users(user_id) on delete cascade,
+    foreign key(build_id) references build(build_id),
+    foreign key(user_id) references users(user_id),
     primary key(resident_id)
 );
 
@@ -279,7 +280,7 @@ insert into company_kind values('1', '공조');
 insert into company values('1', '1', '1', '한일공조', '지디', '010-1111-2222', '2024-01-01', '2024-12-12', '1000', '{noop}1111', 'WORKER');
 
 #######################################################
-insert into resident value('101','1','1','1','2024-01-01','2024-12-31','100000000','10000000');
+insert into resident value(null, '101', '1','1','1','2024-01-01','2024-12-31','100000000','10000000');
 
 select * from users;	
 select * from build;
