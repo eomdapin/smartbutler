@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>SMARTBUTLER</title>
@@ -37,7 +38,6 @@
 							<th scope="col">업체명</th>
 							<th scope="col">담당자명</th>
 							<th scope="col">전화번호</th>
-							<th scope="col">로그인번호</th>
 							<th scope="col">계약시작일</th>
 							<th scope="col">계약종료일</th>
 							<th scope="col">담당업무</th>
@@ -45,16 +45,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">10001</th>
-							<td>아담청소</td>
-							<td>김대리</td>
-							<td>010-5555-6666</td>
-							<td>10001</td>
-							<td>2023-04-01</td>
-							<td>2026-03-31</td>
-							<td>청소</td>
-							<td>1,500,000</td>
+						<tr th:each="company:${companies}">
+							<td th:text="${company.companyId}"></td>
+							<td th:text="${company.companyName}"></td>
+							<td th:text="${company.manager}"></td>
+							<td th:text="${company.phone}"></td>
+							<td th:text="${company.fromDate}"></td>
+							<td th:text="${company.toDate}"></td>
+							<td th:text="${company.companyKind}"></td>
+							<td th:text="${company.cost}"></td>
 						</tr>
 					</tbody>
 				</table>

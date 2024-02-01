@@ -1,5 +1,8 @@
 package com.fms.smartbutler.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,5 +32,22 @@ public class CompanyService implements UserDetailsService {
 					.roles(company.getRole())
 					.build();
 		}
+	
+	public Company save(Company company) {
+		return companyRepository.save(company);
 	}
+
+	public Optional<Company> findById(Long companyId) {
+		return companyRepository.findById(companyId);
+	}
+
+	public List<Company> findAll() {
+		return companyRepository.findAll();
+	}
+
+	public void deleteById(Long companyId) {
+		companyRepository.deleteById(companyId);
+	}
+		
+}
 	
