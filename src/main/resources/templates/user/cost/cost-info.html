@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>SMARTBUTLER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/user.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/img/site.webmanifest">
+</head>
+<body>
+	<div th:replace="~{common/fragments :: userHeader}"></div>
+		<div class="container" style="float: none;">
+			<div class="content form-content">
+				<h2 class="text-center mt-2">건물 정보</h2>
+				<form id="infoForm" class="infoForm" action="" method="get">
+					<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
+						<div class="col-7 mt-3 border-top border-5 border-black"></div>
+					</div>
+					<div class="row g-3 justify-content-center align-items-center mb-4">
+	                    <div class="col-2 mb-3"><label for="buildId" class="form-label">관리비 일자 선택</label></div>
+	                    <div class="col-5 mb-3">
+	                    	<select class="form-select" id="costId" name="costId" onChange="changeBuild()">
+	                    		<option class="form-option" th:each="costs: ${costs}" th:value="${costs?.costId}"
+	                    			th:selected="${cost?.costId} == ${costs?.costId}">[[${#strings.substring(costs?.date, 0, 4)}]]년 [[${#strings.substring(costs?.date, 5, 7)}]]월</option>
+	                    	</select>
+	                    </div>
+	                </div>
+	                <div class="row g-3 justify-content-center align-items-center mb-4">
+                    	<table th:with="roomSize = ${build?.area} / (${build?.floor} * ${build?.room}),
+										avgCost = (${roomSize} * 30)">
+                    		<thead>
+	                    		<tr>
+	                    			<th>구분</th>
+	                    			<th>전월 관리비</th>
+	                    			<th>당월 관리비</th>
+	                    			<th>증감액</th>
+                    			</tr>
+                    		</thead>
+                    		<tbody>
+                    			<tr>
+	                    			<th>전기료</th>
+	                    			<th></th>
+	                    			<th>[[${#numbers.formatDecimal((cost?.electricity / avgCost / 30) * roomSize * 30, 1, 0)}]]</th>
+	                    			<th></th>
+                    			</tr>
+                    		</tbody>
+                    	</table>
+                    </div>
+				</form>
+			</div>
+		</div>
+	<div th:replace="~{common/fragments :: userFooter}"></div>
+</body>
+</html>
