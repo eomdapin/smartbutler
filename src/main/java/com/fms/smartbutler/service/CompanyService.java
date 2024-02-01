@@ -92,8 +92,12 @@ public class CompanyService implements UserDetailsService {
 		return companiesDTO;
 	}
 
-	public void deleteById(Long companyId) {
-		companyRepository.deleteById(companyId);
+//	public void deleteById(Long companyId) {
+//		companyRepository.deleteById(companyId);
+//	}
+	
+	public void deleteByCompanyName(String companyName) {
+		companyRepository.deleteByCompanyName(companyName);
 	}
 
 }

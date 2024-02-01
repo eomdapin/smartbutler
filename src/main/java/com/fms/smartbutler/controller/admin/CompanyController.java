@@ -23,14 +23,6 @@ public class CompanyController {
 
 	private final CompanyService companyService;
 
-	// 계약 업체 상세
-	@GetMapping("/companies/{companyName}")
-	public String getCompanyInfo(@PathVariable String companyName, Model model) {
-		CompanyDTO companyDTO = companyService.findByCompanyName(companyName);
-		model.addAttribute("company", companyDTO);
-		return "admin/company/company-info";
-	}
-
 	// 계약 업체 목록
 	@GetMapping("/companies")
 	public String getCompanyList(Model model) {
@@ -39,22 +31,49 @@ public class CompanyController {
 		return "admin/company/company-list";
 	}
 
+	// 계약 업체 상세
+	@GetMapping("/companies/{companyName}")
+	public String getCompanyInfo(@PathVariable String companyName, Model model) {
+		CompanyDTO companyDTO = companyService.findByCompanyName(companyName);
+		model.addAttribute("company", companyDTO);
+		return "admin/company/company-info";
+	}
+
+
 	// 계약 업체 수정 폼
-	@GetMapping("/companies/{companyId}/update")
-	public String getCompanyInfoUpdateForm() {
+//	@GetMapping("/companies/{companyName}/update")
+//	public String getCompanyInfoUpdateForm() {
+//		return "admin/company/update-company-info";
+//	}
+
+	// 계약 업체 수정 폼
+	@GetMapping("/companies/{companyName}/update")
+	public String getCompanyInfoUpdateForm(@PathVariable String companyName, Model model) {
+		System.out.println(companyName);
+		CompanyDTO companyDTO = companyService.findByCompanyName(companyName);
+		model.addAttribute("company", companyDTO);
 		return "admin/company/update-company-info";
+//		return "admin/company/hello";
 	}
 
 	// 계약 업체 수정
-	@PostMapping("/companies/{companyId}/update")
-	public String putCompanyInfo() {
-		return "redirect:/admin/{buildId}/company/list";
-	}
+//	@PostMapping("/companies/{companyName}/update")
+//	public String putCompanyInfo() {
+//		return "redirect:/admin/{buildId}/company/list";
+//	}
 
 	// 계약 업체 삭제
-	@PostMapping("/companies/{companyId}/delete")
-	public String deleteCompanyInfo() {
-		return "redirect:/admin/{buildId}/company/list";
+//	@GetMapping("/companies/{companyId}/delete")
+//	public String deleteCompanyInfo(@PathVariable Long companyId) {
+//		companyService.deleteById(companyId);
+//		return "redirect:/admin/buildings/companies";
+//	}
+
+	// 계약 업체 삭제
+	@GetMapping("/companies/{companyName}/delete")
+	public String deleteCompanyInfo(@PathVariable String companyName) {
+		companyService.deleteByCompanyName(companyName);
+		return "redirect:/admin/buildings/companies";
 	}
 
 	// 계약 업체 등록 폼

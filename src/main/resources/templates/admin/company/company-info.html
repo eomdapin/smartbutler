@@ -27,7 +27,6 @@
 			</div>
 			<div class="content">
 
-
 				<div class="container fw-semibold">
 
 					<div class="row align-items-center mb-4">
@@ -65,7 +64,7 @@
 									<label for="company-name" class="col-form-label ms-3">업체명</label>
 								</div>
 								<div class="col-8">
-									<input class="form-control" type="text" th:value="${company.companyName}" id="companyName" name="companyName" readonly disabled>
+									<input class="form-control" type="text" th:value="${company.companyName}" readonly disabled>
 								</div>
 							</div>
 						</div>
@@ -128,17 +127,6 @@
 					</div>
 
 					<div class="row align-items-center mb-5">
-						<!-- <div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
-									<label for="company-id" class="col-form-label ms-3">로그인번호</label>
-								</div>
-								<div class="col-8">
-									<input type="text" id="company-id" name="company-id"
-										class="form-control">
-								</div>
-							</div>
-						</div> -->
 						<div class="col-5">
 							<div class="row g-3 align-items-center">
 								<div class="col-4">
@@ -156,14 +144,18 @@
 							<div class="col-5"></div>
 							<div class="col-5">
 								<div class="d-flex gap-4 justify-items-center">
-									<button class="col btn btn-primary" type="submit" formaction="/admin/buildings/companies/1/update" formmethod="get">수정</button>
-									<button class="col btn btn-info text-white" type="submit" formaction="/admin/buildings/companies/1/delete" formmethod="post">삭제</button>
+
+									<button class="col btn btn-primary" type="submit" th:formaction="@{/admin/buildings/companies/{companyName}/update(companyName=${company.companyName})}" th:formmethod="get">수정</button>
+									<button class="col btn btn-info text-white" type="submit" th:formaction="@{/admin/buildings/companies/{companyName}/delete(companyName=${company.companyName})" th:formmethod="post">삭제</button>
 									<button class="col btn btn-outline-primary" type="submit" formaction="/admin/buildings/companies" formmethod="get">목록</button>
+
 								</div>
 							</div>
 						</div>
 					</form>
 				</div>
+
+
 			</div>
 
 		</div>
