@@ -282,6 +282,7 @@ select * from users;
 select * from build;
 select * from item;
 select * from item_kind;
+select * from estimate;
 select * from image;
 select * from image_category;
 select * from cost;

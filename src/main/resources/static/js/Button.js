@@ -15,9 +15,3 @@ function claimFinClick() {
 		document.getElementById("claimFinForm").submit();
 	}
 }
-
-function estimateClick() {
-	if(confirm("견적을 완료 처리하시겠습니까?")) {
-		document.getElementById("estimateForm").submit();
-	}
-}
