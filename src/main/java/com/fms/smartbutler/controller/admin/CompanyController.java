@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fms.smartbutler.domain.Company;
+import com.fms.smartbutler.dto.CompanyDTO;
 import com.fms.smartbutler.service.CompanyService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,13 +30,11 @@ public class CompanyController {
 	// 계약 업체 목록
 	@GetMapping("/companies")
 	public String getCompanyList(Model model) {
-		List<Company> companies = companyService.findAll();
-		System.out.println("[p1] companies : " + companies);
-		model.addAttribute("companies", companies);
-		System.out.println("[p2] model addAttribute");
-		return "admin/company/company-info";
+		List<CompanyDTO> companiesDTO = companyService.findAll();
+		model.addAttribute("companies", companiesDTO);
+		return "admin/company/company-list";
 	}
-
+	
 	// 계약 업체 수정 폼
 	@GetMapping("/companies/{companyId}/update")
 	public String getCompanyInfoUpdateForm() {
@@ -55,7 +54,7 @@ public class CompanyController {
 	}
 
 	// 계약 업체 등록 폼
-	@GetMapping("/companies/{companyId}/add")
+	@GetMapping("/companies/add")
 	public String getCompanyInfoForm() {
 		return "admin/company/add-company-info";
 	}

@@ -5,13 +5,17 @@
 <meta charset="UTF-8">
 <title>SMARTBUTLER</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" as="style" crossorigin
+	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/admin.css">
-<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16"	href="/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/img/favicon-16x16.png">
 <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
@@ -29,7 +33,7 @@
 			<div class="content">
 				<div class="d-flex justify-content-end mb-3">
 					<button class="col-2 btn btn-primary" type="button"
-						onclick="location.href='/admin/buildings/companies/{companyId}/add'">신규등록</button>
+						onclick="location.href='/admin/buildings/companies/add'">신규등록</button>
 				</div>
 				<table class="table table-hover">
 					<thead>
@@ -52,7 +56,7 @@
 							<td th:text="${company.phone}"></td>
 							<td th:text="${company.fromDate}"></td>
 							<td th:text="${company.toDate}"></td>
-							<td th:text="${company.companyKind}"></td>
+							<td th:text="${company.kindName}"></td>
 							<td th:text="${company.cost}"></td>
 						</tr>
 					</tbody>
