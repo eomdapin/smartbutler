@@ -33,6 +33,8 @@ public class UserCostController {
 		CostDTO cost = costService.findById(costId);
 		CostDTO prevCost = costService.findByBuildIdAndDate(buildId, cost.getDate().minusMonths(1));
 		
+		log.info("prevCost :::: {} ", prevCost);
+		
 		model.addAttribute("costs", costs);
 		model.addAttribute("cost", cost);
 		model.addAttribute("prevCost", prevCost);
