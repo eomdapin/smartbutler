@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fms.smartbutler.domain.Build;
 import com.fms.smartbutler.dto.BuildDTO;
+import com.fms.smartbutler.dto.ResidentDTO;
 import com.fms.smartbutler.service.BuildService;
+import com.fms.smartbutler.service.ResidentService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,17 +24,40 @@ import lombok.extern.slf4j.Slf4j;
 public class ResidentController {
 	
 	private final BuildService buildService;
+	private final ResidentService residentService;
+	
+	// 입주 목록
+	@GetMapping("/{buildId}/residents")
+	public String getResidentList(@PathVariable Long buildId, Model model) {
+		List<ResidentDTO> residents = residentService.findAll();
+		
+		log.info(">>>> {}", residents.get(0).getUserName());
+		
+		model.addAttribute("residents", residents);
+		model.addAttribute("buildId", buildId);
+		
+		return "admin/resident/resident-list";
+	}
+	
+	// 입주 등록 폼
+	@GetMapping("/{buildId}/residents/add")
+	public String getResidentInfoForm(@PathVariable Long buildId, Model model) {
+		model.addAttribute("resident", new ResidentDTO());
+		model.addAttribute("buildId", buildId);
+		
+		return "admin/resident/resident-add";
+	}
+	
+	// 입주 등록
+	@PostMapping("/{buildId}/residents/add")
+	public String postResidentInfo() {
+		return "redirect:/admin/buildings{buildId}/residents";
+	}
 	
 	// 입주 상세
 	@GetMapping("/{buildId}/residents/{residentId}")
 	public String getResidentInfo() {
 		return "admin/resident/resident-info";
-	}
-	
-	// 입주 목록
-	@GetMapping("/{buildId}/residents")
-	public String getResidentList() {
-		return "admin/resident/resident-list";
 	}
 	
 	// 입주 수정 폼
@@ -54,27 +78,10 @@ public class ResidentController {
 		return "redirect:/admin/{buildId}/resident/list";
 	}
 	
-	// 입주 등록 폼
-	@GetMapping("/{buildId}/residents/add")
-	public String getResidentInfoForm() {
-		return "admin/resident/add-resident-info";
-	}
-	
-	// 입주 등록
-	@PostMapping("/{buildId}/residents/{residentId}/add")
-	public String postResidentInfo() {
-		return "redirect:/admin/{buildId}/resident/list";
-	}
-	
-	/**
-	* @author 엄다빈
-	* @editDate 2024-01-29 ~ 2024-01-29
-	*/
 	// 입주 현황
 	@GetMapping("/{buildId}/residents/total")
 	public String getResidentsTotal(@PathVariable Long buildId, Model model) {
 		List<BuildDTO> builds = buildService.findAll();
-		log.info("buildId :: {}", buildId);
 		BuildDTO build = buildService.findById(buildId);
 		
 		model.addAttribute("builds", builds);

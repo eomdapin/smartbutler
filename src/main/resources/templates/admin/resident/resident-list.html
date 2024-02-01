@@ -27,17 +27,16 @@
 			</div>
 			<div class="content">
 				<div class="d-flex justify-content-end mb-3">
-					<button class="col-2 btn btn-primary" type="button"
-						onclick="location.href='/admin/buildings/{buildId}/residents/add'">신규등록</button>
+					<a class="col-2 btn btn-primary" type="button"
+						th:href="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}">신규등록</a>
 				</div>
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th scope="col">회원번호</th>
-							<th scope="col">고객명</th>
-							<th scope="col">휴대폰번호</th>
 							<th scope="col">건물명</th>
 							<th scope="col">입주 호실</th>
+							<th scope="col">고객명</th>
+							<th scope="col">휴대폰번호</th>
 							<th scope="col">계약시작일</th>
 							<th scope="col">계약종료일</th>
 							<th scope="col">보증금</th>
@@ -45,16 +44,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">10001</th>
-							<td>카페윌리</td>
-							<td>010-5555-6666</td>
-							<td>강남1호점</td>
-							<td>701</td>
-							<td>2023-04-01</td>
-							<td>2026-03-31</td>
-							<td>800,000,000</td>
-							<td>1,500,000</td>
+						<tr th:each = "residents: ${residents}">
+							<td>[[${residents?.buildName}]]</td>
+							<td>[[${residents?.residentId}]]</td>
+							<td>[[${residents?.userName}]]</td>
+							<td>[[${residents?.phone}]]</td>
+							<td>[[${residents?.fromDate}]]</td>
+							<td>[[${residents?.toDate}]]</td>
+							<td>[[${residents?.deposit}]]</td>
+							<td>[[${residents?.monthly}]]</td>
 						</tr>
 					</tbody>
 				</table>
