@@ -26,6 +26,7 @@
 				</ul>
 			</div>
 			<div class="content">
+				<div th:replace="~{common/fragments :: buildSearch}"></div>
 				<table class="table">
 					<thead>
 						<tr>
@@ -53,5 +54,15 @@
 			</div>
 		</div>
 	</div>
+	<script>
+        function changeBuild() {
+            let buildId = document.getElementById('buildId');
+            let form = document.getElementById('infoForm');
+
+            form.action = '/admin/buildings/' + buildId.value + '/claims';
+
+            form.submit();
+        }
+    </script>
 </body>
 </html>

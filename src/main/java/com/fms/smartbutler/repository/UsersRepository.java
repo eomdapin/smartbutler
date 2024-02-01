@@ -6,4 +6,5 @@ import com.fms.smartbutler.domain.Users;
 
 public interface UsersRepository extends JpaRepository<Users, Long>{
 	Users findByEmail(String email);
+	Users findByUserName(String userName);
 }

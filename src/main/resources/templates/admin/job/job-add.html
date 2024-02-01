@@ -26,24 +26,26 @@
 				</ul>
 			</div>
 			<div class="content form-content">
-				<form action="/admin/buildings/1/jobs/add" method="post">
+				<form th:action="@{/admin/buildings/{buildId}/jobs/add(buildId = ${build.buildId})}" method="post" enctype="multipart/form-data">
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="jobId" class="col-form-label fw-bold">요청번호</label></div>
-						<div class="col-5"><input type="text" name="jobId" class="form-control"></div>
+						<div class="col-5"><input type="text" name="jobId" class="form-control" readonly></div>
 						<div class="col-1"><label for="askDate" class="col-form-label fw-bold">요청날짜</label></div>
-						<div class="col-5"><input type="text" name="askDate" class="form-control"></div>
+						<div class="col-5"><input type="text" name="askDate" th:value="${#dates.format(#dates.createToday(), 'yyyy-MM-dd')}" class="form-control" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="itemName" class="col-form-label fw-bold">시설명</label></div>
-						<div class="col-5"><input type="text" name="itemName" class="form-control"></div>
+						<div class="col-5">
+							<select name="itemName" class="form-select">
+								<option th:each="item : ${items}" th:value="${item.itemName}" th:text="${item.itemName}"></option>
+							</select>
+						</div>
 						<div class="col-1"><label for="companyName" class="col-form-label fw-bold">점검업체</label></div>
-						<div class="col-5"><input type="text" name="companyName" class="form-control"></div>
+						<div class="col-5"><input type="text" name="" class="form-control"></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="buildName" class="col-form-label fw-bold">건물명</label></div>
-						<div class="col-5"><input type="text" name="buildName" class="form-control"></div>
-						<div class="col-1"><label for="imageName" class="col-form-label fw-bold">이미지</label></div>
-						<div class="col-5"><input type="file" id="formFile" name="imageName" class="form-control"></div>
+						<div class="col-5"><input type="text" name="buildName" th:value="${build.buildName}" class="form-control" readonly></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label for="title" class="col-form-label fw-bold">제목</label></div>
@@ -54,8 +56,8 @@
 						<div class="col m-0"><textarea rows="3" name="content" class="form-control"></textarea></div>
 					</div>
 					<div class="row justify-content-end mt-4">
-						<input type="submit" value="전송" class="btn btn-primary col-1 me-3">
-						<button type="button" class="btn btn-outline-dark col-1 me-3" onClick="location.href='/admin/buildings/1/jobs'">취소</button>
+						<input type="submit" value="전송" class="btn btn-lg btn-primary col-auto me-3">
+						<input type="button" value="목록" class="btn btn-lg btn-outline-dark col-auto me-3" onClick="history.back()">
 					</div>
 				</form>
 			</div>

@@ -35,7 +35,8 @@ public class SecurityConfig {
 				.securityMatcher("/admin/**")
 				.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests
-					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
+//					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
+					.requestMatchers("/**").permitAll()
 					.requestMatchers("/admin/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 				);
@@ -61,78 +62,79 @@ public class SecurityConfig {
 		
 	}
 	
-	   	@Configuration
-	    @Order(2)
-	    public static class App2ConfigurationAdapter {
+	@Configuration
+	@Order(2)
+	public static class App2ConfigurationAdapter {
 
-	        @Bean
-	        protected SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
-	        	http
-	        	.securityMatcher("/user/**")
+		@Bean
+		protected SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
+			http
+			.securityMatcher("/user/**")
+			.csrf((csrf) -> csrf.disable())
+			.authorizeHttpRequests((requests) -> requests
+//				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
+				.requestMatchers("/**").permitAll()
+				.requestMatchers("/user/**").hasRole("USER")
+				.anyRequest().authenticated()
+			);
+			
+		http
+		.formLogin(formLogin->
+			formLogin
+				.loginPage("/user/login")
+				.defaultSuccessUrl("/",true)
+				.loginProcessingUrl("/user/login")
+				.failureUrl("/login?error=true")
+				.usernameParameter("email")
+				.passwordParameter("password")
+		);
+		
+		http
+		.logout(logout->
+			logout
+				.logoutUrl("/user/logout")
+				.invalidateHttpSession(true)
+				);
+
+		return http.build();
+	}
+		
+}
+	
+	@Configuration
+	@Order(3)
+	public static class App3ConfigurationAdapter {
+	
+		@Bean
+		protected SecurityFilterChain securityFilterChain3(HttpSecurity http) throws Exception {
+			http
+				.securityMatcher("/worker/**")
 				.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests
-					.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
-					.requestMatchers("/user/**").hasRole("USER")
+					.requestMatchers("/css/**","/img/**","/worker/login","/worker/logout").permitAll()
+					.requestMatchers("/worker/**").hasRole("WORKER")
 					.anyRequest().authenticated()
 				);
-	        	
 			http
 			.formLogin(formLogin->
 				formLogin
-					.loginPage("/user/login")
+					.loginPage("/worker/login")
+					.loginProcessingUrl("/worker/login")
 					.defaultSuccessUrl("/",true)
-					.loginProcessingUrl("/user/login")
 					.failureUrl("/login?error=true")
-					.usernameParameter("email")
+					.usernameParameter("company-name")
 					.passwordParameter("password")
 			);
-			
 			http
 			.logout(logout->
 				logout
-					.logoutUrl("/user/logout")
+					.logoutUrl("/worker/logout")
 					.invalidateHttpSession(true)
 					);
-
+	
 			return http.build();
-        }
-	        
-	}
-	   	
-	   	@Configuration
-	    @Order(3)
-	    public static class App3ConfigurationAdapter {
-		
-			@Bean
-			protected SecurityFilterChain securityFilterChain3(HttpSecurity http) throws Exception {
-				http
-					.securityMatcher("/worker/**")
-					.csrf((csrf) -> csrf.disable())
-					.authorizeHttpRequests((requests) -> requests
-						.requestMatchers("/css/**","/img/**","/worker/login","/worker/logout").permitAll()
-						.requestMatchers("/worker/**").hasRole("WORKER")
-						.anyRequest().authenticated()
-					);
-				http
-				.formLogin(formLogin->
-					formLogin
-						.loginPage("/worker/login")
-						.loginProcessingUrl("/worker/login")
-						.defaultSuccessUrl("/",true)
-						.failureUrl("/login?error=true")
-						.usernameParameter("company-name")
-						.passwordParameter("password")
-				);
-				http
-				.logout(logout->
-					logout
-						.logoutUrl("/worker/logout")
-						.invalidateHttpSession(true)
-						);
-		
-				return http.build();
-			}
-			
 		}
+		
+	}
 }
 

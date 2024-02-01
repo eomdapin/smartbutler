@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>SMARTBUTLER</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" as="style" crossorigin
+	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/admin.css">
-<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16"	href="/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/img/favicon-16x16.png">
 <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
@@ -28,7 +33,7 @@
 			<div class="content">
 				<div class="d-flex justify-content-end mb-3">
 					<button class="col-2 btn btn-primary" type="button"
-						onclick="location.href='/admin/buildings/companies/{companyId}/add'">신규등록</button>
+						onclick="location.href='/admin/buildings/companies/add'">신규등록</button>
 				</div>
 				<table class="table table-hover">
 					<thead>
@@ -37,7 +42,6 @@
 							<th scope="col">업체명</th>
 							<th scope="col">담당자명</th>
 							<th scope="col">전화번호</th>
-							<th scope="col">로그인번호</th>
 							<th scope="col">계약시작일</th>
 							<th scope="col">계약종료일</th>
 							<th scope="col">담당업무</th>
@@ -45,16 +49,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">10001</th>
-							<td>아담청소</td>
-							<td>김대리</td>
-							<td>010-5555-6666</td>
-							<td>10001</td>
-							<td>2023-04-01</td>
-							<td>2026-03-31</td>
-							<td>청소</td>
-							<td>1,500,000</td>
+						<tr th:each="company:${companies}">
+							<td th:text="${company.companyId}"></td>
+							<td th:text="${company.companyName}"></td>
+							<td th:text="${company.manager}"></td>
+							<td th:text="${company.phone}"></td>
+							<td th:text="${company.fromDate}"></td>
+							<td th:text="${company.toDate}"></td>
+							<td th:text="${company.kindName}"></td>
+							<td th:text="${company.cost}"></td>
 						</tr>
 					</tbody>
 				</table>

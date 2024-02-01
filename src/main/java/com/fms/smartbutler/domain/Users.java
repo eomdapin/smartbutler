@@ -24,7 +24,7 @@ public class Users {
 	private Long userId;
 	
 	@Column(name = "user_name")
-	private String name;
+	private String userName;
 	
 	@Column(name = "phone")
 	private String phone;

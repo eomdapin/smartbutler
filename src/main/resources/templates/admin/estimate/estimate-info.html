@@ -22,98 +22,88 @@
 				<ul class="">
 					<li><a href="#">HOME</a><span> ></span></li>
 					<li><a href="#">견적관리</a><span> ></span></li>
-					<li><a href="#">견적신청내역</a></li>
+					<li><a href="#">견적신청상세</a></li>
 				</ul>
 			</div>
 	        <div class="content form-content">
-		        <form action="">
+		        <form th:action="@{/admin/estimates/{estimateId}(estimateId = ${estimate.estimateId})}" method="post" id="estimateForm">
 		        	<div class="row align-items-center mb-4">
-			        	<div class="col-1">
-							<label for="" class="">번호</label>
+			        	<div class="col-2">
+							<label for="estimateId" class="ms-4 fw-bold">견적 번호</label>
 						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
+						<div class="col-4">
+							<input type="text" name="estimateId" th:value="${estimate?.estimateId}" class="form-control" readonly>
 						</div>
-						<div class="col-1">
-							<label for="" class="">종료호실</label>
+						<div class="col-2">
+							<label for="legDate" class="ms-4 fw-bold">작성 일자</label>
 						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="row align-items-center mb-4">
-			        	<div class="col-1">
-							<label for="" class="">작성일자</label>
-						</div>
-						<div class="col-5">
-							<input type="date" class="form-control">
-						</div>
-						<div class="col-1">
-							<label for="" class="">보증금</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
+						<div class="col-4">
+							<input type="text" name="legDate" th:value="${estimate?.regDate}" class="form-control" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
-			        	<div class="col-1">
-							<label for="" class="">신청인</label>
+			        	<div class="col-2">
+							<label for="userName" class="ms-4 fw-bold">신청인</label>
 						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
+						<div class="col-4">
+							<input type="text" name="userName" th:value="${estimate?.userName}" class="form-control" readonly>
 						</div>
-						<div class="col-1">
-							<label for="" class="">월세</label>
+						<div class="col-2">
+							<label for="buildName" class="ms-4 fw-bold">건물명</label>
 						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="row align-items-center mb-4">
-			        	<div class="col-1">
-							<label for="" class="">건물명</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-1">
-							<label for="" class="">입실일자</label>
-						</div>
-						<div class="col-5">
-							<input type="date" class="form-control">
+						<div class="col-4">
+							<input type="text" name="buildName" th:value="${estimate?.buildName}" class="form-control" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
-			        	<div class="col-1">
-							<label for="" class="">시작호실</label>
+			        	<div class="col-2">
+							<label for="period" class="ms-4 fw-bold">예상 계약기간</label>
 						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
+						<div class="col-4">
+							<input type="text" name="period" th:value="${estimate?.period}" class="form-control" readonly>
 						</div>
-						<div class="col-1">
-							<label for="" class="">계약여부</label>
+						<div class="col-2">
+							<label for="toDate" class="ms-4 fw-bold">예상 입실일자</label>
 						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
+						<div class="col-4">
+							<input type="date" name="toDate" th:value="${estimate?.toDate}" class="form-control" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
-			        	<div class="col-1">
-							<label for="" class="">반려사유</label>
+			        	<div class="col-2">
+							<label for="deposit" class="ms-4 fw-bold">보증금</label>
 						</div>
-						<div class="col-11">
-							<textarea rows="4" class="form-control"></textarea>
+						<div class="col-4">
+							<input type="text" name="deposit" th:value="${estimate?.deposit}" class="form-control" readonly>
+						</div>
+						<div class="col-2">
+							<label for="confirm" class="ms-4 fw-bold">계약 여부</label>
+						</div>
+						<div class="col-4">
+							<select name="confirm" class="form-select" >
+								<option value="1"> 신청 </option>
+								<option value="2"> 승인 </option>
+								<option value="3"> 반려 </option>
+							</select>
+							<!-- <input type="text" name="confirm" th:value="${estimate?.confirm}" class="form-control"> -->
+						</div>
+					</div>
+					<div class="row align-items-center mb-4">
+			        	<div class="col-2">
+							<label for="content" class="ms-5 fw-bold">비고</label>
+						</div>
+						<div class="col-10">
+							<textarea rows="4" name="content" class="form-control"></textarea>
 						</div>
 					</div>
 					<div class="row justify-content-end mt-3">
-						<input type="button" class="btn btn-info text-white col-1 me-3" value="승인">
-						<input type="button" class="btn btn-primary col-1 me-3" value="반려">
-						<input type="button" class="btn btn-outline-dark col-1 me-3" value="목록">
+						<button type="button" class="btn btn-primary col-auto me-3" onclick="estimateClick(); return false;">완료</button>
+						<button type="button" class="btn btn-outline-dark col-auto me-3" onclick="history.back()">목록</button>
 					</div>
 		        </form>
 	        </div>
         </div>
 	</div>
-	
+	<script src="/js/Button.js" type="text/javascript"></script>
 </body>
 </html>

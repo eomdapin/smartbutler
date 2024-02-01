@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<form action="/admin/buildings/{buildId}/companies/{companyId}/add"
+				<form action="/admin/buildings/companies/add"
 					method="post">
 					<div class="container fw-semibold">
 
@@ -37,7 +37,7 @@
 										<label for="company-id" class="col-form-label ms-3">업체번호</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="company-id" name="company-id"
+										<input type="text" id="company-id" name="companyId"
 											class="form-control">
 									</div>
 								</div>
@@ -67,7 +67,7 @@
 										<label for="company-name" class="col-form-label ms-3">업체명</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="company-name" name="company-name" class="form-control">
+										<input type="text" id="company-name" name="companyName" class="form-control">
 									</div>
 								</div>
 							</div>
@@ -77,7 +77,7 @@
 										<label for="from-date" class="col-form-label ms-3">계약시작일</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="from-date" name="from-date"
+										<input type="date" id="from-date" name="fromDate"
 											class="form-control">
 									</div>
 								</div>
@@ -102,7 +102,7 @@
 										<label for="to-date" class="col-form-label ms-3">계약종료일</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="to-date" name="to-date"
+										<input type="date" id="to-date" name="toDate"
 											class="form-control">
 									</div>
 								</div>
@@ -126,7 +126,7 @@
 										<label for="kind-name" class="col-form-label ms-3">담당업무</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="kind-name" name="kind-name"
+										<input type="text" id="kind-name" name="kindName"
 											class="form-control">
 									</div>
 								</div>
@@ -134,7 +134,7 @@
 						</div>
 
 						<div class="row align-items-center mb-4">
-							<div class="col-5">
+							<!-- <div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
 										<label for="company-id" class="col-form-label ms-3">로그인번호</label>
@@ -143,7 +143,7 @@
 										<input type="text" id="company-id" name="company-id" class="form-control">
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">

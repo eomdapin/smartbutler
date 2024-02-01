@@ -1,5 +1,7 @@
 package com.fms.smartbutler.dto;
 
+import java.time.LocalDate;
+
 /**
 * @author 엄다빈
 * @editDate 2024-01-30 ~ 2024-02-03
@@ -15,7 +17,7 @@ import lombok.Setter;
 public class CostDTO {
 	private Long costId;
 	private Long buildId;
-	private String date;
+	private LocalDate date;
 	private Long electricity;
 	private Long repair;
 	private Long upkeep;

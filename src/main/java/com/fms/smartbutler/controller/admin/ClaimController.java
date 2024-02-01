@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ClaimDTO;
 import com.fms.smartbutler.dto.ImageDTO;
+import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ClaimService;
 import com.fms.smartbutler.service.ImageService;
 import com.fms.smartbutler.vo.FileVo;
@@ -30,13 +32,18 @@ public class ClaimController {
 	
 	private final ClaimService claimService;
 	private final ImageService imageService;
+	private final BuildService buildService;
 	
 	// 민원 목록
 	@GetMapping("/{buildId}/claims")
 	public String getClaimList(@PathVariable Long buildId, Model model) {
-		List<ClaimDTO> claims = claimService.findAll();
+		List<BuildDTO> builds = buildService.findAll();
+		BuildDTO build = buildService.findById(buildId);
+		List<ClaimDTO> claims = claimService.findByBuildId(buildId);
 		
 		model.addAttribute("claims", claims);
+		model.addAttribute("builds", builds);
+		model.addAttribute("build", build);
 		
 		return "admin/claim/claim-list";
 	}
@@ -64,6 +71,6 @@ public class ClaimController {
 	public String postClaimInfo(@ModelAttribute ClaimDTO claimDTO) {
 		claimService.finishClaim(claimDTO);
 		
-		return "redirect:/admin/buildings/{buildId}/claims";
+		return "redirect:/admin/buildings/0/claims";
 	}
 }

@@ -9,10 +9,10 @@
  	   <div id="navi" class="">
 			<ul>
 				<li><a href="/admin/buildings">건물정보</a></li>
-				<li><a href="/admin/buildings/1/items">시설관리</a></li>
-				<li><a href="/admin/buildings/1/">임대관리</a></li>
-				<li><a href="/admin/buildings/1/">견적관리</a></li>
-				<li><a href="/admin/buildings/1/claims">민원관리</a></li>
+				<li><a href="/admin/buildings/0/items">시설관리</a></li>
+				<li><a href="/admin/buildings/1/residents/total">임대관리</a></li>
+				<li><a href="/admin/buildings/companies">계약업체</a></li>
+				<li><a href="/admin/buildings/0/claims">민원관리</a></li>
 				<li><a href="/admin/users">회원정보</a></li>
 			</ul>
 		</div>
@@ -50,6 +50,22 @@
 				<div th:each="images: ${images}" class="modal-content">
 					<img alt="민원이미지" th:src="@{/web-img/}+${images?.name}">
 				</div>
+			</div>
+		</div>
+	</div>
+	<div th:fragment="buildSearch">
+		<div class="row g-3 justify-content-center align-items-center mb-4">
+			<div class="col-1 mb-3">
+				<label for="buildId" class="fs-5 fw-bold">건물명</label>
+			</div>
+			<div class="col-3 mb-3">
+				<form action="" id="infoForm">
+					<select class="form-select" id="buildId" name="buildId" onChange="changeBuild()">
+						<!-- <option value="0">전체 건물 보기</option> -->
+						<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
+							th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
+					</select>
+				</form>
 			</div>
 		</div>
 	</div>
