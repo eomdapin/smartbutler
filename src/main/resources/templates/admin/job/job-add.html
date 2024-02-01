@@ -34,18 +34,23 @@
 						<div class="col-5"><input type="text" name="askDate" th:value="${#dates.format(#dates.createToday(), 'yyyy-MM-dd')}" class="form-control" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
-						<div class="col-1"><label for="itemName" class="col-form-label fw-bold">시설명</label></div>
+						<div class="col-1"><label for="buildName" class="col-form-label fw-bold">건물명</label></div>
 						<div class="col-5">
-							<select name="itemName" class="form-select">
-								<option th:each="item : ${items}" th:value="${item.itemName}" th:text="${item.itemName}"></option>
+							<select class="form-select" id="buildId" name="buildId" onChange="changeBuildName()">
+								<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
+									th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
 							</select>
 						</div>
-						<div class="col-1"><label for="companyName" class="col-form-label fw-bold">점검업체</label></div>
-						<div class="col-5"><input type="text" name="" class="form-control"></div>
+						<div class="col-1"><label for="itemName" class="col-form-label fw-bold">시설명</label></div>
+						<div class="col-5">
+							<select name="itemName" id="itemName" class="form-select">
+								<option th:each="item : ${items}" th:if="${item.buildId == build.buildId}" th:value="${item.itemName}" th:text="${item.itemName}">
+							</select>
+						</div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
-						<div class="col-1"><label for="buildName" class="col-form-label fw-bold">건물명</label></div>
-						<div class="col-5"><input type="text" name="buildName" th:value="${build.buildName}" class="form-control" readonly></div>
+						<div class="col-1"><label for="companyName" class="col-form-label fw-bold">점검업체</label></div>
+						<div class="col-5"><input type="text" name="" class="form-control"></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label for="title" class="col-form-label fw-bold">제목</label></div>
@@ -63,5 +68,21 @@
 			</div>
 		</div>
 	</div>
+	<script th:inline="javascript" type="text/javascript">
+	function changeBuildName() {
+		var selectedBuildId = document.getElementById("buildId").value;
+		var items = document.getElementById("itemName");
+		var itemsModel = /*[[${items}]]*/'';
+		items.innerHTML = "";
+		itemsModel.forEach(function(item) {
+			if(selectedBuildId == item.buildId) {
+				var option = document.createElement("option");
+				option.value = item.itemName;
+				option.text = item.itemName;
+				items.appendChild(option);
+			}
+		});
+	}
+	</script>
 </body>
 </html>

@@ -82,11 +82,13 @@ public class JobController {
 	@GetMapping("/{buildId}/jobs/add")
 	public String getJobAdd(@PathVariable Long buildId, Model model) {
 		BuildDTO build = buildService.findById(buildId);
-		List<ItemDTO> items = itemService.findByBuildId(buildId);
+		List<ItemDTO> items = itemService.findAll();
+		List<BuildDTO> builds = buildService.findAll();
 		
 		model.addAttribute("build", build);
 		model.addAttribute("items", items);
-		
+		model.addAttribute("builds", builds);
+
 		return "admin/job/job-add";
 	}
 	
