@@ -47,7 +47,7 @@ create table if not exists resident (
     monthly bigint not null COMMENT '월세',
     foreign key(build_id) references build(build_id) on delete cascade,
     foreign key(user_id) references users(user_id) on delete cascade,
-    primary key(resident_id, build_id, user_id)
+    primary key(resident_id)
 );
 
 # 민원
@@ -73,7 +73,7 @@ create table if not exists claim (
 drop table if exists company_kind;
 create table if not exists company_kind (
 	kind_type varchar(20) not null COMMENT '담당 업무 코드',
-    kind_name varchar(100) not null COMMENT '담당 업무명', 
+    kind_name varchar(100) not null COMMENT '담당 업무명',
     primary key(kind_type)
 );
 
@@ -82,7 +82,7 @@ drop table if exists company;
 create table if not exists company (
 	company_id bigint not null auto_increment COMMENT '업체 고유 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
-    kind_type varchar(20) not null COMMENT '담당 업무 코드', 
+    kind_type varchar(20) not null COMMENT '담당 업무 코드',
     company_name varchar(100) not null COMMENT '업체명',
     manager varchar(30) not null COMMENT '담당자명',
     phone char(13) not null COMMENT '전화번호',
@@ -90,10 +90,10 @@ create table if not exists company (
     to_date date not null COMMENT '계약 종료일',
     cost bigint not null COMMENT '계약 비용',
     pw text not null COMMENT '비밀번호',
-    role text not null COMMENT '권한', 
+    role text not null COMMENT '권한',
     foreign key(build_id) references build(build_id) on delete cascade,
     foreign key(kind_type) references company_kind(kind_type) on update cascade,
-    primary key(company_id) 
+    primary key(company_id)
 );
 
 # 견적
@@ -104,7 +104,7 @@ create table if not exists estimate (
     estimate_id bigint not null auto_increment COMMENT '견적 고유 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
     user_id bigint not null COMMENT '회원 고유 번호',
-    reg_date date not null COMMENT '견적 등록 시간',
+    reg_date varchar(30) not null COMMENT '견적 등록 시간',
     deposit bigint not null COMMENT '보증금',
     period varchar(50) not null COMMENT '계약기간',
     to_date date not null COMMENT '입실 일자',
@@ -128,6 +128,7 @@ create table if not exists cost (
     upkeep bigint not null COMMENT '유지관리비',
     consignment bigint not null COMMENT '전문위탁비',
     send smallint not null COMMENT '전송 여부',
+    resident_cnt int null COMMENT '전송 당시 입주 세대 수',
     foreign key(build_id) references build(build_id) on delete cascade,
     primary key(cost_id, build_id)
 );
@@ -219,7 +220,6 @@ create table if not exists admin (
 
 #######################################################
 insert into admin values(null, 'admin', '{noop}1111', 'ADMIN');
-#######################################################
 
 #######################################################
 insert into users(user_name, phone, email, pw, status, role)
@@ -233,13 +233,13 @@ values('빅보검', '010-2222-2222', 'mail2@mail.com', '{noop}1111', '1', 'USER'
 
 ###########################################################################
 insert into build(build_name, address, floor, room, area, com_date)
-values('신촌점', '서울 서대문구 연세로 8-1', '5', '10', '100', '2020-01-01');
+values('신촌점', '서울 서대문구 연세로 8-1', '5', '10', '100000', '2020-01-01');
 insert into build(build_name, address, floor, room, area, com_date)
-values('서울역점', '서울 용산구 한강대로 405', '10', '15', '80', '2020-01-01');
+values('서울역점', '서울 용산구 한강대로 405', '10', '15', '80000', '2020-01-01');
 insert into build(build_name, address, floor, room, area, com_date)
-values('홍대입구점', '서울 마포구 양화로 지하 160', '8', '5', '120', '2020-01-01');
+values('홍대입구점', '서울 마포구 양화로 지하 160', '8', '5', '120000', '2020-01-01');
 insert into build(build_name, address, floor, room, area, com_date)
-values('인사동점', '서울 종로구 율곡로 지하 62', '3', '5', '70', '2020-01-01');
+values('인사동점', '서울 종로구 율곡로 지하 62', '3', '5', '70000', '2020-01-01');
 
 #########################################################################
 insert into item_kind(kind_type, kind_name)
@@ -255,6 +255,7 @@ values('Toilet', '화장실');
 insert into item_kind(kind_type, kind_name)
 values('Hydrant', '소화전');
 
+#########################################################################
 insert into item(item_id, build_id, kind_type, item_name, location, from_date, status, check_date, check_cycle)
 values('1', '1', 'E1', '엘레베이터 1호기', '5층', '2020-01-01', '1', '2020-12-31', '3개월');
 insert into item(item_id, build_id, kind_type, item_name, location, from_date, status, check_date, check_cycle)
@@ -264,16 +265,18 @@ values('3', '3', 'E3', '엘레베이터 3호기', '8층', '2020-01-01', '1', '20
 
 ######################################################################
 insert into cost(build_id, cost_date, electricity, repair, upkeep, consignment, send) values
-(1, '2024-01-01', 10000, 20000, 30000, 20000, 1),
-(1, '2024-02-01', 20000, 30000, 40000, 70000, 1),
-(2, '2024-01-01', 30000, 40000, 50000, 80000, 2),
-(3, '2024-01-01', 40000, 50000, 60000, 10000, 1),
-(4, '2024-01-01', 50000, 60000, 70000, 20000, 1);
+(1, '2024-01-01', 1000000, 2000000, 3000000, 2000000, 1),
+(1, '2024-02-01', 2000000, 3000000, 4000000, 7000000, 1),
+(1, '2023-02-01', 2000000, 3000000, 4000000, 7000000, 1),
+(1, '2024-04-01', 3000000, 3201230, 1231230, 7972910, 1),
+(1, '2024-03-01', 2000000, 3000000, 4000000, 7000000, 1),
+(2, '2024-01-01', 3000000, 4000000, 5000000, 8000000, 2),
+(3, '2024-01-01', 4000000, 5000000, 6000000, 1000000, 1),
+(4, '2024-01-01', 5000000, 6000000, 7000000, 2000000, 1);
 
 #######################################################
 insert into company_kind values('1', '공조');
 insert into company values('1', '1', '1', '한일공조', '지디', '010-1111-2222', '2024-01-01', '2024-12-12', '1000', '{noop}1111', 'WORKER');
-#######################################################
 
 select * from users;	
 select * from build;
@@ -281,4 +284,5 @@ select * from item;
 select * from item_kind;
 select * from image;
 select * from image_category;
-
+select * from cost;
+select * from admin;
