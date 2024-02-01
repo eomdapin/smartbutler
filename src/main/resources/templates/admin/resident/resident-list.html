@@ -47,8 +47,8 @@
 						<tr th:each = "residents: ${residents}">
 							<td>[[${residents?.buildName}]]</td>
 							<td>[[${residents?.residentId}]]</td>
-							<td>[[${residents?.userName}]]</td>
-							<td>[[${residents?.phone}]]</td>
+							<td>[[${residents?.users?.userName}]]</td>
+							<td>[[${residents?.users?.phone}]]</td>
 							<td>[[${residents?.fromDate}]]</td>
 							<td>[[${residents?.toDate}]]</td>
 							<td>[[${residents?.deposit}]]</td>

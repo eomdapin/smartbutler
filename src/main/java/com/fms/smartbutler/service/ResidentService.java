@@ -31,6 +31,10 @@ public class ResidentService {
 		 log.info("residentRepository.findAll().get(0).getUsers().getUserName() ::: {}", residentRepository.findAll().get(0).getUsers().getUserName());
 		
 		return residentRepository.findAll().stream()
-				.map(resident -> modelMapper.map(resident, ResidentDTO.class)).toList();
+				.map(resident -> {
+					ResidentDTO residentDTO = modelMapper.map(resident, ResidentDTO.class);
+					residentDTO.setUsers(resident.getUsers());
+					return residentDTO;
+				}).toList();
 	}
 }

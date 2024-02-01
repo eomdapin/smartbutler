@@ -31,7 +31,7 @@ public class ResidentController {
 	public String getResidentList(@PathVariable Long buildId, Model model) {
 		List<ResidentDTO> residents = residentService.findAll();
 		
-		log.info(">>>> {}", residents.get(0).getUserName());
+		log.info(">>>> {}", residents.get(0).getUsers().getUserName());
 		
 		model.addAttribute("residents", residents);
 		model.addAttribute("buildId", buildId);

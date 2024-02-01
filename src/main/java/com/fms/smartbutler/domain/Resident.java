@@ -21,11 +21,11 @@ public class Resident {
 	@Id
 	private Long residentId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "build_id")
 	private Build build;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
 	private Users users;
 	

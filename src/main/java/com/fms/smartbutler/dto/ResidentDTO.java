@@ -1,5 +1,7 @@
 package com.fms.smartbutler.dto;
 
+import com.fms.smartbutler.domain.Users;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +21,5 @@ public class ResidentDTO {
 	private String toDate;
 	private Long deposit;
 	private Long monthly;
+	private Users users;
 }
