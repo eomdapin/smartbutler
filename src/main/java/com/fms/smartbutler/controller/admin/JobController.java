@@ -2,6 +2,9 @@ package com.fms.smartbutler.controller.admin;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,10 +14,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fms.smartbutler.domain.Job;
+import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ImageDTO;
+import com.fms.smartbutler.dto.ItemDTO;
 import com.fms.smartbutler.dto.JobDTO;
+import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ImageService;
+import com.fms.smartbutler.service.ItemService;
 import com.fms.smartbutler.service.JobService;
 import com.fms.smartbutler.vo.FileVo;
 
@@ -27,13 +36,23 @@ public class JobController {
 	
 	private final JobService jobService;
 	private final ImageService imageService;
+	private final BuildService buildService;
+	private final ItemService itemService;
 	
 	// 작업 목록
 	@GetMapping("/{buildId}/jobs")
-	public String getJobList(@PathVariable Long buildId, Model model) {
-		List<JobDTO> jobs = jobService.findAll();
+	public String getJobList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size, Model model) {
+		List<BuildDTO> builds = buildService.findAll();
+		BuildDTO build = buildService.findById(buildId);
+		List<JobDTO> jobs = jobService.findByBuildId(buildId);
 		
-		model.addAttribute("jobs", jobs);
+		Pageable pageable = PageRequest.of(page, size);
+		Page<JobDTO> job = jobService.findAll(pageable);
+		
+		model.addAttribute("jobs", job);
+		model.addAttribute("builds", builds);
+		model.addAttribute("build", build);
 		
 		return "admin/job/job-list";
 	}
@@ -59,10 +78,11 @@ public class JobController {
 	// 작업 등록 폼
 	@GetMapping("/{buildId}/jobs/add")
 	public String getJobAdd(@PathVariable Long buildId, Model model) {
-		JobDTO job = new JobDTO();
+		BuildDTO build = buildService.findById(buildId);
+		List<ItemDTO> items = itemService.findByBuildId(buildId);
 		
-		model.addAttribute("job", job);
-		model.addAttribute("buildId", buildId);
+		model.addAttribute("build", build);
+		model.addAttribute("items", items);
 		
 		return "admin/job/job-add";
 	}

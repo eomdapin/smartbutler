@@ -5,6 +5,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Job;
@@ -38,6 +42,31 @@ public class JobService {
 	
 	public List<JobDTO> findAll() {
 		List<Job> jobList = jobRepository.findAll();
+		List<JobDTO> jobDTOList = jobList
+									.stream()
+									.map(j -> modelMapper.map(j, JobDTO.class))
+									.collect(Collectors.toList());
+		
+		return jobDTOList;
+	}
+	
+	public Page<JobDTO> findAll(Pageable pageable) {
+		Pageable reversePageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("jobId").descending());
+		Page<Job> jobPage = jobRepository.findAllByOrderByJobIdDesc(reversePageable);
+		Page<JobDTO> jobDTOPage = jobPage.map(j -> modelMapper.map(j, JobDTO.class));
+		
+		return jobDTOPage;
+	}
+	
+	public List<JobDTO> findByBuildId(Long buildId) {
+		List<Job> jobList;
+		
+		if(buildId == 0) {
+			jobList = jobRepository.findAll();
+		} else {
+			jobList = jobRepository.findByBuild_BuildId(buildId);
+		}
+		
 		List<JobDTO> jobDTOList = jobList
 									.stream()
 									.map(j -> modelMapper.map(j, JobDTO.class))
