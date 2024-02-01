@@ -51,7 +51,7 @@ public class ResidentController {
 	// 입주 등록
 	@PostMapping("/{buildId}/residents/add")
 	public String postResidentInfo() {
-		return "redirect:/admin/buildings{buildId}/residents";
+		return "redirect:/admin/buildings/{buildId}/residents";
 	}
 	
 	// 입주 상세

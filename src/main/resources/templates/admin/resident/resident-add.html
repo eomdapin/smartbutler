@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<form th:action="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}" method="post">
+				<form id="addForm" th:action="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}" method="post">
                     <div class="row">
                         <div class="col-1 mb-3"><label for="userName" class="col-form-label ms-3">고객명</label></div>
                         <div class="col-4 mb-3"><input type="text" name="userName" class="form-control" th:value="${resident?.userName}" readonly></div>
