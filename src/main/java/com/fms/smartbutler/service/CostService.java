@@ -58,7 +58,7 @@ public class CostService {
 	}
 	
 	public List<CostDTO> findByBuildId(Long buildId) {
-		return costRepository.findByBuild_BuildId(buildId).stream()
+		return costRepository.findByBuild_BuildIdOrderByDateDesc(buildId).stream()
 				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
 	}
 }
