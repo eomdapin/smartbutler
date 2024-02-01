@@ -36,6 +36,7 @@ public class CostController {
 	// 관리비 목록
 	@GetMapping("/{buildId}/costs")
 	public String getCostList(@RequestParam(required = false) Long buildId, Model model) {
+		buildId = buildId == null ? 1 :buildId;
 		List<CostDTO> costs = costService.findByBuildId(buildId);
 		List<BuildDTO> builds = buildService.findAll();
 		BuildDTO build = buildService.findById(buildId);
