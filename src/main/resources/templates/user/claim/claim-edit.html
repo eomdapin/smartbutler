@@ -17,7 +17,7 @@
 	<div th:replace="~{common/fragments :: userHeader}"></div>
 	<div class="container" style="float: none;">
 		<div class="content form-content">
-			<h1 class="text-center mt-4">민원 상세</h1>
+			<h1 class="text-center mt-4">민원 수정</h1>
 			<form th:action="@{/user/claims/{claimId}/edit(claimId = ${claim.claimId})}" th:method="put" id="editForm" enctype="multipart/form-data">
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>

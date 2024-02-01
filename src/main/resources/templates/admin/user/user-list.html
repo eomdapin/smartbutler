@@ -41,7 +41,7 @@
 						<tr th:each="user: ${user}">
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.userId}]]</a></td>
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">건물</a></td>
-							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.name}]]</a></td>
+							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.userName}]]</a></td>
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.phone}]]</a></td>
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.email}]]</a></td>
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.status}]]</a></td>

@@ -1,6 +1,8 @@
 package com.fms.smartbutler.service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 
@@ -33,8 +35,40 @@ public class CostService {
 				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
 	}
 	
-	public void save(CostDTO costDTO) {
+	public boolean save(CostDTO costDTO) {
+		Optional<Cost> findCost = costRepository.findByBuild_BuildIdAndDate(costDTO.getBuildId(), costDTO.getDate());
+		
+		if(findCost.isEmpty()) {
+			Cost cost = modelMapper.map(costDTO, Cost.class);
+			costRepository.save(cost);
+		} else {
+			costDTO.setCostId(findCost.get().getCostId());
+			return true;
+		}
+		return false;
+	}
+	
+	public void updateCost(CostDTO costDTO) {
 		Cost cost = modelMapper.map(costDTO, Cost.class);
 		costRepository.save(cost);
+	}
+	
+	public CostDTO findById(Long costId) {
+		Cost cost = costRepository.findById(costId).orElseGet(Cost::new);
+		return modelMapper.map(cost, CostDTO.class); 
+	}
+	
+	public List<CostDTO> findByBuildId(Long buildId) {
+		return costRepository.findByBuild_BuildIdOrderByDateDesc(buildId).stream()
+				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
+	}
+	
+	public CostDTO findByBuildIdAndDate(Long buildId, LocalDate date) {
+		Optional<Cost> cost = costRepository.findByBuild_BuildIdAndDate(buildId, date);
+		if(cost.isEmpty()) {
+			return null;
+		} else {
+			return modelMapper.map(cost.get(), CostDTO.class); 
+		}
 	}
 }

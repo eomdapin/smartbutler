@@ -15,21 +15,8 @@
 </head>
 <body>
     <div id="wrap">
-        <header class="d-flex align-items-center">
-            <div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
-            <div><h1><a href="/" class="logo-text">SMARTBUTLER</a></h1></div>
-        </header>
-        <div id="navi" class="">
-            <ul>
-                <li><a href="#">건물정보</a></li>
-                <li><a href="#">시설관리</a></li>
-                <li><a href="#">임대관리</a></li>
-                <li><a href="#">견적관리</a></li>
-                <li><a href="#">계약업체</a></li>
-                <li><a href="#">커뮤니티</a></li>
-                <li><a href="#">회원정보</a></li>
-            </ul>
-        </div>
+        <div th:replace="~{common/fragments :: adminHeader}"></div>
+		<div th:replace="~{common/fragments :: adminSidebar}"></div>
         <div class="container">
             <div class="bread-crum">
                 <ul class="">
@@ -38,37 +25,72 @@
                     <li><a href="#">관리비 상세</a></li>
                 </ul>
             </div>
-            <div class="content form-content">
-               	<form th:action="@{/admin/buildings/{buildId}/costs/add(buildId = ${buildId})}" method="POST">
-                   <div class="row">
-                       <div class="col-auto mb-3"><label for="buildName" class="form-label">건물명</label></div>
-                       <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" th:value="${build?.buildName}" readonly></div>
-                       
-                       <div class="col-auto mb-3"><label for="upkeep" class="form-label">유지관리비</label></div>
-                       <div class="col-4 mb-3"><input type="text" name="upkeep" class="form-control" th:value="${costDTO?.upkeep}" required></div>
-                   </div>
-                   <div class="row">
-                       <div class="col-auto mb-3"><label for="electricity" class="form-label">전기료</label></div>
-                       <div class="col-4 mb-3"><input type="text" name="electricity" class="form-control" th:value="${costDTO?.electricity}" required></div>
-                       
-                       <div class="col-auto mb-3"><label for="consignment" class="form-label">전문위탁비</label></div>
-                       <div class="col-4 mb-3"><input type="text" name="consignment" class="form-control" th:value="${costDTO?.consignment}" required></div>
-                   </div>
-                   <div class="row">
-                       <div class="col-auto mb-3"><label for="repair" class="form-label">수선비</label></div>
-                       <div class="col-4 mb-3"><input type="text" name="repair" class="form-control" th:value="${costDTO?.repair}" required></div>
-                       
-                       <div class="col-auto mb-3"><label for="total" class="form-label">합계금액　</label></div>
-                       <div class="col-4 mb-3"><input type="text" name="total" class="form-control" required></div>
-                   </div>
-                   <div class="text-end pt-3 row">
-	                   <div class="col-auto"><input type="submit" class="btn btn-lg btn-primary" value="저장"></div>
-	                   <div class="col-auto"><a onClick="history.back()" class="btn btn-lg btn-outline-dark">목록</a></div>
-                   </div>
-               </form>
+            <div class="content form-content" th:with="total = ${costDTO?.electricity} + ${costDTO?.repair} + ${costDTO?.upkeep} + ${costDTO?.consignment}">
+				<form id="costForm" th:action="@{/admin/buildings/{buildId}/costs/{costId}/send(buildId = ${buildId}, costId = ${costId})}" method="post">
+					<div class="row">
+					    <div class="col-2 mb-3"><label for="buildName" class="form-label">건물명</label></div>
+					    <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" onChange="sumCost()" th:value="${build?.buildName}" readonly></div>
+					    
+					    <div class="col-2 mb-3"><label for="upkeep" class="form-label">유지관리비</label></div>
+					    <div class="col-4 mb-3"><input type="number" id="upkeep" name="upkeep" class="form-control" th:value="${costDTO?.upkeep}" readonly></div>
+					</div>
+					<div class="row">
+					    <div class="col-2 mb-3"><label for="electricity" class="form-label">전기료</label></div>
+					    <div class="col-4 mb-3"><input type="number" id="electricity" name="electricity" class="form-control" th:value="${costDTO?.electricity}" readonly></div>
+					    
+					    <div class="col-2 mb-3"><label for="consignment" class="form-label">전문위탁비</label></div>
+					    <div class="col-4 mb-3"><input type="number" id="consignment" name="consignment" class="form-control" th:value="${costDTO?.consignment}" readonly></div>
+					</div>
+					<div class="row">
+						<div class="col-2 mb-3"><label for="repair" class="form-label">수선비</label></div>
+						<div class="col-4 mb-3"><input type="number" id="repair" name="repair" class="form-control" th:value="${costDTO?.repair}" readonly></div>
+						
+						<div class="col-2 mb-3"><label for="date" class="form-label">관리비개월</label></div>
+						<div class="col-4 mb-3"><input type="date" name="date" class="form-control" onChange="sumCost()" th:value="${costDTO?.date}" readonly></div>
+					</div>
+					<div class="row">
+					    <div class="col-2 mb-3"><label for="total" class="form-label">합계금액</label></div>
+					    <div class="col-4 mb-3"><input type="text" id="total" name="total" class="form-control" th:value="${total}" disabled></div>
+					    <input type="hidden" name="send" class="form-control" value="2">
+					</div>
+					<th:block th:if="${costDTO?.send == 1}">
+						<div class="pt-3 row">
+							<div class="col-auto"><input type="button" th:onclick="|location.href='@{/admin/buildings/{buildId}/costs/{costId}/edit(buildId = ${buildId}, costId = ${costId})}'|" class="btn btn-lg btn-primary" value="수정"></div>
+							<div class="col-auto"><input type="button" class="btn btn-lg btn-primary" onClick="sendCost()" value="전송"></div>
+							<div class="col-auto"><a onClick="history.back()" class="btn btn-lg btn-outline-dark">목록</a></div>
+						</div>
+					</th:block>
+					<th:block th:unless="${costDTO?.send == 1}"
+						th:with="roomSize = ${build?.area} / (${build?.floor} * ${build?.room}),
+								avgCost = (${roomSize} * 30)">
+						<div class="row my-3">
+							<h2>세대 계산 금액</h2>
+						</div>
+						<div class="row my-3">
+							<h5>[[${#strings.substring(costDTO?.date, 0, 7)}]]월 기준 입주 세대 : 30 세대</h5>
+						</div>
+						<div class="row">
+						    <div class="col-2 mb-3"><label for="" class="form-label">전기료</label></div>
+						    <div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatDecimal((costDTO?.electricity / avgCost / 30) * roomSize * 30, 1, 2)}" disabled></div>
+						    
+						    <div class="col-2 mb-3"><label for="" class="form-label">유지관리비</label></div>
+						    <div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatDecimal((costDTO?.upkeep / avgCost / 30) * roomSize * 30, 1, 2)}" disabled></div>
+						</div>
+						<div class="row">
+							<div class="col-2 mb-3"><label for="" class="form-label">수선비</label></div>
+							<div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatDecimal((costDTO?.repair / avgCost / 30) * roomSize * 30, 1, 2)}" disabled></div>
+						    
+						    <div class="col-2 mb-3"><label for="" class="form-label">전문위탁비</label></div>
+						    <div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatDecimal((costDTO?.consignment / avgCost / 30) * roomSize * 30, 1, 2)}" disabled></div>
+						</div>
+						<div class="row">
+							<div class="col-auto"><a onClick="history.back()" class="btn btn-lg btn-outline-dark">목록</a></div>
+						</div>
+					</th:block>
+				</form>
             </div>
         </div>
     </div>
-    <script src="/js/File.js" type="text/javascript"></script>
+    <script src="/js/Cost.js" type="text/javascript"></script>
 </body>
 </html>

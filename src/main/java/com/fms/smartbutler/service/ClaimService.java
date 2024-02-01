@@ -54,10 +54,8 @@ public class ClaimService {
 		List<Claim> claimList = claimRepository.findAll();
 		List<ClaimDTO> claimDTOList = claimList
 										.stream()
-										.map(c -> 
-											modelMapper
-											.map(c, ClaimDTO.class))
-											.collect(Collectors.toList());
+										.map(c -> modelMapper.map(c, ClaimDTO.class))
+										.collect(Collectors.toList());
 		
 		return claimDTOList;
 	}
@@ -75,5 +73,22 @@ public class ClaimService {
 		Claim claim = modelMapper.map(claimDTO, Claim.class);
 		
 		claimRepository.delete(claim);
+	}
+	
+	public List<ClaimDTO> findByBuildId(Long buildId) {
+		List<Claim> claimList;
+		
+		if(buildId == 0) {
+			claimList = claimRepository.findAll();
+		} else {
+			claimList = claimRepository.findByBuild_BuildId(buildId);
+		}
+		
+		List<ClaimDTO> claimDTOList = claimList
+										.stream()
+										.map(c -> modelMapper.map(c, ClaimDTO.class))
+										.collect(Collectors.toList());
+		
+		return claimDTOList;
 	}
 }
