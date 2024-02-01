@@ -54,7 +54,7 @@ public class CompanyController {
 	}
 
 	// 계약 업체 등록 폼
-	@GetMapping("/companies/add")
+	@GetMapping("/companies//add")
 	public String getCompanyInfoForm() {
 		return "admin/company/add-company-info";
 	}
