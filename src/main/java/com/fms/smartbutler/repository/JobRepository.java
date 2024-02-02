@@ -8,5 +8,6 @@ import com.fms.smartbutler.domain.Job;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
 	Page<Job> findByBuild_BuildIdOrderByJobIdDesc(Long buildId, Pageable pageable);
+	Page<Job> findByCompany_CompanyIdOrderByJobIdDesc(Long companyId, Pageable pageable);
 	Page<Job> findAllByOrderByJobIdDesc(Pageable pageable);
 }

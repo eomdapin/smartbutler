@@ -57,7 +57,7 @@
             				<li th:class="${list.first} ? 'disabled'" class="page-item">
                 				<a th:href="@{/admin/buildings/{buildId}/claims(buildId = ${buildId}, page = ${list.number - 1})}" class="page-link">&laquo;</a>
             				</li>
-            				<li th:each="page : ${#numbers.sequence(startPage, endPage)}" class="page-item" th:class="${page == list.number + 1} ? 'active'" >
+            				<li th:each="page : ${#numbers.sequence(1, list.totalPages)}" th:if="${page >= list.number - 1 and page <= list.number + 3}" class="page-item" th:class="${page == list.number + 1} ? 'active'" >
  								<a th:href="@{/admin/buildings/{buildId}/claims(buildId = ${buildId}, page = ${page - 1})}" th:text="${page}" class="page-link"></a>
  							</li>
             				<li th:class="${list.last} ? 'disabled'" class="page-item" >

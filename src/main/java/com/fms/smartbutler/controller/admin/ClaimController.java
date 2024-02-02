@@ -43,16 +43,11 @@ public class ClaimController {
 	@GetMapping("/{buildId}/claims")
 	public String getClaimList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size, Model model) {
-		
 		Pageable pageable = PageRequest.of(page, size, Sort.by("claimId").descending());
 		List<BuildDTO> builds = buildService.findAll();
 		BuildDTO build = buildService.findById(buildId);
 		Page<ClaimDTO> claims = claimService.findByBuildId(buildId, pageable);
-		int startPage = Math.max(1, claims.getPageable().getPageNumber() - 3);
-        int endPage = Math.min(claims.getPageable().getPageNumber() + 3, claims.getTotalPages());
 
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
 		model.addAttribute("list", claims);
 		model.addAttribute("builds", builds);
 		model.addAttribute("build", build);

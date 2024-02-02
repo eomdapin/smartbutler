@@ -23,32 +23,43 @@
 					<thead>
 						<tr>
 							<th scope="col">작업번호</th>
-							<th scope="col" class="col-md-6">제목</th>
-							<th scope="col">요청날짜</th>
-							<th scope="col">시설명</th>
+							<th scope="col" class="col-md-4">제목</th>
 							<th scope="col">건물명</th>
-							<th scope="col">상태</th>
+							<th scope="col">시설명</th>
+							<th scope="col">점검업체</th>
+							<th scope="col">요청날짜</th>
+							<th scope="col">처리날짜</th>
+							<th scope="col">처리상태</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>10010</td>
-							<td><a href="/worker/jobs/1">문 안 닫힘</a></td>
-							<td>2024-01-15</td>
-							<td>엘리베이터1호기</td>
-							<td>강남1호점</td>
-							<td>완료</td>
-						</tr>
-						<tr th:each="job: ${job}">
+						<tr th:each="job: ${list}">
 							<td>[[${job.jobId}]]</td>
 							<td><a th:href="@{/worker/jobs/{jobId}(jobId = ${job.jobId})}">[[${job.title}]]</a></td>
-							<td>[[${job.askDate}]]</td>
-							<td>[[${job.itemName}]]</td>
 							<td>[[${job.buildName}]]</td>
-							<td>[[${job.status}]]</td>
+							<td>[[${job.itemName}]]</td>
+							<td>job.companyName</td>
+							<td>[[${job.askDate}]]</td>
+							<td>[[${job.finDate}]]</td>
+							<td th:text="${job.status == 1} ? '신청' : '완료'"></td>
 						</tr>
 					</tbody>
 				</table>
+				<div class="mt-4" th:if="${endPage != 0}">
+					<nav>
+      					<ul class="pagination justify-content-center">
+            				<li th:class="${list.first} ? 'disabled'" class="page-item">
+                				<a th:href="@{/worker/jobs(page = ${list.number - 1})}" class="page-link">&laquo;</a>
+            				</li>
+            				<li th:each="page : ${#numbers.sequence(1, list.totalPages)}" th:if="${page >= list.number - 1 and page <= list.number + 3}" class="page-item" th:class="${page == list.number + 1} ? 'active'" >
+ 								<a th:href="@{/worker/jobs(page = ${page - 1})}" th:text="${page}" class="page-link"></a>
+ 							</li>
+            				<li th:class="${list.last} ? 'disabled'" class="page-item" >
+                				<a th:href="@{/worker/jobs(page = ${list.number + 1})}" class="page-link">&raquo;</a>
+            				</li>
+        				</ul>
+    				</nav>
+				</div>
 			</div>
 		</div>
 	</div>

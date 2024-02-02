@@ -21,3 +21,9 @@ function estimateClick() {
 		document.getElementById("estimateForm").submit();
 	}
 }
+
+function reportClick() {
+		if(confirm("작업을 보고하시겠습니까?")) {
+		document.getElementById("reportForm").submit();
+	}
+}

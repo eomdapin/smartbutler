@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content form-content">
-				<form th:action="@{/admin/buildings/{buildId}/jobs/add(buildId = ${build.buildId})}" method="post" enctype="multipart/form-data">
+				<form th:action="@{/admin/buildings/{buildId}/jobs/add(buildId = ${buildId})}" method="post" enctype="multipart/form-data">
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="jobId" class="col-form-label fw-bold">요청번호</label></div>
 						<div class="col-5"><input type="text" name="jobId" class="form-control" readonly></div>

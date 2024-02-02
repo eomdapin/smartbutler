@@ -68,6 +68,10 @@
 						</div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
+						<div class="col-1"><label class="col-form-label fw-bold">처리날짜</label></div>
+						<div class="col-5"><input type="text" th:value="${job?.finDate}" class="form-control" readonly></div>
+					</div>
+					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label class="col-form-label fw-bold">처리내용</label></div>
 						<div class="col m-0"><textarea rows="3" th:text="${job?.reportContent}" class="form-control" readonly></textarea></div>
 					</div>

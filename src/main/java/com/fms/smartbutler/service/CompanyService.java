@@ -3,7 +3,7 @@ package com.fms.smartbutler.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,12 +11,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Company;
+import com.fms.smartbutler.dto.CompanyDTO;
 import com.fms.smartbutler.repository.CompanyRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CompanyService implements UserDetailsService {
 
-	@Autowired private CompanyRepository companyRepository;
+	private final CompanyRepository companyRepository;
+	private final ModelMapper modelMapper;
+	
 	@Override
 	public UserDetails loadUserByUsername(String companyName) throws UsernameNotFoundException {
 			Company company = companyRepository.findByCompanyName(companyName);
@@ -48,6 +54,12 @@ public class CompanyService implements UserDetailsService {
 	public void deleteById(Long companyId) {
 		companyRepository.deleteById(companyId);
 	}
+	
+	public Optional<CompanyDTO> findByName(String companyName) {
+		Company company = companyRepository.findByCompanyName(companyName);
+		CompanyDTO companyDTO = modelMapper.map(company, CompanyDTO.class);
 		
+		return Optional.ofNullable(companyDTO);
+	}
 }
 	

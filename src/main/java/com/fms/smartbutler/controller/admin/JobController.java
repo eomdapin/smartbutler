@@ -47,11 +47,7 @@ public class JobController {
 		List<BuildDTO> builds = buildService.findAll();
 		BuildDTO build = buildService.findById(buildId);
 		Page<JobDTO> jobs = jobService.findByBuildId(buildId, pageable);
-        int startPage = Math.max(1, jobs.getPageable().getPageNumber() - 3);
-        int endPage = Math.min(jobs.getPageable().getPageNumber() + 3, jobs.getTotalPages());
  
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
 		model.addAttribute("list", jobs);
 		model.addAttribute("builds", builds);
 		model.addAttribute("build", build);
@@ -88,6 +84,7 @@ public class JobController {
 		model.addAttribute("build", build);
 		model.addAttribute("items", items);
 		model.addAttribute("builds", builds);
+		model.addAttribute("buildId", (buildId == 0 || buildId == null) ? 0L : buildId);
 
 		return "admin/job/job-add";
 	}

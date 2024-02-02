@@ -1,5 +1,7 @@
 package com.fms.smartbutler.service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -30,6 +32,9 @@ public class JobService {
 	}
 	
 	public void update(JobDTO jobDTO) {
+		jobDTO.setFinDate(Date.valueOf(LocalDate.now()));
+		jobDTO.setStatus(2);
+		
 		Job job = modelMapper.map(jobDTO, Job.class);
 		
 		jobRepository.save(job);
@@ -52,6 +57,13 @@ public class JobService {
 			jobList = jobRepository.findByBuild_BuildIdOrderByJobIdDesc(buildId, pageable);
 		}
 		
+		Page<JobDTO> jobDTOList = jobList.map(j -> modelMapper.map(j, JobDTO.class));
+		
+		return jobDTOList;
+	}
+	
+	public Page<JobDTO> findByCompanyId(Long companyId, Pageable pageable) {
+		Page<Job> jobList = jobRepository.findByCompany_CompanyIdOrderByJobIdDesc(companyId, pageable);
 		Page<JobDTO> jobDTOList = jobList.map(j -> modelMapper.map(j, JobDTO.class));
 		
 		return jobDTOList;
