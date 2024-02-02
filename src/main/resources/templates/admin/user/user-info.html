@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content form-content">
-				<form th:action="@{/admin/users/{userId}/delete(userId = ${user.userId})}" method="POST">
+				<form th:action="@{/admin/users/{userId}/delete(userId = ${user.userId})}" th:method="delete" id="deleteForm">
 					<div class="row align-items-center mb-4">
 						<div class="col-1">
 							<label for="userId">회원번호</label>
@@ -57,10 +57,10 @@
 					</div>
 					<div class="row align-items-center mb-4">
 						<div class="col-1">
-							<label for="name">회원명</label>
+							<label for="userName">회원명</label>
 						</div>
 						<div class="col-5">
-							<input type="text" name="name" class="form-control" th:value=${user?.name} readonly>
+							<input type="text" name="userName" class="form-control" th:value=${user?.userName} readonly>
 						</div>
 						<div class="col-1">
 							<label for="status">회원유형</label>
@@ -70,12 +70,13 @@
 						</div>
 					</div>
 					<div class="row justify-content-end mt-3">
-						<input type="submit" class="btn btn-primary col-1 me-3" value="탈퇴">
-						<input type="button" class="btn btn-outline-dark col-1 me-3" onClick="history.back()" value="목록">
+						<button type="button" class="btn btn-primary col-auto me-3" onclick="deleteClick(); return false;">탈퇴</button>
+						<button type="button" class="btn btn-outline-dark col-auto me-3" onclick="history.back()">목록</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<script src="/js/Button.js" type="text/javascript"></script>
 </body>
 </html>

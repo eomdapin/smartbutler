@@ -26,7 +26,8 @@
 				</ul>
 			</div>
 	        <div class="content form-content">
-		        <form th:action="@{/admin/estimates/{estimateId}(estimateId = ${estimate.estimateId})}" method="post" id="estimateForm">
+		        <!-- <form action="/admin/estimates/{estimateId}(estimateId = ${estimate.estimateId})}" method="post"> -->
+		        <form th:action="@{/admin/estimates/{estimateId}(estimateId = ${estimate.estimateId})}" method="post" id="estimateFinForm">
 		        	<div class="row align-items-center mb-4">
 			        	<div class="col-2">
 							<label for="estimateId" class="ms-4 fw-bold">견적 번호</label>
@@ -80,12 +81,19 @@
 							<label for="confirm" class="ms-4 fw-bold">계약 여부</label>
 						</div>
 						<div class="col-4">
-							<select name="confirm" class="form-select" >
-								<option value="1"> 신청 </option>
-								<option value="2"> 승인 </option>
-								<option value="3"> 반려 </option>
-							</select>
-							<!-- <input type="text" name="confirm" th:value="${estimate?.confirm}" class="form-control"> -->
+							<th:block th:if="${estimate.confirm == 1}">
+								<select name="confirm" class="form-select" >
+									<option value="1"> 신청 </option>
+									<option value="2"> 승인 </option>
+									<option value="3"> 반려 </option>
+								</select>
+							</th:block>
+							<th:block th:if="${estimate.confirm == 2}">
+								<input type="text" name="confirm" value="승인" class="form-control">
+							</th:block>
+							<th:block th:if="${estimate.confirm == 3}">
+								<input type="text" name="confirm" value="반려" class="form-control">
+							</th:block>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -93,12 +101,21 @@
 							<label for="content" class="ms-5 fw-bold">비고</label>
 						</div>
 						<div class="col-10">
-							<textarea rows="4" name="content" class="form-control"></textarea>
+							<th:block th:if="${estimate.content == null}">
+								<textarea rows="4" name="content" class="form-control"></textarea>
+							</th:block>
+							<th:block th:unless="${estimate.content == null}">
+								<textarea rows="4" name="content" class="form-control">[[${estimate?.content}]]</textarea>
+							</th:block>
 						</div>
 					</div>
 					<div class="row justify-content-end mt-3">
-						<button type="button" class="btn btn-primary col-auto me-3" onclick="estimateClick(); return false;">완료</button>
+						<th:block th:if="${estimate.confirm == 1}">
+							<button type="button" class="btn btn-primary col-auto me-3" onclick="estimateFinClick(); return false;">완료</button>
+						</th:block>
 						<button type="button" class="btn btn-outline-dark col-auto me-3" onclick="history.back()">목록</button>
+						<input type="hidden" name="buildId" th:value="${estimate.buildId}">
+						<input type="hidden" name="userId" th:value="${estimate.userId}">
 					</div>
 		        </form>
 	        </div>

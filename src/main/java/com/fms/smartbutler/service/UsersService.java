@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Users;
@@ -25,6 +26,7 @@ public class UsersService implements UserDetailsService {
 	
 	private final UsersRepository usersRepository;
 	private final ModelMapper modelMapper;
+	private final PasswordEncoder passwordEncoder;
 	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -45,6 +47,7 @@ public class UsersService implements UserDetailsService {
 	
 	public void insert(UsersDTO usersDTO) {
 		Users users = modelMapper.map(usersDTO, Users.class);
+		users.encodePassword(passwordEncoder);
 		
 		usersRepository.save(users);
 		usersDTO.setUserId(users.getUserId());
@@ -52,6 +55,7 @@ public class UsersService implements UserDetailsService {
 	
 	public void update(UsersDTO usersDTO) {
 		Users users = modelMapper.map(usersDTO, Users.class);
+		users.encodePassword(passwordEncoder);
 		
 		usersRepository.save(users);
 		usersDTO.setUserId(users.getUserId());
@@ -60,6 +64,13 @@ public class UsersService implements UserDetailsService {
 	
 	public Optional<UsersDTO> findById(Long userId) {
 		Optional<Users> users = usersRepository.findById(userId);
+		UsersDTO usersDTO = modelMapper.map(users, UsersDTO.class);
+		
+		return Optional.ofNullable(usersDTO);
+	}
+	
+	public Optional<UsersDTO> findByEmail(String email) {
+		Users users = usersRepository.findByEmail(email);
 		UsersDTO usersDTO = modelMapper.map(users, UsersDTO.class);
 		
 		return Optional.ofNullable(usersDTO);

@@ -16,9 +16,9 @@ function claimFinClick() {
 	}
 }
 
-function estimateClick() {
-	if(confirm("견적을 완료 처리하시겠습니까?")) {
-		document.getElementById("estimateForm").submit();
+function estimateFinClick() {
+	if(confirm("견적을 완료 처리하시겠습니까? \n완료 후 수정이 불가능합니다. ")) {
+		document.getElementById("estimateFinForm").submit();
 	}
 }
 
