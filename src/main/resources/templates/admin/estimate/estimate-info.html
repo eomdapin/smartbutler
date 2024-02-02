@@ -18,7 +18,7 @@
 		<div th:replace="~{common/fragments :: adminHeader}"></div>
 		<div th:replace="~{common/fragments :: adminSidebar}"></div>
         <div class="container">
-        	<div class="bread-crum">
+        	<div class="bread-crum mb-4">
 				<ul class="">
 					<li><a href="#">HOME</a><span> ></span></li>
 					<li><a href="#">견적관리</a><span> ></span></li>
@@ -30,57 +30,57 @@
 		        <form th:action="@{/admin/estimates/{estimateId}(estimateId = ${estimate.estimateId})}" method="post" id="estimateFinForm">
 		        	<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="estimateId" class="ms-4 fw-bold">견적 번호</label>
+							<label for="estimateId" class="ms-5 fw-bold">견적 번호</label>
 						</div>
-						<div class="col-4">
+						<div class="col-3">
 							<input type="text" name="estimateId" th:value="${estimate?.estimateId}" class="form-control" readonly>
 						</div>
 						<div class="col-2">
-							<label for="legDate" class="ms-4 fw-bold">작성 일자</label>
+							<label for="legDate" class="ms-5 fw-bold">작성 일자</label>
 						</div>
-						<div class="col-4">
+						<div class="col-3">
 							<input type="text" name="legDate" th:value="${estimate?.regDate}" class="form-control" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="userName" class="ms-4 fw-bold">신청인</label>
+							<label for="userName" class="ms-5 fw-bold">신청인</label>
 						</div>
-						<div class="col-4">
+						<div class="col-3">
 							<input type="text" name="userName" th:value="${estimate?.userName}" class="form-control" readonly>
 						</div>
 						<div class="col-2">
-							<label for="buildName" class="ms-4 fw-bold">건물명</label>
+							<label for="buildName" class="ms-5 fw-bold">건물명</label>
 						</div>
-						<div class="col-4">
+						<div class="col-3">
 							<input type="text" name="buildName" th:value="${estimate?.buildName}" class="form-control" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="period" class="ms-4 fw-bold">예상 계약기간</label>
+							<label for="period" class="ms-5 fw-bold">예상 계약기간</label>
 						</div>
-						<div class="col-4">
+						<div class="col-3">
 							<input type="text" name="period" th:value="${estimate?.period}" class="form-control" readonly>
 						</div>
 						<div class="col-2">
-							<label for="toDate" class="ms-4 fw-bold">예상 입실일자</label>
+							<label for="toDate" class="ms-5 fw-bold">예상 입실일자</label>
 						</div>
-						<div class="col-4">
+						<div class="col-3">
 							<input type="date" name="toDate" th:value="${estimate?.toDate}" class="form-control" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="deposit" class="ms-4 fw-bold">보증금</label>
+							<label for="deposit" class="ms-5 fw-bold">보증금</label>
 						</div>
-						<div class="col-4">
+						<div class="col-3">
 							<input type="text" name="deposit" th:value="${estimate?.deposit}" class="form-control" readonly>
 						</div>
 						<div class="col-2">
-							<label for="confirm" class="ms-4 fw-bold">계약 여부</label>
+							<label for="confirm" class="ms-5 fw-bold">계약 여부</label>
 						</div>
-						<div class="col-4">
+						<div class="col-3">
 							<th:block th:if="${estimate.confirm == 1}">
 								<select name="confirm" class="form-select" >
 									<option value="1"> 신청 </option>
@@ -100,7 +100,7 @@
 			        	<div class="col-2">
 							<label for="content" class="ms-5 fw-bold">비고</label>
 						</div>
-						<div class="col-10">
+						<div class="col-8">
 							<th:block th:if="${estimate.content == null}">
 								<textarea rows="4" name="content" class="form-control"></textarea>
 							</th:block>
@@ -109,7 +109,7 @@
 							</th:block>
 						</div>
 					</div>
-					<div class="row justify-content-end mt-3">
+					<div class="row col-10 justify-content-end mt-3">
 						<th:block th:if="${estimate.confirm == 1}">
 							<button type="button" class="btn btn-primary col-auto me-3" onclick="estimateFinClick(); return false;">완료</button>
 						</th:block>

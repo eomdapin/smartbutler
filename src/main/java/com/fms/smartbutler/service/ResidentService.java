@@ -20,6 +20,7 @@ public class ResidentService {
 		return residentRepository.findById(residentId);
 	}
 	
+	
 	public List<Resident> findAll() {
 		return residentRepository.findAll();
 	}
