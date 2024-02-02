@@ -54,7 +54,7 @@
 						<label for="build_name">건물명</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="buildName" class="form-control" th:value=${resident?.buildName} readonly>
+						<input type="text" name="buildName" class="form-control" th:value=${resident?.buildName} disabled>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -62,7 +62,7 @@
 						<label for="resident_id">세대 번호</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="" class="form-control" readonly>
+						<input type="text" name="" class="form-control" disabled>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -70,7 +70,7 @@
 						<label>계약기간</label>
 					</div>
 					<div class="col-4">
-						<input type="text" class="form-control" readonly>
+						<input type="text" class="form-control" disabled>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -78,7 +78,7 @@
 						<label>월 사용료</label>
 					</div>
 					<div class="col-4">
-						<input type="text" class="form-control" readonly>
+						<input type="text" class="form-control" disabled>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -86,13 +86,13 @@
 						<label>보증금</label>
 					</div>
 					<div class="col-4">
-						<input type="text" class="form-control" readonly>
+						<input type="text" class="form-control" disabled>
 					</div>
 				</div>
 				<div>
 					<div class="row justify-content-center mt-5">
-						<button type="button" class="btn btn-primary col-1 me-3" onclick="location.href='/user/mypage/edit'">수정</button>
-						<button type="button" class="btn btn-secondary col-1 me-3" onclick="location.href='/'">뒤로가기</button>
+						<button type="button" class="btn btn-primary col-auto me-3" onclick="location.href='/user/mypage/edit'">수정</button>
+						<button type="button" class="btn btn-secondary col-auto me-3" onclick="location.href='/'">뒤로가기</button>
 					</div>
 				</div>
 					<input type="hidden" name="userId" id="userId" th:value="${user.userId}">

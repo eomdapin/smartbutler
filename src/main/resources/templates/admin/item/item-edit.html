@@ -32,13 +32,13 @@
 							<label for="itemId" class="ms-5 fw-bold">시설번호</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="itemId" th:value="${item?.itemId}" class="form-control" readonly>
+							<input type="text" name="itemId" th:value="${item?.itemId}" class="form-control bg-dark-subtle" readonly>
 						</div>
 						<div class="col-2">
 							<label for="fromDate" class="ms-5 fw-bold">사용시작일</label>
 						</div>
 						<div class="col-4">
-							<input type="date" name="fromDate" th:value="${item?.fromDate}" class="form-control" readonly>
+							<input type="date" name="fromDate" th:value="${item?.fromDate}" class="form-control bg-dark-subtle" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -46,7 +46,22 @@
 							<label for="buildName" class="ms-5 fw-bold">건물명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="buildName" th:value="${item?.buildName}" class="form-control" readonly>
+							<input type="text" name="buildName" th:value="${item?.buildName}" class="form-control bg-dark-subtle" readonly>
+						</div>
+						<div class="col-2">
+							<label for="kindType" class="ms-5 fw-bold">시설종류</label>
+						</div>
+						<div class="col-4">
+							<input type="text" th:value="${item?.kindName}" class="form-control bg-dark-subtle" readonly>
+							<input type="hidden" name="kindType" th:value="${item?.kindType}">
+						</div>
+					</div>
+					<div class="row align-items-center mb-4">
+			        	<div class="col-2">
+							<label for="itemName" class="ms-5 fw-bold">시설명</label>
+						</div>
+						<div class="col-4">
+							<input type="text" name="itemName" th:value="${item?.itemName}" class="form-control">
 						</div>
 						<div class="col-2">
 							<label for="status" class="ms-5 fw-bold">상태</label>
@@ -60,26 +75,11 @@
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
-			        	<div class="col-2">
-							<label for="itemName" class="ms-5 fw-bold">시설명</label>
-						</div>
-						<div class="col-4">
-							<input type="text" name="itemName" th:value="${item?.itemName}" class="form-control">
-						</div>
 						<div class="col-2">
 							<label for="checkDate" class="ms-5 fw-bold">점검날짜</label>
 						</div>
 						<div class="col-4">
 							<input type="date" name="checkDate" th:value="${item?.checkDate}" class="form-control">
-						</div>
-					</div>
-					<div class="row align-items-center mb-4">
-			        	<div class="col-2">
-							<label for="kindType" class="ms-5 fw-bold">시설종류</label>
-						</div>
-						<div class="col-4">
-							<input type="text" th:value="${item?.kindName}" class="form-control" readonly>
-							<input type="hidden" name="kindType" th:value="${item?.kindType}">
 						</div>
 						<div class="col-2">
 							<label for="checkCycle" class="ms-5 fw-bold">점검주기</label>

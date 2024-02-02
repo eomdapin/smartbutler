@@ -33,13 +33,13 @@
 							<label for="estimateId" class="ms-5 fw-bold">견적 번호</label>
 						</div>
 						<div class="col-3">
-							<input type="text" name="estimateId" th:value="${estimate?.estimateId}" class="form-control" readonly>
+							<input type="text" name="estimateId" th:value="${estimate?.estimateId}" class="form-control bg-dark-subtle" readonly>
 						</div>
 						<div class="col-2">
 							<label for="legDate" class="ms-5 fw-bold">작성 일자</label>
 						</div>
 						<div class="col-3">
-							<input type="text" name="legDate" th:value="${estimate?.regDate}" class="form-control" readonly>
+							<input type="text" name="legDate" th:value="${estimate?.regDate}" class="form-control bg-dark-subtle" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -47,13 +47,13 @@
 							<label for="userName" class="ms-5 fw-bold">신청인</label>
 						</div>
 						<div class="col-3">
-							<input type="text" name="userName" th:value="${estimate?.userName}" class="form-control" readonly>
+							<input type="text" name="userName" th:value="${estimate?.userName}" class="form-control bg-dark-subtle" readonly>
 						</div>
 						<div class="col-2">
 							<label for="buildName" class="ms-5 fw-bold">건물명</label>
 						</div>
 						<div class="col-3">
-							<input type="text" name="buildName" th:value="${estimate?.buildName}" class="form-control" readonly>
+							<input type="text" name="buildName" th:value="${estimate?.buildName}" class="form-control bg-dark-subtle" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -61,13 +61,13 @@
 							<label for="period" class="ms-5 fw-bold">예상 계약기간</label>
 						</div>
 						<div class="col-3">
-							<input type="text" name="period" th:value="${estimate?.period}" class="form-control" readonly>
+							<input type="text" name="period" th:value="${estimate?.period}" class="form-control bg-dark-subtle" readonly>
 						</div>
 						<div class="col-2">
 							<label for="toDate" class="ms-5 fw-bold">예상 입실일자</label>
 						</div>
 						<div class="col-3">
-							<input type="date" name="toDate" th:value="${estimate?.toDate}" class="form-control" readonly>
+							<input type="date" name="toDate" th:value="${estimate?.toDate}" class="form-control bg-dark-subtle" readonly>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -75,7 +75,7 @@
 							<label for="deposit" class="ms-5 fw-bold">보증금</label>
 						</div>
 						<div class="col-3">
-							<input type="text" name="deposit" th:value="${estimate?.deposit}" class="form-control" readonly>
+							<input type="text" name="deposit" th:value="${estimate?.deposit}" class="form-control bg-dark-subtle" readonly>
 						</div>
 						<div class="col-2">
 							<label for="confirm" class="ms-5 fw-bold">계약 여부</label>
@@ -89,10 +89,10 @@
 								</select>
 							</th:block>
 							<th:block th:if="${estimate.confirm == 2}">
-								<input type="text" name="confirm" value="승인" class="form-control">
+								<input type="text" name="confirm" value="승인" class="form-control bg-dark-subtle">
 							</th:block>
 							<th:block th:if="${estimate.confirm == 3}">
-								<input type="text" name="confirm" value="반려" class="form-control">
+								<input type="text" name="confirm" value="반려" class="form-control bg-dark-subtle">
 							</th:block>
 						</div>
 					</div>
@@ -102,10 +102,10 @@
 						</div>
 						<div class="col-8">
 							<th:block th:if="${estimate.content == null}">
-								<textarea rows="4" name="content" class="form-control"></textarea>
+								<textarea rows="4" name="content" class="form-control" style="resize: none;"></textarea>
 							</th:block>
 							<th:block th:unless="${estimate.content == null}">
-								<textarea rows="4" name="content" class="form-control">[[${estimate?.content}]]</textarea>
+								<textarea rows="4" name="content" class="form-control bg-dark-subtle" style="resize: none;">[[${estimate?.content}]]</textarea>
 							</th:block>
 						</div>
 					</div>

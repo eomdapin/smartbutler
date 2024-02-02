@@ -42,7 +42,8 @@
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.userName}]]</a></td>
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.phone}]]</a></td>
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.email}]]</a></td>
-							<td>[[${user.status}]]</td>
+							<td th:if="${user.status == 1 }">일반 회원</td>
+							<td th:if="${user.status == 2 }">입주 회원</td>
 						</tr>
 					</tbody>
 				</table>

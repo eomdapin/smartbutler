@@ -17,99 +17,59 @@
 	<div th:replace="~{common/fragments :: userHeader}"></div>
 		<div class="container" style="float: none;">
 		<div class="content form-content">
-			<h1 class="text-center mt-2">내 정보</h1>
+			<h1 class="text-center mt-5">내 정보</h1>
 				<form action="/user/mypage/edit" th:method="put">
 					<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 						<div class="col-7 mt-3 border-top border-5 border-black"></div>
 					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="row g-3 justify-content-center align-items-center mt-3 mb-4">
 						<div class="col-2">
-							<label for="email">이메일</label>
+							<label for="email" class="fw-bold ms-4">이메일</label>
 						</div>
-						<div class="col-5">
-							<input type="email" name="email" class="form-control" th:value=${user?.email} readonly>
+						<div class="col-4">
+							<input type="email" name="email" class="form-control bg-dark-subtle" th:value=${user?.email} readonly>
 						</div>
 					</div>
 					<div class="row g-3 justify-content-center align-items-center mb-4">
 						<div class="col-2">
-							<label for="password">비밀번호</label>
+							<label for="password" class="fw-bold ms-4">비밀번호</label>
 						</div>
-						<div class="col-5">
+						<div class="col-4">
 							<input type="password" name="pw" id="password" class="form-control" required>
 						</div>
 					</div>
 					<div class="row g-3 justify-content-center align-items-center mb-4">
 						<div class="col-2">
-							<label for="passwordCheck">비밀번호 확인</label>
+							<label for="passwordCheck" class="fw-bold ms-4">비밀번호 확인</label>
 						</div>
-						<div class="col-5">
+						<div class="col-4">
 							<input type="password" id="passwordCheck" class="form-control" required>
 						</div>
 					</div>
 					<div class="row g-3 justify-content-center align-items-center mb-4">
 						<div class="col-2">
-							<label for="userName">이름</label>
+							<label for="userName" class="fw-bold ms-4">이름</label>
 						</div>
-						<div class="col-5">
-							<input type="text" name="userName" class="form-control" th:value=${user?.userName} readonly>
+						<div class="col-4">
+							<input type="text" name="userName" class="form-control bg-dark-subtle" th:value=${user?.userName} readonly>
 						</div>
 					</div>
 					<div class="row g-3 justify-content-center align-items-center mb-4">
 						<div class="col-2">
-							<label for="phone">휴대폰 번호</label>
+							<label for="phone" class="fw-bold ms-4">휴대폰 번호</label>
 						</div>
-						<div class="col-5">
+						<div class="col-4">
 							<input type="tel" name="phone" th:value=${user?.phone} oninput="hypenTel(this)" maxlength="13" pattern="(010)-\d{3,4}-\d{4}" title="형식 010-0000-0000" class="form-control" required>
 						</div>
 					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="row g-3 justify-content-center align-items-center mt-3 mb-4">
 						<div class="col-7 mt-3 border-top border-5 border-black"></div>
 					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
-						<div class="col-2">
-							<label for="build_name">건물명</label>
-						</div>
-						<div class="col-5">
-							<input type="text" name="buildName" class="form-control" th:value=${resident?.buildName} >
-						</div>
-					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
-						<div class="col-2">
-							<label for="resident_id">세대 번호</label>
-						</div>
-						<div class="col-5">
-							<input type="text" name="resident_id" class="form-control">
-						</div>
-					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
-						<div class="col-2">
-							<label>계약기간</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
-						<div class="col-2">
-							<label>월 사용료</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="row g-3 justify-content-center align-items-center mb-4">
-						<div class="col-2">
-							<label>보증금</label>
-						</div>
-						<div class="col-5">
-							<input type="text" class="form-control">
-						</div>
-					</div>
 					<div>
-						<div class="row justify-content-center mt-3">
+						<div class="row justify-content-center">
 							<!-- <button type="button" class="btn btn-primary col-1 me-3" onclick="putClick(); return false;">완료</button> -->
-							<input type="submit" class="btn btn-primary col-1 me-3" value="완료">
-							<button type="button" class="btn btn-secondary col-1 me-3" onclick="location.href='/user/mypage'">뒤로가기</button>
+							<input type="submit" class="btn btn-primary col-auto me-3" value="완료">
+							<button type="button" class="btn btn-secondary col-auto me-3" onclick="location.href='/user/mypage'">뒤로가기</button>
 							<input type="hidden" name="userId" id="userId" th:value="${user.userId}">
 							<input type="hidden" name="role" value="USER">
 						</div>
