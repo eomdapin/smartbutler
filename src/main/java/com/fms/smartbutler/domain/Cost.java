@@ -52,4 +52,7 @@ public class Cost {
 	
 	@Column(name = "send")
 	private Integer send;
+	
+	@Column(name = "resident_cnt")
+	private Integer residentCnt;
 }

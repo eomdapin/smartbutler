@@ -20,6 +20,7 @@ import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.CostDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.CostService;
+import com.fms.smartbutler.service.ResidentService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ public class CostController {
 	
 	private final CostService costService;
 	private final BuildService buildService;
+	private final ResidentService residentService;
 	
 	// 관리비 목록
 	@GetMapping("/{buildId}/costs")
@@ -109,6 +111,7 @@ public class CostController {
 	@PostMapping("/{buildId}/costs/{costId}/send")
 	public String putCostSubmit(@PathVariable Long buildId, @PathVariable Long costId, @ModelAttribute CostDTO costDTO) {
 		costDTO.setCostId(costId);
+		costDTO.setResidentCnt(residentService.findAllByEnteredAndBuildId(2L, buildId).size());
 		costService.updateCost(costDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/costs";

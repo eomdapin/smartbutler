@@ -224,7 +224,7 @@ insert into admin values(null, 'admin', '{noop}1111', 'ADMIN');
 
 #######################################################
 insert into users(user_name, phone, email, pw, status, role)
-values('홍길동', '010-0000-0000', 'mail@mail.com', '{noop}1111', '1', 'USER');
+values('홍길동', '010-0000-0000', 'mail@mail.com', '{noop}1111', '2', 'USER');
 
 insert into users(user_name, phone, email, pw, status, role)
 values('홍박사', '010-1111-1111', 'mail1@mail.com', '{noop}1111','1', 'USER');
@@ -271,10 +271,11 @@ insert into cost(build_id, cost_date, electricity, repair, upkeep, consignment, 
 (1, '2023-02-01', 2000000, 3000000, 4000000, 7000000, 1),
 (1, '2024-04-01', 3000000, 3201230, 1231230, 7972910, 1),
 (1, '2024-03-01', 2000000, 3000000, 4000000, 7000000, 1),
-(2, '2024-01-01', 3000000, 4000000, 5000000, 8000000, 2),
 (3, '2024-01-01', 4000000, 5000000, 6000000, 1000000, 1),
 (4, '2024-01-01', 5000000, 6000000, 7000000, 2000000, 1);
 
+insert into cost(build_id, cost_date, electricity, repair, upkeep, consignment, send, resident_cnt) values
+(2, '2024-01-01', 3000000, 4000000, 5000000, 8000000, 2, 80);
 #######################################################
 insert into company_kind values('1', '공조');
 insert into company values('1', '1', '1', '한일공조', '지디', '010-1111-2222', '2024-01-01', '2024-12-12', '1000', '{noop}1111', 'WORKER');

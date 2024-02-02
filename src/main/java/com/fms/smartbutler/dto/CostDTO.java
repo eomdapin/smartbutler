@@ -24,4 +24,5 @@ public class CostDTO {
 	private Long consignment;
 	private Integer send;
 	private String buildName;
+	private Integer residentCnt;
 }
