@@ -61,12 +61,9 @@ public class CompanyController {
 //	}
 
 	// 계약 업체 수정
-	@PostMapping("/companies/{companyName}/update")
-	public String updateCompanyInfo(@PathVariable String companyName, @ModelAttribute CompanyDTO companyDTO) {
-
-		CompanyDTO companyDTO2 = companyService.findByCompanyName(companyName);
+	@PostMapping("/{buildId}/companies/{companyId}/update")
+	public String updateCompanyInfo(@PathVariable Long companyId, @ModelAttribute CompanyDTO companyDTO) {
 		companyService.save(companyDTO);
-
 		return "redirect:/admin/buildings/companies";
 	}
 

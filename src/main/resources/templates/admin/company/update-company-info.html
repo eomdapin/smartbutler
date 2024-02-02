@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<form th:action="@{/admin/buildings/companies/{companyName}/update(companyName=${company.companyName})}" method="post">
+				<form th:action="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${company.buildId}, companyId=${company.companyId})}" method="post">
 
 					<div class="container fw-semibold">
 
@@ -135,6 +135,16 @@
 									</div>
 									<div class="col-8">
 										<input class="form-control" type="text" th:value="${company.cost}" id="cost" name="cost">
+									</div>
+								</div>
+							</div>
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="cost" class="col-form-label ms-3">건물명</label>
+									</div>
+									<div class="col-8">
+										<input class="form-control" type="text" th:value="${company.buildId}" id="buildId" name="buildId">
 									</div>
 								</div>
 							</div>
