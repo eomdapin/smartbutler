@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/admin.css">
 <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32"	href="/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16"	href="/img/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
 <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
@@ -27,7 +27,6 @@
 			</div>
 			<div class="content">
 
-
 				<div class="container fw-semibold">
 
 					<div class="row align-items-center mb-4">
@@ -37,8 +36,7 @@
 									<label for="company-id" class="col-form-label ms-3">업체번호</label>
 								</div>
 								<div class="col-8">
-									<input type="text" id="company-id" name="company-id"
-										class="form-control">
+									<input class="form-control" type="text" th:value="${company.companyId}" id="companyId" name="companyId" readonly disabled>
 								</div>
 							</div>
 						</div>
@@ -48,8 +46,7 @@
 									<label for="password" class="col-form-label ms-3">비밀번호</label>
 								</div>
 								<div class="col-8">
-									<input type="password" id="password" name="password"
-										class="form-control">
+									<input class="form-control" type="password" th:value="${company.password}" id="password" name="password" readonly disabled>
 								</div>
 							</div>
 						</div>
@@ -67,8 +64,7 @@
 									<label for="company-name" class="col-form-label ms-3">업체명</label>
 								</div>
 								<div class="col-8">
-									<input type="text" id="company-name" name="company-name"
-										class="form-control">
+									<input class="form-control" type="text" th:value="${company.companyName}" readonly disabled>
 								</div>
 							</div>
 						</div>
@@ -78,8 +74,7 @@
 									<label for="from-date" class="col-form-label ms-3">계약시작일</label>
 								</div>
 								<div class="col-8">
-									<input type="text" id="from-date" name="from-date"
-										class="form-control">
+									<input class="form-control" type="text" th:value="${company.fromDate}" id="fromDate" name="fromDate" readonly disabled>
 								</div>
 							</div>
 						</div>
@@ -92,8 +87,7 @@
 									<label for="manager" class="col-form-label ms-3">담당자명</label>
 								</div>
 								<div class="col-8">
-									<input type="text" id="manager" name="manager"
-										class="form-control">
+									<input class="form-control" type="text" th:value="${company.manager}" id="manager" name="manager" readonly disabled>
 								</div>
 							</div>
 						</div>
@@ -103,8 +97,7 @@
 									<label for="to-date" class="col-form-label ms-3">계약종료일</label>
 								</div>
 								<div class="col-8">
-									<input type="text" id="to-date" name="to-date"
-										class="form-control">
+									<input class="form-control" type="text" th:value="${company.toDate}" id="toDate" name="toDate" readonly disabled>
 								</div>
 							</div>
 						</div>
@@ -117,7 +110,7 @@
 									<label for="phone" class="col-form-label ms-3">전화번호</label>
 								</div>
 								<div class="col-8">
-									<input type="text" id="phone" name="phone" class="form-control">
+									<input class="form-control" type="text" th:value="${company.phone}" id="phone" name="phone" readonly disabled>
 								</div>
 							</div>
 						</div>
@@ -127,8 +120,7 @@
 									<label for="kind-name" class="col-form-label ms-3">담당업무</label>
 								</div>
 								<div class="col-8">
-									<input type="text" id="kind-name" name="kind-name"
-										class="form-control">
+									<input class="form-control" type="text" th:value="${company.kindName}" id="kindName" name="kindName" readonly disabled>
 								</div>
 							</div>
 						</div>
@@ -138,21 +130,20 @@
 						<div class="col-5">
 							<div class="row g-3 align-items-center">
 								<div class="col-4">
-									<label for="company-id" class="col-form-label ms-3">로그인번호</label>
+									<label for="cost" class="col-form-label ms-3">계약비용</label>
 								</div>
 								<div class="col-8">
-									<input type="text" id="company-id" name="company-id"
-										class="form-control">
+									<input class="form-control" type="text" th:value="${company.cost}" id="cost" name="cost" readonly disabled>
 								</div>
 							</div>
 						</div>
 						<div class="col-5">
 							<div class="row g-3 align-items-center">
 								<div class="col-4">
-									<label for="cost" class="col-form-label ms-3">계약비용</label>
+									<label for="cost" class="col-form-label ms-3">건물명</label>
 								</div>
 								<div class="col-8">
-									<input type="text" id="cost" name="cost" class="form-control">
+									<input class="form-control" type="text" th:value="${company.buildId}" id="buildId" name="buildId" readonly disabled>
 								</div>
 							</div>
 						</div>
@@ -163,19 +154,18 @@
 							<div class="col-5"></div>
 							<div class="col-5">
 								<div class="d-flex gap-4 justify-items-center">
-									<button class="col btn btn-primary" type="submit"
-										formaction="/admin/buildings/companies/1/update"
-										formmethod="get">수정</button>
-									<button class="col btn btn-info text-white" type="submit"
-										formaction="/admin/buildings/companies/1/delete"
-										formmethod="post">삭제</button>
-									<button class="col btn btn-outline-primary" type="submit"
-										formaction="/admin/buildings/companies" formmethod="get">목록</button>
+
+									<button class="col btn btn-primary" type="submit" th:formaction="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${company.buildId}, companyId=${company.companyId})}" th:formmethod="get">수정</button>
+									<button class="col btn btn-info text-white" type="submit" th:formaction="@{/admin/buildings/{buildId}/companies/{companyId}/delete(buildId=${company.buildId} ,companyId=${company.companyId})}" th:formmethod="post">삭제</button>
+									<button class="col btn btn-outline-primary" type="submit" formaction="/admin/buildings/companies" formmethod="get">목록</button>
+
 								</div>
 							</div>
 						</div>
 					</form>
 				</div>
+
+
 			</div>
 
 		</div>

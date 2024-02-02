@@ -286,3 +286,9 @@ select * from image;
 select * from image_category;
 select * from cost;
 select * from admin;
+select * from company;
+select * from company_kind;
+
+
+
+

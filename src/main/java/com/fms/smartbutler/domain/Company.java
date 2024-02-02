@@ -1,5 +1,7 @@
 package com.fms.smartbutler.domain;
 
+import java.sql.Date;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.persistence.Column;
@@ -48,10 +50,10 @@ public class Company {
 	private String phone;
 
 	@Column(name = "from_date")
-	private String fromDate;
+	private Date fromDate;
 
 	@Column(name = "to_date")
-	private String toDate;
+	private Date toDate;
 
 	@Column(name = "cost")
 	private Long cost;
