@@ -39,6 +39,7 @@
 					<thead>
 						<tr>
 							<th scope="col">업체번호</th>
+							<th scope="col">건물명</th>
 							<th scope="col">업체명</th>
 							<th scope="col">담당자명</th>
 							<th scope="col">전화번호</th>
@@ -50,13 +51,17 @@
 					</thead>
 					<tbody>
 						<tr th:each="company:${companies}">
-							<td th:text="${company.companyId}"></td>
-							<td><a th:text="${company.companyName}" th:href="@{/admin/buildings/companies/{companyName}(companyName=${company.companyName})}"></a></td>
+							<td><a th:text="${company.companyId}" th:href="@{/admin/buildings/{buildId}/companies/{companyId}(buildId=${company.buildId}, companyId=${company.companyId})}"></a></td>
+							<!-- <td th:text="${company.companyId}"></td> -->
+							<!-- <td th:text="${company.buildName}"></td> -->
+							<td th:text="${company.buildId}"></td>
+							<td th:text="${company.companyName}"></td>
 							<td th:text="${company.manager}"></td>
 							<td th:text="${company.phone}"></td>
 							<td th:text="${company.fromDate}"></td>
 							<td th:text="${company.toDate}"></td>
-							<td th:text="${company.kindName}"></td>
+							<!-- <td th:text="${company.kindName}"></td> -->
+							<td th:text="${company.kindType}"></td>
 							<td th:text="${company.cost}"></td>
 						</tr>
 					</tbody>

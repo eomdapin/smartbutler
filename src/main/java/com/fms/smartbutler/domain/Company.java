@@ -29,9 +29,9 @@ public class Company {
 	@Column(name = "company_id")
 	private Long companyId;
 
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "build_id")
-//	private Build build;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "build_id")
+	private Build build;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "kind_type")

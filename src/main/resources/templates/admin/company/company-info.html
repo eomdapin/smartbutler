@@ -137,6 +137,16 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-5">
+							<div class="row g-3 align-items-center">
+								<div class="col-4">
+									<label for="cost" class="col-form-label ms-3">건물명</label>
+								</div>
+								<div class="col-8">
+									<input class="form-control" type="text" th:value="${company.buildId}" id="buildId" name="buildId" readonly disabled>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<form>
@@ -145,8 +155,8 @@
 							<div class="col-5">
 								<div class="d-flex gap-4 justify-items-center">
 
-									<button class="col btn btn-primary" type="submit" th:formaction="@{/admin/buildings/companies/{companyName}/update(companyName=${company.companyName})}" th:formmethod="get">수정</button>
-									<button class="col btn btn-info text-white" type="submit" th:formaction="@{/admin/buildings/companies/{companyName}/delete(companyName=${company.companyName})}" th:formmethod="post">삭제</button>
+									<button class="col btn btn-primary" type="submit" th:formaction="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${company.buildId}, companyId=${company.companyId})}" th:formmethod="get">수정</button>
+									<button class="col btn btn-info text-white" type="submit" th:formaction="@{/admin/buildings/{buildId}/companies/{companyId}/delete(buildId=${company.buildId} ,companyId=${company.companyId})}" th:formmethod="post">삭제</button>
 									<button class="col btn btn-outline-primary" type="submit" formaction="/admin/buildings/companies" formmethod="get">목록</button>
 
 								</div>

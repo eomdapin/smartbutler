@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fms.smartbutler.domain.Company;
 import com.fms.smartbutler.dto.CompanyDTO;
 import com.fms.smartbutler.service.CompanyService;
 
@@ -31,13 +32,12 @@ public class CompanyController {
 	}
 
 	// 계약 업체 상세
-	@GetMapping("/companies/{companyName}")
-	public String getCompanyInfo(@PathVariable String companyName, Model model) {
-		CompanyDTO companyDTO = companyService.findByCompanyName(companyName);
+	@GetMapping("/{buildId}/companies/{companyId}")
+	public String getCompanyInfo(@PathVariable Long companyId, Model model) {
+		CompanyDTO companyDTO = companyService.findById(companyId);
 		model.addAttribute("company", companyDTO);
 		return "admin/company/company-info";
 	}
-
 
 	// 계약 업체 수정 폼
 //	@GetMapping("/companies/{companyName}/update")
@@ -46,10 +46,9 @@ public class CompanyController {
 //	}
 
 	// 계약 업체 수정 폼
-	@GetMapping("/companies/{companyName}/update")
-	public String getCompanyInfoUpdateForm(@PathVariable String companyName, Model model) {
-		System.out.println(companyName);
-		CompanyDTO companyDTO = companyService.findByCompanyName(companyName);
+	@GetMapping("/{buildId}/companies/{companyId}/update")
+	public String getCompanyInfoUpdateForm(@PathVariable Long companyId, Model model) {
+		CompanyDTO companyDTO = companyService.findById(companyId);
 		model.addAttribute("company", companyDTO);
 		return "admin/company/update-company-info";
 //		return "admin/company/hello";
@@ -57,9 +56,19 @@ public class CompanyController {
 
 	// 계약 업체 수정
 //	@PostMapping("/companies/{companyName}/update")
-//	public String putCompanyInfo() {
-//		return "redirect:/admin/{buildId}/company/list";
+//	public String updateCompanyInfo() {
+//		return "redirect:/admin/buildings/companies";
 //	}
+
+	// 계약 업체 수정
+	@PostMapping("/companies/{companyName}/update")
+	public String updateCompanyInfo(@PathVariable String companyName, @ModelAttribute CompanyDTO companyDTO) {
+
+		CompanyDTO companyDTO2 = companyService.findByCompanyName(companyName);
+		companyService.save(companyDTO);
+
+		return "redirect:/admin/buildings/companies";
+	}
 
 	// 계약 업체 삭제
 //	@GetMapping("/companies/{companyId}/delete")
@@ -69,9 +78,9 @@ public class CompanyController {
 //	}
 
 	// 계약 업체 삭제
-	@PostMapping("/companies/{companyName}/delete")
-	public String deleteCompanyInfo(@PathVariable String companyName) {
-		companyService.deleteByCompanyName(companyName);
+	@PostMapping("/{buildId}/companies/{companyId}/delete")
+	public String deleteCompanyInfo(@PathVariable Long companyId) {
+		companyService.deleteById(companyId);
 		return "redirect:/admin/buildings/companies";
 	}
 
@@ -83,7 +92,7 @@ public class CompanyController {
 
 	// 계약 업체 등록
 	@PostMapping("/companies/add")
-	public String postCompanyInfo(@ModelAttribute CompanyDTO companyDTO) {
+	public String addCompanyInfo(@ModelAttribute CompanyDTO companyDTO) {
 
 		companyService.save(companyDTO);
 

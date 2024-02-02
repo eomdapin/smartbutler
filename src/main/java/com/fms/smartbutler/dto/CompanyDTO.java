@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CompanyDTO {
 	private Long companyId;
-//	private Long buildId;
+	private Long buildId;
 	private String kindType;
 	private String password;
 	private String companyName;
