@@ -27,7 +27,5 @@ public class JobDTO {
 	
 	public JobDTO() {
 		this.status = 1;
-		this.itemId = 1L;
-		
 	}
 }

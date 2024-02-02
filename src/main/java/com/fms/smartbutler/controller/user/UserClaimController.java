@@ -1,5 +1,7 @@
 package com.fms.smartbutler.controller.user;
 
+import java.security.Principal;
+
 /**
 * @author 송창민
 * @editDate 2024-01-26 ~ 2024-01-29
@@ -7,6 +9,10 @@ package com.fms.smartbutler.controller.user;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,11 +22,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fms.smartbutler.dto.ClaimDTO;
 import com.fms.smartbutler.dto.ImageDTO;
+import com.fms.smartbutler.dto.UsersDTO;
 import com.fms.smartbutler.service.ClaimService;
 import com.fms.smartbutler.service.ImageService;
+import com.fms.smartbutler.service.UsersService;
 import com.fms.smartbutler.vo.FileVo;
 import com.fms.smartbutler.vo.OptionVo;
 
@@ -35,13 +44,16 @@ public class UserClaimController {
 
 	private final ClaimService claimService;
 	private final ImageService imageService;
+	private final UsersService usersService;
 
 	// 민원 목록
 	@GetMapping
-	public String getClaimList(Model model) {
-		List<ClaimDTO> claims = claimService.findAll();
+	public String getClaimList(@RequestParam(defaultValue = "0") int page, Principal principal, Model model) {
+		Pageable pageable = PageRequest.of(page, 10, Sort.by("claimId").descending());
+		UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
+		Page<ClaimDTO> claims = claimService.findByUserId(user.getUserId(), pageable);
 		
-		model.addAttribute("claims", claims);
+		model.addAttribute("list", claims);
 		
 		return "user/claim/claim-list";
 	}
@@ -66,9 +78,11 @@ public class UserClaimController {
 	
 	// 민원 등록 폼
 	@GetMapping("/add")
-	public String getClaimAdd(Model model) {
+	public String getClaimAdd(Principal principal, Model model) {
+		UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
 		OptionVo options = new OptionVo();
 		
+		model.addAttribute("user", user);
 		model.addAttribute("options", options.getOptions());
 		
 		return "user/claim/claim-add";

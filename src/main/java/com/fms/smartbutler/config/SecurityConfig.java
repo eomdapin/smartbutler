@@ -46,7 +46,7 @@ public class SecurityConfig {
 					.loginPage("/admin/login")
 					.loginProcessingUrl("/admin/login")
 					.defaultSuccessUrl("/",true)
-					.failureUrl("/login?error=true")
+					.failureUrl("/admin/login?error=true")
 					.usernameParameter("username")
 					.passwordParameter("password")
 			);
@@ -84,7 +84,7 @@ public class SecurityConfig {
 				.loginPage("/user/login")
 				.defaultSuccessUrl("/",true)
 				.loginProcessingUrl("/user/login")
-				.failureUrl("/login?error=true")
+				.failureUrl("/user/login?error=true")
 				.usernameParameter("email")
 				.passwordParameter("pw")
 		);
@@ -121,7 +121,7 @@ public class SecurityConfig {
 					.loginPage("/worker/login")
 					.loginProcessingUrl("/worker/login")
 					.defaultSuccessUrl("/",true)
-					.failureUrl("/login?error=true")
+					.failureUrl("/worker/login?error=true")
 					.usernameParameter("company-name")
 					.passwordParameter("password")
 			);

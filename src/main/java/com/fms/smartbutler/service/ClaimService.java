@@ -7,9 +7,7 @@ package com.fms.smartbutler.service;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -52,16 +50,6 @@ public class ClaimService {
 		return Optional.ofNullable(claimDTO);
 	}
 	
-	public List<ClaimDTO> findAll() {
-		List<Claim> claimList = claimRepository.findAll();
-		List<ClaimDTO> claimDTOList = claimList
-										.stream()
-										.map(c -> modelMapper.map(c, ClaimDTO.class))
-										.collect(Collectors.toList());
-		
-		return claimDTOList;
-	}
-	
 	public void finishClaim(ClaimDTO claimDTO) {
 		claimDTO.setFinDate(Date.valueOf(LocalDate.now()));
 		claimDTO.setStatus(2);
@@ -86,6 +74,13 @@ public class ClaimService {
 			claimList = claimRepository.findByBuild_BuildIdOrderByClaimIdDesc(buildId, pageable);
 		}
 		
+		Page<ClaimDTO> claimDTOList = claimList.map(c -> modelMapper.map(c, ClaimDTO.class));
+		
+		return claimDTOList;
+	}
+	
+	public Page<ClaimDTO> findByUserId(Long userId, Pageable pageable) {
+		Page<Claim> claimList = claimRepository.findByUser_UserIdOrderByClaimIdDesc(userId, pageable);;
 		Page<ClaimDTO> claimDTOList = claimList.map(c -> modelMapper.map(c, ClaimDTO.class));
 		
 		return claimDTOList;

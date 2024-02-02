@@ -41,9 +41,8 @@ public class ClaimController {
 	
 	// 민원 목록
 	@GetMapping("/{buildId}/claims")
-	public String getClaimList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size, Model model) {
-		Pageable pageable = PageRequest.of(page, size, Sort.by("claimId").descending());
+	public String getClaimList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page, Model model) {
+		Pageable pageable = PageRequest.of(page, 10, Sort.by("claimId").descending());
 		List<BuildDTO> builds = buildService.findAll();
 		BuildDTO build = buildService.findById(buildId);
 		Page<ClaimDTO> claims = claimService.findByBuildId(buildId, pageable);

@@ -41,9 +41,8 @@ public class JobController {
 	
 	// 작업 목록
 	@GetMapping("/{buildId}/jobs")
-	public String getJobList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size, Model model) {
-		Pageable pageable = PageRequest.of(page, size, Sort.by("jobId").descending());
+	public String getJobList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page, Model model) {
+		Pageable pageable = PageRequest.of(page, 10, Sort.by("jobId").descending());
 		List<BuildDTO> builds = buildService.findAll();
 		BuildDTO build = buildService.findById(buildId);
 		Page<JobDTO> jobs = jobService.findByBuildId(buildId, pageable);

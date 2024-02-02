@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.fms.smartbutler.domain.Claim;
 
 public interface ClaimRepository extends JpaRepository<Claim, Long> {
-	Page<Claim> findByBuild_BuildIdOrderByClaimIdDesc(Long buildId, Pageable pageable);
 	Page<Claim> findAllByOrderByClaimIdDesc(Pageable pageable);
+	Page<Claim> findByBuild_BuildIdOrderByClaimIdDesc(Long buildId, Pageable pageable);
+	Page<Claim> findByUser_UserIdOrderByClaimIdDesc(Long userId, Pageable pageable);
 }

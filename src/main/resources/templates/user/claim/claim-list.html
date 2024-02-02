@@ -41,6 +41,21 @@
 							</tr>
 						</tbody>
 					</table>
+					<div class="mt-4" th:if="${!list.isEmpty()}">
+						<nav>
+      						<ul class="pagination justify-content-center">
+            					<li th:class="${list.first} ? 'disabled'" class="page-item">
+                					<a th:href="@{/user/claims/(page = ${list.number - 1})}" class="page-link">&laquo;</a>
+            					</li>
+            					<li th:each="page : ${#numbers.sequence(1, list.totalPages)}" th:if="${page >= list.number - 1 and page <= list.number + 3}" class="page-item" th:class="${page == list.number + 1} ? 'active'" >
+ 									<a th:href="@{/user/claims/(page = ${list.number - 1})}" class="page-link"></a>
+ 								</li>
+            					<li th:class="${list.last} ? 'disabled'" class="page-item" >
+                					<a th:href="@{/user/claims/(page = ${list.number - 1})}" class="page-link">&raquo;</a>
+            					</li>
+        					</ul>
+    					</nav>
+					</div>
 					<div class="row justify-content-end my-3">
 						<input type="button" value="신청" class="btn btn-lg btn-primary col-auto me-3" onClick="location.href='/user/claims/add'">
 					</div>

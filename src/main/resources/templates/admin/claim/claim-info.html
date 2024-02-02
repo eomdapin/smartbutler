@@ -14,9 +14,9 @@
     <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
-	<div id="wrap">
 		<div th:replace="~{common/fragments :: adminHeader}"></div>
 		<div th:replace="~{common/fragments :: adminSidebar}"></div>
+	<div id="wrap">
 		<div th:replace="~{common/fragments :: imageModal}"></div>
 		<div class="container">
 			<div class="bread-crum">
@@ -71,7 +71,7 @@
 						<button type="button" class="btn btn-lg btn-primary col-auto me-3" onclick="claimFinClick(); return false;" th:if="${claim.status == 1}">완료</button>
 						<button type="button" class="btn btn-lg btn-outline-dark col-auto me-3" onclick="history.back()">목록</button>
 					</div>
-					<input type="hidden" value="1" name="userId">
+					<input type="hidden" th:value="${claim?.userId}" name="userId">
 				</form>
 			</div>
 		</div>
