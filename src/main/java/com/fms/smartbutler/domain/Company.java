@@ -1,5 +1,7 @@
 package com.fms.smartbutler.domain;
 
+import java.sql.Date;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.persistence.Column;
@@ -11,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,10 +50,10 @@ public class Company {
 	private String phone;
 
 	@Column(name = "from_date")
-	private String fromDate;
+	private Date fromDate;
 
 	@Column(name = "to_date")
-	private String toDate;
+	private Date toDate;
 
 	@Column(name = "cost")
 	private Long cost;

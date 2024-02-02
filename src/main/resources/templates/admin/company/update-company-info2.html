@@ -22,11 +22,11 @@
 				<ul class="">
 					<li><a href="/">HOME</a><span> ></span></li>
 					<li><a href="#">계약업체</a><span> ></span></li>
-					<li><a href="#">업체등록</a></li>
+					<li><a href="#">정보수정</a></li>
 				</ul>
 			</div>
 			<div class="content">
-				<form action="/admin/buildings/companies/add"
+				<form action="/admin/buildings/companies/{companyName}/update"
 					method="post">
 					<div class="container fw-semibold">
 
@@ -37,7 +37,7 @@
 										<label for="company-id" class="col-form-label ms-3">업체번호</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="companyId" name="companyId"
+										<input type="text" id="company-id" name="company-id"
 											class="form-control">
 									</div>
 								</div>
@@ -67,7 +67,7 @@
 										<label for="company-name" class="col-form-label ms-3">업체명</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="companyName" name="companyName" class="form-control">
+										<input type="text" id="company-name" name="company-name" class="form-control">
 									</div>
 								</div>
 							</div>
@@ -77,7 +77,7 @@
 										<label for="from-date" class="col-form-label ms-3">계약시작일</label>
 									</div>
 									<div class="col-8">
-										<input type="date" id="fromDate" name="fromDate"
+										<input type="text" id="from-date" name="from-date"
 											class="form-control">
 									</div>
 								</div>
@@ -102,7 +102,7 @@
 										<label for="to-date" class="col-form-label ms-3">계약종료일</label>
 									</div>
 									<div class="col-8">
-										<input type="date" id="toDate" name="toDate"
+										<input type="text" id="to-date" name="to-date"
 											class="form-control">
 									</div>
 								</div>
@@ -126,7 +126,7 @@
 										<label for="kind-name" class="col-form-label ms-3">담당업무</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="kindName" name="kindName"
+										<input type="text" id="kind-name" name="kind-name"
 											class="form-control">
 									</div>
 								</div>
@@ -137,21 +137,20 @@
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="cost" class="col-form-label ms-3">계약비용</label>
+										<label for="company-id" class="col-form-label ms-3">로그인번호</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="cost" name="cost"
-											class="form-control">
+										<input type="text" id="company-id" name="company-id" class="form-control">
 									</div>
 								</div>
 							</div>
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="buildId" class="col-form-label ms-3">건물명</label>
+										<label for="cost" class="col-form-label ms-3">계약비용</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="buildId" name="buildId"
+										<input type="text" id="cost" name="cost"
 											class="form-control">
 									</div>
 								</div>
@@ -164,9 +163,9 @@
 								<div class="row">
 									<div class="col-4"></div>
 									<div class="col-8 d-flex gap-4">
-										<input class="col btn btn-primary" type="submit" value="등록">
-										<button type="button" class="col btn btn-lg btn-outline-primary"
-											onclick="history.back()">목록</button>
+										<input class="col btn btn-primary" type="submit" value="저장">
+										<button type="button" class="col btn btn-outline-primary"
+											onclick="history.back()">취소</button>
 									</div>
 								</div>
 							</div>

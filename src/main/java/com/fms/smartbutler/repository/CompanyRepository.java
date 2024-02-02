@@ -1,6 +1,5 @@
 package com.fms.smartbutler.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,8 +14,9 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 	
 	Optional<Company> findById(Long companyId);
 	
-	List<Company> findAll();
+	Optional<Company> findByCompanyId(Long companyId);
 	
 	void deleteById(Long companyId);
+	void deleteByCompanyName(String companyName);
 	
 }

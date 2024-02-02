@@ -86,7 +86,7 @@ public class SecurityConfig {
 				.loginProcessingUrl("/user/login")
 				.failureUrl("/login?error=true")
 				.usernameParameter("email")
-				.passwordParameter("password")
+				.passwordParameter("pw")
 		);
 		
 		http

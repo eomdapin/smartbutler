@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fms.smartbutler.domain.Job;
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.dto.ItemDTO;
@@ -43,16 +43,15 @@ public class JobController {
 	@GetMapping("/{buildId}/jobs")
 	public String getJobList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size, Model model) {
+		Pageable pageable = PageRequest.of(page, size, Sort.by("jobId").descending());
 		List<BuildDTO> builds = buildService.findAll();
 		BuildDTO build = buildService.findById(buildId);
-		List<JobDTO> jobs = jobService.findByBuildId(buildId);
-		
-		Pageable pageable = PageRequest.of(page, size);
-		Page<JobDTO> job = jobService.findAll(pageable);
-		
-		model.addAttribute("jobs", job);
+		Page<JobDTO> jobs = jobService.findByBuildId(buildId, pageable);
+ 
+		model.addAttribute("list", jobs);
 		model.addAttribute("builds", builds);
 		model.addAttribute("build", build);
+		model.addAttribute("buildId", (buildId == 0 || buildId == null) ? 0L : buildId);
 		
 		return "admin/job/job-list";
 	}
@@ -79,11 +78,14 @@ public class JobController {
 	@GetMapping("/{buildId}/jobs/add")
 	public String getJobAdd(@PathVariable Long buildId, Model model) {
 		BuildDTO build = buildService.findById(buildId);
-		List<ItemDTO> items = itemService.findByBuildId(buildId);
+		List<ItemDTO> items = itemService.findAll();
+		List<BuildDTO> builds = buildService.findAll();
 		
 		model.addAttribute("build", build);
 		model.addAttribute("items", items);
-		
+		model.addAttribute("builds", builds);
+		model.addAttribute("buildId", (buildId == 0 || buildId == null) ? 0L : buildId);
+
 		return "admin/job/job-add";
 	}
 	

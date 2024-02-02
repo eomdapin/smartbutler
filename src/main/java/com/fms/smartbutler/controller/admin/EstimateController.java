@@ -44,8 +44,8 @@ public class EstimateController {
 	
 	// 견적 완료
 	@PostMapping("/{estimateId}")
-	public String postEstimateInfo(@ModelAttribute EstimateDTO estomateDTO) {
-		estimateService.update(estomateDTO);
+	public String postEstimateInfo(@ModelAttribute EstimateDTO estimateDTO) {
+		estimateService.update(estimateDTO);
 		
 		return "redirect:/admin/estimates";
 	}
