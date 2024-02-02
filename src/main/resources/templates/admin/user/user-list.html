@@ -30,7 +30,6 @@
 					<thead>
 						<tr>
 							<th scope="col">회원번호</th>
-							<th scope="col">건물명</th>
 							<th scope="col">회원명</th>
 							<th scope="col">전화번호</th>
 							<th scope="col">이메일</th>
@@ -39,12 +38,11 @@
 					</thead>
 					<tbody>
 						<tr th:each="user: ${user}">
-							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.userId}]]</a></td>
-							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">건물</a></td>
+							<td>[[${user.userId}]]</td>
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.userName}]]</a></td>
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.phone}]]</a></td>
 							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.email}]]</a></td>
-							<td><a th:href="@{/admin/users/{userId}(userId = ${user.userId})}">[[${user.status}]]</a></td>
+							<td>[[${user.status}]]</td>
 						</tr>
 					</tbody>
 				</table>

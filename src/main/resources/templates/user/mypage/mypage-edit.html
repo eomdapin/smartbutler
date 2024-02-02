@@ -18,7 +18,7 @@
 		<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-2">내 정보</h1>
-				<form th:action="@{/user/mypage/{userId}/edit(userId = ${user.userId})}" th:method="put">
+				<form action="/user/mypage/edit" th:method="put">
 					<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 						<div class="col-7 mt-3 border-top border-5 border-black"></div>
 					</div>
@@ -70,7 +70,7 @@
 							<label for="build_name">건물명</label>
 						</div>
 						<div class="col-5">
-							<input type="text" name="buildName" class="form-control" th:value=${build?.buildName} >
+							<input type="text" name="buildName" class="form-control" th:value=${resident?.buildName} >
 						</div>
 					</div>
 					<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -107,8 +107,9 @@
 					</div>
 					<div>
 						<div class="row justify-content-center mt-3">
+							<!-- <button type="button" class="btn btn-primary col-1 me-3" onclick="putClick(); return false;">완료</button> -->
 							<input type="submit" class="btn btn-primary col-1 me-3" value="완료">
-							<button type="button" class="btn btn-secondary col-1 me-3" th:onclick="|location.href='@{/user/mypage/{userId}(userId = ${user.userId})}'|">뒤로가기</button>
+							<button type="button" class="btn btn-secondary col-1 me-3" onclick="location.href='/user/mypage'">뒤로가기</button>
 							<input type="hidden" name="userId" id="userId" th:value="${user.userId}">
 							<input type="hidden" name="role" value="USER">
 						</div>

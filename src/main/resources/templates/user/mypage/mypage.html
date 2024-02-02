@@ -54,7 +54,7 @@
 						<label for="build_name">건물명</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="buildName" class="form-control" th:value=${build?.buildName} readonly>
+						<input type="text" name="buildName" class="form-control" th:value=${resident?.buildName} readonly>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -91,7 +91,7 @@
 				</div>
 				<div>
 					<div class="row justify-content-center mt-5">
-						<button type="button" class="btn btn-primary col-1 me-3" th:onclick="|location.href='@{/user/mypage/{userId}/edit(userId = ${user.userId})}'|">수정</button>
+						<button type="button" class="btn btn-primary col-1 me-3" onclick="location.href='/user/mypage/edit'">수정</button>
 						<button type="button" class="btn btn-secondary col-1 me-3" onclick="location.href='/'">뒤로가기</button>
 					</div>
 				</div>
