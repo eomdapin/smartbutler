@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,8 +34,8 @@ public class Company {
 	@JoinColumn(name = "build_id")
 	private Build build;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "kind_type")
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "kind_id")
 	private CompanyKind companyKind;
 
 	@Column(name = "pw")
@@ -70,9 +71,13 @@ public class Company {
 	public static class CompanyKind {
 
 		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Column(name = "kind_id")
+		private Long kindId;
+		
 		@Column(name = "kind_type")
 		private String kindType;
-
+		
 		@Column(name = "kind_name")
 		private String kindName;
 	}

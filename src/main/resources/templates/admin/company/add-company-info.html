@@ -4,13 +4,17 @@
 <meta charset="UTF-8">
 <title>SMARTBUTLER</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" as="style" crossorigin
+	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/admin.css">
-<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32"	href="/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16"	href="/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/img/favicon-16x16.png">
 <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
@@ -26,15 +30,14 @@
 				</ul>
 			</div>
 			<div class="content">
-				<form action="/admin/buildings/companies/add"
-					method="post">
+				<form action="/admin/buildings/companies/add" method="post">
 					<div class="container fw-semibold">
 
 						<div class="row align-items-center mb-4">
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="company-id" class="col-form-label ms-3">업체번호</label>
+										<label for="companyId" class="col-form-label ms-3">업체번호</label>
 									</div>
 									<div class="col-8">
 										<input type="text" id="companyId" name="companyId"
@@ -64,17 +67,18 @@
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="company-name" class="col-form-label ms-3">업체명</label>
+										<label for="companyName" class="col-form-label ms-3">업체명</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="companyName" name="companyName" class="form-control">
+										<input type="text" id="companyName" name="companyName"
+											class="form-control">
 									</div>
 								</div>
 							</div>
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="from-date" class="col-form-label ms-3">계약시작일</label>
+										<label for="fromDate" class="col-form-label ms-3">계약시작일</label>
 									</div>
 									<div class="col-8">
 										<input type="date" id="fromDate" name="fromDate"
@@ -99,7 +103,7 @@
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="to-date" class="col-form-label ms-3">계약종료일</label>
+										<label for="toDate" class="col-form-label ms-3">계약종료일</label>
 									</div>
 									<div class="col-8">
 										<input type="date" id="toDate" name="toDate"
@@ -116,18 +120,23 @@
 										<label for="phone" class="col-form-label ms-3">전화번호</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="phone" name="phone" class="form-control">
+										<input type="text" id="phone" name="phone"
+											class="form-control">
 									</div>
 								</div>
 							</div>
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="kind-name" class="col-form-label ms-3">담당업무</label>
+										<label for="kindName" class="col-form-label ms-3">담당업무</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="kindName" name="kindName"
-											class="form-control">
+										<select class="form-control" name="kindType" id="kindType">
+											<option value="0">업무명을 선택하세요</option>
+											<option th:each="companyKind : ${companyKinds}"
+												th:value="${companyKind.kindType}"
+												th:text="${companyKind.kindName}"></option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -140,8 +149,7 @@
 										<label for="cost" class="col-form-label ms-3">계약비용</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="cost" name="cost"
-											class="form-control">
+										<input type="text" id="cost" name="cost" class="form-control">
 									</div>
 								</div>
 							</div>
@@ -151,8 +159,12 @@
 										<label for="buildId" class="col-form-label ms-3">건물명</label>
 									</div>
 									<div class="col-8">
-										<input type="text" id="buildId" name="buildId"
-											class="form-control">
+										<select class="form-control" name="buildId" id="buildId">
+											<option value="0">건물명을 선택하세요</option>
+											<option th:each="buildDTO : ${buildDTOs}"
+												th:value="${buildDTO.buildId}"
+												th:text="${buildDTO.buildName}"></option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -165,7 +177,8 @@
 									<div class="col-4"></div>
 									<div class="col-8 d-flex gap-4">
 										<input class="col btn btn-primary" type="submit" value="등록">
-										<button type="button" class="col btn btn-lg btn-outline-primary"
+										<button type="button"
+											class="col btn btn-lg btn-outline-primary"
 											onclick="history.back()">목록</button>
 									</div>
 								</div>

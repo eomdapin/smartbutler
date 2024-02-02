@@ -59,16 +59,16 @@ create table if not exists claim (
 
 drop table if exists company_kind;
 create table if not exists company_kind (
-	kind_type char(20) not null COMMENT '담당 업무 코드',
-    kind_name char(100) not null COMMENT '담당 업무명',
-    primary key(kind_type)
+	kind_id bigint not null auto_increment COMMENT '업무 고유 번호',
+    kind_name varchar(100) not null COMMENT '담당 업무명',
+    primary key(kind_id)
 );
 
 drop table if exists company;
 create table if not exists company (
 	company_id bigint not null auto_increment COMMENT '업체 고유 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
-    kind_type char(20) not null COMMENT '담당 업무 코드',
+    kind_id bigint not null COMMENT '업무 고유 번호',
     company_name varchar(100) not null COMMENT '업체명',
     manager varchar(30) not null COMMENT '담당자명',
     phone char(13) not null COMMENT '전화번호',
@@ -76,10 +76,10 @@ create table if not exists company (
     to_date date not null COMMENT '계약 종료일',
     cost bigint not null COMMENT '계약 비용',
     pw text not null COMMENT '비밀번호',
-    roles text not null COMMENT '권한',
+    role text not null COMMENT '권한',
     foreign key(build_id) references build(build_id) on delete cascade,
-    foreign key(kind_type) references company_kind(kind_type) on update cascade,
-    primary key(company_id, build_id, kind_type)
+    foreign key(kind_id) references company_kind(kind_id) on update cascade,
+    primary key(company_id)
 );
 
 drop table if exists estimate;

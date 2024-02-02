@@ -24,6 +24,7 @@ public class CompanyDTO {
 	private Long cost;
 	private String role;
 	private String kindName;
+	private String buildName;
 
 	@Setter
 	@Getter
@@ -31,6 +32,7 @@ public class CompanyDTO {
 	@NoArgsConstructor
 	public static class CompanyKindDTO {
 
+		private Long kindId;
 		private String kindType;
 		private String kindName;
 	}

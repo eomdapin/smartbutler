@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fms.smartbutler.domain.Company;
+import com.fms.smartbutler.domain.Company.CompanyKind;
+import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.CompanyDTO;
+import com.fms.smartbutler.repository.CompanyKindRepository;
+import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.CompanyService;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +23,9 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/admin/buildings")
 public class CompanyController {
-
+	
+	private final CompanyKindRepository companyKindRepository;
+	private final BuildService buildService;
 	private final CompanyService companyService;
 
 	// 계약 업체 목록
@@ -40,25 +45,18 @@ public class CompanyController {
 	}
 
 	// 계약 업체 수정 폼
-//	@GetMapping("/companies/{companyName}/update")
-//	public String getCompanyInfoUpdateForm() {
-//		return "admin/company/update-company-info";
-//	}
-
-	// 계약 업체 수정 폼
 	@GetMapping("/{buildId}/companies/{companyId}/update")
 	public String getCompanyInfoUpdateForm(@PathVariable Long companyId, Model model) {
+		List<CompanyKind> companyKinds = companyKindRepository.findAll();
+		model.addAttribute("companyKinds", companyKinds);
+		
+		List<BuildDTO> buildDTOs = buildService.findAll();
+		model.addAttribute("buildDTOs", buildDTOs);
+		
 		CompanyDTO companyDTO = companyService.findById(companyId);
 		model.addAttribute("company", companyDTO);
 		return "admin/company/update-company-info";
-//		return "admin/company/hello";
 	}
-
-	// 계약 업체 수정
-//	@PostMapping("/companies/{companyName}/update")
-//	public String updateCompanyInfo() {
-//		return "redirect:/admin/buildings/companies";
-//	}
 
 	// 계약 업체 수정
 	@PostMapping("/{buildId}/companies/{companyId}/update")
@@ -66,13 +64,6 @@ public class CompanyController {
 		companyService.save(companyDTO);
 		return "redirect:/admin/buildings/companies";
 	}
-
-	// 계약 업체 삭제
-//	@GetMapping("/companies/{companyId}/delete")
-//	public String deleteCompanyInfo(@PathVariable Long companyId) {
-//		companyService.deleteById(companyId);
-//		return "redirect:/admin/buildings/companies";
-//	}
 
 	// 계약 업체 삭제
 	@PostMapping("/{buildId}/companies/{companyId}/delete")
@@ -83,7 +74,12 @@ public class CompanyController {
 
 	// 계약 업체 등록 폼
 	@GetMapping("/companies/add")
-	public String getCompanyInfoForm() {
+	public String getCompanyInfoForm(Model model) {
+		List<CompanyKind> companyKinds = companyKindRepository.findAll();
+		model.addAttribute("companyKinds", companyKinds);
+		
+		List<BuildDTO> buildDTOs = buildService.findAll();
+		model.addAttribute("buildDTOs", buildDTOs);
 		return "admin/company/add-company-info";
 	}
 
@@ -91,7 +87,7 @@ public class CompanyController {
 	@PostMapping("/companies/add")
 	public String addCompanyInfo(@ModelAttribute CompanyDTO companyDTO) {
 
-		companyService.save(companyDTO);
+//		companyService.save(companyDTO);
 
 		return "redirect:/admin/buildings/companies";
 	}

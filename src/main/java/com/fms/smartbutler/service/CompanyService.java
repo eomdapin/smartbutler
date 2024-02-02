@@ -38,40 +38,70 @@ public class CompanyService implements UserDetailsService {
 				.roles(company.getRole()).build();
 	}
 	
-	public CompanyDTO save(CompanyDTO companyDTO) {
-		String kindName = companyDTO.getKindName();
-		String kindType = "";
-
-		switch (kindName) {
-		case "공조":
-			kindType = "1";
-			break;
-		case "엘리베이터":
-			kindType = "2";
-			break;
-		case "전기":
-			kindType = "3";
-			break;
-		default:
-			break;
-		}
-		companyDTO.setKindType(kindType);
-
+//	public CompanyDTO save(CompanyDTO companyDTO) {
+//		String kindName = companyDTO.getKindName();
+//		String kindType = "";
+//
+//		switch (kindName) {
+//		case "공조":
+//			kindType = "1";
+//			break;
+//		case "엘리베이터":
+//			kindType = "2";
+//			break;
+//		case "전기":
+//			kindType = "3";
+//			break;
+//		default:
+//			break;
+//		}
+//		companyDTO.setKindType(kindType);
+//
+//		Company company = modelMapper.map(companyDTO, Company.class);
+//
+//		String role = "WORKER";
+//		company.setRole(role);
+//
+//		Company savedCompany = companyRepository.save(company);
+//		CompanyDTO savedCompanyDTO = modelMapper.map(savedCompany, CompanyDTO.class);
+//		return savedCompanyDTO;
+//	}
+	
+	public void save(CompanyDTO companyDTO) {
+//		String kindName = companyDTO.getKindName();
+//		String kindType = "";
+//		
+//		switch (kindName) {
+//		case "공조":
+//			kindType = "1";
+//			break;
+//		case "엘리베이터":
+//			kindType = "2";
+//			break;
+//		case "전기":
+//			kindType = "3";
+//			break;
+//		default:
+//			break;
+//		}
+//		companyDTO.setKindType(kindType);
+		
 		Company company = modelMapper.map(companyDTO, Company.class);
-
+		
 		String role = "WORKER";
 		company.setRole(role);
-
-		Company savedCompany = companyRepository.save(company);
-		CompanyDTO savedCompanyDTO = modelMapper.map(savedCompany, CompanyDTO.class);
-		return savedCompanyDTO;
+		
+		companyRepository.save(company);
+//		Company savedCompany = companyRepository.save(company);
+//		CompanyDTO savedCompanyDTO = modelMapper.map(savedCompany, CompanyDTO.class);
+//		return savedCompanyDTO;
 	}
 	
-	public CompanyDTO findByCompanyName(String companyName) {
-		Company company = companyRepository.findByCompanyName(companyName);
-		CompanyDTO companyDTO = modelMapper.map(company, CompanyDTO.class);
-		return companyDTO;
-	}
+//	public CompanyDTO findByCompanyName(String companyName) {
+//		Company company = companyRepository.findByCompanyName(companyName);
+//		CompanyDTO companyDTO = modelMapper.map(company, CompanyDTO.class);
+//		return companyDTO;
+//	}
 
 	public CompanyDTO findById(Long companyId) {
 		Company company = companyRepository.findById(companyId).get();

@@ -52,16 +52,13 @@
 					<tbody>
 						<tr th:each="company:${companies}">
 							<td><a th:text="${company.companyId}" th:href="@{/admin/buildings/{buildId}/companies/{companyId}(buildId=${company.buildId}, companyId=${company.companyId})}"></a></td>
-							<!-- <td th:text="${company.companyId}"></td> -->
-							<!-- <td th:text="${company.buildName}"></td> -->
-							<td th:text="${company.buildId}"></td>
+							<td th:text="${company.buildName}"></td>
 							<td th:text="${company.companyName}"></td>
 							<td th:text="${company.manager}"></td>
 							<td th:text="${company.phone}"></td>
 							<td th:text="${company.fromDate}"></td>
 							<td th:text="${company.toDate}"></td>
-							<!-- <td th:text="${company.kindName}"></td> -->
-							<td th:text="${company.kindType}"></td>
+							<td th:text="${company.kindName}"></td>
 							<td th:text="${company.cost}"></td>
 						</tr>
 					</tbody>

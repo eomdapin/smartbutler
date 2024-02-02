@@ -4,13 +4,17 @@
 <meta charset="UTF-8">
 <title>SMARTBUTLER</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" as="style" crossorigin
+	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/admin.css">
-<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/img/favicon-16x16.png">
 <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
@@ -26,7 +30,9 @@
 				</ul>
 			</div>
 			<div class="content">
-				<form th:action="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${company.buildId}, companyId=${company.companyId})}" method="post">
+				<form
+					th:action="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${company.buildId}, companyId=${company.companyId})}"
+					method="post">
 
 					<div class="container fw-semibold">
 
@@ -34,10 +40,12 @@
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="company-id" class="col-form-label ms-3">업체번호</label>
+										<label for="companyId" class="col-form-label ms-3">업체번호</label>
 									</div>
 									<div class="col-8">
-										<input class="form-control" type="text" th:value="${company.companyId}" id="companyId" name="companyId" readonly disabled>
+										<input class="form-control" type="text"
+											th:value="${company.companyId}" id="companyId"
+											name="companyId" readonly disabled>
 									</div>
 								</div>
 							</div>
@@ -47,7 +55,8 @@
 										<label for="password" class="col-form-label ms-3">비밀번호</label>
 									</div>
 									<div class="col-8">
-										<input class="form-control" type="password" th:value="${company.password}" id="password" name="password">
+										<input class="form-control" type="password"
+											th:value="${company.password}" id="password" name="password">
 									</div>
 								</div>
 							</div>
@@ -62,20 +71,23 @@
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="company-name" class="col-form-label ms-3">업체명</label>
+										<label for="companyName" class="col-form-label ms-3">업체명</label>
 									</div>
 									<div class="col-8">
-										<input class="form-control" type="text" th:value="${company.companyName}" id="companyName" name="companyName">
+										<input class="form-control" type="text"
+											th:value="${company.companyName}" id="companyName"
+											name="companyName">
 									</div>
 								</div>
 							</div>
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="from-date" class="col-form-label ms-3">계약시작일</label>
+										<label for="fromDate" class="col-form-label ms-3">계약시작일</label>
 									</div>
 									<div class="col-8">
-										<input class="form-control" type="text" th:value="${company.fromDate}" id="fromDate" name="fromDate">
+										<input class="form-control" type="date"
+											th:value="${company.fromDate}" id="fromDate" name="fromDate">
 									</div>
 								</div>
 							</div>
@@ -88,17 +100,19 @@
 										<label for="manager" class="col-form-label ms-3">담당자명</label>
 									</div>
 									<div class="col-8">
-										<input class="form-control" type="text" th:value="${company.manager}" id="manager" name="manager">
+										<input class="form-control" type="text"
+											th:value="${company.manager}" id="manager" name="manager">
 									</div>
 								</div>
 							</div>
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="to-date" class="col-form-label ms-3">계약종료일</label>
+										<label for="toDate" class="col-form-label ms-3">계약종료일</label>
 									</div>
 									<div class="col-8">
-										<input class="form-control" type="text" th:value="${company.toDate}" id="toDate" name="toDate">
+										<input class="form-control" type="date"
+											th:value="${company.toDate}" id="toDate" name="toDate">
 									</div>
 								</div>
 							</div>
@@ -111,17 +125,24 @@
 										<label for="phone" class="col-form-label ms-3">전화번호</label>
 									</div>
 									<div class="col-8">
-										<input class="form-control" type="text" th:value="${company.phone}" id="phone" name="phone">
+										<input class="form-control" type="text"
+											th:value="${company.phone}" id="phone" name="phone">
 									</div>
 								</div>
 							</div>
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="kind-name" class="col-form-label ms-3">담당업무</label>
+										<label for="kindName" class="col-form-label ms-3">담당업무</label>
 									</div>
 									<div class="col-8">
-										<input class="form-control" type="text" th:value="${company.kindName}" id="kindName" name="kindName">
+										<select class="form-control" name="kindType" id="kindType">
+											<option th:value="${company.kindType}"
+												th:text="${company.kindName}"></option>
+											<option th:each="companyKind : ${companyKinds}"
+												th:value="${companyKind.kindType}"
+												th:text="${companyKind.kindName}"></option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -134,34 +155,29 @@
 										<label for="cost" class="col-form-label ms-3">계약비용</label>
 									</div>
 									<div class="col-8">
-										<input class="form-control" type="text" th:value="${company.cost}" id="cost" name="cost">
+										<input class="form-control" type="text"
+											th:value="${company.cost}" id="cost" name="cost">
 									</div>
 								</div>
 							</div>
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="cost" class="col-form-label ms-3">건물명</label>
+										<label for="buildId" class="col-form-label ms-3">건물명</label>
 									</div>
 									<div class="col-8">
-										<input class="form-control" type="text" th:value="${company.buildId}" id="buildId" name="buildId">
+										<select class="form-control" name="buildId" id="buildId">
+											<option th:value="${company.buildId}"
+												th:text="${company.buildName}"></option>
+											<option th:each="buildDTO : ${buildDTOs}"
+												th:value="${buildDTO.buildId}"
+												th:text="${buildDTO.buildName}"></option>
+										</select>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<!-- <form>
-							<div class="row">
-								<div class="col-5"></div>
-								<div class="col-5">
-									<div class="d-flex gap-4 justify-items-center">
-										<button class="col btn btn-primary" type="submit" formaction="/admin/buildings/companies/1/update" formmethod="get">수정</button>
-										<button class="col btn btn-info text-white" type="submit" formaction="/admin/buildings/companies/1/delete" formmethod="post">삭제</button>
-										<button class="col btn btn-outline-primary" type="submit" formaction="/admin/buildings/companies" formmethod="get">목록</button>
-									</div>
-								</div>
-							</div>
-						</form> -->
 						<div class="row align-items-center mt-5">
 							<div class="col-5"></div>
 							<div class="col-5">
@@ -169,7 +185,8 @@
 									<div class="col-4"></div>
 									<div class="col-8 d-flex gap-4">
 										<input class="col btn btn-primary" type="submit" value="저장">
-										<button type="button" class="col btn btn-outline-primary" onclick="history.back()">취소</button>
+										<button type="button" class="col btn btn-outline-primary"
+											onclick="history.back()">취소</button>
 									</div>
 								</div>
 							</div>
