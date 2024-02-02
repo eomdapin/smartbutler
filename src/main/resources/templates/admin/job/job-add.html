@@ -43,22 +43,26 @@
 						</div>
 						<div class="col-1"><label for="itemName" class="col-form-label fw-bold">시설명</label></div>
 						<div class="col-5">
-							<select name="itemName" id="itemName" class="form-select">
-								<option th:each="item : ${items}" th:if="${item.buildId == build.buildId}" th:value="${item.itemName}" th:text="${item.itemName}">
+							<select name="itemId" id="itemName" class="form-select">
+								<option th:each="item : ${items}" th:if="${item.buildId == build.buildId}" th:value="${item.itemId}" th:text="${item.itemName}" selected>
 							</select>
 						</div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="companyName" class="col-form-label fw-bold">점검업체</label></div>
-						<div class="col-5"><input type="text" name="companyName" class="form-control"></div>
+						<div class="col-5">
+							<select class="form-select" id="companyName" name="companyId" onChange="changeCompany()">
+								<option class="form-option" th:each="company: ${companies}" th:value="${company?.companyId}">[[${company?.companyName}]]</option>
+							</select>
+						</div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label for="title" class="col-form-label fw-bold">제목</label></div>
-						<div class="col m-0"><input type="text" name="title" class="form-control"></div>
+						<div class="col m-0"><input type="text" name="title" class="form-control" required></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label for="content" class="col-form-label fw-bold">요청내용</label></div>
-						<div class="col m-0"><textarea rows="3" name="content" class="form-control"></textarea></div>
+						<div class="col m-0"><textarea rows="3" name="content" class="form-control" required></textarea></div>
 					</div>
 					<div class="row justify-content-end mt-4">
 						<input type="submit" value="전송" class="btn btn-lg btn-primary col-auto me-3">
@@ -77,8 +81,9 @@
 		itemsModel.forEach(function(item) {
 			if(selectedBuildId == item.buildId) {
 				var option = document.createElement("option");
-				option.value = item.itemName;
+				option.value = item.itemId;
 				option.text = item.itemName;
+				option.selected = true;
 				items.appendChild(option);
 			}
 		});

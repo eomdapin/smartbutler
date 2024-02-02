@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ClaimDTO;
 import com.fms.smartbutler.dto.ImageDTO;
+import com.fms.smartbutler.dto.ResidentDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ClaimService;
 import com.fms.smartbutler.service.ImageService;
+import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.vo.FileVo;
 
 import lombok.RequiredArgsConstructor;
@@ -38,6 +40,7 @@ public class ClaimController {
 	private final ClaimService claimService;
 	private final ImageService imageService;
 	private final BuildService buildService;
+	private final ResidentService residentService;
 	
 	// 민원 목록
 	@GetMapping("/{buildId}/claims")
@@ -58,16 +61,18 @@ public class ClaimController {
 	// 민원 상세
 	@GetMapping("/{buildId}/claims/{claimId}")
 	public String getClaimInfo(@PathVariable("buildId") Long buildId, @PathVariable("claimId") Long claimId, Model model) {
-		ClaimDTO claimDTO = claimService.findById(claimId).orElseGet(ClaimDTO::new);
-		List<ImageDTO> images = imageService.findByOutIdAndCoded(claimDTO.getClaimId(), "c");
+		ClaimDTO claim = claimService.findById(claimId).orElseGet(ClaimDTO::new);
+		List<ImageDTO> images = imageService.findByOutIdAndCoded(claim.getClaimId(), "c");
+		ResidentDTO resident = residentService.findByUserId(claim.getUserId());
 		FileVo vo = new FileVo();
 		
 		if(images.size() > 0) {
 			vo.setFileName(images.get(0).getRealName());
 		}
 		
-		model.addAttribute("claim", claimDTO);
+		model.addAttribute("claim", claim);
 		model.addAttribute("images", images);
+		model.addAttribute("resident", resident);
 		model.addAttribute("vo", vo);
 		
 		return "admin/claim/claim-info";
@@ -75,8 +80,8 @@ public class ClaimController {
 	
 	// 민원 처리
 	@PostMapping("/{buildId}/claims/{claimId}")
-	public String postClaimInfo(@ModelAttribute ClaimDTO claimDTO) {
-		claimService.finishClaim(claimDTO);
+	public String postClaimInfo(@ModelAttribute ClaimDTO claim) {
+		claimService.finishClaim(claim);
 		
 		return "redirect:/admin/buildings/0/claims";
 	}

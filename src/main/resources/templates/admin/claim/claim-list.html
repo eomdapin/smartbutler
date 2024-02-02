@@ -14,9 +14,9 @@
     <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
+	<div th:replace="~{common/fragments :: adminHeader}"></div>
+	<div th:replace="~{common/fragments :: adminSidebar}"></div>
 	<div id="wrap">
-		<div th:replace="~{common/fragments :: adminHeader}"></div>
-		<div th:replace="~{common/fragments :: adminSidebar}"></div>
 		<div class="container">
 			<div class="bread-crum">
 				<ul class="">
@@ -34,7 +34,7 @@
 							<th scope="col" class="col-md-4">제목</th>
 							<th scope="col">요청날짜</th>
 							<th scope="col">건물명</th>
-							<th scope="col">세대번호</th>
+							<th scope="col">민원종류</th>
 							<th scope="col">완료날짜</th>
 							<th scope="col">처리상태</th>
 						</tr>
@@ -45,7 +45,7 @@
 							<td><a th:href="@{/admin/buildings/{buildId}/claims/{claimId}(buildId = ${buildId}, claimId = ${claim.claimId})}">[[${claim.title}]]</a></td>
 							<td>[[${claim.askDate}]]</td>
 							<td>[[${claim.buildName}]]</td>
-							<td>[[${claim.residentId}]]</td>
+							<td>[[${claim.claimKind}]]</td>
 							<td>[[${claim.finDate}]]</td>
 							<td th:text="${claim.status == 1} ? '신청' : '완료'"></td>
 						</tr>
