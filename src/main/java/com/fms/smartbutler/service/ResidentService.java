@@ -44,6 +44,16 @@ public class ResidentService {
 		return residentDTO;
 	}
 	
+	public ResidentDTO findByUserId(Long userId) {
+		Resident resident = residentRepository.findByUsers_UserId(userId).orElseGet(Resident::new);
+		ResidentDTO residentDTO = modelMapper.map(resident, ResidentDTO.class);
+		
+		residentDTO.setUsers(resident.getUsers());
+		residentDTO.setBuild(resident.getBuild());
+		
+		return residentDTO;
+	}
+	
 	public List<ResidentDTO> findAll() {
 		 List<ResidentDTO> residentList = residentRepository.findAll().stream()
 				.map(resident -> {
