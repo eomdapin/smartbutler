@@ -62,7 +62,10 @@ public class ResidentController {
 	// 입주 등록
 	@PostMapping("/{buildId}/residents/add")
 	public String postResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
+		UsersDTO updateUser = usersService.findById(residentDTO.getUserId()).orElseGet(UsersDTO::new);
+		updateUser.setStatus(2);
 		residentService.save(residentDTO);
+		usersService.updateStatus(updateUser);
 		
 		return "redirect:/admin/buildings/{buildId}/residents";
 	}

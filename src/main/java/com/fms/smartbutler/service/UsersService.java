@@ -61,6 +61,10 @@ public class UsersService implements UserDetailsService {
 		usersDTO.setUserId(users.getUserId());
 	}
 	
+	public void updateStatus(UsersDTO usersDTO) {
+		Users users = modelMapper.map(usersDTO, Users.class);
+		usersRepository.save(users);
+	}
 	
 	public Optional<UsersDTO> findById(Long userId) {
 		Optional<Users> users = usersRepository.findById(userId);
