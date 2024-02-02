@@ -29,17 +29,17 @@ public class UsersService implements UserDetailsService {
 	private final PasswordEncoder passwordEncoder;
 	
 	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
-		Users user = usersRepository.findByUserName(userName);
+		Users user = usersRepository.findByEmail(email);
 		
 		if(user == null) {
-			throw new UsernameNotFoundException(userName);
+			throw new UsernameNotFoundException(email);
 		}
 		
 		return User
 				.builder()
-				.username(user.getUserName())
+				.username(user.getEmail())
 				.password(user.getPw())
 				.roles(user.getRole())
 				.build();
