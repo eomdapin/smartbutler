@@ -34,9 +34,11 @@ public class ResidentController {
 	@GetMapping("/{buildId}/residents")
 	public String getResidentList(@PathVariable Long buildId, Model model) {
 		List<ResidentDTO> residents = residentService.findAllByEnteredAndBuildId(2L, buildId);
+		List<BuildDTO> builds = buildService.findAll();
 		
 		model.addAttribute("residents", residents);
 		model.addAttribute("buildId", buildId);
+		model.addAttribute("builds", builds);
 		
 		return "admin/resident/resident-list";
 	}
@@ -60,7 +62,7 @@ public class ResidentController {
 	// 입주 등록
 	@PostMapping("/{buildId}/residents/add")
 	public String postResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
-		residentService.save(residentDTO, buildId);
+		residentService.save(residentDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/residents";
 	}
@@ -86,7 +88,7 @@ public class ResidentController {
 	// 입주 수정
 	@PostMapping("/{buildId}/residents/{residentId}/update")
 	public String postUpdateResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
-		residentService.save(residentDTO, buildId);
+		residentService.save(residentDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/residents";
 	}

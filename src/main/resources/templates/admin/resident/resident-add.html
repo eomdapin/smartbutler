@@ -41,8 +41,9 @@
 					<div class="row">
                         <div class="col-2 mb-3"><label for="buildName" class="form-label">건물명</label></div>
 						<div class="col-4 mb-3">
-                        	<select name="buildId" class="form-select">
-                        		<option th:each="builds: ${builds}" th:value="${builds?.buildId}">[[${builds?.buildName}]]</option>
+                        	<select id="buildId" name="buildId" class="form-select" onChange="buildChange()">
+                        		<option th:each="builds: ${builds}" th:value="${builds?.buildId}"
+                        		th:selected="${buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
                         	</select>
                        	</div>
                         
@@ -68,7 +69,7 @@
                     </div>
                     <div class="text-end pt-3 row">
 	                   <div class="col-auto"><input type="submit" class="btn btn-lg btn-primary" value="저장"></div>
-	                   <div class="col-auto"><a onClick="history.back()" class="btn btn-lg btn-outline-dark">목록</a></div>
+	                   <div class="col-auto"><a th:href="@{/admin/buildings/{buildId}/residents(buildId = ${buildId})}" class="btn btn-lg btn-outline-dark">목록</a></div>
                    </div>
 				</form>
 			</div>
@@ -79,6 +80,13 @@
 	function residentChange() {
 		let residentId = document.querySelector("select[name=residentId] option:checked").innerText
 		document.getElementById('residentNum').value = residentId.substring(-1, residentId.length-1);
+	}
+	function buildChange() {
+		let form = document.getElementById('addForm');
+		let buildId = document.getElementById('buildId').value;
+		form.action = '/admin/buildings/' + buildId + '/residents/add'
+		form.method = 'get';
+		form.submit();
 	}
 	</script>
 </body>

@@ -26,6 +26,19 @@
 				</ul>
 			</div>
 			<div class="content">
+                <form id="infoForm" action="/admin/buildings/{buildId}/residents/total" method="get">
+					<div class="row g-3 justify-content-center align-items-center mb-4">
+	                    <div class="col-1 mb-3">
+	                    	<label for="buildId" class="fs-5 fw-bold">건물명</label>
+	                    </div>			
+	                    <div class="col-3 mb-3">
+	                        <select class="form-select" id="buildId" name="buildId" onChange="changeBuild()">
+	                            <option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
+	                                th:selected="${buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
+	                        </select>
+	                    </div>
+	                </div>
+                </form>
 				<div class="d-flex justify-content-end mb-3">
 					<a class="col-2 btn btn-primary" type="button" th:href="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}">신규등록</a>
 				</div>
@@ -58,5 +71,15 @@
 			</div>
 		</div>
 	</div>
+	    <script>
+        function changeBuild() {
+            let buildId = document.getElementById('buildId');
+            let form = document.getElementById('infoForm');
+
+            form.action = '/admin/buildings/' + buildId.value + '/residents';
+
+            form.submit();
+        }
+    </script>
 </body>
 </html>

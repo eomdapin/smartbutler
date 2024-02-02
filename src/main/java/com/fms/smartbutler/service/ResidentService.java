@@ -1,14 +1,15 @@
 package com.fms.smartbutler.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Resident;
 import com.fms.smartbutler.dto.ResidentDTO;
+import com.fms.smartbutler.repository.BuildRepository;
 import com.fms.smartbutler.repository.ResidentRepository;
+import com.fms.smartbutler.repository.UsersRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +22,13 @@ import lombok.extern.slf4j.Slf4j;
 public class ResidentService {
 	
 	private final ResidentRepository residentRepository;
+	private final BuildRepository buildRepository;
+	private final UsersRepository usersRepository;
 	private final ModelMapper modelMapper;
 	
-	public void save(ResidentDTO residentDTO, Long buildId) {
-		residentDTO.getBuild().setBuildId(buildId);
-		residentDTO.getUsers().setUserId(buildId);
+	public void save(ResidentDTO residentDTO) {
+		residentDTO.getBuild().setBuildId(residentDTO.getBuildId());
+		residentDTO.getUsers().setUserId(residentDTO.getUserId());
 		Resident resident = modelMapper.map(residentDTO, Resident.class);
 		
 		residentRepository.save(resident);
