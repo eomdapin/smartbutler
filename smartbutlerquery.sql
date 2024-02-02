@@ -278,7 +278,7 @@ insert into cost(build_id, cost_date, electricity, repair, upkeep, consignment, 
 insert into company_kind values('1', '공조');
 insert into company values('1', '1', '1', '한일공조', '지디', '010-1111-2222', '2024-01-01', '2024-12-12', '1000', '{noop}1111', 'WORKER');
 
-select * from users;	
+select * from users;
 select * from build;
 select * from item;
 select * from item_kind;
@@ -287,3 +287,4 @@ select * from image;
 select * from image_category;
 select * from cost;
 select * from admin;
+select * from company;

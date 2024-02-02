@@ -1,5 +1,7 @@
 package com.fms.smartbutler.domain;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,5 +42,9 @@ public class Users {
 	
 	@Column(name = "role")
 	private String role;
+	
+	public void encodePassword(PasswordEncoder passwordEncoder) {
+		this.pw = passwordEncoder.encode(this.pw);
+	}
 
 }
