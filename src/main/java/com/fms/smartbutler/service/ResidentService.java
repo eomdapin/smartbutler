@@ -50,8 +50,18 @@ public class ResidentService {
 					return residentDTO;
 				}).toList();
 		 
-		 residentList.get(0).getUsers().getUserName();
-		 
 		 return residentList;
+	}
+	
+	public List<ResidentDTO> findAllByEnteredAndBuildId(Long entered, Long buildId) {
+		List<ResidentDTO> residentList = residentRepository.findAllByEnteredAndBuild_BuildId(entered, buildId).stream()
+				.map(resident -> {
+					ResidentDTO residentDTO = modelMapper.map(resident, ResidentDTO.class);
+					residentDTO.setUsers(resident.getUsers());
+					residentDTO.setBuild(resident.getBuild());
+					return residentDTO;
+				}).toList();
+		
+		return residentList;
 	}
 }

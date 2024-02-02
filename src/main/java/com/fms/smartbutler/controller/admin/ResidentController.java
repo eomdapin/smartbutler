@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ResidentDTO;
+import com.fms.smartbutler.dto.UsersDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ResidentService;
+import com.fms.smartbutler.service.UsersService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,12 +27,13 @@ import lombok.extern.slf4j.Slf4j;
 public class ResidentController {
 	
 	private final BuildService buildService;
+	private final UsersService usersService;
 	private final ResidentService residentService;
 	
 	// 입주 목록
 	@GetMapping("/{buildId}/residents")
 	public String getResidentList(@PathVariable Long buildId, Model model) {
-		List<ResidentDTO> residents = residentService.findAll();
+		List<ResidentDTO> residents = residentService.findAllByEnteredAndBuildId(2L, buildId);
 		
 		model.addAttribute("residents", residents);
 		model.addAttribute("buildId", buildId);
@@ -41,8 +44,15 @@ public class ResidentController {
 	// 입주 등록 폼
 	@GetMapping("/{buildId}/residents/add")
 	public String getResidentInfoForm(@PathVariable Long buildId, Model model) {
+		List<UsersDTO> users = usersService.findAll();
+		List<BuildDTO> builds = buildService.findAll();
+		List<ResidentDTO> residents = residentService.findAllByEnteredAndBuildId(1L, buildId);
+		
 		model.addAttribute("resident", new ResidentDTO());
+		model.addAttribute("residents", residents);
 		model.addAttribute("buildId", buildId);
+		model.addAttribute("users", users);
+		model.addAttribute("builds", builds);
 		
 		return "admin/resident/resident-add";
 	}
