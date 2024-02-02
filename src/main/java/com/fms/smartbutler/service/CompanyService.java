@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Company;
-import com.fms.smartbutler.domain.Company.CompanyKind;
 import com.fms.smartbutler.dto.CompanyDTO;
 import com.fms.smartbutler.repository.CompanyRepository;
 

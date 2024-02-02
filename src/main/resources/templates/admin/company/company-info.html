@@ -146,7 +146,7 @@
 								<div class="d-flex gap-4 justify-items-center">
 
 									<button class="col btn btn-primary" type="submit" th:formaction="@{/admin/buildings/companies/{companyName}/update(companyName=${company.companyName})}" th:formmethod="get">수정</button>
-									<button class="col btn btn-info text-white" type="submit" th:formaction="@{/admin/buildings/companies/{companyName}/delete(companyName=${company.companyName})" th:formmethod="post">삭제</button>
+									<button class="col btn btn-info text-white" type="submit" th:formaction="@{/admin/buildings/companies/{companyName}/delete(companyName=${company.companyName})}" th:formmethod="post">삭제</button>
 									<button class="col btn btn-outline-primary" type="submit" formaction="/admin/buildings/companies" formmethod="get">목록</button>
 
 								</div>

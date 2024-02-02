@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fms.smartbutler.domain.Company;
 import com.fms.smartbutler.dto.CompanyDTO;
 import com.fms.smartbutler.service.CompanyService;
 
@@ -70,7 +69,7 @@ public class CompanyController {
 //	}
 
 	// 계약 업체 삭제
-	@GetMapping("/companies/{companyName}/delete")
+	@PostMapping("/companies/{companyName}/delete")
 	public String deleteCompanyInfo(@PathVariable String companyName) {
 		companyService.deleteByCompanyName(companyName);
 		return "redirect:/admin/buildings/companies";
