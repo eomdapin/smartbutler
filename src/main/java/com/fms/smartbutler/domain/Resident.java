@@ -1,5 +1,7 @@
 package com.fms.smartbutler.domain;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -36,6 +38,7 @@ public class Resident {
 	@Column(name = "resident_num")
 	private Long residentNum;
 	
+	@ColumnDefault("1")
 	@Column(name = "entered")
 	private int entered;
 	

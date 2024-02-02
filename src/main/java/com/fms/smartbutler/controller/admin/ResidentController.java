@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -97,9 +98,12 @@ public class ResidentController {
 	}
 	
 	// 입주 삭제
-	@PostMapping("/{buildId}/residents/{residentId}/delete")
-	public String deleteResidentInfo() {
-		return "redirect:/admin/{buildId}/resident/list";
+	@DeleteMapping("{buildId}/residents/{residentId}")
+	public String deleteResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
+		log.info("residentDTO.getResidentId() :: {} ", residentDTO.getResidentId());
+		residentService.deleteResident(residentDTO);
+		
+		return "redirect:/admin/buildings/{buildId}/residents";
 	}
 	
 	// 입주 현황

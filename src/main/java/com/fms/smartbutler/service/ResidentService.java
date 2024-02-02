@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Resident;
 import com.fms.smartbutler.dto.ResidentDTO;
-import com.fms.smartbutler.repository.BuildRepository;
 import com.fms.smartbutler.repository.ResidentRepository;
 import com.fms.smartbutler.repository.UsersRepository;
 
@@ -22,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 public class ResidentService {
 	
 	private final ResidentRepository residentRepository;
-	private final BuildRepository buildRepository;
 	private final UsersRepository usersRepository;
 	private final ModelMapper modelMapper;
 	
@@ -52,6 +50,21 @@ public class ResidentService {
 		residentDTO.setBuild(resident.getBuild());
 		
 		return residentDTO;
+	}
+	
+	public void deleteResident(ResidentDTO residentDTO) {
+		residentDTO.getBuild().setBuildId(residentDTO.getBuildId());
+		residentDTO.getUsers().setUserId(residentDTO.getUserId());
+		Resident resident = modelMapper.map(residentDTO, Resident.class);
+		
+		residentRepository.delete(resident);
+		
+		resident = new Resident();
+		resident.setBuild(residentDTO.getBuild());
+		resident.setResidentNum(residentDTO.getResidentNum());
+		resident.setEntered(1);
+		
+		residentRepository.save(resident);
 	}
 	
 	public List<ResidentDTO> findAll() {
