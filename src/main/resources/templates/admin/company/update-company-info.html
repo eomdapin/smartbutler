@@ -31,7 +31,7 @@
 			</div>
 			<div class="content">
 				<form
-					th:action="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${company.buildId}, companyId=${company.companyId})}"
+					th:action="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${companyDTO.buildId}, companyId=${companyDTO.companyId})}"
 					method="post">
 
 					<div class="container fw-semibold">
@@ -44,7 +44,7 @@
 									</div>
 									<div class="col-8">
 										<input class="form-control" type="text"
-											th:value="${company.companyId}" id="companyId"
+											th:value="${companyDTO.companyId}" id="companyId"
 											name="companyId" readonly disabled>
 									</div>
 								</div>
@@ -56,7 +56,7 @@
 									</div>
 									<div class="col-8">
 										<input class="form-control" type="password"
-											th:value="${company.password}" id="password" name="password">
+											th:value="${companyDTO.password}" id="password" name="password">
 									</div>
 								</div>
 							</div>
@@ -75,7 +75,7 @@
 									</div>
 									<div class="col-8">
 										<input class="form-control" type="text"
-											th:value="${company.companyName}" id="companyName"
+											th:value="${companyDTO.companyName}" id="companyName"
 											name="companyName">
 									</div>
 								</div>
@@ -87,7 +87,7 @@
 									</div>
 									<div class="col-8">
 										<input class="form-control" type="date"
-											th:value="${company.fromDate}" id="fromDate" name="fromDate">
+											th:value="${companyDTO.fromDate}" id="fromDate" name="fromDate">
 									</div>
 								</div>
 							</div>
@@ -101,7 +101,7 @@
 									</div>
 									<div class="col-8">
 										<input class="form-control" type="text"
-											th:value="${company.manager}" id="manager" name="manager">
+											th:value="${companyDTO.manager}" id="manager" name="manager">
 									</div>
 								</div>
 							</div>
@@ -112,7 +112,7 @@
 									</div>
 									<div class="col-8">
 										<input class="form-control" type="date"
-											th:value="${company.toDate}" id="toDate" name="toDate">
+											th:value="${companyDTO.toDate}" id="toDate" name="toDate">
 									</div>
 								</div>
 							</div>
@@ -126,27 +126,61 @@
 									</div>
 									<div class="col-8">
 										<input class="form-control" type="text"
-											th:value="${company.phone}" id="phone" name="phone">
+											th:value="${companyDTO.phone}" id="phone" name="phone">
 									</div>
 								</div>
 							</div>
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
 									<div class="col-4">
-										<label for="kindName" class="col-form-label ms-3">담당업무</label>
+										<label for="kindType" class="col-form-label ms-3">담당업무</label>
 									</div>
 									<div class="col-8">
 										<select class="form-control" name="kindType" id="kindType">
-											<option th:value="${company.kindType}"
-												th:text="${company.kindName}"></option>
+											<option th:each="companyKind : ${companyKinds}" th:value="${companyKind.kindType}" th:text="${companyKind.kindName}"></option>
+										</select>
+									</div>
+								</div>
+							</div>
+							
+							<!-- <div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="kindName" class="col-form-label ms-3">담당업무</label>
+									</div>
+									<div class="col-8">
+										<select class="form-control" name="kindName" id="kindName">
+											<option th:value="${companyDTO.kindName}"
+												th:text="${companyDTO.kindName}"></option>
 											<option th:each="companyKind : ${companyKinds}"
-												th:value="${companyKind.kindType}"
+												th:value="${companyKind.kindName}"
 												th:text="${companyKind.kindName}"></option>
 										</select>
 									</div>
 								</div>
 							</div>
+							
+							
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="buildName" class="col-form-label ms-3">건물명</label>
+									</div>
+									<div class="col-8">
+										<select class="form-control" name="buildName" id="buildName">
+											<option th:value="${companyDTO.buildName}"
+												th:text="${companyDTO.buildName}"></option>
+											<option th:each="buildDTO : ${buildDTOs}"
+												th:value="${buildDTO.buildName}"
+												th:text="${buildDTO.buildName}"></option>
+										</select>
+									</div>
+								</div>
+							</div> -->
+							
 						</div>
+						
+						
 
 						<div class="row align-items-center mb-5">
 							<div class="col-5">
@@ -156,7 +190,7 @@
 									</div>
 									<div class="col-8">
 										<input class="form-control" type="text"
-											th:value="${company.cost}" id="cost" name="cost">
+											th:value="${companyDTO.cost}" id="cost" name="cost">
 									</div>
 								</div>
 							</div>
@@ -167,8 +201,8 @@
 									</div>
 									<div class="col-8">
 										<select class="form-control" name="buildId" id="buildId">
-											<option th:value="${company.buildId}"
-												th:text="${company.buildName}"></option>
+											<option th:value="${companyDTO.buildId}"
+												th:text="${companyDTO.buildName}"></option>
 											<option th:each="buildDTO : ${buildDTOs}"
 												th:value="${buildDTO.buildId}"
 												th:text="${buildDTO.buildName}"></option>

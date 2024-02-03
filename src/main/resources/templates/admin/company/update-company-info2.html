@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SMARTBUTLER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/admin.css">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+<link rel="manifest" href="/img/site.webmanifest">
+</head>
+<body>
+	<div id="wrap">
+		<div th:replace="~{common/fragments :: adminHeader}"></div>
+		<div th:replace="~{common/fragments :: adminSidebar}"></div>
+		<div class="container">
+			<div class="bread-crum">
+				<ul class="">
+					<li><a href="/">HOME</a><span> ></span></li>
+					<li><a href="#">계약업체</a><span> ></span></li>
+					<li><a href="#">정보수정</a></li>
+				</ul>
+			</div>
+			<div class="content">
+				<form th:action="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${companyDTO.buildId}, companyId=${companyDTO.companyId})}" method="post">
+
+					<div class="container fw-semibold">
+
+						<div class="row align-items-center mb-4">
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="companyId" class="col-form-label ms-3">업체번호</label>
+									</div>
+									<div class="col-8">
+										<input class="form-control" type="text" th:value="${companyDTO.companyId}" id="companyId" name="companyId" readonly disabled>
+									</div>
+								</div>
+							</div>
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="password" class="col-form-label ms-3">비밀번호</label>
+									</div>
+									<div class="col-8">
+										<input class="form-control" type="password" th:value="${companyDTO.password}" id="password" name="password">
+									</div>
+								</div>
+							</div>
+							<div class="col-2">
+								<div class="row g-3 align-items-center me-5">
+									<button type="button" class="col btn btn-outline-info">보기</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="row align-items-center mb-4">
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="companyName" class="col-form-label ms-3">업체명</label>
+									</div>
+									<div class="col-8">
+										<input class="form-control" type="text" th:value="${companyDTO.companyName}" id="companyName" name="companyName">
+									</div>
+								</div>
+							</div>
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="fromDate" class="col-form-label ms-3">계약시작일</label>
+									</div>
+									<div class="col-8">
+										<input class="form-control" type="date" th:value="${companyDTO.fromDate}" id="fromDate" name="fromDate">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row align-items-center mb-4">
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="manager" class="col-form-label ms-3">담당자명</label>
+									</div>
+									<div class="col-8">
+										<input class="form-control" type="text" th:value="${companyDTO.manager}" id="manager" name="manager">
+									</div>
+								</div>
+							</div>
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="toDate" class="col-form-label ms-3">계약종료일</label>
+									</div>
+									<div class="col-8">
+										<input class="form-control" type="date" th:value="${companyDTO.toDate}" id="toDate" name="toDate">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row align-items-center mb-4">
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="phone" class="col-form-label ms-3">전화번호</label>
+									</div>
+									<div class="col-8">
+										<input class="form-control" type="text" th:value="${companyDTO.phone}" id="phone" name="phone">
+									</div>
+								</div>
+							</div>
+							<div class="col-5">
+								<div class="row g-3 align-items-center">
+									<div class="col-4">
+										<label for="kindType" class="col-form-label ms-3">담당업무</label>
+									</div>
+									<div class="col-8">
+										<select class="form-control" name="kindType" id="kindType">
+											<option th:value="${companyDTO.kindType}" th:text="${companyDTO.kindName}"></option>
+											<option th:each="companyKind : ${companyKinds}" th:value="${companyKind.kindType}" th:text="${companyKind.kindName}"></option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="row align-items-center mb-5">
+								<div class="col-5">
+									<div class="row g-3 align-items-center">
+										<div class="col-4">
+											<label for="cost" class="col-form-label ms-3">계약비용</label>
+										</div>
+										<div class="col-8">
+											<input class="form-control" type="text" th:value="${companyDTO.cost}" id="cost" name="cost">
+										</div>
+									</div>
+								</div>
+								<div class="col-5">
+									<div class="row g-3 align-items-center">
+										<div class="col-4">
+											<label for="buildId" class="col-form-label ms-3">건물명</label>
+										</div>
+										<div class="col-8">
+											<select class="form-control" name="buildId" id="buildId">
+												<option th:value="${companyDTO.buildId}" th:text="${companyDTO.buildName}"></option>
+												<option th:each="buildDTO : ${buildDTOs}" th:value="${buildDTO.buildId}" th:text="${buildDTO.buildName}"></option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row align-items-center mt-5">
+								<div class="col-5"></div>
+								<div class="col-5">
+									<div class="row">
+										<div class="col-4"></div>
+										<div class="col-8 d-flex gap-4">
+											<input class="col btn btn-primary" type="submit" value="저장">
+											<button type="button" class="col btn btn-outline-primary" onclick="history.back()">취소</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

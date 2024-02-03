@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Company;
 import com.fms.smartbutler.dto.CompanyDTO;
+import com.fms.smartbutler.repository.BuildRepository;
+import com.fms.smartbutler.repository.CompanyKindRepository;
 import com.fms.smartbutler.repository.CompanyRepository;
 
 import jakarta.transaction.Transactional;
@@ -23,6 +25,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CompanyService implements UserDetailsService {
 
+	private final BuildRepository buildRepository;
+	private final CompanyKindRepository companyKindRepository;
 	private final CompanyRepository companyRepository;
 	private final ModelMapper modelMapper;
 	
@@ -38,71 +42,31 @@ public class CompanyService implements UserDetailsService {
 				.roles(company.getRole()).build();
 	}
 	
-//	public CompanyDTO save(CompanyDTO companyDTO) {
-//		String kindName = companyDTO.getKindName();
-//		String kindType = "";
-//
-//		switch (kindName) {
-//		case "공조":
-//			kindType = "1";
-//			break;
-//		case "엘리베이터":
-//			kindType = "2";
-//			break;
-//		case "전기":
-//			kindType = "3";
-//			break;
-//		default:
-//			break;
-//		}
-//		companyDTO.setKindType(kindType);
-//
-//		Company company = modelMapper.map(companyDTO, Company.class);
-//
-//		String role = "WORKER";
-//		company.setRole(role);
-//
-//		Company savedCompany = companyRepository.save(company);
-//		CompanyDTO savedCompanyDTO = modelMapper.map(savedCompany, CompanyDTO.class);
-//		return savedCompanyDTO;
-//	}
-	
-	public void save(CompanyDTO companyDTO) {
-//		String kindName = companyDTO.getKindName();
-//		String kindType = "";
-//		
-//		switch (kindName) {
-//		case "공조":
-//			kindType = "1";
-//			break;
-//		case "엘리베이터":
-//			kindType = "2";
-//			break;
-//		case "전기":
-//			kindType = "3";
-//			break;
-//		default:
-//			break;
-//		}
-//		companyDTO.setKindType(kindType);
+	public CompanyDTO save(CompanyDTO companyDTO) {
+		
+		String role = "WORKER";
+		companyDTO.setRole(role);
+		
+		System.out.println(companyDTO.getKindName());
+		Long kindType= companyDTO.getKindType();
+		String kindName = companyKindRepository.findById(kindType).get().getKindName();
+		companyDTO.setKindName(kindName);
+		
+		System.out.println(companyDTO.getBuildName());
+		Long buildId=companyDTO.getBuildId();
+		String buildName=buildRepository.findById(buildId).get().getBuildName();
+		companyDTO.setBuildName(buildName);
 		
 		Company company = modelMapper.map(companyDTO, Company.class);
 		
-		String role = "WORKER";
-		company.setRole(role);
-		
 		companyRepository.save(company);
-//		Company savedCompany = companyRepository.save(company);
-//		CompanyDTO savedCompanyDTO = modelMapper.map(savedCompany, CompanyDTO.class);
-//		return savedCompanyDTO;
+		Company savedCompany = companyRepository.save(company);
+		CompanyDTO savedCompanyDTO = modelMapper.map(savedCompany, CompanyDTO.class);
+		return savedCompanyDTO;
+		
+//		return null;
 	}
 	
-//	public CompanyDTO findByCompanyName(String companyName) {
-//		Company company = companyRepository.findByCompanyName(companyName);
-//		CompanyDTO companyDTO = modelMapper.map(company, CompanyDTO.class);
-//		return companyDTO;
-//	}
-
 	public CompanyDTO findById(Long companyId) {
 		Company company = companyRepository.findById(companyId).get();
 		CompanyDTO companyDTO = modelMapper.map(company, CompanyDTO.class);

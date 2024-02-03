@@ -34,8 +34,9 @@ public class Company {
 	@JoinColumn(name = "build_id")
 	private Build build;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "kind_id")
+//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "kind_type")
 	private CompanyKind companyKind;
 
 	@Column(name = "pw")
@@ -71,12 +72,8 @@ public class Company {
 	public static class CompanyKind {
 
 		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "kind_id")
-		private Long kindId;
-		
 		@Column(name = "kind_type")
-		private String kindType;
+		private Long kindType;
 		
 		@Column(name = "kind_name")
 		private String kindName;

@@ -14,7 +14,7 @@ import lombok.Setter;
 public class CompanyDTO {
 	private Long companyId;
 	private Long buildId;
-	private String kindType;
+	private Long kindType;
 	private String password;
 	private String companyName;
 	private String manager;
@@ -32,8 +32,7 @@ public class CompanyDTO {
 	@NoArgsConstructor
 	public static class CompanyKindDTO {
 
-		private Long kindId;
-		private String kindType;
+		private Long kindType;
 		private String kindName;
 	}
 }

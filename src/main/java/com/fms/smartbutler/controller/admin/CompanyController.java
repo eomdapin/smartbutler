@@ -54,14 +54,41 @@ public class CompanyController {
 		model.addAttribute("buildDTOs", buildDTOs);
 		
 		CompanyDTO companyDTO = companyService.findById(companyId);
-		model.addAttribute("company", companyDTO);
+		System.out.println("companyDTO");
+		System.out.println(companyDTO);
+		model.addAttribute("companyDTO", companyDTO);
+		System.out.println("addAttribute");
 		return "admin/company/update-company-info";
 	}
 
 	// 계약 업체 수정
 	@PostMapping("/{buildId}/companies/{companyId}/update")
 	public String updateCompanyInfo(@PathVariable Long companyId, @ModelAttribute CompanyDTO companyDTO) {
-		companyService.save(companyDTO);
+		System.out.println(companyId);
+		System.out.println(companyDTO);
+		System.out.println(companyDTO.getKindName());
+		System.out.println(companyDTO.getKindType());
+		System.out.println(companyDTO.getBuildId());
+		System.out.println(companyDTO.getBuildName());
+		System.out.println(companyDTO.getCompanyName());
+		System.out.println(companyDTO.getManager());
+		System.out.println(companyDTO.getRole());
+		CompanyDTO savedCompanyDTO = companyService.save(companyDTO);
+		System.out.println(companyDTO.getKindName());
+		System.out.println(companyDTO.getKindType());
+		System.out.println(companyDTO.getBuildId());
+		System.out.println(companyDTO.getBuildName());
+		System.out.println(companyDTO.getCompanyName());
+		System.out.println(companyDTO.getManager());
+		System.out.println(companyDTO.getRole());
+		
+		System.out.println(savedCompanyDTO.getKindName());
+		System.out.println(savedCompanyDTO.getKindType());
+		System.out.println(savedCompanyDTO.getBuildId());
+		System.out.println(savedCompanyDTO.getBuildName());
+		System.out.println(savedCompanyDTO.getCompanyName());
+		System.out.println(savedCompanyDTO.getManager());
+		System.out.println(savedCompanyDTO.getRole());
 		return "redirect:/admin/buildings/companies";
 	}
 
@@ -87,7 +114,7 @@ public class CompanyController {
 	@PostMapping("/companies/add")
 	public String addCompanyInfo(@ModelAttribute CompanyDTO companyDTO) {
 
-//		companyService.save(companyDTO);
+		companyService.save(companyDTO);
 
 		return "redirect:/admin/buildings/companies";
 	}
