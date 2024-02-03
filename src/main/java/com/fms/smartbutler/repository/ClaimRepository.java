@@ -1,5 +1,7 @@
 package com.fms.smartbutler.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,4 +17,5 @@ import com.fms.smartbutler.domain.Claim;
 public interface ClaimRepository extends JpaRepository<Claim, Long> {
 	Page<Claim> findByBuild_BuildIdOrderByClaimIdDesc(Long buildId, Pageable pageable);
 	Page<Claim> findAllByOrderByClaimIdDesc(Pageable pageable);
+	List<Claim> findAllByStatus(int status);
 }

@@ -90,4 +90,10 @@ public class ClaimService {
 		
 		return claimDTOList;
 	}
+	
+	public List<ClaimDTO> findAllByStatus(int status) {
+		return claimRepository.findAllByStatus(status).stream().map(c ->
+				modelMapper.map(c, ClaimDTO.class)
+				).toList();
+	}
 }
