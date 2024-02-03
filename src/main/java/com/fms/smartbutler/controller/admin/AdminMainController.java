@@ -1,5 +1,7 @@
 package com.fms.smartbutler.controller.admin;
 
+import java.time.LocalDate;
+
 /**
 * @author 엄다빈
 * @editDate 2024-02-03 ~ 2024-02-03
@@ -36,7 +38,7 @@ public class AdminMainController {
 		List<BuildDTO> builds = buildService.findAll();
 		List<EstimateDTO> estimates = estimateService.findAllByConfirm(1);
 		List<ClaimDTO> claims = claimService.findAllByStatus(1);
-		List<CostDTO> costs = costService.findAll();
+		List<CostDTO> costs = costService.findAllByDate(LocalDate.now().withDayOfMonth(1));
 		
 		int estimateCnt = estimates.size();
 		int claimCnt = claims.size();

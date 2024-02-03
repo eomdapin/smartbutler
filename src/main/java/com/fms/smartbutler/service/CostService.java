@@ -76,4 +76,10 @@ public class CostService {
 			return modelMapper.map(cost.get(), CostDTO.class); 
 		}
 	}
+	
+	public List<CostDTO> findAllByDate(LocalDate date) {
+		return costRepository.findAllByDate(date).stream().map(c ->
+			modelMapper.map(c, CostDTO.class)).toList();
+				
+	}
 }

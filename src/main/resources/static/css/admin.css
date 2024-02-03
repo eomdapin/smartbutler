@@ -37,7 +37,7 @@ header .logo-text {
 }
 
 .container {
-    width: 1140px;
+    width: 12000px;
     float: left;
     margin: 50px 0 0 30px;
 }
@@ -54,6 +54,15 @@ header .logo-text {
 }
 .container .form-content {
     padding: 30px 50px;
+}
+.container .box {
+	width: 400px;
+}
+.container .box td:nth-of-type(1) {
+	width: 100px;
+}
+.container .box td {
+	width: 130px;
 }
 
 /* bootstrap fix */

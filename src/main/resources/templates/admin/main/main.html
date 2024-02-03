@@ -22,55 +22,85 @@
         <div th:replace="~{common/fragments :: adminSidebar}"></div>
         <div class="container">
             <div class="row">
-                <h2>[[${#calendars.format(#calendars.createNow(), 'yyyy년 MM월 dd일')}]]</h2>
+            	<h3>환영합니다.</h3>
+                <h2>[[${#calendars.format(#calendars.createNow(), 'yyyy년 MM월 dd일')}]] [[${#calendars.dayOfWeekName(#calendars.createNow())}]]</h2>
             </div>
-            <div class="row">
-                <div class="row">
-                    <div class="col-auto">
-                        <h3><a href="/admin/estimates">미처리 견적</a></h3>
-                    </div>
-                    <div class="col-auto">
-                        <h3>[[${estimateCnt}]]건</h3>
-                    </div>
-                </div>
-                <div class="row" th:each="estimates: ${estimates}">
-                    <a th:href="@{/admin/estimates/{estimateId}(estimateId = ${estimates?.estimateId})}">
-                        [[${estimates?.estimateId}]] :: [[${estimates?.regDate}]] :: [[${estimates?.buildName}]]
-                    </a>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="row">
-                    <div class="col-auto">
-                        <h3><a href="/admin/buildings/1/claims">미처리 민원</a></h3>
-                    </div>
-                    <div class="col-auto">
-                        <h3>[[${claimCnt}]]건</h3>
-                    </div>
-                </div>
-                <div class="row" th:each="claims: ${claims}">
-                    <a
-                        th:href="@{/admin/buildings/{buildId}/claims/{claimId}(buildId = ${claims?.buildId}, claimId = ${claims?.claimId})}">
-                        [[${claims?.claimId}]] :: [[${claims?.askDate}]] :: [[${claims?.title}]]
-                    </a>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="row">
-                    <div class="col-auto">
-                        <h3><a href="/admin/buildings/1/costs">당월 관리비</a></h3>
-                    </div>
-                </div>
-                <div class="row" th:each="costs: ${costs}">
-                    <a
-                        th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs?.buildId}, costId = ${costs?.costId})}">
-                        [[${costs?.date}]] :: [[${costs?.electricity} + ${costs?.repair} + ${costs?.upkeep} +
-                        ${costs?.consignment}]] :: <th:block th:text="${costs?.send == 1} ? '배분 전' : '배분 완료'">
-                        </th:block>
-                    </a>
-                </div>
+            <div class="row border my-2"></div>
+            <div class="row ">
+	            <div class="col-auto box mx-3 p-3">
+	                <div class="row">
+	                    <div class="col-auto">
+	                        <h3><a href="/admin/estimates" class="btn btn-primary btn-lg">미처리 견적: [[${estimateCnt}]]건</a></h3>
+	                    </div>
+	                </div>
+	                <div class="row">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">건물명</th>
+									<th scope="col">날짜</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="estimates, index: ${estimates}" th:if="${index.index} < 10">
+									<td><a th:href="@{/admin/estimates/{estimateId}(estimateId = ${estimates?.estimateId})}">[[${estimates?.buildName}]]</a></td>
+									<td><a th:href="@{/admin/estimates/{estimateId}(estimateId = ${estimates?.estimateId})}">[[${estimates?.regDate}]]</a></td>
+								</tr>
+							</tbody>
+						</table>	                
+	                </div>
+	            </div>
+	
+	            <div class="col-auto box mx-3 p-3">
+	                <div class="row">
+	                    <div class="col-auto">
+	                        <h3><a href="/admin/buildings/1/claims" class="btn btn-primary btn-lg">미처리 민원: [[${claimCnt}]]건</a></h3>
+	                    </div>
+	                </div>
+	                <div class="row text-truncate">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">건물명</th>
+									<th scope="col">날짜</th>
+									<th scope="col">제목</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="claims, index: ${claims}" th:if="${index.index} < 10">
+									<td><a th:href="@{/admin/buildings/{buildId}/claims/{claimId}(buildId = ${claims?.buildId}, claimId = ${claims?.claimId})}">[[${claims?.buildName}]]</a></td>
+									<td><a th:href="@{/admin/buildings/{buildId}/claims/{claimId}(buildId = ${claims?.buildId}, claimId = ${claims?.claimId})}">[[${claims?.askDate}]]</a></td>
+									<td><a th:href="@{/admin/buildings/{buildId}/claims/{claimId}(buildId = ${claims?.buildId}, claimId = ${claims?.claimId})}">[[${claims?.title}]]</a></td>
+								</tr>
+							</tbody>
+						</table>		                
+	                </div>
+	            </div>
+	            <div class="col-auto box mx-3 p-3">
+	                <div class="row">
+	                    <div class="col-auto">
+	                        <h3><a href="/admin/buildings/1/costs" class="btn btn-primary btn-lg">당월 관리비</a></h3>
+	                    </div>
+	                </div>
+	                <div class="row">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">건물명</th>
+									<th scope="col">날짜</th>
+									<th scope="col">배분 여부</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="costs, index: ${costs}" th:if="${index.index} < 10">
+									<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs?.buildId}, costId = ${costs?.costId})}">[[${costs?.buildName}]]</a></td>
+									<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs?.buildId}, costId = ${costs?.costId})}">[[${costs?.date}]]</a></td>
+									<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs?.buildId}, costId = ${costs?.costId})}"><th:block th:text="${costs?.send == 1} ? '배분 전' : '배분 완료'"></a></td>
+								</tr>
+							</tbody>
+						</table>	                
+	                </div>
+	            </div>
             </div>
         </div>
     </div>
