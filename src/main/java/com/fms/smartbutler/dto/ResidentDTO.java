@@ -1,5 +1,10 @@
 package com.fms.smartbutler.dto;
 
+/**
+* @author 엄다빈
+* @editDate 2024-02-01 ~ 2024-02-02
+*/
+
 import com.fms.smartbutler.domain.Build;
 import com.fms.smartbutler.domain.Users;
 

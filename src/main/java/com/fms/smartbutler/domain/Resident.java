@@ -1,5 +1,10 @@
 package com.fms.smartbutler.domain;
 
+/**
+* @author 엄다빈
+* @editDate 2024-02-01 ~ 2024-02-02
+*/
+
 import org.hibernate.annotations.ColumnDefault;
 
 import jakarta.persistence.Column;
