@@ -1,5 +1,10 @@
 package com.fms.smartbutler.domain;
 
+/**
+* @author 정시운
+* @editDate 2024-01-24 ~ 2024-01-26
+*/
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.persistence.Column;
@@ -42,12 +47,6 @@ public class Users {
 	
 	@Column(name = "role")
 	private String role;
-	
-//	@OneToMany(mappedBy = "users")
-//	private List<Estimate> estimates = new ArrayList<>();
-//	
-//	@OneToMany(mappedBy = "users")
-//	private List<Resident> residents = new ArrayList<>();
 	
 	public void encodePassword(PasswordEncoder passwordEncoder) {
 		this.pw = passwordEncoder.encode(this.pw);
