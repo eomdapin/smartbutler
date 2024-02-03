@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fms.smartbutler.dto.BuildDTO;
@@ -86,7 +87,7 @@ public class BuildController {
 	}
 	
 	// 건물 정보 수정
-	@PostMapping("/{buildId}/update") // PutMapping으로 변경 시 update 문구 삭제 예정
+	@PutMapping("/{buildId}")
 	public String postBuildinsert(@ModelAttribute BuildDTO build, @ModelAttribute FileVo vo, Model model) throws Exception {
 		buildService.insert(build);
 		

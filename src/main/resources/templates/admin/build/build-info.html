@@ -30,7 +30,7 @@
                 	<form action="/admin/buildings/add" method="POST" encType="multipart/form-data">
                 </th:block>
                 <th:block th:if="${not #strings.isEmpty(build.buildId)}">
-               		<form th:action="@{/admin/buildings/{buildId}/update(buildId = ${build.buildId})}" method="POST" encType="multipart/form-data">
+               		<form th:action="@{/admin/buildings/{buildId}(buildId = ${build.buildId})}" th:method="put" encType="multipart/form-data">
                 </th:block>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="buildId" class="form-label">건물번호</label></div>
@@ -48,7 +48,7 @@
                         	<input type="file" id="uploadFile" name="uploadFile" class="form-control" style="display: none;" onchange="ChangeFileName()">
                         	<input type="button" onClick="uploadFile.click()" class="btn btn-secondary" value="파일 추가">
                         	<input type="text" id="fileName" name="fileName" class="form-control" 
-                        		th:value="${vo?.fileName}" placeholder="선택된 파일이 없습니다." style="display: inline; width: 233px;" readonly>
+                        		th:value="${vo?.fileName}" placeholder="선택된 파일이 없습니다." style="display: inline; width: 293px;" readonly>
                         </div>
                         <th:block th:if="${not #strings.isEmpty(build.buildId)}">
                         	<div class="col-2 mb-3"><input type="button" class="btn btn-secondary" value="이미지 보기"></div>
