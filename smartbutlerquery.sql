@@ -38,7 +38,7 @@ create table if not exists users (
 drop table if exists resident;
 create table if not exists resident (
 	resident_id bigint not null auto_increment COMMENT '입주 고유 번호',
-    resident_num bigint not null COMMENT '방 번호',
+    resident_num int not null COMMENT '방 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
     user_id bigint COMMENT '회원 고유 번호',
     entered smallint not null default(1) COMMENT '입실 여부',
@@ -280,11 +280,10 @@ insert into cost(build_id, cost_date, electricity, repair, upkeep, consignment, 
 insert into company_kind values('1', '공조');
 insert into company values('1', '1', '1', '한일공조', '지디', '010-1111-2222', '2024-01-01', '2024-12-12', '1000', '{noop}1111', 'WORKER');
 
-
+#######################################################
 insert into resident value(null, '101', '1','1','2','2024-01-01','2024-12-31','100000000','10000000');
 insert into resident(resident_num, build_id)
 values(102,1), (103,1), (104,1), (105,1), (106,1), (107,1), (108,1),	(109,1),	(110,1),	(201,1),	(202,1),	(203,1),	(204,1),	(205,1),	(206,1),	(207,1),	(208,1),	(209,1),	(210,1),	(301,1),	(302,1),	(303,1),	(304,1),	(305,1),	(306,1),	(307,1),	(308,1),	(309,1),	(310,1),	(401,1),	(402,1),	(403,1),	(404,1),	(405,1),	(406,1),	(407,1),	(408,1),	(409,1),	(410,1),	(501,1),	(502,1),	(503,1),	(504,1),	(505,1),	(506,1),	(507,1),	(508,1),	(509,1),	(510,1);
-
 
 select * from users;
 select * from build;

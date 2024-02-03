@@ -36,7 +36,7 @@ public class Resident {
 	private Build build;
 	
 	@Column(name = "resident_num")
-	private Long residentNum;
+	private int residentNum;
 	
 	@ColumnDefault("1")
 	@Column(name = "entered")

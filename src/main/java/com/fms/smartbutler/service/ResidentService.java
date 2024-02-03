@@ -1,5 +1,6 @@
 package com.fms.smartbutler.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -65,6 +66,24 @@ public class ResidentService {
 		resident.setEntered(1);
 		
 		residentRepository.save(resident);
+	}
+	
+	public void addResidentDefault(Long buildId, Integer floor, Integer room) {
+		List<ResidentDTO> residentDTOList = new ArrayList<>();
+
+		for(int i = 100; i <= floor * 100; i+=100) {
+			for(int j = 1; j <= room; j++) {
+				ResidentDTO resi = new ResidentDTO();
+				resi.getBuild().setBuildId(buildId);
+				resi.setUsers(null);
+				resi.setEntered(1);
+				resi.setResidentNum(i + j);
+				residentDTOList.add(resi);
+			}
+		}
+		List<Resident> residentList = residentDTOList.stream().map(r -> modelMapper.map(r, Resident.class)).toList();
+		
+		residentRepository.saveAll(residentList);
 	}
 	
 	public List<ResidentDTO> findAll() {
