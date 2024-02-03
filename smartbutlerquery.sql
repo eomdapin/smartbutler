@@ -97,6 +97,7 @@ create table if not exists company (
     primary key(company_id)
 );
 
+
 # 견적
 # confirm = 승인 여부
 # 1 = 신청, 2 = 승인, 3 = 반려

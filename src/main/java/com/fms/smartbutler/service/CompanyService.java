@@ -20,6 +20,11 @@ import com.fms.smartbutler.repository.CompanyRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author 전종배
+ * @since 2024-02-01 to 2024-02-03
+ */
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -63,8 +68,6 @@ public class CompanyService implements UserDetailsService {
 		Company savedCompany = companyRepository.save(company);
 		CompanyDTO savedCompanyDTO = modelMapper.map(savedCompany, CompanyDTO.class);
 		return savedCompanyDTO;
-		
-//		return null;
 	}
 	
 	public CompanyDTO findById(Long companyId) {
@@ -92,8 +95,4 @@ public class CompanyService implements UserDetailsService {
 		
 		return Optional.ofNullable(companyDTO);
 	}
-//	public void deleteByCompanyName(String companyName) {
-//		companyRepository.deleteByCompanyName(companyName);
-//	}
-
 }

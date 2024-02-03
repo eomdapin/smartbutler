@@ -4,7 +4,6 @@ import java.sql.Date;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,6 +17,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+/**
+ * @author 전종배
+ * @since 2024-02-01 to 2024-02-03
+ */
 
 @Entity
 @Getter
@@ -34,7 +38,6 @@ public class Company {
 	@JoinColumn(name = "build_id")
 	private Build build;
 
-//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "kind_type")
 	private CompanyKind companyKind;
@@ -63,6 +66,11 @@ public class Company {
 	@Column(name = "role")
 	private String role;
 
+	/**
+	 * @author 전종배 assisted by 엄다빈(팀장)
+	 * @since 2024-02-01 to 2024-02-03
+	 */
+	
 	@Entity
 	@Getter
 	@Setter

@@ -7,6 +7,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * @author 전종배
+ * @since 2024-02-01 to 2024-02-03
+ */
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,6 +31,11 @@ public class CompanyDTO {
 	private String kindName;
 	private String buildName;
 
+	/**
+	 * @author 전종배 assisted by 엄다빈(팀장)
+	 * @since 2024-02-01 to 2024-02-03
+	 */
+	
 	@Setter
 	@Getter
 	@AllArgsConstructor
