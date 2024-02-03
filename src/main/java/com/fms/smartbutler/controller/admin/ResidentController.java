@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fms.smartbutler.dto.BuildDTO;
@@ -41,10 +42,12 @@ public class ResidentController {
 	public String getResidentList(@PathVariable Long buildId, Model model) {
 		List<ResidentDTO> residents = residentService.findAllByEnteredAndBuildId(2L, buildId);
 		List<BuildDTO> builds = buildService.findAll();
+		BuildDTO build = buildService.findById(buildId);
 		
 		model.addAttribute("residents", residents);
 		model.addAttribute("buildId", buildId);
 		model.addAttribute("builds", builds);
+		model.addAttribute("build", build);
 		
 		return "admin/resident/resident-list";
 	}
@@ -95,7 +98,7 @@ public class ResidentController {
 	}
 	
 	// 입주 수정
-	@PostMapping("/{buildId}/residents/{residentId}/update")
+	@PutMapping("/{buildId}/residents/{residentId}")
 	public String postUpdateResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
 		residentService.save(residentDTO);
 		

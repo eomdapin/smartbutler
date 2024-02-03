@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<form th:action="@{/admin/buildings/{buildId}/residents/{residentId}/update(buildId = ${buildId}, residentId = ${resident?.residentId})}" method="post">
+				<form th:action="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${resident?.residentId})}" th:method="put">
                     <div class="row">
                         <div class="col-2 mb-3"><label for="userName" class="col-form-label ms-3">고객명</label></div>
                         <div class="col-4 mb-3"><input type="text" name="userName" class="form-control" th:value="${resident?.users?.userName}" readonly></div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="text-end pt-3 row">
 	                   <div class="col-auto"><input type="submit" class="btn btn-lg btn-primary" value="저장"></div>
-	                   <div class="col-auto"><a onClick="history.back()" class="btn btn-lg btn-outline-dark">목록</a></div>
+	                   <div class="col-auto"><a href="/admin/buildings/0/residents" class="btn btn-lg btn-outline-dark">목록</a></div>
                    </div>
 				</form>
 			</div>
