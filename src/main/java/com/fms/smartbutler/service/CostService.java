@@ -64,8 +64,13 @@ public class CostService {
 	}
 	
 	public List<CostDTO> findByBuildId(Long buildId) {
-		return costRepository.findByBuild_BuildIdOrderByDateDesc(buildId).stream()
-				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
+		if(buildId == null || buildId == 0) {
+			return costRepository.findAll().stream()
+					.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
+		} else {
+			return costRepository.findByBuild_BuildIdOrderByDateDesc(buildId).stream()
+					.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
+		}
 	}
 	
 	public CostDTO findByBuildIdAndDate(Long buildId, LocalDate date) {
