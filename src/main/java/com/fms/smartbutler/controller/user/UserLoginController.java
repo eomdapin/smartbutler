@@ -26,9 +26,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/user")
 public class UserLoginController {
 	
-	private final ModelMapper modelMapper;
-	private final AdminService adminService;
-	
 	// 사용자 로그인 폼
 	@GetMapping("/login")
 	public String getlogin() {
@@ -40,27 +37,5 @@ public class UserLoginController {
 	public String login() {
 		return "/";
 	}
-	
-//	@GetMapping("/join")
-//	public String joinAdmin() {
-//		return "user/login/join-admin";
-//	}
-//	
-//	@PostMapping("/join/{role}")
-//	public String createMember(@ModelAttribute AdminDTO adminDTO, Model model) {
-//		// DTO to Entity
-//		Admin entity = modelMapper.map(adminDTO, Admin.class);
-//		
-//		// save
-//		//Member savedEntity = memberRepository.save(entity);
-//		Admin savedEntity = adminService.joinMember(entity);
-//		
-//		// Entity to DTO
-//		AdminDTO savedDTO = modelMapper.map(savedEntity, AdminDTO.class);
-//		
-//		model.addAttribute("admin", savedDTO);
-//		
-//		return "admin/login/join-success";	// join/success
-//	}
 	
 }

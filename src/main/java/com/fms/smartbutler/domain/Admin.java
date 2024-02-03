@@ -39,8 +39,8 @@ public class Admin {
 	private String role;
 
 	public void encodePassword(PasswordEncoder passwordEncoder) {
-		this.password = "{noop}" + this.password; // 암호화 안함 noop:암호화 규칙 중 하나
-//		this.password = passwordEncoder.encode(this.password);
+//		this.password = "{noop}" + this.password; // 암호화 안함 noop:암호화 규칙 중 하나
+		this.password = passwordEncoder.encode(this.password);
 	}
 
 }

@@ -21,12 +21,9 @@ public class SecurityConfig {
 	
 	@Autowired
 	protected void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService usersService, UserDetailsService adminService, UserDetailsService companyService) throws Exception {
-		auth.userDetailsService(adminService);
 		auth.userDetailsService(usersService);
+		auth.userDetailsService(adminService);
 		auth.userDetailsService(companyService);
-		
-		auth.inMemoryAuthentication()
-		.withUser("mail@mail.com").password("{noop}1111").roles("USER");
 	}
 	
 	@Configuration
@@ -40,7 +37,8 @@ public class SecurityConfig {
 				.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests
 					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
-					.requestMatchers("/admin/**").hasRole("ADMIN")
+					.requestMatchers("/admin/**").permitAll()
+//					.requestMatchers("/admin/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 				);
 			http
@@ -76,29 +74,30 @@ public class SecurityConfig {
 			.csrf((csrf) -> csrf.disable())
 			.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
-				.requestMatchers("/user/**").hasRole("USER")
+				.requestMatchers("/user/**").permitAll()
+//				.requestMatchers("/user/**").hasRole("USER")
 				.anyRequest().authenticated()
 			);
 			
-		http
-		.formLogin(formLogin->
-			formLogin
-				.loginPage("/user/login")
-				.defaultSuccessUrl("/",true)
-				.loginProcessingUrl("/user/login")
-				.failureUrl("/login?error=true")
-				.usernameParameter("email")
-				.passwordParameter("pw")
-		);
+			http
+			.formLogin(formLogin->
+				formLogin
+					.loginPage("/user/login")
+					.defaultSuccessUrl("/",true)
+					.loginProcessingUrl("/user/login")
+					.failureUrl("/login?error=true")
+					.usernameParameter("email")
+					.passwordParameter("pw")
+			);
 		
-		http
-		.logout(logout->
-			logout
-				.logoutUrl("/user/logout")
-				.invalidateHttpSession(true)
-				);
-
-		return http.build();
+			http
+			.logout(logout->
+				logout
+					.logoutUrl("/user/logout")
+					.invalidateHttpSession(true)
+					);
+	
+			return http.build();
 	}
 		
 }
@@ -114,7 +113,8 @@ public class SecurityConfig {
 				.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests
 					.requestMatchers("/css/**","/img/**","/worker/login","/worker/logout").permitAll()
-					.requestMatchers("/worker/**").hasRole("WORKER")
+					.requestMatchers("/worker/**").permitAll()
+//					.requestMatchers("/worker/**").hasRole("WORKER")
 					.anyRequest().authenticated()
 				);
 			http

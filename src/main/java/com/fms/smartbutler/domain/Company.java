@@ -88,6 +88,6 @@ public class Company {
 	}
 
 	public void encodePassword(PasswordEncoder passwordEncoder) {
-		this.password = "{noop}" + this.password;
+		this.password = passwordEncoder.encode(this.password);
 	}
 }
