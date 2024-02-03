@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>SMARTBUTLER</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/admin.css">
@@ -13,12 +15,58 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
     <link rel="manifest" href="/img/site.webmanifest">
 </head>
+
 <body>
     <div id="wrap">
         <div th:replace="~{common/fragments :: adminHeader}"></div>
-		<div th:replace="~{common/fragments :: adminSidebar}"></div>
+        <div th:replace="~{common/fragments :: adminSidebar}"></div>
         <div class="container">
-            
+            <div class="row">
+                <h2>2024년 2월 3일 토요일</h2>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div class="col-auto">
+                        <h3><a href="/admin/estimates">미처리 견적</a></h3>
+                    </div>
+                    <div class="col-auto">
+                        <h3>[[${estimateCnt}]]건</h3>
+                    </div>
+                </div>
+                <div class="row" th:each="estimates: ${estimates}">
+                    <a th:href="@{/admin/estimates/{estimateId}(estimateId = ${estimates?.estimateId})}">
+                        [[${estimates?.estimateId}]] :: [[${estimates?.regDate}]] :: [[${estimates?.buildName}]]
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row">
+                    <div class="col-auto">
+                        <h3><a href="/admin/buildings/1/claims">미처리 민원</a></h3>
+                    </div>
+                    <div class="col-auto">
+                        <h3>[[${claimCnt}]]건</h3>
+                    </div>
+                </div>
+                <div class="row" th:each="claims: ${claims}">
+                    <a
+                        th:href="@{/admin/buildings/{buildId}/claims/{claimId}(buildId = ${claims?.buildId}, claimId = ${claims?.claimId})}">
+                        [[${claims?.claimId}]] :: [[${claims?.askDate}]] :: [[${claims?.title}]]
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row">
+                    <div class="col-auto">
+                        <h3><a href="/admin/buildings/1/costs">당월 관리비</a></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <a href="">2024년 01월 :: 20,000,000원</a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
