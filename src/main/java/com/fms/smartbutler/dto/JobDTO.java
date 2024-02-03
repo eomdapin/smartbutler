@@ -1,5 +1,10 @@
 package com.fms.smartbutler.dto;
 
+/**
+ * @author 송창민
+ * @editDate 2024-01-31 ~ 2024-01-31
+ */
+
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +27,7 @@ public class JobDTO {
 	private int status;
 	private String itemName;
 	private String companyName;
-	private String manager;
+	private String companyManager;
 	private String buildName;
 	
 	public JobDTO() {

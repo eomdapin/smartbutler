@@ -33,7 +33,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="claim : ${claims}">
+							<tr th:each="claim : ${list}">
 								<td><a th:href="@{/user/claims/{claimId}(claimId = ${claim.claimId})}">[[${claim?.title}]]</a></td>
 								<td>[[${claim?.askDate}]]</td>
 								<td>[[${claim?.finDate}]]</td>
@@ -45,13 +45,13 @@
 						<nav>
       						<ul class="pagination justify-content-center">
             					<li th:class="${list.first} ? 'disabled'" class="page-item">
-                					<a th:href="@{/user/claims/(page = ${list.number - 1})}" class="page-link">&laquo;</a>
+                					<a th:href="@{/user/claims(page = ${list.number - 1})}" class="page-link">&laquo;</a>
             					</li>
             					<li th:each="page : ${#numbers.sequence(1, list.totalPages)}" th:if="${page >= list.number - 1 and page <= list.number + 3}" class="page-item" th:class="${page == list.number + 1} ? 'active'" >
- 									<a th:href="@{/user/claims/(page = ${list.number - 1})}" class="page-link"></a>
+ 									<a th:href="@{/user/claims(page = ${page - 1})}" th:text="${page}" class="page-link"></a>
  								</li>
             					<li th:class="${list.last} ? 'disabled'" class="page-item" >
-                					<a th:href="@{/user/claims/(page = ${list.number - 1})}" class="page-link">&raquo;</a>
+                					<a th:href="@{/user/claims(page = ${list.number - 1})}" class="page-link">&raquo;</a>
             					</li>
         					</ul>
     					</nav>

@@ -1,5 +1,10 @@
 package com.fms.smartbutler.domain;
 
+/**
+ * @author 송창민
+ * @editDate 2024-01-31 ~ 2024-01-31
+ */
+
 import java.sql.Date;
 
 import jakarta.persistence.Column;

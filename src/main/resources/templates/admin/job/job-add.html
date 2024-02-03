@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content form-content">
-				<form th:action="@{/admin/buildings/{buildId}/jobs/add(buildId = ${buildId})}" method="post" enctype="multipart/form-data">
+				<form th:action="@{/admin/buildings/0/jobs/add}" method="post" enctype="multipart/form-data">
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="jobId" class="col-form-label fw-bold">요청번호</label></div>
 						<div class="col-5"><input type="text" name="jobId" class="form-control" readonly></div>
@@ -36,22 +36,25 @@
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="buildName" class="col-form-label fw-bold">건물명</label></div>
 						<div class="col-5">
-							<select class="form-select" id="buildId" name="buildId" onChange="changeBuildName()">
+							<select class="form-select" id="buildId" name="buildId" onChange="changeBuildName()" required>
+								<option class="form-option" value="">선택</option>
 								<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
 									th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
 							</select>
 						</div>
 						<div class="col-1"><label for="itemName" class="col-form-label fw-bold">시설명</label></div>
 						<div class="col-5">
-							<select name="itemId" id="itemName" class="form-select">
-								<option th:each="item : ${items}" th:if="${item.buildId == build.buildId}" th:value="${item.itemId}" th:text="${item.itemName}" selected>
+							<select name="itemId" id="itemName" class="form-select" required>
+								<option class="form-option" value="">선택</option>
+								<option th:each="item : ${items}" th:if="${item.buildId == build.buildId}" th:value="${item.itemId}" th:text="${item.itemName}">
 							</select>
 						</div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="companyName" class="col-form-label fw-bold">점검업체</label></div>
 						<div class="col-5">
-							<select class="form-select" id="companyName" name="companyId" onChange="changeCompany()">
+							<select class="form-select" id="companyName" name="companyId" onChange="changeCompany()" required>
+								<option class="form-option" value="">선택</option>
 								<option class="form-option" th:each="company: ${companies}" th:value="${company?.companyId}">[[${company?.companyName}]]</option>
 							</select>
 						</div>
@@ -77,13 +80,12 @@
 		var selectedBuildId = document.getElementById("buildId").value;
 		var items = document.getElementById("itemName");
 		var itemsModel = /*[[${items}]]*/'';
-		items.innerHTML = "";
+		items.innerHTML = "<option class='form-option' value=''>선택</option>";
 		itemsModel.forEach(function(item) {
 			if(selectedBuildId == item.buildId) {
 				var option = document.createElement("option");
 				option.value = item.itemId;
 				option.text = item.itemName;
-				option.selected = true;
 				items.appendChild(option);
 			}
 		});

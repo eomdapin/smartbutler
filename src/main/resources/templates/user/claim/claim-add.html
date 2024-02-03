@@ -24,7 +24,7 @@
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-2">
 					<div class="col-2"><label for="residentId" class="col-form-label fw-bold">세대 번호</label></div>
-					<div class="col-5"><input type="number" value="101" class="form-control" readonly></div>
+					<div class="col-5"><input type="number" th:value="${resident?.residentNum}" class="form-control" readonly></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2"><label for="askDate" class="col-form-label fw-bold">신청 날짜</label></div>
@@ -49,17 +49,17 @@
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
 					<div class="col-7"><label for="title" class="col-form-label fw-bold">제목</label></div>
-					<div class="col-7 m-0"><input type="text" name="title" class="form-control"></div>
+					<div class="col-7 m-0"><input type="text" name="title" class="form-control" required></div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
 					<div class="col-7"><label for="content" class="col-form-label fw-bold">내용</label></div>
-					<div class="col-7 m-0"><textarea rows="5" name="content" class="form-control"></textarea></div>
+					<div class="col-7 m-0"><textarea rows="5" name="content" class="form-control" required></textarea></div>
 				</div>
 				<div class="row justify-content-center mt-3">
 					<input type="submit" value="완료" class="btn btn-lg btn-primary col-auto me-3">
 					<input type="button" value="목록" class="btn btn-lg btn-outline-dark col-auto me-3" onClick="history.back()">
 				</div>
-				<input type="hidden" name="buildId">
+				<input type="hidden" name="buildId" th:value="${resident.buildId}">
 				<input type="hidden" name="userId" th:value="${user.userId}">
 			</form>
 		</div>

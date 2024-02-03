@@ -1,5 +1,10 @@
 package com.fms.smartbutler.service;
 
+/**
+ * @author 송창민
+ * @editDate 2024-01-31 ~ 2024-02-02
+ */
+
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -32,6 +37,13 @@ public class JobService {
 	}
 	
 	public void update(JobDTO jobDTO) {
+		Job job = modelMapper.map(jobDTO, Job.class);
+		
+		jobRepository.save(job);
+		jobDTO.setJobId(job.getJobId());
+	}
+	
+	public void finishJob(JobDTO jobDTO) {
 		jobDTO.setFinDate(Date.valueOf(LocalDate.now()));
 		jobDTO.setStatus(2);
 		

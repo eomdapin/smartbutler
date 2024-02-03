@@ -1,5 +1,10 @@
 package com.fms.smartbutler.controller.user;
 
+/**
+* @author 송창민
+* @editDate 2024-01-26 ~ 2024-01-29
+*/
+
 import java.security.Principal;
 
 /**
@@ -26,9 +31,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fms.smartbutler.dto.ClaimDTO;
 import com.fms.smartbutler.dto.ImageDTO;
+import com.fms.smartbutler.dto.ResidentDTO;
 import com.fms.smartbutler.dto.UsersDTO;
 import com.fms.smartbutler.service.ClaimService;
 import com.fms.smartbutler.service.ImageService;
+import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.service.UsersService;
 import com.fms.smartbutler.vo.FileVo;
 import com.fms.smartbutler.vo.OptionVo;
@@ -45,6 +52,7 @@ public class UserClaimController {
 	private final ClaimService claimService;
 	private final ImageService imageService;
 	private final UsersService usersService;
+	private final ResidentService residentService;
 
 	// 민원 목록
 	@GetMapping
@@ -80,9 +88,11 @@ public class UserClaimController {
 	@GetMapping("/add")
 	public String getClaimAdd(Principal principal, Model model) {
 		UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
+		ResidentDTO resident = residentService.findByUserId(user.getUserId());
 		OptionVo options = new OptionVo();
 		
 		model.addAttribute("user", user);
+		model.addAttribute("resident", resident);
 		model.addAttribute("options", options.getOptions());
 		
 		return "user/claim/claim-add";

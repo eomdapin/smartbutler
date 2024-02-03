@@ -1,5 +1,10 @@
 package com.fms.smartbutler.controller.worker;
 
+/**
+ * @author 송창민
+ * @editDate 2024-02-02 ~ 2024-02-03
+ */
+
 import java.security.Principal;
 import java.util.List;
 
@@ -48,9 +53,10 @@ public class WorkerController {
 	
 	// 작업 상세
 	@GetMapping("/jobs/{jobId}")
-	public String getJobInfo(@PathVariable("jobId") Long jobId, Model model) {
+	public String getJobInfo(@PathVariable("jobId") Long jobId, Principal principal, Model model) {
 		JobDTO job = jobService.findById(jobId).orElseGet(JobDTO::new);
 		List<ImageDTO> images = imageService.findByOutIdAndCoded(job.getJobId(), "j");
+		CompanyDTO company = companyService.findByName(principal.getName()).orElseGet(CompanyDTO::new);
 		FileVo vo = new FileVo();
 		
 		if(images.size() > 0) {
@@ -59,6 +65,7 @@ public class WorkerController {
 		
 		model.addAttribute("job", job);
 		model.addAttribute("images", images);
+		model.addAttribute("company", company);
 		model.addAttribute("vo", vo);
 		
 		return "worker/job/job-info";
@@ -67,7 +74,7 @@ public class WorkerController {
 	// 작업 완료
 	@PutMapping("/jobs/{jobId}")
 	public String putJobInfo(@ModelAttribute JobDTO jobDTO, @ModelAttribute FileVo vo) throws Exception {
-		jobService.update(jobDTO);
+		jobService.finishJob(jobDTO);
 		
 		if(!vo.getFileName().isEmpty()) {
 			ImageDTO imageDTO = new ImageDTO();
