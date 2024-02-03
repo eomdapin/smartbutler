@@ -26,7 +26,7 @@
                 </ul>
             </div>
             <div class="content form-content" th:with="total = ${costDTO?.electricity} + ${costDTO?.repair} + ${costDTO?.upkeep} + ${costDTO?.consignment}">
-				<form th:action="@{/admin/buildings/{buildId}/costs/{costId}/edit(buildId = ${buildId}, costId = ${costId})}" method="post">
+				<form th:action="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${buildId}, costId = ${costId})}" th:method="put">
 					<div class="row">
 					    <div class="col-2 mb-3"><label for="buildName" class="form-label">건물명</label></div>
 					    <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" onChange="sumCost()" th:value="${build?.buildName}" readonly></div>

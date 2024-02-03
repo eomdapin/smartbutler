@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fms.smartbutler.dto.BuildDTO;
@@ -100,7 +101,7 @@ public class CostController {
 	}
 	
 	// 관리비 수정
-	@PostMapping("/{buildId}/costs/{costId}/edit")
+	@PutMapping("/{buildId}/costs/{costId}")
 	public String putCostEdit(@PathVariable Long buildId, @PathVariable Long costId, @ModelAttribute CostDTO costDTO, Model model) {
 		costDTO.setCostId(costId);
 		costService.updateCost(costDTO);
@@ -109,7 +110,7 @@ public class CostController {
 	}
 	
 	// 관리비 전송
-	@PostMapping("/{buildId}/costs/{costId}/send")
+	@PutMapping("/{buildId}/costs/{costId}/send")
 	public String putCostSubmit(@PathVariable Long buildId, @PathVariable Long costId, @ModelAttribute CostDTO costDTO) {
 		costDTO.setCostId(costId);
 		costDTO.setResidentCnt(residentService.findAllByEnteredAndBuildId(2L, buildId).size());

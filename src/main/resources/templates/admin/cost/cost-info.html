@@ -29,7 +29,7 @@
 				<div class="row my-3">
 					<h2>관리비 총액</h2>
 				</div>            
-				<form id="costForm" th:action="@{/admin/buildings/{buildId}/costs/{costId}/send(buildId = ${buildId}, costId = ${costId})}" method="post">
+				<form id="costForm" th:action="@{/admin/buildings/{buildId}/costs/{costId}/send(buildId = ${buildId}, costId = ${costId})}" th:method="put">
 					<div class="row">
 					    <div class="col-2 mb-3"><label for="buildName" class="form-label">건물명</label></div>
 					    <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" onChange="sumCost()" th:value="${build?.buildName}" readonly></div>
