@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 import com.fms.smartbutler.domain.Admin;
 import com.fms.smartbutler.repository.AdminRepository;
 
+/**
+ * @author 전종배
+ * @since 2024-01-25 to 2024-01-31
+ */
+
 @Service
 public class AdminService implements UserDetailsService {
 	

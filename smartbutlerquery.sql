@@ -6,30 +6,30 @@ use smartbutler;
 
 # 건물 정보
 drop table if exists build;
-create table if not exists build (
-	build_id bigint not null auto_increment COMMENT '건물 고유 번호',
-    build_name varchar(100) not null COMMENT '건물명',
-    address varchar(200) not null COMMENT '주소',
-    floor int not null COMMENT '층수',
-    room int not null COMMENT '칸수',
-    area bigint not null COMMENT '면적',
-    com_date date not null COMMENT '준공일',
-    primary key(build_id)
+CREATE TABLE IF NOT EXISTS build (
+    build_id BIGINT NOT NULL AUTO_INCREMENT COMMENT '건물 고유 번호',
+    build_name VARCHAR(100) NOT NULL COMMENT '건물명',
+    address VARCHAR(200) NOT NULL COMMENT '주소',
+    floor INT NOT NULL COMMENT '층수',
+    room INT NOT NULL COMMENT '칸수',
+    area BIGINT NOT NULL COMMENT '면적',
+    com_date DATE NOT NULL COMMENT '준공일',
+    PRIMARY KEY (build_id)
 );
 
 # 회원
 # status = 회원 유형
 # 1 = 일반 회원, 2 = 입주 회원
 drop table if exists users;
-create table if not exists users (
-	user_id bigint not null auto_increment COMMENT '회원 고유 번호',
-    user_name varchar(30) not null COMMENT '회원명',
-    phone char(13) not null unique COMMENT '휴대폰 번호',
-    email varchar(100) not null unique COMMENT '이메일 주소',
-    status smallint not null default 1 COMMENT '회원 유형',
-    pw text not null COMMENT '비밀번호',
-    role text not null COMMENT '권한',
-    primary key(user_id)
+CREATE TABLE IF NOT EXISTS users (
+    user_id BIGINT NOT NULL AUTO_INCREMENT COMMENT '회원 고유 번호',
+    user_name VARCHAR(30) NOT NULL COMMENT '회원명',
+    phone CHAR(13) NOT NULL UNIQUE COMMENT '휴대폰 번호',
+    email VARCHAR(100) NOT NULL UNIQUE COMMENT '이메일 주소',
+    status SMALLINT NOT NULL DEFAULT 1 COMMENT '회원 유형',
+    pw TEXT NOT NULL COMMENT '비밀번호',
+    role TEXT NOT NULL COMMENT '권한',
+    PRIMARY KEY (user_id)
 );
 
 # 입주 현황
@@ -198,26 +198,27 @@ insert into image_category values("b", "건물"),
 
 # 이미지
 drop table if exists image;
-create table if not exists image (
-	image_id bigint not null auto_increment COMMENT '이미지 고유 번호',
-    coded char(20) not null COMMENT '이미지 코드',
-    out_id bigint not null COMMENT '외부 고유 번호',
-    name text not null COMMENT '이미지명',
-    real_name text not null COMMENT '실제 이미지명',
-    src text not null COMMENT '이미지 경로',
-    real_src text not null COMMENT '실제 이미지 경로',
-    foreign key(coded) references image_category(coded),
-    primary key(image_id)
+CREATE TABLE IF NOT EXISTS image (
+    image_id BIGINT NOT NULL AUTO_INCREMENT COMMENT '이미지 고유 번호',
+    coded CHAR(20) NOT NULL COMMENT '이미지 코드',
+    out_id BIGINT NOT NULL COMMENT '외부 고유 번호',
+    name TEXT NOT NULL COMMENT '이미지명',
+    real_name TEXT NOT NULL COMMENT '실제 이미지명',
+    src TEXT NOT NULL COMMENT '이미지 경로',
+    real_src TEXT NOT NULL COMMENT '실제 이미지 경로',
+    FOREIGN KEY (coded)
+        REFERENCES image_category (coded),
+    PRIMARY KEY (image_id)
 );
 
 # 관리자
 drop table if exists admin;
-create table if not exists admin (
-	admin_id bigint not null auto_increment COMMENT '관리자 고유 번호',
-    username varchar(255) not null COMMENT '관리자 아이디',
-    password varchar(255) not null COMMENT '비밀번호',
-    role varchar(255) not null COMMENT '관리자 권한',
-    primary key(admin_id)
+CREATE TABLE IF NOT EXISTS admin (
+    admin_id BIGINT NOT NULL AUTO_INCREMENT COMMENT '관리자 고유 번호',
+    username VARCHAR(255) NOT NULL COMMENT '관리자 아이디',
+    password VARCHAR(255) NOT NULL COMMENT '비밀번호',
+    role VARCHAR(255) NOT NULL COMMENT '관리자 권한',
+    PRIMARY KEY (admin_id)
 );
 
 #######################################################

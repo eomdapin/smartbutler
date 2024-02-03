@@ -10,6 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * @author 전종배 assisted by 엄다빈(팀장)
+ * @since 2024-01-25 to 2024-01-31
+ */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -20,9 +25,8 @@ public class SecurityConfig {
 		auth.userDetailsService(usersService);
 		auth.userDetailsService(companyService);
 		
-		
-//		auth.inMemoryAuthentication()
-//		.withUser("1").password("{noop}1").roles("WORKER");
+		auth.inMemoryAuthentication()
+		.withUser("mail@mail.com").password("{noop}1111").roles("USER");
 	}
 	
 	@Configuration
@@ -35,8 +39,7 @@ public class SecurityConfig {
 				.securityMatcher("/admin/**")
 				.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests
-//					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
-					.requestMatchers("/**").permitAll()
+					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
 					.requestMatchers("/admin/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 				);
@@ -72,8 +75,7 @@ public class SecurityConfig {
 			.securityMatcher("/user/**")
 			.csrf((csrf) -> csrf.disable())
 			.authorizeHttpRequests((requests) -> requests
-//				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
-				.requestMatchers("/**").permitAll()
+				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
 				.requestMatchers("/user/**").hasRole("USER")
 				.anyRequest().authenticated()
 			);

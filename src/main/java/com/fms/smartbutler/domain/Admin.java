@@ -13,6 +13,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * @author 전종배
+ * @since 2024-01-25 to 2024-01-31
+ */
+
 @Entity
 @Getter
 @Setter
