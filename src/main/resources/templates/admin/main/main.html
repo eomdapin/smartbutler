@@ -22,7 +22,7 @@
         <div th:replace="~{common/fragments :: adminSidebar}"></div>
         <div class="container">
             <div class="row">
-                <h2>2024년 2월 3일 토요일</h2>
+                <h2>[[${#calendars.format(#calendars.createNow(), 'yyyy년 MM월 dd일')}]]</h2>
             </div>
             <div class="row">
                 <div class="row">
@@ -63,8 +63,13 @@
                         <h3><a href="/admin/buildings/1/costs">당월 관리비</a></h3>
                     </div>
                 </div>
-                <div class="row">
-                    <a href="">2024년 01월 :: 20,000,000원</a>
+                <div class="row" th:each="costs: ${costs}">
+                    <a
+                        th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs?.buildId}, costId = ${costs?.costId})}">
+                        [[${costs?.date}]] :: [[${costs?.electricity} + ${costs?.repair} + ${costs?.upkeep} +
+                        ${costs?.consignment}]] :: <th:block th:text="${costs?.send == 1} ? '배분 전' : '배분 완료'">
+                        </th:block>
+                    </a>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ClaimDTO;
+import com.fms.smartbutler.dto.CostDTO;
 import com.fms.smartbutler.dto.EstimateDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ClaimService;
@@ -30,13 +31,17 @@ public class AdminMainController {
 		List<BuildDTO> builds = buildService.findAll();
 		List<EstimateDTO> estimates = estimateService.findAllByConfirm(1);
 		List<ClaimDTO> claims = claimService.findAllByStatus(1);
+		List<CostDTO> costs = costService.findAll();
 		
 		int estimateCnt = estimates.size();
 		int claimCnt = claims.size();
 		
 		model.addAttribute("estimates", estimates);
-		model.addAttribute("estimateCnt", estimateCnt);
 		model.addAttribute("claims", claims);
+		model.addAttribute("costs", costs);
+		model.addAttribute("builds", builds);
+		
+		model.addAttribute("estimateCnt", estimateCnt);
 		model.addAttribute("claimCnt", claimCnt);
 		
 		return "admin/main/main";
