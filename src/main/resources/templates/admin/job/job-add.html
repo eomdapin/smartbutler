@@ -77,13 +77,13 @@
 	</div>
 	<script th:inline="javascript" type="text/javascript">
 	function changeBuildName() {
-		var selectedBuildId = document.getElementById("buildId").value;
-		var items = document.getElementById("itemName");
-		var itemsModel = /*[[${items}]]*/'';
+		let selectedBuildId = document.getElementById("buildId").value;
+		let items = document.getElementById("itemName");
+		let itemsModel = /*[[${items}]]*/'';
 		items.innerHTML = "<option class='form-option' value=''>선택</option>";
 		itemsModel.forEach(function(item) {
 			if(selectedBuildId == item.buildId) {
-				var option = document.createElement("option");
+				let option = document.createElement("option");
 				option.value = item.itemId;
 				option.text = item.itemName;
 				items.appendChild(option);

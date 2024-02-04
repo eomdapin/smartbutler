@@ -32,7 +32,6 @@
                     		<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
                     			th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
                     	</select>
-						<!-- <input type="text" name="buildName"  class="form-control"> -->
 					</div>
 				</div>
 			</form>
