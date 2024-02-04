@@ -1,5 +1,7 @@
 package com.fms.smartbutler.controller.user;
 
+import java.util.ArrayList;
+
 /**
 * @author 엄다빈
 * @editDate 2024-01-25 ~ 2024-01-29
@@ -30,17 +32,23 @@ public class UserBuildController {
 	
 	// 건물 정보
 	@GetMapping("/build")
-	public ResponseEntity<List<BuildDTO>> getBuilds(@RequestParam(required = false) Long buildId) {
-		List<BuildDTO> builds = buildService.findAll();
-		
-		return ResponseEntity.status(200).body(builds);
-	}
-	
-	@GetMapping("/images")
-	public ResponseEntity<List<ImageDTO>> getBuildImages(@RequestParam(required = false) Long buildId) {
+	public ResponseEntity<List<Object>> getBuilds(@RequestParam(required = false) Long buildId) {
 		buildId = buildId == null ? 1 :buildId;
+		List<BuildDTO> builds = buildService.findAll();
 		List<ImageDTO> images = imageService.findByOutIdAndCoded(buildId, "b");
 		
-		return ResponseEntity.status(200).body(images);
+		List<Object> content = new ArrayList<>();
+		content.add(builds);
+		content.add(images);
+		content.add(buildId);
+		
+		return ResponseEntity.status(200).body(content);
 	}
+	
+//	@GetMapping("/images")
+//	public ResponseEntity<List<ImageDTO>> getBuildImages(@RequestParam(required = false) Long buildId) {
+//		
+//		
+//		return ResponseEntity.status(200).body(images);
+//	}
 }

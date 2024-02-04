@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 const { kakao } = window;
 
 // 사용자 건물 정보 보기 시작시 지도 로딩
-function MapLoad() {
+function MapLoad({ address }) {
 
     useEffect(() => {
         const container = document.getElementById('buildMap');
-        const address = document.getElementById('address').value;
         const buildId = document.getElementById('buildId');
         const buildIdOptText = buildId.options[buildId.selectedIndex].innerText;
+
+        console.log(address)
 
         const options = { //지도를 생성할 때 필요한 기본 옵션
             center: new window.kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
@@ -37,7 +38,7 @@ function MapLoad() {
             }
         });
 
-    }, [])
+    }, [address])
 
     return (
         <div>
