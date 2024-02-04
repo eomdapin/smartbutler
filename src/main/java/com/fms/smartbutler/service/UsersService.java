@@ -61,11 +61,11 @@ public class UsersService implements UserDetailsService {
 		users.encodePassword(passwordEncoder);
 		
 		usersRepository.save(users);
-		usersDTO.setUserId(users.getUserId());
 	}
 	
 	public void updateStatus(UsersDTO usersDTO) {
 		Users users = modelMapper.map(usersDTO, Users.class);
+		
 		usersRepository.save(users);
 	}
 	
@@ -84,15 +84,8 @@ public class UsersService implements UserDetailsService {
 	}
 	
 	public List<UsersDTO> findAll() {
-		List<Users> usersList = usersRepository.findAll();
-		List<UsersDTO> usersDTOList = usersList
-											.stream()
-											.map(i ->
-												modelMapper
-												.map(i, UsersDTO.class))
-												.collect(Collectors.toList());
-		
-		return usersDTOList;
+		return usersRepository.findAll().stream().map(i ->
+			modelMapper.map(i, UsersDTO.class)).collect(Collectors.toList());
 	}
 	
 	public void delete(UsersDTO usersDTO) {

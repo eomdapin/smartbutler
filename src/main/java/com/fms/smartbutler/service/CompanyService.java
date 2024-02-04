@@ -82,6 +82,15 @@ public class CompanyService implements UserDetailsService {
 
 		return companiesDTO;
 	}
+	
+	public List<CompanyDTO.CompanyKindDTO> findAllKindType() {
+		List<Company.CompanyKind> companies = companyKindRepository.findAll();
+
+		List<CompanyDTO.CompanyKindDTO> companiesDTO = companies.stream().map(company -> modelMapper.map(company, CompanyDTO.CompanyKindDTO.class))
+				.collect(Collectors.toList());
+
+		return companiesDTO;
+	}
 
 	public void deleteById(Long companyId) {
 		companyRepository.deleteById(companyId);

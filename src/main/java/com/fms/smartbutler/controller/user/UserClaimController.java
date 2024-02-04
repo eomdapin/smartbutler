@@ -6,12 +6,6 @@ package com.fms.smartbutler.controller.user;
 */
 
 import java.security.Principal;
-
-/**
-* @author 송창민
-* @editDate 2024-01-26 ~ 2024-01-29
-*/
-
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -30,15 +24,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fms.smartbutler.dto.ClaimDTO;
+import com.fms.smartbutler.dto.CompanyDTO;
 import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.dto.ResidentDTO;
 import com.fms.smartbutler.dto.UsersDTO;
 import com.fms.smartbutler.service.ClaimService;
+import com.fms.smartbutler.service.CompanyService;
 import com.fms.smartbutler.service.ImageService;
 import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.service.UsersService;
 import com.fms.smartbutler.vo.FileVo;
-import com.fms.smartbutler.vo.OptionVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -51,6 +46,7 @@ public class UserClaimController {
 	private final ImageService imageService;
 	private final UsersService usersService;
 	private final ResidentService residentService;
+	private final CompanyService companyService;
 
 	// 민원 목록
 	@GetMapping
@@ -87,11 +83,11 @@ public class UserClaimController {
 	public String getClaimAdd(Principal principal, Model model) {
 		UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
 		ResidentDTO resident = residentService.findByUserId(user.getUserId());
-		OptionVo options = new OptionVo();
+		List<CompanyDTO.CompanyKindDTO> options= companyService.findAllKindType();
 		
 		model.addAttribute("user", user);
 		model.addAttribute("resident", resident);
-		model.addAttribute("options", options.getOptions());
+		model.addAttribute("options", options);
 		
 		return "user/claim/claim-add";
 	}
@@ -116,7 +112,7 @@ public class UserClaimController {
 		ClaimDTO claimDTO = claimService.findById(claimId).orElseGet(ClaimDTO::new);
 		List<ImageDTO> images = imageService.findByOutIdAndCoded(claimDTO.getClaimId(), "c");
 		FileVo vo = new FileVo();
-		OptionVo options = new OptionVo();
+		List<CompanyDTO.CompanyKindDTO> options= companyService.findAllKindType();
 		
 		if(images.size() > 0) {
 			vo.setFileName(images.get(0).getRealName());
@@ -124,7 +120,7 @@ public class UserClaimController {
 		
 		model.addAttribute("claim", claimDTO);
 		model.addAttribute("vo", vo);
-		model.addAttribute("options", options.getOptions());
+		model.addAttribute("options", options);
 		
 		return "user/claim/claim-edit";
 	}

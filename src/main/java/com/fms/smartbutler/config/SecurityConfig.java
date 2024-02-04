@@ -76,7 +76,7 @@ public class SecurityConfig {
 			.securityMatcher("/user/**")
 			.csrf((csrf) -> csrf.disable())
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
+				.requestMatchers("/css/**","/img/**", "/user/login", "/user/logout", "/user/join/**").permitAll()
 				.requestMatchers("/user/**").hasRole("USER")
 				.anyRequest().authenticated()
 			);
@@ -137,7 +137,6 @@ public class SecurityConfig {
 	
 			return http.build();
 		}
-		
 	}
 }
 
