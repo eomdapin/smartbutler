@@ -1,78 +1,112 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-	<div th:fragment="adminHeader">
- 	   <header class="d-flex align-items-center">
-            <div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
-            <div><h1><a href="/admin" class="logo-text">SMARTBUTLER</a></h1></div>
-        </header>
-	</div>
-	<div th:fragment="adminSidebar">
- 	   <div id="navi" class="">
-			<ul>
-				<li><a href="/admin/buildings">건물정보</a></li>
-				<li><a href="/admin/buildings/0/items">시설관리</a></li>
-				<li><a href="/admin/buildings/1/residents/total">임대관리</a></li>
-				<li><a href="/admin/buildings/companies">계약업체</a></li>
-				<li><a href="/admin/buildings/0/claims">민원관리</a></li>
-				<li><a href="/admin/users">회원정보</a></li>
-			</ul>
+<div th:fragment="adminHeader">
+	<header class="d-flex align-items-center">
+		<div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
+		<div>
+			<h1><a href="/admin" class="logo-text">SMARTBUTLER</a></h1>
 		</div>
+	</header>
+</div>
+<div th:fragment="adminSidebar">
+	<div id="navi" class="">
+		<ul>
+			<li><a href="/admin/buildings">건물 정보</a>
+				<ul id="sub1" class="sub-navi">
+					<li><a class="fs-5" href="/admin/buildings/add">건물 등록</a></li>
+				</ul>
+			</li>
+			<li><a href="/admin/buildings/0/items">시설 관리</a>
+				<ul id="sub2" class="sub-navi">
+					<li><a class="fs-5" href="/admin/buildings/0/items">시설 목록</a></li>
+					<li><a class="fs-5" href="/admin/buildings/0/jobs">작업 일지</a></li>
+				</ul>
+			</li>
+			<li><a href="/admin/buildings/0/residents">임대 관리</a>
+				<ul id="sub3" class="sub-navi">
+					<li><a class="fs-5" href="/admin/buildings/0/residents">입주 정보</a></li>
+					<li><a class="fs-5" href="/admin/buildings/0/costs">관리비</a></li>
+					<li><a class="fs-5" href="/admin/estimates">견적 목록</a></li>
+				</ul>
+			</li>
+			<li><a href="/admin/buildings/companies">계약 업체</a>
+				<ul id="sub4" class="sub-navi">
+					<li><a class="fs-5" href="/admin/buildings/companies">업체 목록</a></li>
+				</ul>
+			</li>
+			<li><a href="/admin/buildings/0/claims">민원 관리</a>
+				<ul id="sub5" class="sub-navi">
+					<li><a class="fs-5" href="/admin/buildings/0/claims">민원 목록</a></li>
+				</ul>
+			</li>
+			<li><a href="/admin/users">회원 정보</a>
+				<ul id="sub6" class="sub-navi">
+					<li><a class="fs-5" href="/admin/users">회원 목록</a></li>
+				</ul>
+			</li>
+		</ul>
 	</div>
-	<div th:fragment="workerHeader">
- 	   <header class="d-flex align-items-center">
-            <div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
-            <div><h1><a href="/worker/jobs" class="logo-text">SMARTBUTLER</a></h1></div>
-        </header>
-	</div>
-	<div th:fragment="workerSidebar">
-		<div id="navi">
-			<ul>
-				<li><a href="/worker/jobs">작업목록</a></li>
-			</ul>
+</div>
+<div th:fragment="workerHeader">
+	<header class="d-flex align-items-center">
+		<div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
+		<div>
+			<h1><a href="/worker/jobs" class="logo-text">SMARTBUTLER</a></h1>
 		</div>
+	</header>
+</div>
+<div th:fragment="workerSidebar">
+	<div id="navi">
+		<ul>
+			<li><a href="/worker/jobs">작업목록</a></li>
+		</ul>
 	</div>
-	<div th:fragment="userHeader">
-		<header class="d-flex justify-content-between">
-			<div class="d-flex align-items-center">
-        		<div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
-	        	<div><h1><a href="/user" class="logo-text">SMARTBUTLER</a></h1></div>
-        	</div>
-	        <div class="d-flex align-items-center" style="gap:50px; margin-right: 200px;">
-	        	<div><a href="/user/mypage">마이페이지</a></div>
-	        	<div><a href="http://localhost:3000/user/buildings/info">건물 정보 보기</a></div>
-	        	<div><a href="/user/estimate">견적 신청</a></div>
-	        	<div><a href="/user/claims">민원 신청</a></div>
-        	</div>
-    	</header>
-	</div>
-	<div th:fragment="userFooter">
-		<footer>
-			<span>스마트버틀러 | 대표 : 홍길동 | 주소 : 서울시 서대문구 연세로 8-1</span><br>
-			<span>Copyright &copy; 2024 SMARTBUTLER</span>
-		</footer>	
-	</div>
-	<div th:fragment="imageModal">
-		<div class="modal" tabindex="-1" id="imageModal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div th:each="images: ${images}" class="modal-content">
-					<img alt="이미지모달" th:src="@{/web-img/}+${images?.name}">
-				</div>
+</div>
+<div th:fragment="userHeader">
+	<header class="d-flex justify-content-between">
+		<div class="d-flex align-items-center">
+			<div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
+			<div>
+				<h1><a href="/user" class="logo-text">SMARTBUTLER</a></h1>
+			</div>
+		</div>
+		<div class="d-flex align-items-center" style="gap:50px; margin-right: 200px;">
+			<div><a href="/user/mypage">마이페이지</a></div>
+			<div><a href="http://localhost:3000/user/buildings/info">건물 정보 보기</a></div>
+			<div><a href="/user/estimate">견적 신청</a></div>
+			<div><a href="/user/claims">민원 신청</a></div>
+		</div>
+	</header>
+</div>
+<div th:fragment="userFooter">
+	<footer>
+		<span>스마트버틀러 | 대표 : 홍길동 | 주소 : 서울시 서대문구 연세로 8-1</span><br>
+		<span>Copyright &copy; 2024 SMARTBUTLER</span>
+	</footer>
+</div>
+<div th:fragment="imageModal">
+	<div class="modal" tabindex="-1" id="imageModal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div th:each="images: ${images}" class="modal-content">
+				<img alt="이미지모달" th:src="@{/web-img/}+${images?.name}">
 			</div>
 		</div>
 	</div>
-	<div th:fragment="buildSearch">
-		<div class="row g-3 justify-content-center align-items-center mb-4">
-			<div class="col-1 mb-3">
-				<label for="buildId" class="fs-5 fw-bold">건물명</label>
-			</div>
-			<div class="col-3 mb-3">
-				<form action="" id="infoForm">
-					<select class="form-select" id="buildId" name="buildId" onChange="changeBuild()">
-						<option value="0">전체 건물 보기</option>
-						<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
-							th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
-					</select>
-				</form>
-			</div>
+</div>
+<div th:fragment="buildSearch">
+	<div class="row g-3 justify-content-center align-items-center mb-4">
+		<div class="col-1 mb-3">
+			<label for="buildId" class="fs-5 fw-bold">건물명</label>
+		</div>
+		<div class="col-3 mb-3">
+			<form action="" id="infoForm">
+				<select class="form-select" id="buildId" name="buildId" onChange="changeBuild()">
+					<option value="0">전체 건물 보기</option>
+					<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
+						th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
+				</select>
+			</form>
 		</div>
 	</div>
+</div>
+
 </html>

@@ -5,6 +5,7 @@
     min-width: 1380px;
     position: relative;
 }
+
 #wrap::after {
     content: "";
     display: block;
@@ -23,21 +24,29 @@ header .logo-text {
 
 #navi {
     float: left;
-    width: 150px;
+    width: 180px;
     height: calc(100vh - 100px);
     background: #0070C0;
 }
+#navi ul {
+    padding-right: 2rem;
+}
 #navi li {
-    padding:  20px 0;
+    padding: 20px 0;
 }
 #navi li a {
-    color :#fefefe;
-    font-size: 24px;
+    color: #fefefe;
+    font-size: 28px;
     font-weight: 600;
+}
+#navi .sub-navi {
+    display: none;
+    padding: 0;
+    border-bottom: 1px solid #eee;
 }
 
 .container {
-    width: 12000px;
+    width: 1380px;
     float: left;
     margin: 50px 0 0 30px;
 }
@@ -56,13 +65,13 @@ header .logo-text {
     padding: 30px 50px;
 }
 .container .box {
-	width: 400px;
+    width: 400px;
 }
 .container .box td:nth-of-type(1) {
-	width: 100px;
+    width: 100px;
 }
 .container .box td {
-	width: 130px;
+    width: 130px;
 }
 
 /* bootstrap fix */
