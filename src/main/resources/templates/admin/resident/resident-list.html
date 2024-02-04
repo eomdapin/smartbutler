@@ -26,18 +26,29 @@
 				</ul>
 			</div>
 			<div class="content">
+                <form id="infoForm" action="/admin/buildings/{buildId}/residents/total" method="get">
+					<div class="row g-3 justify-content-center align-items-center mb-4">
+	                    <div class="col-1 mb-3">
+	                    	<label for="buildId" class="fs-5 fw-bold">건물명</label>
+	                    </div>			
+	                    <div class="col-3 mb-3">
+	                        <select class="form-select" id="buildId" name="buildId" onChange="changeBuild()">
+	                            <option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
+	                                th:selected="${buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
+	                        </select>
+	                    </div>
+	                </div>
+                </form>
 				<div class="d-flex justify-content-end mb-3">
-					<button class="col-2 btn btn-primary" type="button"
-						onclick="location.href='/admin/buildings/{buildId}/residents/add'">신규등록</button>
+					<a class="col-2 btn btn-primary" type="button" th:href="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}">신규등록</a>
 				</div>
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th scope="col">회원번호</th>
-							<th scope="col">고객명</th>
-							<th scope="col">휴대폰번호</th>
 							<th scope="col">건물명</th>
 							<th scope="col">입주 호실</th>
+							<th scope="col">고객명</th>
+							<th scope="col">휴대폰번호</th>
 							<th scope="col">계약시작일</th>
 							<th scope="col">계약종료일</th>
 							<th scope="col">보증금</th>
@@ -45,21 +56,30 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">10001</th>
-							<td>카페윌리</td>
-							<td>010-5555-6666</td>
-							<td>강남1호점</td>
-							<td>701</td>
-							<td>2023-04-01</td>
-							<td>2026-03-31</td>
-							<td>800,000,000</td>
-							<td>1,500,000</td>
+						<tr th:each ="residents: ${residents}">
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.buildName}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.residentNum}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.users?.userName}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.users?.phone}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.fromDate}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.toDate}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.deposit}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.monthly}]]</a></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
+	    <script>
+        function changeBuild() {
+            let buildId = document.getElementById('buildId');
+            let form = document.getElementById('infoForm');
+
+            form.action = '/admin/buildings/' + buildId.value + '/residents';
+
+            form.submit();
+        }
+    </script>
 </body>
 </html>

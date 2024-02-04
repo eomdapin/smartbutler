@@ -22,44 +22,45 @@
 				<ul class="">
 					<li><a href="/">HOME</a><span> ></span></li>
 					<li><a href="#">임대관리</a><span> ></span></li>
-					<li><a href="#">입주정보</a></li>
+					<li><a href="#">입주수정</a></li>
 				</ul>
 			</div>
 			<div class="content">
-				<form>
+				<form th:action="@{/admin/buildings/{buildId}/residents/{residentId}/update(buildId = ${buildId}, residentId = ${resident?.residentId})}" method="post">
                     <div class="row">
                         <div class="col-2 mb-3"><label for="userName" class="col-form-label ms-3">고객명</label></div>
                         <div class="col-4 mb-3"><input type="text" name="userName" class="form-control" th:value="${resident?.users?.userName}" readonly></div>
                         
                         <div class="col-2 mb-3"><label for="fromDate" class="form-label">계약시작일</label></div>
-                        <div class="col-4 mb-3"><input type="date" name="fromDate" class="form-control" th:value="${resident?.fromDate}" readonly></div>
+                        <div class="col-4 mb-3"><input type="date" name="fromDate" class="form-control" th:value="${resident?.fromDate}"></div>
                     </div>
 					<div class="row">
                         <div class="col-2 mb-3"><label for="buildName" class="col-form-label ms-3">건물명</label></div>
                         <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" th:value="${resident?.buildName}" readonly></div>
                         
                         <div class="col-2 mb-3"><label for="toDate" class="form-label">계약 종료일</label></div>
-                        <div class="col-4 mb-3"><input type="date" name="toDate" class="form-control" th:value="${resident?.toDate}" readonly></div>
+                        <div class="col-4 mb-3"><input type="date" name="toDate" class="form-control" th:value="${resident?.toDate}"></div>
                     </div>
 					<div class="row">
                         <div class="col-2 mb-3"><label for="phone" class="col-form-label ms-3">휴대폰 번호</label></div>
                         <div class="col-4 mb-3"><input type="text" name="phone" class="form-control" th:value="${resident?.users?.phone}" readonly></div>
                         
                         <div class="col-2 mb-3"><label for="deposit" class="form-label">보증금</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="deposit" class="form-control" th:value="${resident?.deposit}" readonly></div>
+                        <div class="col-4 mb-3"><input type="text" name="deposit" class="form-control" th:value="${resident?.deposit}"></div>
                     </div>
 					<div class="row">
                         <div class="col-2 mb-3"><label for="residentNum" class="col-form-label ms-3">입주 호실</label></div>
                         <div class="col-4 mb-3"><input type="text" name="residentNum" class="form-control" th:value="${resident?.residentNum}" readonly></div>
                         
                         <div class="col-2 mb-3"><label for="monthly" class="form-label">월세</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="monthly" class="form-control" th:value="${resident?.monthly}" readonly></div>
-                        <input type="hidden" name="userId" th:value="${resident?.userId}">
+                        <div class="col-4 mb-3"><input type="text" name="monthly" class="form-control" th:value="${resident?.monthly}"></div>
+                        <input type="hidden" name="userId" th:value="${resident?.users?.userId}">
                         <input type="hidden" name="buildId" th:value="${buildId}">
                         <input type="hidden" name="entered" th:value="${resident?.entered}">
+                        <input type="hidden" name="residentId" th:value="${resident?.residentId}">
                     </div>
                     <div class="text-end pt-3 row">
-	                   <div class="col-auto"><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}/update(buildId = ${buildId}, residentId = ${resident?.residentId})}" class="btn btn-lg btn-primary">수정</a></div>
+	                   <div class="col-auto"><input type="submit" class="btn btn-lg btn-primary" value="저장"></div>
 	                   <div class="col-auto"><a onClick="history.back()" class="btn btn-lg btn-outline-dark">목록</a></div>
                    </div>
 				</form>

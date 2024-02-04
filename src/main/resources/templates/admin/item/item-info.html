@@ -54,19 +54,17 @@
 						</div>
 						<div class="col-4">
 							<th:block th:if="${item.status == 1}">
-								<input type="text" name="status" value="정상" class="form-control">
+								<input type="text" value="정상" class="form-control">
+								<input type="hidden" name="status" value="1">
 							</th:block>
 							<th:block th:if="${item.status == 2}">
-								<input type="text" name="status" value="수리" class="form-control">
+								<input type="text" value="수리" class="form-control">
+								<input type="hidden" name="status" value="2">
 							</th:block>
 							<th:block th:if="${item.status == 3}">
-								<input type="text" name="status" value="폐기" class="form-control">
+								<input type="text" value="폐기" class="form-control">
+								<input type="hidden" name="status" value="3">
 							</th:block>
-							<!-- <select name="status" class="form-select" >
-								<option value="1" th:if="${item.status == 1 }"> 정상 </option>
-								<option value="2" th:if="${item.status == 2 }"> 수리 </option>
-								<option value="3" th:if="${item.status == 3 }"> 폐기 </option>
-							</select> -->
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">

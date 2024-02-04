@@ -2,6 +2,7 @@ package com.fms.smartbutler.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,18 +22,22 @@ public class Resident {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "resident_id")
 	private Long residentId;
 	
-	@ManyToOne
-    @JoinColumn(name="build_id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private Users users;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "build_id")
 	private Build build;
 	
-	@ManyToOne
-    @JoinColumn(name="user_id")
-	private Users user;
+	@Column(name = "resident_num")
+	private Long residentNum;
 	
-	@Column(name = "status")
-	private int status;
+	@Column(name = "entered")
+	private int entered;
 	
 	@Column(name = "from_date")
 	private String fromDate;
