@@ -1,5 +1,10 @@
 package com.fms.smartbutler.service;
 
+/**
+ * @author 전종배
+ * @since 2024-02-01 to 2024-02-03
+ */
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,14 +25,9 @@ import com.fms.smartbutler.repository.CompanyRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-/**
- * @author 전종배
- * @since 2024-02-01 to 2024-02-03
- */
-
 @Service
-@Transactional
 @RequiredArgsConstructor
+@Transactional
 public class CompanyService implements UserDetailsService {
 
 	private final BuildRepository buildRepository;
@@ -51,32 +51,26 @@ public class CompanyService implements UserDetailsService {
 				.build();
 	}
 	
-	public CompanyDTO save(CompanyDTO companyDTO) {
-		
-		String role = "WORKER";
-		companyDTO.setRole(role);
-		
-		System.out.println(companyDTO.getKindName());
-		Long kindType= companyDTO.getKindType();
+	public void save(CompanyDTO companyDTO) {
+		Long kindType = companyDTO.getKindType();
 		String kindName = companyKindRepository.findById(kindType).get().getKindName();
-		companyDTO.setKindName(kindName);
+		Long buildId = companyDTO.getBuildId();
+		String buildName = buildRepository.findById(buildId).get().getBuildName();
 		
-		System.out.println(companyDTO.getBuildName());
-		Long buildId=companyDTO.getBuildId();
-		String buildName=buildRepository.findById(buildId).get().getBuildName();
+		companyDTO.setRole("WORKER");
+		companyDTO.setKindName(kindName);
 		companyDTO.setBuildName(buildName);
 		
 		Company company = modelMapper.map(companyDTO, Company.class);
 		
 		companyRepository.save(company);
-		Company savedCompany = companyRepository.save(company);
-		CompanyDTO savedCompanyDTO = modelMapper.map(savedCompany, CompanyDTO.class);
-		return savedCompanyDTO;
 	}
 	
 	public CompanyDTO findById(Long companyId) {
 		Company company = companyRepository.findById(companyId).get();
+		
 		CompanyDTO companyDTO = modelMapper.map(company, CompanyDTO.class);
+		
 		return companyDTO;
 	}
 

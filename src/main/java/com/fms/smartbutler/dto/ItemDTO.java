@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter @Getter
-@AllArgsConstructor 
-@NoArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 public class ItemDTO {
 	
 	private Long itemId;
@@ -30,8 +29,7 @@ public class ItemDTO {
 	private String kindName;
 	
 	@Setter @Getter
-	@AllArgsConstructor
-	@NoArgsConstructor
+	@AllArgsConstructor @NoArgsConstructor
 	public static class ItemKindDTO {
 		
 		private String kindType;

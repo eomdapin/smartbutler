@@ -22,9 +22,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter
-@AllArgsConstructor 
-@NoArgsConstructor
+@Setter @Getter
+@AllArgsConstructor @NoArgsConstructor
+@Table(name = "item")
 public class Item {
 	
 	@Id
@@ -59,9 +59,8 @@ public class Item {
 	private String checkCycle;
 	
 	@Entity
-	@Getter @Setter
-	@AllArgsConstructor
-	@NoArgsConstructor
+	@Setter @Getter
+	@AllArgsConstructor @NoArgsConstructor
 	@Table(name = "item_kind")
 	public static class ItemKind {
 		

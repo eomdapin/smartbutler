@@ -49,20 +49,12 @@ public class EstimateService {
 	}
 	
 	public List<EstimateDTO> findAll() {
-		List<Estimate> estimateList = estimateRepository.findAll();
-		List<EstimateDTO> estimateDTOList = estimateList
-												.stream()
-												.map(e ->
-													modelMapper
-													.map(e, EstimateDTO.class))
-													.collect(Collectors.toList());
-		return estimateDTOList;
+		return estimateRepository.findAll().stream().map(e ->
+			modelMapper.map(e, EstimateDTO.class)).collect(Collectors.toList());
 	}
 	
 	public List<EstimateDTO> findAllByConfirm(int confirm) {
 		return estimateRepository.findAllByConfirm(confirm).stream().map(e ->
-				modelMapper.map(e, EstimateDTO.class)
-				).toList();
+				modelMapper.map(e, EstimateDTO.class)).collect(Collectors.toList());
 	}
-	
 }

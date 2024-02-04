@@ -30,9 +30,7 @@ public class EstimateDTO {
 	private String userName;
 	
 	public EstimateDTO() {
-		
 		LocalDateTime time = LocalDateTime.now();
-		
 		regDate = time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 	}
 }

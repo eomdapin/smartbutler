@@ -35,7 +35,6 @@ public class UsersService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		
 		Users user = usersRepository.findByEmail(email);
 		
 		if(user == null) {
@@ -55,7 +54,6 @@ public class UsersService implements UserDetailsService {
 		users.encodePassword(passwordEncoder);
 		
 		usersRepository.save(users);
-		usersDTO.setUserId(users.getUserId());
 	}
 	
 	public void update(UsersDTO usersDTO) {

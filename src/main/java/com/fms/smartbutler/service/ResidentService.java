@@ -14,25 +14,22 @@ import org.springframework.stereotype.Service;
 import com.fms.smartbutler.domain.Resident;
 import com.fms.smartbutler.dto.ResidentDTO;
 import com.fms.smartbutler.repository.ResidentRepository;
-import com.fms.smartbutler.repository.UsersRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-@Transactional
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ResidentService {
 	
 	private final ResidentRepository residentRepository;
-	private final UsersRepository usersRepository;
 	private final ModelMapper modelMapper;
 	
 	public void save(ResidentDTO residentDTO) {
 		residentDTO.getBuild().setBuildId(residentDTO.getBuildId());
 		residentDTO.getUsers().setUserId(residentDTO.getUserId());
+		
 		Resident resident = modelMapper.map(residentDTO, Resident.class);
 		
 		residentRepository.save(resident);
@@ -40,8 +37,8 @@ public class ResidentService {
 	
 	public ResidentDTO findById(Long residentId) {
 		Resident resident = residentRepository.findById(residentId).orElseGet(Resident::new);
-		
 		ResidentDTO residentDTO = modelMapper.map(resident, ResidentDTO.class);
+		
 		residentDTO.setUsers(resident.getUsers());
 		residentDTO.setBuild(resident.getBuild());
 		
@@ -50,8 +47,8 @@ public class ResidentService {
 	
 	public ResidentDTO findByUserId(Long userId) {
 		Resident resident = residentRepository.findByUsers_UserId(userId).orElseGet(Resident::new);
-		
 		ResidentDTO residentDTO = modelMapper.map(resident, ResidentDTO.class);
+		
 		residentDTO.setUsers(resident.getUsers());
 		residentDTO.setBuild(resident.getBuild());
 		
@@ -75,7 +72,7 @@ public class ResidentService {
 	
 	public void addResidentDefault(Long buildId, Integer floor, Integer room) {
 		List<ResidentDTO> residentDTOList = new ArrayList<>();
-
+		
 		for(int i = 100; i <= floor * 100; i+=100) {
 			for(int j = 1; j <= room; j++) {
 				ResidentDTO resi = new ResidentDTO();
@@ -86,6 +83,7 @@ public class ResidentService {
 				residentDTOList.add(resi);
 			}
 		}
+		
 		List<Resident> residentList = residentDTOList.stream().map(r -> modelMapper.map(r, Resident.class)).toList();
 		
 		residentRepository.saveAll(residentList);

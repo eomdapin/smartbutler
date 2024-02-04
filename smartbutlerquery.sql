@@ -276,14 +276,33 @@ insert into cost(build_id, cost_date, electricity, repair, upkeep, consignment, 
 
 insert into cost(build_id, cost_date, electricity, repair, upkeep, consignment, send, resident_cnt) values
 (2, '2024-01-01', 3000000, 4000000, 5000000, 8000000, 2, 80);
-#######################################################
-insert into company_kind values('1', '공조');
-insert into company values('1', '1', '1', '한일공조', '지디', '010-1111-2222', '2024-01-01', '2024-12-12', '1000', '{noop}1111', 'WORKER');
 
 #######################################################
 insert into resident value(null, '101', '1','1','2','2024-01-01','2024-12-31','100000000','10000000');
 insert into resident(resident_num, build_id)
 values(102,1), (103,1), (104,1), (105,1), (106,1), (107,1), (108,1),	(109,1),	(110,1),	(201,1),	(202,1),	(203,1),	(204,1),	(205,1),	(206,1),	(207,1),	(208,1),	(209,1),	(210,1),	(301,1),	(302,1),	(303,1),	(304,1),	(305,1),	(306,1),	(307,1),	(308,1),	(309,1),	(310,1),	(401,1),	(402,1),	(403,1),	(404,1),	(405,1),	(406,1),	(407,1),	(408,1),	(409,1),	(410,1),	(501,1),	(502,1),	(503,1),	(504,1),	(505,1),	(506,1),	(507,1),	(508,1),	(509,1),	(510,1);
+
+## 담당업무 
+#######################################################
+insert into company_kind(kind_type, kind_name) values('1', '청소');
+insert into company_kind(kind_type, kind_name) values('2', '전기');
+insert into company_kind(kind_type, kind_name) values('3', '경비');
+insert into company_kind(kind_type, kind_name) values('4', '공조');
+insert into company_kind(kind_type, kind_name) values('5', '인터넷');
+insert into company_kind(kind_type, kind_name) values('6', '엘리베이터');
+insert into company_kind(kind_type, kind_name) values('7', '수도');
+insert into company_kind(kind_type, kind_name) values('8', '소방');
+
+## 계약업체
+#######################################################
+insert into company values('10001', '1', '1', '아담청소', '김대리', '010-1111-2222', '2023-04-01', '2026-03-31', '1500000', '{noop}1111', 'WORKER');
+insert into company values('10002', '2', '2', '쌍용전기', '송과장', '010-2222-3333', '2023-04-01', '2026-03-31', '1500000', '{noop}1111', 'WORKER');
+insert into company values('10003', '3', '3', '에이스가드', '정대리', '010-3333-4444', '2023-04-01', '2026-03-31', '1500000', '{noop}1111', 'WORKER');
+insert into company values('10004', '4', '4', '한국공조', '박차장', '010-4444-5555', '2023-04-01', '2026-03-31', '1500000', '{noop}1111', 'WORKER');
+insert into company values('10005', '1', '5', '유플러스', '이대리', '010-5555-6666', '2019-09-22', '2024-09-21', '1900000', '{noop}1111', 'WORKER');
+insert into company values('10006', '2', '6', '오티스', '윤과장', '010-6666-7777', '2019-09-22', '2024-09-21', '1900000', '{noop}1111', 'WORKER');
+insert into company values('10007', '3', '7', '우주환경', '김과장', '010-7777-8888', '2019-09-22', '2024-09-21', '1900000', '{noop}1111', 'WORKER');
+insert into company values('10008', '4', '8', '대영소방', '정과장', '010-8888-9999', '2019-09-22', '2024-09-21', '1900000', '{noop}1111', 'WORKER');
 
 select * from users;
 select * from build;

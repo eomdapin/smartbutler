@@ -20,6 +20,7 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
 public class CostDTO {
+	
 	private Long costId;
 	private Long buildId;
 	private LocalDate date;

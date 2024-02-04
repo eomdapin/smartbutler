@@ -14,16 +14,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fms.smartbutler.domain.Image;
-import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.repository.ImageRepository;
 import com.fms.smartbutler.vo.FileVo;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -48,6 +45,7 @@ public class ImageService {
 			imageDTO.setSrc(filePath);
 			imageDTO.setRealSrc(filePath);
 		}
+		
 		return imageDTO;
 	}
 	
@@ -63,6 +61,7 @@ public class ImageService {
 	
 	public void deleteImage(ImageDTO imageDTO) {
 		File delFile = new File(imageDTO.getSrc() + imageDTO.getName());
+		
 		if(delFile.exists()) {
 			delFile.delete();
 			Image image = modelMapper.map(imageDTO, Image.class);
@@ -72,6 +71,7 @@ public class ImageService {
 	
 	public ImageDTO findById(Long imgId) {
 		Image image = imageRepository.findById(imgId).orElseGet(Image::new);
+		
 		return modelMapper.map(image, ImageDTO.class); 
 	}
 	

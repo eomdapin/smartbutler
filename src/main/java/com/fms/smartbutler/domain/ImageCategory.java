@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "image_category")
-@Getter @Setter
+@Setter @Getter
 @AllArgsConstructor @NoArgsConstructor
+@Table(name = "image_category")
 public class ImageCategory {
 	
 	@Id

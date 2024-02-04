@@ -24,9 +24,7 @@ import com.fms.smartbutler.repository.CostRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -50,16 +48,19 @@ public class CostService {
 			costDTO.setCostId(findCost.get().getCostId());
 			return true;
 		}
+		
 		return false;
 	}
 	
 	public void updateCost(CostDTO costDTO) {
 		Cost cost = modelMapper.map(costDTO, Cost.class);
+		
 		costRepository.save(cost);
 	}
 	
 	public CostDTO findById(Long costId) {
 		Cost cost = costRepository.findById(costId).orElseGet(Cost::new);
+		
 		return modelMapper.map(cost, CostDTO.class); 
 	}
 	
@@ -75,6 +76,7 @@ public class CostService {
 	
 	public CostDTO findByBuildIdAndDate(Long buildId, LocalDate date) {
 		Optional<Cost> cost = costRepository.findByBuild_BuildIdAndDate(buildId, date);
+		
 		if(cost.isEmpty()) {
 			return null;
 		} else {
@@ -85,6 +87,5 @@ public class CostService {
 	public List<CostDTO> findAllByDate(LocalDate date) {
 		return costRepository.findAllByDate(date).stream().map(c ->
 			modelMapper.map(c, CostDTO.class)).toList();
-				
 	}
 }

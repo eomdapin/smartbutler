@@ -23,8 +23,7 @@ import lombok.Setter;
 
 @Entity
 @Setter @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 @Table(name="estimate")
 public class Estimate {
 	
