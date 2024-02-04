@@ -54,7 +54,6 @@ public class UserEstimateController {
 	// 견적신청 완료
 	@GetMapping("/success")
 	public String getEstimateSuccess(Model model) {
-		
 		return "user/estimate/estimate-success";
 	}
 	

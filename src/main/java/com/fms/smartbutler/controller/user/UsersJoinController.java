@@ -6,7 +6,6 @@ package com.fms.smartbutler.controller.user;
 */
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +25,7 @@ public class UsersJoinController {
 	
 	// 회원 가입
 	@GetMapping
-	public String getJoin(Model model) {
-		
+	public String getJoin() {
 		return "user/join/join";
 	}
 	
@@ -41,9 +39,7 @@ public class UsersJoinController {
 	
 	// 회원가입 성공
 	@GetMapping("/success")
-	public String getJoinSuccess(Model model) {
-		
+	public String getJoinSuccess() {
 		return "user/join/join-success";
 	}
-	
 }

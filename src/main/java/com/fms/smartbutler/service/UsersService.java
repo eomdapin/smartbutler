@@ -98,6 +98,10 @@ public class UsersService implements UserDetailsService {
 	}
 	
 	public void delete(UsersDTO usersDTO) {
+		if(usersDTO.getStatus() == 2) {
+			return;
+		}
+		
 		Users users = modelMapper.map(usersDTO, Users.class);
 		
 		usersRepository.delete(users);

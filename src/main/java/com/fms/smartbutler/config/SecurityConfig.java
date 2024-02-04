@@ -1,5 +1,10 @@
 package com.fms.smartbutler.config;
 
+/**
+ * @author 전종배
+ * @since 2024-01-25 to 2024-01-31
+ */
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,8 +40,7 @@ public class SecurityConfig {
 				.securityMatcher("/admin/**")
 				.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests
-//					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
-					.requestMatchers("/**").permitAll()
+					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
 					.requestMatchers("/admin/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 				);
@@ -72,8 +76,7 @@ public class SecurityConfig {
 			.securityMatcher("/user/**")
 			.csrf((csrf) -> csrf.disable())
 			.authorizeHttpRequests((requests) -> requests
-//				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
-				.requestMatchers("/**").permitAll()
+				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
 				.requestMatchers("/user/**").hasRole("USER")
 				.anyRequest().authenticated()
 			);
@@ -82,7 +85,7 @@ public class SecurityConfig {
 		.formLogin(formLogin->
 			formLogin
 				.loginPage("/user/login")
-				.defaultSuccessUrl("/",true)
+				.defaultSuccessUrl("/user",true)
 				.loginProcessingUrl("/user/login")
 				.failureUrl("/user/login?error=true")
 				.usernameParameter("email")

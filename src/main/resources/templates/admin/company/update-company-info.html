@@ -31,11 +31,10 @@
 			</div>
 			<div class="content">
 				<form
-					th:action="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${companyDTO.buildId}, companyId=${companyDTO.companyId})}"
-					method="post">
+					th:action="@{/admin/buildings/{buildId}/companies/{companyId}(buildId=${companyDTO.buildId}, companyId=${companyDTO.companyId})}"
+					th:method="put">
 
 					<div class="container fw-semibold">
-
 						<div class="row align-items-center mb-4">
 							<div class="col-5">
 								<div class="row g-3 align-items-center">
@@ -142,45 +141,7 @@
 									</div>
 								</div>
 							</div>
-							
-							<!-- <div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="kindName" class="col-form-label ms-3">담당업무</label>
-									</div>
-									<div class="col-8">
-										<select class="form-control" name="kindName" id="kindName">
-											<option th:value="${companyDTO.kindName}"
-												th:text="${companyDTO.kindName}"></option>
-											<option th:each="companyKind : ${companyKinds}"
-												th:value="${companyKind.kindName}"
-												th:text="${companyKind.kindName}"></option>
-										</select>
-									</div>
-								</div>
-							</div>
-							
-							
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="buildName" class="col-form-label ms-3">건물명</label>
-									</div>
-									<div class="col-8">
-										<select class="form-control" name="buildName" id="buildName">
-											<option th:value="${companyDTO.buildName}"
-												th:text="${companyDTO.buildName}"></option>
-											<option th:each="buildDTO : ${buildDTOs}"
-												th:value="${buildDTO.buildName}"
-												th:text="${buildDTO.buildName}"></option>
-										</select>
-									</div>
-								</div>
-							</div> -->
-							
 						</div>
-						
-						
 
 						<div class="row align-items-center mb-5">
 							<div class="col-5">
@@ -225,10 +186,7 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
-
-
 				</form>
 			</div>
 		</div>

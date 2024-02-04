@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserMainController {
 	
+	// 사용자 메인
 	@GetMapping
 	public String getUserMainPage() {
 		return "user/main/main";

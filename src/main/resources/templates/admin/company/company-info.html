@@ -26,9 +26,8 @@
 				</ul>
 			</div>
 			<div class="content">
-
 				<div class="container fw-semibold">
-
+				<form th:action="@{/admin/buildings/{buildId}/companies/{companyId}(buildId=${company.buildId} ,companyId=${company.companyId})}" th:method="delete">
 					<div class="row align-items-center mb-4">
 						<div class="col-5">
 							<div class="row g-3 align-items-center">
@@ -148,26 +147,20 @@
 							</div>
 						</div>
 					</div>
-
-					<form>
-						<div class="row">
-							<div class="col-5"></div>
-							<div class="col-5">
-								<div class="d-flex gap-4 justify-items-center">
-
-									<button class="col btn btn-primary" type="submit" th:formaction="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${company.buildId}, companyId=${company.companyId})}" th:formmethod="get">수정</button>
-									<button class="col btn btn-info text-white" type="submit" th:formaction="@{/admin/buildings/{buildId}/companies/{companyId}/delete(buildId=${company.buildId} ,companyId=${company.companyId})}" th:formmethod="post">삭제</button>
-									<button class="col btn btn-outline-primary" type="submit" formaction="/admin/buildings/companies" formmethod="get">목록</button>
-
-								</div>
+					
+					<div class="row">
+						<div class="col-5"></div>
+						<div class="col-5">
+							<div class="d-flex gap-4 justify-items-center">
+								<a class="col btn btn-primary" type="button" th:href="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${company.buildId}, companyId=${company.companyId})}">수정</a>
+								<button class="col btn btn-info text-white" type="submit">삭제</button>
+								<a class="col btn btn-outline-primary" type="button" href="/admin/buildings/companies">목록</a>
 							</div>
 						</div>
+					</div>
 					</form>
 				</div>
-
-
 			</div>
-
 		</div>
 	</div>
 </body>

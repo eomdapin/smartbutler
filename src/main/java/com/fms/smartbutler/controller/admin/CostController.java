@@ -23,9 +23,7 @@ import com.fms.smartbutler.service.CostService;
 import com.fms.smartbutler.service.ResidentService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequestMapping("/admin/buildings")
 @RequiredArgsConstructor
@@ -67,7 +65,6 @@ public class CostController {
 		costDTO.setBuildId(buildId);
 		
 		if(costService.save(costDTO)) {
-			log.info("costDTO.getCostId() :::: {} ", costDTO.getCostId());
 			model.addAttribute("costId", costDTO.getCostId());
 			model.addAttribute("buildId", buildId);
 			return "/admin/cost/cost-error";

@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content form-content">
-				<form th:action="@{/admin/users/{userId}/delete(userId = ${user.userId})}" th:method="delete" id="deleteForm">
+				<form th:action="@{/admin/users/{userId}(userId = ${user.userId})}" th:method="delete" id="deleteForm">
 					<div class="row align-items-center mb-4">
 						<div class="col-2">
 							<label for="userId" class="ms-5 fw-bold">회원번호</label>

@@ -53,8 +53,8 @@ public class AdminUserController {
 	}
 	
 	// 회원 탈퇴
-	@DeleteMapping("/{userId}/delete")
-	public String postUserDelete(@PathVariable Long userId, @ModelAttribute UsersDTO usersDTO) {
+	@DeleteMapping("/{userId}")
+	public String deleteUserInfo(@ModelAttribute UsersDTO usersDTO) {
 		usersService.delete(usersDTO);
 		
 		return "redirect:/admin/users";

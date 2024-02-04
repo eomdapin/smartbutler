@@ -25,9 +25,7 @@ import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ItemService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequestMapping("/admin/buildings/{buildId}/items")
 @RequiredArgsConstructor
@@ -94,10 +92,6 @@ public class ItemController {
 	// 시설 수정
 	@PutMapping("/{itemId}/edit")
 	public String putItemEdit(@PathVariable Long buildId, @ModelAttribute ItemDTO itemDTO) throws Exception {
-		
-		log.info("itemDTO >> " + itemDTO.getItemName());
-		log.info("itemDTO >> " + itemDTO.getKindType());
-		
 		itemService.update(itemDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/items";

@@ -41,9 +41,7 @@ import com.fms.smartbutler.vo.FileVo;
 import com.fms.smartbutler.vo.OptionVo;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequestMapping("/user/claims")
 @RequiredArgsConstructor
@@ -135,7 +133,6 @@ public class UserClaimController {
 	@PutMapping("/{claimId}/edit")
 	public String putClaimEdit(@ModelAttribute ClaimDTO claimDTO, @ModelAttribute FileVo vo) throws Exception {
 		claimService.update(claimDTO);
-		log.info("vo.geFileName = " + vo.getFileName());
 		
 		if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
 			ImageDTO imageDTO = new ImageDTO();

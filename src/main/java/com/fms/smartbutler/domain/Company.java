@@ -67,7 +67,7 @@ public class Company {
 	private String role;
 
 	/**
-	 * @author 전종배 assisted by 엄다빈(팀장)
+	 * @author 전종배
 	 * @since 2024-02-01 to 2024-02-03
 	 */
 	

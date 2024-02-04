@@ -25,9 +25,7 @@ import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.service.UsersService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin/buildings")
@@ -72,6 +70,7 @@ public class ResidentController {
 	@PostMapping("/{buildId}/residents/add")
 	public String postResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
 		UsersDTO updateUser = usersService.findById(residentDTO.getUserId()).orElseGet(UsersDTO::new);
+		
 		updateUser.setStatus(2);
 		residentService.save(residentDTO);
 		usersService.updateStatus(updateUser);
@@ -83,6 +82,7 @@ public class ResidentController {
 	@GetMapping("/{buildId}/residents/{residentId}")
 	public String getResidentInfo(@PathVariable Long buildId, @PathVariable Long residentId, Model model) {
 		ResidentDTO resident = residentService.findById(residentId);
+		
 		model.addAttribute("resident", resident);
 		
 		return "admin/resident/resident-info";
@@ -92,6 +92,7 @@ public class ResidentController {
 	@GetMapping("/{buildId}/residents/{residentId}/update")
 	public String getUpdateResidentInfoForm(@PathVariable Long buildId, @PathVariable Long residentId, Model model) {
 		ResidentDTO resident = residentService.findById(residentId);
+		
 		model.addAttribute("resident", resident);
 		
 		return "admin/resident/resident-edit";
@@ -108,7 +109,6 @@ public class ResidentController {
 	// 입주 삭제
 	@DeleteMapping("{buildId}/residents/{residentId}")
 	public String deleteResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
-		log.info("residentDTO.getResidentId() :: {} ", residentDTO.getResidentId());
 		residentService.deleteResident(residentDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/residents";
