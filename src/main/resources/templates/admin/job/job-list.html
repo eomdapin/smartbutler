@@ -49,7 +49,7 @@
 							<td><a th:href="@{/admin/buildings/{buildId}/jobs/{jobId}(buildId = ${job.buildId}, jobId = ${job.jobId})}">[[${job.title}]]</a></td>
 							<td>[[${job.buildName}]]</td>
 							<td>[[${job.itemName}]]</td>
-							<td>job.companyName</td>
+							<td>[[${job.companyName}]]</td>
 							<td>[[${job.askDate}]]</td>
 							<td>[[${job.finDate}]]</td>
 							<td th:text="${job.status == 1} ? '신청' : '완료'"></td>

@@ -32,13 +32,13 @@
 							<label for="userId" class="ms-5 fw-bold">회원번호</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="userId" class="form-control" th:value=${user?.userId} readonly>
+							<input type="text" name="userId" class="form-control" th:value=${user?.userId} disabled>
 						</div>
 						<div class="col-2">
 							<label for="phone" class="ms-5 fw-bold">전화번호</label>
 						</div>
 						<div class="col-4">
-							<input type="tel" name="phone" class="form-control" th:value=${user?.phone} readonly>
+							<input type="tel" name="phone" class="form-control" th:value=${user?.phone} disabled>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -46,13 +46,13 @@
 							<label for="buildName" class="ms-5 fw-bold">건물명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="buildName" class="form-control" readonly>
+							<input type="text" name="buildName" class="form-control" th:value=${resident?.buildName} disabled>
 						</div>
 						<div class="col-2">
 							<label for="email" class="ms-5 fw-bold">이메일</label>
 						</div>
 						<div class="col-4">
-							<input type="email" name="email" class="form-control" th:value=${user?.email} readonly>
+							<input type="email" name="email" class="form-control" th:value=${user?.email} disabled>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -60,13 +60,13 @@
 							<label for="userName" class="ms-5 fw-bold">회원명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="userName" class="form-control" th:value=${user?.userName} readonly>
+							<input type="text" name="userName" class="form-control" th:value=${user?.userName} disabled>
 						</div>
 						<div class="col-2">
 							<label for="status" class="ms-5 fw-bold">회원유형</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="status" class="form-control" th:value=${user?.status} readonly>
+							<input type="text" name="status" class="form-control" th:value=${user?.status} disabled>
 						</div>
 					</div>
 					<div class="row justify-content-end mt-3">

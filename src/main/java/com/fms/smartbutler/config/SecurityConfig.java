@@ -10,20 +10,19 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
-/**
- * @author 전종배 assisted by 엄다빈(팀장)
- * @since 2024-01-25 to 2024-01-31
- */
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 	
 	@Autowired
 	protected void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService usersService, UserDetailsService adminService, UserDetailsService companyService) throws Exception {
-		auth.userDetailsService(usersService);
 		auth.userDetailsService(adminService);
+		auth.userDetailsService(usersService);
 		auth.userDetailsService(companyService);
+		
+		
+//		auth.inMemoryAuthentication()
+//		.withUser("1").password("{noop}1").roles("WORKER");
 	}
 	
 	@Configuration
@@ -36,9 +35,9 @@ public class SecurityConfig {
 				.securityMatcher("/admin/**")
 				.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests
-					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
-					.requestMatchers("/admin/**").permitAll()
-//					.requestMatchers("/admin/**").hasRole("ADMIN")
+//					.requestMatchers("/css/**","/img/**","/admin/login","/admin/logout").permitAll()
+					.requestMatchers("/**").permitAll()
+					.requestMatchers("/admin/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 				);
 			http
@@ -47,7 +46,7 @@ public class SecurityConfig {
 					.loginPage("/admin/login")
 					.loginProcessingUrl("/admin/login")
 					.defaultSuccessUrl("/",true)
-					.failureUrl("/login?error=true")
+					.failureUrl("/admin/login?error=true")
 					.usernameParameter("username")
 					.passwordParameter("password")
 			);
@@ -73,31 +72,31 @@ public class SecurityConfig {
 			.securityMatcher("/user/**")
 			.csrf((csrf) -> csrf.disable())
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
-				.requestMatchers("/user/**").permitAll()
-//				.requestMatchers("/user/**").hasRole("USER")
+//				.requestMatchers("/css/**","/img/**","/user/login","/user/logout").permitAll()
+				.requestMatchers("/**").permitAll()
+				.requestMatchers("/user/**").hasRole("USER")
 				.anyRequest().authenticated()
 			);
 			
-			http
-			.formLogin(formLogin->
-				formLogin
-					.loginPage("/user/login")
-					.defaultSuccessUrl("/",true)
-					.loginProcessingUrl("/user/login")
-					.failureUrl("/login?error=true")
-					.usernameParameter("email")
-					.passwordParameter("pw")
-			);
+		http
+		.formLogin(formLogin->
+			formLogin
+				.loginPage("/user/login")
+				.defaultSuccessUrl("/",true)
+				.loginProcessingUrl("/user/login")
+				.failureUrl("/user/login?error=true")
+				.usernameParameter("email")
+				.passwordParameter("pw")
+		);
 		
-			http
-			.logout(logout->
-				logout
-					.logoutUrl("/user/logout")
-					.invalidateHttpSession(true)
-					);
-	
-			return http.build();
+		http
+		.logout(logout->
+			logout
+				.logoutUrl("/user/logout")
+				.invalidateHttpSession(true)
+				);
+
+		return http.build();
 	}
 		
 }
@@ -113,8 +112,7 @@ public class SecurityConfig {
 				.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests
 					.requestMatchers("/css/**","/img/**","/worker/login","/worker/logout").permitAll()
-					.requestMatchers("/worker/**").permitAll()
-//					.requestMatchers("/worker/**").hasRole("WORKER")
+					.requestMatchers("/worker/**").hasRole("WORKER")
 					.anyRequest().authenticated()
 				);
 			http
@@ -123,7 +121,7 @@ public class SecurityConfig {
 					.loginPage("/worker/login")
 					.loginProcessingUrl("/worker/login")
 					.defaultSuccessUrl("/",true)
-					.failureUrl("/login?error=true")
+					.failureUrl("/worker/login?error=true")
 					.usernameParameter("company-name")
 					.passwordParameter("password")
 			);

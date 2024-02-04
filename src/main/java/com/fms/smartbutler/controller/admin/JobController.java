@@ -1,5 +1,10 @@
 package com.fms.smartbutler.controller.admin;
 
+/**
+ * @author 송창민
+ * @editDate 2024-01-31 ~ 2024-02-02
+ */
+
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -18,10 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fms.smartbutler.dto.BuildDTO;
+import com.fms.smartbutler.dto.CompanyDTO;
 import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.dto.ItemDTO;
 import com.fms.smartbutler.dto.JobDTO;
 import com.fms.smartbutler.service.BuildService;
+import com.fms.smartbutler.service.CompanyService;
 import com.fms.smartbutler.service.ImageService;
 import com.fms.smartbutler.service.ItemService;
 import com.fms.smartbutler.service.JobService;
@@ -38,12 +45,12 @@ public class JobController {
 	private final ImageService imageService;
 	private final BuildService buildService;
 	private final ItemService itemService;
+	private final CompanyService companyService;
 	
 	// 작업 목록
 	@GetMapping("/{buildId}/jobs")
-	public String getJobList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size, Model model) {
-		Pageable pageable = PageRequest.of(page, size, Sort.by("jobId").descending());
+	public String getJobList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page, Model model) {
+		Pageable pageable = PageRequest.of(page, 10, Sort.by("jobId").descending());
 		List<BuildDTO> builds = buildService.findAll();
 		BuildDTO build = buildService.findById(buildId);
 		Page<JobDTO> jobs = jobService.findByBuildId(buildId, pageable);
@@ -80,10 +87,12 @@ public class JobController {
 		BuildDTO build = buildService.findById(buildId);
 		List<ItemDTO> items = itemService.findAll();
 		List<BuildDTO> builds = buildService.findAll();
+		List<CompanyDTO> companies = companyService.findAll();
 		
 		model.addAttribute("build", build);
 		model.addAttribute("items", items);
 		model.addAttribute("builds", builds);
+		model.addAttribute("companies", companies);
 		model.addAttribute("buildId", (buildId == 0 || buildId == null) ? 0L : buildId);
 
 		return "admin/job/job-add";

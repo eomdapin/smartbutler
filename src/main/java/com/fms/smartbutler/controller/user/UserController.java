@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fms.smartbutler.dto.ResidentDTO;
 import com.fms.smartbutler.dto.UsersDTO;
+import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.service.UsersService;
 
 import lombok.RequiredArgsConstructor;
@@ -20,13 +22,16 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 	
 	private final UsersService usersService;
+	private final ResidentService residentService;
 	
 	// 내 정보
 	@GetMapping
 	public String getMypage(Principal principal, Model model) {
 		UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
+		ResidentDTO resident = residentService.findByUserId(user.getUserId());
 		
 		model.addAttribute("user", user);
+		model.addAttribute("resident", resident);
 		
 		return "user/mypage/mypage";
 	}
@@ -35,8 +40,10 @@ public class UserController {
 	@GetMapping("/edit")
 	public String getMypageEdit(Principal principal, Model model) {
 		UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
+		ResidentDTO resident = residentService.findByUserId(user.getUserId());
 		
 		model.addAttribute("user", user);
+		model.addAttribute("resident", resident);
 		
 		return "user/mypage/mypage-edit";
 	}

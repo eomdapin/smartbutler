@@ -19,37 +19,42 @@
 		<div th:replace="~{common/fragments :: workerSidebar}"></div>
 		<div th:replace="~{common/fragments :: imageModal}"></div>
 		<div class="container">
+			<div class="bread-crum">
+				<ul class="">
+					<li><a href="#">작업상세</a></li>
+				</ul>
+			</div>
 			<div class="content form-content">
 				<form th:action="@{/worker/jobs/{jobId}(jobId = ${job.jobId})}" th:method="put" id="reportForm" enctype="multipart/form-data">
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">요청번호</label></div>
-						<div class="col-5"><input type="text" th:value="${job?.jobId}" class="form-control" readonly></div>
+						<div class="col-5"><input type="text" name="jobId" th:value="${job?.jobId}" class="form-control" readonly></div>
 						<div class="col-1"><label class="col-form-label fw-bold">요청날짜</label></div>
-						<div class="col-5"><input type="text" th:value="${job?.askDate}" class="form-control" readonly></div>
+						<div class="col-5"><input type="text" name="askDate" th:value="${job?.askDate}" class="form-control" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">시설명</label></div>
-						<div class="col-5"><input type="text" th:value="${job?.itemName}" class="form-control" readonly></div>
+						<div class="col-5"><input type="text" name="itemName" th:value="${job?.itemName}" class="form-control" readonly></div>
 						<div class="col-1"><label class="col-form-label fw-bold">점검업체</label></div>
-						<div class="col-5"><input type="text" class="form-control" readonly></div>
+						<div class="col-5"><input type="text" name="companyName" th:value="${job?.companyName}" class="form-control" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">건물명</label></div>
-						<div class="col-5"><input type="text" th:value="${job?.buildName}" class="form-control" readonly></div>
+						<div class="col-5"><input type="text" name="buildName" th:value="${job?.buildName}" class="form-control" readonly></div>
 						<div class="col-1"><label class="col-form-label fw-bold">처리상태</label></div>
 						<div class="col-5"><input type="text" th:value="${job.status == 1} ? '신청' : '완료'" class="form-control" readonly></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label class="col-form-label fw-bold">제목</label></div>
-						<div class="col m-0"><input type="text" th:value="${job?.title}" class="form-control" readonly></div>
+						<div class="col m-0"><input type="text" name="title" th:value="${job?.title}" class="form-control" readonly></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label class="col-form-label fw-bold">요청내용</label></div>
-						<div class="col m-0"><textarea rows="3" th:text="${job?.content}" class="form-control" readonly></textarea></div>
+						<div class="col m-0"><textarea rows="3" name="content" th:text="${job?.content}" class="form-control" readonly></textarea></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2 mt-4">
 						<div class="col-1"><label class="col-form-label fw-bold">작업자</label></div>
-						<div class="col-5"><input type="text" class="form-control" readonly></div>
+						<div class="col-5"><input type="text" name="manager" th:value="${company?.manager}" class="form-control" readonly></div>
 						<div class="col-1"><label class="col-form-label fw-bold">이미지</label></div>
 						<th:block th:if="${job.status == 1}">
 							<div class="col-5 d-flex">
@@ -76,8 +81,11 @@
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label class="col-form-label fw-bold">처리내용</label></div>
-						<div class="col m-0"><textarea rows="3" th:text="${job?.reportContent}" class="form-control"></textarea></div>
+						<div class="col m-0"><textarea rows="3" name="reportContent" th:text="${job?.reportContent}" class="form-control" required></textarea></div>
 					</div>
+					<input type="hidden" th:value="${job?.buildId}" name="buildId">
+					<input type="hidden" th:value="${job?.companyId}" name="companyId">
+					<input type="hidden" th:value="${job?.itemId}" name="itemId">
 				</form>
 				<div class="row justify-content-end mt-3">
 					<th:block th:if="${job.status == 1}">

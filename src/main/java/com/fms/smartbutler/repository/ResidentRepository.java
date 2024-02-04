@@ -9,5 +9,5 @@ import com.fms.smartbutler.domain.Resident;
 
 public interface ResidentRepository extends JpaRepository<Resident, Long>{
 	List<Resident> findAllByEnteredAndBuild_BuildId(Long entered, Long buildId);
-	Optional<Resident> findByUser_UserId(Long userId);
+	Optional<Resident> findByUsers_UserId(Long userId);
 }

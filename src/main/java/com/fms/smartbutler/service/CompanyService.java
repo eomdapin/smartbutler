@@ -43,8 +43,12 @@ public class CompanyService implements UserDetailsService {
 			throw new UsernameNotFoundException(companyName);
 		}
 
-		return User.builder().username(company.getCompanyName()).password(company.getPassword())
-				.roles(company.getRole()).build();
+		return User
+				.builder()
+				.username(company.getCompanyName())
+				.password(company.getPassword())
+				.roles(company.getRole())
+				.build();
 	}
 	
 	public CompanyDTO save(CompanyDTO companyDTO) {

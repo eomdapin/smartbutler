@@ -14,15 +14,15 @@
     <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
+	<div th:replace="~{common/fragments :: adminHeader}"></div>
+	<div th:replace="~{common/fragments :: adminSidebar}"></div>
 	<div id="wrap">
-		<div th:replace="~{common/fragments :: adminHeader}"></div>
-		<div th:replace="~{common/fragments :: adminSidebar}"></div>
 		<div class="container">
 			<div class="bread-crum">
 				<ul class="">
 					<li><a href="#">HOME</a><span> ></span></li>
 					<li><a href="#">시설관리</a><span> ></span></li>
-					<li><a href="#">작업상세</a></li>
+					<li><a href="#">작업수정</a></li>
 				</ul>
 			</div>
 			<div class="content form-content">
@@ -37,7 +37,7 @@
 						<div class="col-1"><label class="col-form-label fw-bold">시설명</label></div>
 						<div class="col-5"><input type="text" name="itemName" th:value="${job?.itemName}" class="form-control" readonly></div>
 						<div class="col-1"><label class="col-form-label fw-bold">점검업체</label></div>
-						<div class="col-5"><input type="text" class="form-control" readonly></div>
+						<div class="col-5"><input type="text" name="companyName" th:value="${job?.companyName}" class="form-control" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">건물명</label></div>
@@ -47,12 +47,14 @@
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label class="col-form-label fw-bold">제목</label></div>
-						<div class="col m-0"><input type="text" name="title" th:value="${job?.title}" class="form-control"></div>
+						<div class="col m-0"><input type="text" name="title" th:value="${job?.title}" class="form-control" required></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label class="col-form-label fw-bold">요청내용</label></div>
-						<div class="col m-0"><textarea rows="3" name="content" th:text="${job?.content}" class="form-control"></textarea></div>
+						<div class="col m-0"><textarea rows="3" name="content" th:text="${job?.content}" class="form-control" required></textarea></div>
 					</div>
+					<input type="hidden" name="companyId" th:value="${job?.companyId}">
+					<input type="hidden" name="itemId" th:value="${job?.itemId}">
 				</form>
 				<div class="row justify-content-end mt-3">
 					<button type="button" class="btn btn-lg btn-primary col-auto me-3" onclick="putClick(); return false;">완료</button>

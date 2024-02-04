@@ -38,7 +38,7 @@
 						<div class="col-1"><label class="col-form-label fw-bold">시설명</label></div>
 						<div class="col-5"><input type="text" th:value="${job?.itemName}" class="form-control" readonly></div>
 						<div class="col-1"><label class="col-form-label fw-bold">점검업체</label></div>
-						<div class="col-5"><input type="text" class="form-control" readonly></div>
+						<div class="col-5"><input type="text" th:value="${job?.companyName}" class="form-control" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">건물명</label></div>
@@ -56,7 +56,10 @@
 					</div>
 					<div class="row g-3 align-items-center mb-2 mt-4">
 						<div class="col-1"><label class="col-form-label fw-bold">작업자</label></div>
-						<div class="col-5"><input type="text" class="form-control" readonly></div>
+						<div class="col-5">
+							<input type="text" class="form-control" th:if="${job.status == 1}" readonly>
+							<input type="text" th:value="${job?.companyManager}" class="form-control" th:if="${job.status == 2}" readonly>
+						</div>
 						<div class="col-1"><label class="col-form-label fw-bold">이미지</label></div>
 						<div class="col-5 d-flex">
 							<input type="file" id="uploadFile" name="uploadFile" class="form-control" style="display: none;" onchange="ChangeFileName()">

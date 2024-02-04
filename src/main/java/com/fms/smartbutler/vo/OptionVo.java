@@ -1,5 +1,10 @@
 package com.fms.smartbutler.vo;
 
+/**
+ * @author 송창민
+ * @editDate 2024-01-28 ~ 2024-01-29
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 

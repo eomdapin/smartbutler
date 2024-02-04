@@ -40,6 +40,11 @@
 						<input type="password" name="pw" class="form-control">
 					</div>
 				</div>
+				<div th:if="${param.error}" class="d-flex justify-content-center">
+					<div style="color: #f00">
+						ID 또는 비밀번호를 확인하세요!
+					</div>
+				</div>
 				<div class="row justify-content-center mt-3">
 					<input type="submit" class="btn btn-dark col-auto" value="로그인">
 				</div>
