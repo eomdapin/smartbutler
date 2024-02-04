@@ -1,9 +1,14 @@
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <div th:fragment="adminHeader">
-	<header class="d-flex align-items-center">
-		<div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
-		<div>
-			<h1><a href="/admin" class="logo-text">SMARTBUTLER</a></h1>
+	<header class="d-flex align-items-center justify-content-between">
+		<div class="d-flex align-items-center">
+			<div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
+			<div>
+				<h1><a href="/admin" class="logo-text">SMARTBUTLER</a></h1>
+			</div>
+		</div>
+		<div class="px-4" sec:authorize="isAuthenticated()">
+			<h3><a href="/admin/logout" class="logo-text">로그아웃</a></h3>
 		</div>
 	</header>
 </div>
@@ -47,10 +52,15 @@
 	</div>
 </div>
 <div th:fragment="workerHeader">
-	<header class="d-flex align-items-center">
-		<div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
-		<div>
-			<h1><a href="/worker/jobs" class="logo-text">SMARTBUTLER</a></h1>
+	<header class="d-flex align-items-center justify-content-between">
+		<div class="d-flex align-items-center">
+			<div class="logo"><img alt="로고" src="/img/logo.png" class="align-middle" width="64"></div>
+			<div>
+				<h1><a href="/worker/jobs" class="logo-text">SMARTBUTLER</a></h1>
+			</div>
+		</div>
+		<div class="px-4" sec:authorize="isAuthenticated()">
+			<h3><a href="/worker/logout" class="logo-text">로그아웃</a></h3>
 		</div>
 	</header>
 </div>
@@ -74,6 +84,7 @@
 			<div><a href="http://localhost:3000/user/buildings/info">건물 정보 보기</a></div>
 			<div><a href="/user/estimate">견적 신청</a></div>
 			<div><a href="/user/claims">민원 신청</a></div>
+			<div sec:authorize="isAuthenticated()"><a href="/user/logout">로그아웃</a></div>
 		</div>
 	</header>
 </div>

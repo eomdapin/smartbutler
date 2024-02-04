@@ -123,7 +123,7 @@ public class SecurityConfig {
 				formLogin
 					.loginPage("/worker/login")
 					.loginProcessingUrl("/worker/login")
-					.defaultSuccessUrl("/",true)
+					.defaultSuccessUrl("/worker/jobs",true)
 					.failureUrl("/worker/login?error=true")
 					.usernameParameter("company-name")
 					.passwordParameter("password")
