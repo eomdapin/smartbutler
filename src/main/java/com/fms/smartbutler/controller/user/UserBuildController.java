@@ -7,11 +7,11 @@ package com.fms.smartbutler.controller.user;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ImageDTO;
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("/user/buildings")
 @RequiredArgsConstructor
 public class UserBuildController {
@@ -31,17 +31,18 @@ public class UserBuildController {
 	private final ImageService imageService;
 	
 	// 건물 정보
-	@GetMapping("/info")
-	public String getBuildInfo(@RequestParam(required = false) Long buildId, Model model) {
-		buildId = buildId == null ? 1 :buildId;
-		BuildDTO build = buildService.findById(buildId);
+	@GetMapping("/build")
+	public ResponseEntity<List<BuildDTO>> getBuilds(@RequestParam(required = false) Long buildId) {
 		List<BuildDTO> builds = buildService.findAll();
-		List<ImageDTO> images = imageService.findByOutIdAndCoded(build.getBuildId(), "b");
 		
-		model.addAttribute("build", build);
-		model.addAttribute("builds", builds);
-		model.addAttribute("images", images);
+		return ResponseEntity.status(200).body(builds);
+	}
+	
+	@GetMapping("/images")
+	public ResponseEntity<List<ImageDTO>> getBuildImages(@RequestParam(required = false) Long buildId) {
+		buildId = buildId == null ? 1 :buildId;
+		List<ImageDTO> images = imageService.findByOutIdAndCoded(buildId, "b");
 		
-		return "user/build/build-info";
+		return ResponseEntity.status(200).body(images);
 	}
 }

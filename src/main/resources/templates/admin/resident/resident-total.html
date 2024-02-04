@@ -40,9 +40,6 @@
                     </div>
                 </form>
                 <div class="row">
-<!-- 	                <div class="row mx-3 mt-3 px-2" style="display: inline-block">
-                		<div th:each="room: ${#numbers.sequence(0, build?.room)}" class="room m-2 text-center" style="width: 100px; height: 20px; display: inline-block;"><h2>[[${room}]]</h2></div>
-	               	</div> -->
 					<div th:each="floor: ${#numbers.sequence(1, build?.floor)}" class="row m-3 p-2" style="display: inline-block">
 						<div class="col-auto">
 							<div class="floor m-2 text-center" style="width: 100px; height: 80px; display: inline-block;"><h2>[[${floor}]] 층</h2></div>

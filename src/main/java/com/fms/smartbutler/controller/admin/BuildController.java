@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fms.smartbutler.domain.Build;
-import com.fms.smartbutler.domain.Image;
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ImageService;
+import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.vo.FileVo;
 
 import lombok.RequiredArgsConstructor;
@@ -34,6 +34,7 @@ public class BuildController {
 	
 	private final BuildService buildService;
 	private final ImageService imageService;
+	private final ResidentService residentService;
 	
 	// 건물 정보
 	@GetMapping
@@ -74,6 +75,7 @@ public class BuildController {
 	@PostMapping("/add")
 	public String postBuildAdd(@ModelAttribute BuildDTO build, @ModelAttribute FileVo vo, Model model) throws Exception {
 		buildService.insert(build);
+		residentService.addResidentDefault(build.getBuildId(), build.getFloor(), build.getRoom());
 		
 		if(!vo.getFileName().isEmpty()) {
 			ImageDTO imageDTO = new ImageDTO();
@@ -85,7 +87,7 @@ public class BuildController {
 	}
 	
 	// 건물 정보 수정
-	@PostMapping("/{buildId}/update") // PutMapping으로 변경 시 update 문구 삭제 예정
+	@PutMapping("/{buildId}")
 	public String postBuildinsert(@ModelAttribute BuildDTO build, @ModelAttribute FileVo vo, Model model) throws Exception {
 		buildService.insert(build);
 		

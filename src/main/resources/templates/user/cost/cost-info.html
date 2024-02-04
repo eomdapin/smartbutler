@@ -47,19 +47,19 @@
                    		<tbody th:if="${not #strings.isEmpty(prevCost)}" th:with="
                    			electricity = ${#numbers.formatDecimal((cost?.electricity / avgCost / 30) * roomSize * 30, 1, 0)},
                    			prevElectricity = ${#numbers.formatDecimal((prevCost?.electricity / avgCost / 30) * roomSize * 30, 1, 0)},
-                   			sumElectricity = ${prevElectricity} - ${electricity},
+                   			sumElectricity = ${electricity} - ${prevElectricity},
                    			
                    			repair = ${#numbers.formatDecimal((cost?.repair / avgCost / 30) * roomSize * 30, 1, 0)},
                    			prevRepair = ${#numbers.formatDecimal((prevCost?.repair / avgCost / 30) * roomSize * 30, 1, 0)},
-                   			sumRepair = ${prevRepair} - ${repair},
+                   			sumRepair = ${repair} - ${prevRepair},
                    			
                 			upkeep = ${#numbers.formatDecimal((cost?.upkeep / avgCost / 30) * roomSize * 30, 1, 0)},
                    			prevUpkeep = ${#numbers.formatDecimal((prevCost?.upkeep / avgCost / 30) * roomSize * 30, 1, 0)},
-                   			sumUpkeep = ${prevUpkeep} - ${upkeep},
+                   			sumUpkeep = ${upkeep} - ${prevUpkeep},
                    			
                    			consignment = ${#numbers.formatDecimal((cost?.consignment / avgCost / 30) * roomSize * 30, 1, 0)},
                    			prevConsignment = ${#numbers.formatDecimal((prevCost?.consignment / avgCost / 30) * roomSize * 30, 1, 0)},
-                   			sumConsignment = ${prevConsignment} - ${consignment}">	
+                   			sumConsignment = ${consignment} - ${prevConsignment}">	
                   			<tr>
                     			<th scope="row">전기료</th>
                     			<td>[[${prevElectricity}]]</td>

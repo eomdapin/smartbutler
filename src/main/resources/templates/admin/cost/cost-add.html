@@ -39,27 +39,32 @@
                 </ul>
             </div>
             <div class="content form-content">
-               	<form th:action="@{/admin/buildings/{buildId}/costs/add(buildId = ${buildId})}" onSubmit="addCost()" method="POST">
-                   <div class="row">
-                       <div class="col-2 mb-3"><label for="buildName" class="form-label">건물명</label></div>
-                       <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" th:value="${build?.buildName}" readonly></div>
+               	<form id="infoForm" th:action="@{/admin/buildings/{buildId}/costs/add(buildId = ${buildId})}" onSubmit="addCost()" method="POST">
+					<div class="row">
+						<div class="col-2 mb-3"><label for="buildName" class="form-label">건물명</label></div>
+						<div class="col-4 mb-3">
+							<select id="buildId" name="buildId" class="form-select" onChange="buildChange()">
+								<option th:each="builds: ${builds}" th:value="${builds?.buildId}"
+								th:selected="${buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
+							</select>
+						</div>
                        
-                       <div class="col-2 mb-3"><label for="upkeep" class="form-label">유지관리비</label></div>
-                       <div class="col-4 mb-3"><input type="number" id="upkeep" name="upkeep" class="form-control" onChange="sumCost()" min="0" required></div>
+                        <div class="col-2 mb-3"><label for="upkeep" class="form-label">유지관리비</label></div>
+                        <div class="col-4 mb-3"><input type="number" id="upkeep" name="upkeep" class="form-control" onChange="sumCost()" min="0" required></div>
                    </div>
                    <div class="row">
-                       <div class="col-2 mb-3"><label for="electricity" class="form-label">전기료</label></div>
-                       <div class="col-4 mb-3"><input type="number" id="electricity" name="electricity" class="form-control" onChange="sumCost()" min="0" required></div>
+                        <div class="col-2 mb-3"><label for="electricity" class="form-label">전기료</label></div>
+                        <div class="col-4 mb-3"><input type="number" id="electricity" name="electricity" class="form-control" onChange="sumCost()" min="0" required></div>
                        
-                       <div class="col-2 mb-3"><label for="consignment" class="form-label">전문위탁비</label></div>
-                       <div class="col-4 mb-3"><input type="number" id="consignment" name="consignment" class="form-control" onChange="sumCost()" min="0" required></div>
+                        <div class="col-2 mb-3"><label for="consignment" class="form-label">전문위탁비</label></div>
+                        <div class="col-4 mb-3"><input type="number" id="consignment" name="consignment" class="form-control" onChange="sumCost()" min="0" required></div>
                    </div>
                    <div class="row">
-                       <div class="col-2 mb-3"><label for="repair" class="form-label">수선비</label></div>
-                       <div class="col-4 mb-3"><input type="number" id="repair" name="repair" class="form-control" onChange="sumCost()" min="0" required></div>
+                        <div class="col-2 mb-3"><label for="repair" class="form-label">수선비</label></div>
+                        <div class="col-4 mb-3"><input type="number" id="repair" name="repair" class="form-control" onChange="sumCost()" min="0" required></div>
                        
-                       <div class="col-2 mb-3"><label for="date" class="form-label">관리비개월</label></div>
-                       <div class="col-4 mb-3"><input id="date" type="date" name="date" class="form-control" required></div>
+                        <div class="col-2 mb-3"><label for="date" class="form-label">관리비개월</label></div>
+                        <div class="col-4 mb-3"><input id="date" type="date" name="date" class="form-control" required></div>
                    </div>
                    <div class="row">
                    		<div class="col-2 mb-3"><label for="total" class="form-label">합계금액</label></div>
@@ -68,12 +73,20 @@
                    </div>
                    <div class="text-end pt-3 row">
 	                   <div class="col-auto"><input type="submit" class="btn btn-lg btn-primary" value="저장"></div>
-	                   <div class="col-auto"><a onClick="history.back()" class="btn btn-lg btn-outline-dark">목록</a></div>
+	                   <div class="col-auto"><a href="/admin/buildings/0/costs" class="btn btn-lg btn-outline-dark">목록</a></div>
                    </div>
                </form>
             </div>
         </div>
     </div>
     <script src="/js/Cost.js" type="text/javascript"></script>
+       	<script>
+        function buildChange() {
+            let buildId = document.getElementById('buildId');
+            let form = document.getElementById('infoForm');
+
+            form.action = '/admin/buildings/' + buildId.value + '/costs/add';
+        }
+    </script>
 </body>
 </html>

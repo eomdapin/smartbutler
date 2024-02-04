@@ -26,7 +26,10 @@
                 </ul>
             </div>
             <div class="content form-content" th:with="total = ${costDTO?.electricity} + ${costDTO?.repair} + ${costDTO?.upkeep} + ${costDTO?.consignment}">
-				<form id="costForm" th:action="@{/admin/buildings/{buildId}/costs/{costId}/send(buildId = ${buildId}, costId = ${costId})}" method="post">
+				<div class="row my-3">
+					<h2>관리비 총액</h2>
+				</div>            
+				<form id="costForm" th:action="@{/admin/buildings/{buildId}/costs/{costId}/send(buildId = ${buildId}, costId = ${costId})}" th:method="put">
 					<div class="row">
 					    <div class="col-2 mb-3"><label for="buildName" class="form-label">건물명</label></div>
 					    <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" onChange="sumCost()" th:value="${build?.buildName}" readonly></div>
@@ -62,12 +65,12 @@
 					</th:block>
 					<th:block th:unless="${costDTO?.send == 1}"
 						th:with="roomSize = ${build?.area} / (${build?.floor} * ${build?.room}),
-								avgCost = (${roomSize} * 30)">
+								avgCost = (${roomSize} * ${costDTO?.residentCnt})">
 						<div class="row my-3">
 							<h2>세대 계산 금액</h2>
 						</div>
 						<div class="row my-3">
-							<h5>[[${#strings.substring(costDTO?.date, 0, 7)}]]월 기준 입주 세대 : 30 세대</h5>
+							<h5>[[${#strings.substring(costDTO?.date, 0, 7)}]]월 기준 입주 세대 : [[${costDTO?.residentCnt}]] 세대</h5>
 						</div>
 						<div class="row">
 						    <div class="col-2 mb-3"><label for="" class="form-label">전기료</label></div>

@@ -59,4 +59,10 @@ public class EstimateService {
 		return estimateDTOList;
 	}
 	
+	public List<EstimateDTO> findAllByConfirm(int confirm) {
+		return estimateRepository.findAllByConfirm(confirm).stream().map(e ->
+				modelMapper.map(e, EstimateDTO.class)
+				).toList();
+	}
+	
 }

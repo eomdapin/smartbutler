@@ -1,5 +1,10 @@
 package com.fms.smartbutler.domain;
 
+/**
+* @author 엄다빈
+* @editDate 2024-01-30 ~ 2024-01-31
+*/
+
 import java.time.LocalDate;
 
 /**
@@ -52,4 +57,7 @@ public class Cost {
 	
 	@Column(name = "send")
 	private Integer send;
+	
+	@Column(name = "resident_cnt")
+	private Integer residentCnt;
 }

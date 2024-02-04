@@ -1,5 +1,10 @@
 package com.fms.smartbutler.service;
 
+/**
+* @author 엄다빈
+* @editDate 2024-01-30 ~ 2024-01-31
+*/
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -59,8 +64,13 @@ public class CostService {
 	}
 	
 	public List<CostDTO> findByBuildId(Long buildId) {
-		return costRepository.findByBuild_BuildIdOrderByDateDesc(buildId).stream()
-				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
+		if(buildId == null || buildId == 0) {
+			return costRepository.findAll().stream()
+					.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
+		} else {
+			return costRepository.findByBuild_BuildIdOrderByDateDesc(buildId).stream()
+					.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
+		}
 	}
 	
 	public CostDTO findByBuildIdAndDate(Long buildId, LocalDate date) {
@@ -70,5 +80,11 @@ public class CostService {
 		} else {
 			return modelMapper.map(cost.get(), CostDTO.class); 
 		}
+	}
+	
+	public List<CostDTO> findAllByDate(LocalDate date) {
+		return costRepository.findAllByDate(date).stream().map(c ->
+			modelMapper.map(c, CostDTO.class)).toList();
+				
 	}
 }
