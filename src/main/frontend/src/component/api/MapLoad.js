@@ -9,9 +9,6 @@ function MapLoad({ address }) {
         const container = document.getElementById('buildMap');
         const buildId = document.getElementById('buildId');
         const buildIdOptText = buildId.options[buildId.selectedIndex].innerText;
-
-        console.log(address)
-
         const options = { //지도를 생성할 때 필요한 기본 옵션
             center: new window.kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
             level: 3 //지도의 레벨(확대, 축소 정도)

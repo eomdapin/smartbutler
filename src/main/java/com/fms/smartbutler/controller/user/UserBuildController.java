@@ -44,11 +44,4 @@ public class UserBuildController {
 		
 		return ResponseEntity.status(200).body(content);
 	}
-	
-//	@GetMapping("/images")
-//	public ResponseEntity<List<ImageDTO>> getBuildImages(@RequestParam(required = false) Long buildId) {
-//		
-//		
-//		return ResponseEntity.status(200).body(images);
-//	}
 }

@@ -69,12 +69,6 @@ public class ImageService {
 		}
 	}
 	
-	public ImageDTO findById(Long imgId) {
-		Image image = imageRepository.findById(imgId).orElseGet(Image::new);
-		
-		return modelMapper.map(image, ImageDTO.class); 
-	}
-	
 	public List<ImageDTO> findByOutIdAndCoded(Long outId, String coded) {
 		return imageRepository.findByOutIdAndImageCategory_Coded(outId, coded).stream()
 				.map(image -> modelMapper.map(image, ImageDTO.class)).toList();

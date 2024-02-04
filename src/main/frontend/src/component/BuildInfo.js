@@ -3,6 +3,8 @@ import axios from 'axios';
 import MapLoad from './api/MapLoad.js';
 
 function BuildInfo() {
+    const [image, setImage] = useState([]);
+    const [buildId, setBuildId] = useState(0);
     const [build, setBuild] = useState([
         {
             buildId: '',
@@ -12,8 +14,6 @@ function BuildInfo() {
             comDate: '',
         }
     ]);
-    const [image, setImage] = useState([]);
-    const [buildId, setBuildId] = useState(0);
 
     useEffect(() => {
         axios.get('/user/buildings/build')
@@ -21,10 +21,19 @@ function BuildInfo() {
                 setBuild(response.data[0])
                 setImage(response.data[1])
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
     }, []);
 
-    const buildChange = () => {
+    useEffect(() => {
+        axios.get(`/user/buildings/build?buildId=${buildId+1}`)
+            .then(response => {
+                setBuild(response.data[0])
+                setImage(response.data[1])
+            })
+            .catch(error => console.log(error));
+    }, [buildId]);
+
+    const BuildChange = () => {
         const selectBuildId = document.getElementById('buildId');
         setBuildId(selectBuildId.value - 1);
         selectBuildId.value = buildId;
@@ -42,7 +51,7 @@ function BuildInfo() {
                         <div className="row g-3 justify-content-center align-items-center mb-4">
                             <div className="col-2 mb-3"><label htmlFor="buildId" className="form-label">건물명</label></div>
                             <div className="col-5 mb-3">
-                                <select className="form-select" id="buildId" name="buildId" onChange={buildChange} value={buildId + 1}>
+                                <select className="form-select" id="buildId" name="buildId" onChange={BuildChange} value={buildId + 1}>
                                     {build.map((value, index) => {
                                         return (
                                             <option className="form-option" value={value.buildId} key={Date() + index}>
@@ -82,6 +91,7 @@ function BuildInfo() {
                         <div className="carousel-inner">
                             {image.map((image, index) => {
                                 let carouselItem = 'carousel-item';
+
                                 if (index === 0) {
                                     carouselItem += ' active';
                                 }
