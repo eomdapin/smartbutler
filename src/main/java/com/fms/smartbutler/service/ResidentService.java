@@ -102,14 +102,22 @@ public class ResidentService {
 	}
 	
 	public List<ResidentDTO> findAllByEnteredAndBuildId(Long entered, Long buildId) {
-		List<ResidentDTO> residentList = residentRepository.findAllByEnteredAndBuild_BuildId(entered, buildId).stream()
+		if(buildId == null || buildId == 0) {
+			return residentRepository.findAllByEntered(entered).stream()
 				.map(resident -> {
 					ResidentDTO residentDTO = modelMapper.map(resident, ResidentDTO.class);
 					residentDTO.setUsers(resident.getUsers());
 					residentDTO.setBuild(resident.getBuild());
 					return residentDTO;
 				}).toList();
-		
-		return residentList;
+		} else {
+			return residentRepository.findAllByEnteredAndBuild_BuildId(entered, buildId).stream()
+					.map(resident -> {
+						ResidentDTO residentDTO = modelMapper.map(resident, ResidentDTO.class);
+						residentDTO.setUsers(resident.getUsers());
+						residentDTO.setBuild(resident.getBuild());
+						return residentDTO;
+					}).toList();
+		}
 	}
 }

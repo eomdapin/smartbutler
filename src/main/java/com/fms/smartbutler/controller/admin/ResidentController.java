@@ -43,9 +43,9 @@ public class ResidentController {
 		BuildDTO build = buildService.findById(buildId);
 		
 		model.addAttribute("residents", residents);
-		model.addAttribute("buildId", buildId);
 		model.addAttribute("builds", builds);
 		model.addAttribute("build", build);
+		model.addAttribute("buildId", (buildId == 0 || buildId == null) ? 0L : buildId);
 		
 		return "admin/resident/resident-list";
 	}
