@@ -1,7 +1,5 @@
 package com.fms.smartbutler.controller.user;
 
-import java.util.Arrays;
-
 /**
 * @author 엄다빈
 * @editDate 2024-01-25 ~ 2024-01-29
@@ -43,8 +41,7 @@ public class UserBuildController {
 	@GetMapping("/images")
 	public ResponseEntity<List<ImageDTO>> getBuildImages(@RequestParam(required = false) Long buildId) {
 		buildId = buildId == null ? 1 :buildId;
-		BuildDTO build = buildService.findById(buildId);
-		List<ImageDTO> images = imageService.findByOutIdAndCoded(build.getBuildId(), "b");
+		List<ImageDTO> images = imageService.findByOutIdAndCoded(buildId, "b");
 		
 		return ResponseEntity.status(200).body(images);
 	}

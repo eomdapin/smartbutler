@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import MapLoad from './api/MapLoad.js';
 
-function changeBuild() {
+function buildChange() {
 
 }
 
@@ -26,13 +27,8 @@ function BuildInfo() {
             .catch(error => console.log(error))
     }, []);
 
-    const clear = () => {
-        setBuild('');
-        setImage('');
-    }
-
     let buildId = 0;
-    console.log(build);
+    console.log(image);
 
     return (
         <>
@@ -54,26 +50,55 @@ function BuildInfo() {
                                             </option>
                                         );
                                     })}
+                                    {document.getElementsByClassName('carousel-item').item(0).className += ' active'}
                                 </select>
                             </div>
                         </div>
                         <div className="row g-3 justify-content-center align-items-center mb-4">
-                            <div className="col-2 mb-3"><label for="address" className="form-label">주소</label></div>
+                            <div className="col-2 mb-3"><label htmlFor="address" className="form-label">주소</label></div>
                             <div className="col-5 mb-3"><input type="text" id="address" name="address" className="form-control" value={build[0].address} defaultChecked readOnly /></div>
                         </div>
                         <div className="row g-3 justify-content-center align-items-center mb-4">
-                            <div className="col-2 mb-3"><label for="area" className="form-label">면적</label></div>
+                            <div className="col-2 mb-3"><label htmlFor="area" className="form-label">면적</label></div>
                             <div className="col-5 mb-3"><input type="text" id="area" name="area" className="form-control" value={build[0].area} defaultChecked readOnly /></div>
                         </div>
                         <div className="row g-3 justify-content-center align-items-center mb-4">
-                            <div className="col-2 mb-3"><label for="comDate" className="form-label">준공일</label></div>
+                            <div className="col-2 mb-3"><label htmlFor="comDate" className="form-label">준공일</label></div>
                             <div className="col-5 mb-3"><input type="date" id="comDate" name="comDate" className="form-control" value={build[0].comDate} defaultChecked readOnly /></div>
                         </div>
                         <div className="row g-3 justify-content-center align-items-center mb-4">
-                            <div className="col-2 mb-3"><label for="name" className="form-label">층수</label></div>
+                            <div className="col-2 mb-3"><label htmlFor="name" className="form-label">층수</label></div>
                             <div className="col-5 mb-3"><input type="text" id="floor" name="floor" className="form-control" value={build[0].floor} defaultChecked readOnly /></div>
                         </div>
                     </form>
+                    <MapLoad />
+                    <div className="row g-3 justify-content-center align-items-center mb-4 mt-3">
+                        <div className="col-7 mt-3 border-top border-5 border-black"></div>
+                    </div>
+
+                    <h3 className="text-center mt-2">건물 사진</h3>
+                    <div id="carouselExampleIndicators" className="carousel slide" style={{ height: "800px" }}>
+                        <div className="carousel-inner">
+                            {image.map((image, index) => {
+                                let active = '';
+                                if(index == 0) {
+                                    active = 'active';
+                                }
+                                return (
+                                    // <div className={`carousel-item ${active}`} key={Date() + index}>
+                                    <div className='carousel-item' key={Date() + index}>
+                                        <img src={`/web-img/${image.name}`} className="d-block" style={{ height: "800px", margin: "0 auto" }} alt="건물 사진" />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                        <button className="carousel-control-prev background-color: rgba(255,255,255,0.3);" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span className="carousel-control-prev-icon" aria-hidden="true"></span> <span className="visually-hidden">Previous</span>
+                        </button>
+                        <button className="carousel-control-next background-color: rgba(255,255,255,0.3);" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span className="carousel-control-next-icon" aria-hidden="true"></span> <span className="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </>
