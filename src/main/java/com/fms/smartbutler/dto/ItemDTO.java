@@ -1,5 +1,9 @@
 package com.fms.smartbutler.dto;
 
+/**
+* @author 정시운
+* @editDate 2024-01-29 ~ 2024-01-31
+*/
 
 import java.sql.Date;
 

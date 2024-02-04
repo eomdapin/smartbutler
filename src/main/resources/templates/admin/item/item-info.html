@@ -33,13 +33,13 @@
 							<label for="itemId" class="ms-5 fw-bold">시설번호</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="itemId" th:value="${item?.itemId}" class="form-control" readonly>
+							<input type="text" name="itemId" th:value="${item?.itemId}" class="form-control" disabled>
 						</div>
 						<div class="col-2">
 							<label for="fromDate" class="ms-5 fw-bold">사용시작일</label>
 						</div>
 						<div class="col-4">
-							<input type="date" name="fromDate" th:value="${item?.fromDate}" class="form-control" readonly>
+							<input type="date" name="fromDate" th:value="${item?.fromDate}" class="form-control" disabled>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -47,52 +47,53 @@
 							<label for="buildName" class="ms-5 fw-bold">건물명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="buildName" th:value="${item?.buildName}" class="form-control" readonly>
+							<input type="text" name="buildName" th:value="${item?.buildName}" class="form-control" disabled>
 						</div>
 						<div class="col-2">
-							<label for="status" class="ms-5 fw-bold">상태</label>
+							<label for="kindType" class="ms-5 fw-bold">시설종류</label>
 						</div>
 						<div class="col-4">
-							<th:block th:if="${item.status == 1}">
-								<input type="text" value="정상" class="form-control">
-								<input type="hidden" name="status" value="1">
-							</th:block>
-							<th:block th:if="${item.status == 2}">
-								<input type="text" value="수리" class="form-control">
-								<input type="hidden" name="status" value="2">
-							</th:block>
-							<th:block th:if="${item.status == 3}">
-								<input type="text" value="폐기" class="form-control">
-								<input type="hidden" name="status" value="3">
-							</th:block>
+							<input type="text" name="kindName" th:value="${item?.kindName}" class="form-control" disabled>
 						</div>
+						
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
 							<label for="itemName" class="ms-5 fw-bold">시설명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="itemName" th:value="${item?.itemName}" class="form-control" readonly>
+							<input type="text" name="itemName" th:value="${item?.itemName}" class="form-control" disabled>
 						</div>
 						<div class="col-2">
-							<label for="checkDate" class="ms-5 fw-bold">점검날짜</label>
+							<label for="status" class="ms-5 fw-bold">상태</label>
 						</div>
 						<div class="col-4">
-							<input type="date" name="checkDate" th:value="${item?.checkDate}" class="form-control" readonly>
+							<th:block th:if="${item.status == 1}">
+								<input type="text" value="정상" class="form-control" disabled>
+								<input type="hidden" name="status" value="1">
+							</th:block>
+							<th:block th:if="${item.status == 2}">
+								<input type="text" value="수리" class="form-control" disabled>
+								<input type="hidden" name="status" value="2">
+							</th:block>
+							<th:block th:if="${item.status == 3}">
+								<input type="text" value="폐기" class="form-control" disabled>
+								<input type="hidden" name="status" value="3">
+							</th:block>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
 			        	<div class="col-2">
-							<label for="kindType" class="ms-5 fw-bold">시설종류</label>
+							<label for="checkDate" class="ms-5 fw-bold">점검날짜</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="kindName" th:value="${item?.kindName}" class="form-control" readonly>
+							<input type="date" name="checkDate" th:value="${item?.checkDate}" class="form-control" disabled>
 						</div>
 						<div class="col-2">
 							<label for="checkCycle" class="ms-5 fw-bold">점검주기</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="checkCycle" th:value="${item?.checkCycle}" class="form-control" readonly>
+							<input type="text" name="checkCycle" th:value="${item?.checkCycle}" class="form-control" disabled>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -100,7 +101,7 @@
 							<label for="location" class="ms-5 fw-bold">시설위치</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="location" th:value="${item?.location}" class="form-control" readonly>
+							<input type="text" name="location" th:value="${item?.location}" class="form-control" disabled>
 						</div>
 					</div>
 				</form>
