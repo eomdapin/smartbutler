@@ -30,21 +30,24 @@
 				<form th:action="@{/admin/buildings/{buildId}/claims/{claimId}(buildId = ${claim.buildId}, claimId = ${claim.claimId})}" method="post" id="claimFinForm">
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">민원번호</label></div>
-						<div class="col-5"><input type="text" name="claimId" th:value="${claim?.claimId}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="claimId" th:value="${claim?.claimId}" class="form-control" readonly></div>
+						<div class="col-1"></div>
 						<div class="col-1"><label class="col-form-label fw-bold">요청날짜</label></div>
-						<div class="col-5"><input type="text" name="askDate" th:value="${claim?.askDate}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="askDate" th:value="${claim?.askDate}" class="form-control" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">건물명</label></div>
-						<div class="col-5"><input type="text" name="buildName" th:value="${claim?.buildName}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="buildName" th:value="${claim?.buildName}" class="form-control" readonly></div>
+						<div class="col-1"></div>
 						<div class="col-1"><label class="col-form-label fw-bold">종류</label></div>
-						<div class="col-5"><input type="text" name="claimKind" th:value="${claim?.claimKind}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="claimKind" th:value="${claim?.claimKind}" class="form-control" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">세대번호</label></div>
-						<div class="col-5"><input type="text" name="residentId" th:value="${resident?.residentNum}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="residentId" th:value="${resident?.residentNum}" class="form-control" readonly></div>
+						<div class="col-1"></div>
 						<div class="col-1"><label class="col-form-label fw-bold">이미지</label></div>
-						<div class="col-5 d-flex">
+						<div class="col-4 d-flex">
 							<input type="file" id="uploadFile" name="uploadFile" class="form-control" style="display: none;" onchange="ChangeFileName()">
                    	    	<input type="text" id="fileName" name="fileName" class="form-control col" 
                    	    		th:value="${vo?.fileName}" placeholder="이미지가 존재하지 않습니다" style="display: inline;" readonly>
@@ -55,21 +58,22 @@
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">처리상태</label></div>
-						<div class="col-5"><input type="text" th:value="${claim?.status == 1} ? '신청' : '완료'" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" th:value="${claim?.status == 1} ? '신청' : '완료'" class="form-control" readonly></div>
+						<div class="col-1"></div>
 						<div class="col-1"><label class="col-form-label fw-bold">완료날짜</label></div>
-						<div class="col-5"><input type="text" th:value="${claim?.finDate}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" th:value="${claim?.finDate}" class="form-control" readonly></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
-						<div class="col"><label class="col-form-label fw-bold">제목</label></div>
-						<div class="col m-0"><input type="text" name="title" th:value="${claim?.title}" class="form-control" readonly></div>
+						<div class="col-11"><label class="col-form-label fw-bold">제목</label></div>
+						<div class="col-11 m-0"><input type="text" name="title" th:value="${claim?.title}" class="form-control" readonly></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
-						<div class="col"><label class="col-form-label fw-bold">요청내용</label></div>
-						<div class="col m-0"><textarea rows="3" name="content" class="form-control" readonly>[[${claim?.content}]]</textarea></div>
-					</div>
-					<div class="row justify-content-end mt-4">
-						<button type="button" class="btn btn-lg btn-primary col-auto me-3" onclick="claimFinClick(); return false;" th:if="${claim?.status == 1}">완료</button>
-						<button type="button" class="btn btn-lg btn-outline-dark col-auto me-3" onclick="history.back()">목록</button>
+						<div class="col-11"><label class="col-form-label fw-bold">요청내용</label></div>
+						<div class="col-11 m-0"><textarea rows="10" name="content" class="form-control" style="resize:none" readonly>[[${claim?.content}]]</textarea></div>
+						<div class="row col-11 justify-content-end mt-4">
+							<button type="button" class="btn btn-lg btn-primary col-auto me-3" onclick="claimFinClick(); return false;" th:if="${claim?.status == 1}">완료</button>
+							<button type="button" class="btn btn-lg btn-outline-dark col-auto" onclick="history.back()">목록</button>
+						</div>
 					</div>
 					<input type="hidden" th:value="${claim?.userId}" name="userId">
 				</form>

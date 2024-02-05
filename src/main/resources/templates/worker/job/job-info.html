@@ -50,7 +50,7 @@
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label class="col-form-label fw-bold">요청내용</label></div>
-						<div class="col m-0"><textarea rows="3" name="content" th:text="${job?.content}" class="form-control" readonly></textarea></div>
+						<div class="col m-0"><textarea rows="3" name="content" th:text="${job?.content}" class="form-control" style="resize:none" readonly></textarea></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2 mt-4">
 						<div class="col-1"><label class="col-form-label fw-bold">작업자</label></div>
@@ -81,7 +81,7 @@
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col"><label class="col-form-label fw-bold">처리내용</label></div>
-						<div class="col m-0"><textarea rows="3" name="reportContent" th:text="${job?.reportContent}" class="form-control" required></textarea></div>
+						<div class="col m-0"><textarea rows="3" name="reportContent" th:text="${job?.reportContent}" class="form-control" style="resize:none" required></textarea></div>
 					</div>
 					<input type="hidden" th:value="${job?.buildId}" name="buildId">
 					<input type="hidden" th:value="${job?.companyId}" name="companyId">
