@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Item;
@@ -55,9 +57,25 @@ public class ItemService {
 			modelMapper.map(i, ItemDTO.ItemKindDTO.class)).collect(Collectors.toList());
 	}
 	
-	public List<ItemDTO> findByBuildId(Long buildId) {
-		return itemRepository.findByBuild_BuildId(buildId).stream().map(i ->
-			modelMapper.map(i, ItemDTO.class)).collect(Collectors.toList());
+	public Page<ItemDTO> findByBuildId(Long buildId, Pageable pageable) {
+		Page<Item> itemList;
+		
+		if(buildId == 0) {
+			itemList = itemRepository.findAllByOrderByItemIdDesc(pageable);
+		} else {
+			itemList = itemRepository.findByBuild_BuildIdOrderByItemIdDesc(buildId, pageable);
+		}
+		
+		Page<ItemDTO> itemDTOList = itemList.map(i -> modelMapper.map(i, ItemDTO.class));
+		
+		return itemDTOList;
+	}
+	
+	public Page<ItemDTO> findAllPage(Pageable pageable) {
+		Page<Item> itemPage = itemRepository.findAllByOrderByItemIdDesc(pageable);
+		Page<ItemDTO> itemDTOPage = itemPage.map(i -> modelMapper.map(i, ItemDTO.class));
+		
+		return itemDTOPage;
 	}
 	
 	public List<ItemDTO> findAll() {

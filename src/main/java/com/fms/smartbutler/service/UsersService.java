@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -67,6 +69,13 @@ public class UsersService implements UserDetailsService {
 		Users users = modelMapper.map(usersDTO, Users.class);
 		
 		usersRepository.save(users);
+	}
+	
+	public Page<UsersDTO> findByAllPage(Pageable pageable) {
+		Page<Users> users = usersRepository.findAllByOrderByUserIdDesc(pageable);
+		Page<UsersDTO> usersDTO = users.map(u -> modelMapper.map(u, UsersDTO.class));
+		
+		return usersDTO;
 	}
 	
 	public Optional<UsersDTO> findById(Long userId) {

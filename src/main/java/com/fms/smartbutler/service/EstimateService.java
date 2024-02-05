@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Estimate;
@@ -39,6 +41,13 @@ public class EstimateService {
 		
 		estimateRepository.save(estimate);
 		estimateDTO.setEstimateId(estimate.getEstimateId());
+	}
+	
+	public Page<EstimateDTO> findByAllPage(Pageable pageable) {
+		Page<Estimate> estimate = estimateRepository.findAllByOrderByEstimateIdDesc(pageable);
+		Page<EstimateDTO> estimateDTO = estimate.map(e -> modelMapper.map(e, EstimateDTO.class));
+		
+		return estimateDTO;
 	}
 	
 	public Optional<EstimateDTO> findById(Long estimateId) {

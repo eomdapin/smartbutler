@@ -61,13 +61,13 @@
 							<label for="itemName" class="ms-5 fw-bold">시설명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="itemName" th:value="${item?.itemName}" class="form-control">
+							<input type="text" name="itemName" th:value="${item?.itemName}" class="form-control" required>
 						</div>
 						<div class="col-2">
 							<label for="status" class="ms-5 fw-bold">상태</label>
 						</div>
 						<div class="col-4">
-							<select name="status" class="form-select" >
+							<select name="status" class="form-select">
 								<option value="1" th:selected="${item.status} == 1"> 정상 </option>
 								<option value="2" th:selected="${item.status} == 2"> 수리 </option>
 								<option value="3" th:selected="${item.status} == 3"> 폐기 </option>
@@ -79,13 +79,13 @@
 							<label for="checkDate" class="ms-5 fw-bold">점검날짜</label>
 						</div>
 						<div class="col-4">
-							<input type="date" name="checkDate" th:value="${item?.checkDate}" class="form-control">
+							<input type="date" name="checkDate" th:value="${item?.checkDate}" class="form-control" required>
 						</div>
 						<div class="col-2">
 							<label for="checkCycle" class="ms-5 fw-bold">점검주기</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="checkCycle" th:value="${item?.checkCycle}" class="form-control">
+							<input type="text" name="checkCycle" th:value="${item?.checkCycle}" class="form-control" required>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -93,7 +93,7 @@
 							<label for="location" class="ms-5 fw-bold">시설위치</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="location" th:value="${item?.location}" class="form-control">
+							<input type="text" name="location" th:value="${item?.location}" class="form-control" required>
 						</div>
 					</div>
 					<div class="row justify-content-end mt-3">
