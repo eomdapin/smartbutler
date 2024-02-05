@@ -53,13 +53,6 @@ public class JobService {
 		jobDTO.setJobId(job.getJobId());
 	}
 	
-	public Page<JobDTO> findAll(Pageable pageable) {
-		Page<Job> jobPage = jobRepository.findAllByOrderByJobIdDesc(pageable);
-		Page<JobDTO> jobDTOPage = jobPage.map(j -> modelMapper.map(j, JobDTO.class));
-		
-		return jobDTOPage;
-	}
-	
 	public Page<JobDTO> findByBuildId(Long buildId, Pageable pageable) {
 		Page<Job> jobList;
 		

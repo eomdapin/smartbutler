@@ -29,21 +29,23 @@
 				<form th:action="@{/admin/buildings/0/jobs/add}" method="post" enctype="multipart/form-data">
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="jobId" class="col-form-label fw-bold">요청번호</label></div>
-						<div class="col-5"><input type="text" name="jobId" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="jobId" class="form-control" placeholder="자동으로 입력됩니다." readonly></div>
+						<div class="col-1"></div>
 						<div class="col-1"><label for="askDate" class="col-form-label fw-bold">요청날짜</label></div>
-						<div class="col-5"><input type="text" name="askDate" th:value="${#dates.format(#dates.createToday(), 'yyyy-MM-dd')}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="askDate" th:value="${#dates.format(#dates.createToday(), 'yyyy-MM-dd')}" class="form-control" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="buildName" class="col-form-label fw-bold">건물명</label></div>
-						<div class="col-5">
+						<div class="col-4">
 							<select class="form-select" id="buildId" name="buildId" onChange="changeBuildName()" required>
 								<option class="form-option" value="">선택</option>
 								<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
 									th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
 							</select>
 						</div>
+						<div class="col-1"></div>
 						<div class="col-1"><label for="itemName" class="col-form-label fw-bold">시설명</label></div>
-						<div class="col-5">
+						<div class="col-4">
 							<select name="itemId" id="itemName" class="form-select" required>
 								<option class="form-option" value="">선택</option>
 								<option th:each="item : ${items}" th:if="${item.buildId == build.buildId}" th:value="${item.itemId}" th:text="${item.itemName}">
@@ -52,24 +54,24 @@
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label for="companyName" class="col-form-label fw-bold">점검업체</label></div>
-						<div class="col-5">
-							<select class="form-select" id="companyName" name="companyId" onChange="changeCompany()" required>
+						<div class="col-4">
+							<select class="form-select" id="companyName" name="companyId" required>
 								<option class="form-option" value="">선택</option>
 								<option class="form-option" th:each="company: ${companies}" th:value="${company?.companyId}">[[${company?.companyName}]]</option>
 							</select>
 						</div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
-						<div class="col"><label for="title" class="col-form-label fw-bold">제목</label></div>
-						<div class="col m-0"><input type="text" name="title" class="form-control" required></div>
+						<div class="col-11"><label for="title" class="col-form-label fw-bold">제목</label></div>
+						<div class="col-11 m-0"><input type="text" name="title" class="form-control" required></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
-						<div class="col"><label for="content" class="col-form-label fw-bold">요청내용</label></div>
-						<div class="col m-0"><textarea rows="10" name="content" class="form-control" style="resize:none" required></textarea></div>
-					</div>
-					<div class="row justify-content-end mt-4">
-						<input type="submit" value="전송" class="btn btn-lg btn-primary col-auto me-3">
-						<input type="button" value="목록" class="btn btn-lg btn-outline-dark col-auto me-3" onClick="history.back()">
+						<div class="col-11"><label for="content" class="col-form-label fw-bold">요청내용</label></div>
+						<div class="col-11 m-0"><textarea rows="10" name="content" class="form-control" style="resize:none" required></textarea></div>
+						<div class="row col-11 justify-content-end mt-4">
+							<input type="submit" value="전송" class="btn btn-lg btn-primary col-auto me-3">
+							<input type="button" value="목록" class="btn btn-lg btn-outline-dark col-auto me-3" onClick="history.back()">
+						</div>
 					</div>
 				</form>
 			</div>

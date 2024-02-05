@@ -113,7 +113,7 @@ create table if not exists estimate (
     content text COMMENT '비고',
     foreign key(build_id) references build(build_id) on delete cascade,
     foreign key(user_id) references users(user_id) on delete cascade,
-    primary key(estimate_id, build_id, user_id)
+    primary key(estimate_id)
 );
 
 # 관리비
@@ -131,7 +131,7 @@ create table if not exists cost (
     send smallint not null COMMENT '전송 여부',
     resident_cnt int null COMMENT '전송 당시 입주 세대 수',
     foreign key(build_id) references build(build_id) on delete cascade,
-    primary key(cost_id, build_id)
+    primary key(cost_id)
 );
 
 # 시설 종류
@@ -158,7 +158,7 @@ create table if not exists item (
     check_cycle varchar(30) not null COMMENT '점검 주기',
     foreign key(build_id) references build(build_id) on delete cascade,
     foreign key(kind_type) references item_kind(kind_type) on update cascade,
-    primary key(item_id, build_id, kind_type)
+    primary key(item_id)
 );
 
 # 작업

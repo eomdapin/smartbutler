@@ -83,7 +83,7 @@ public class UserClaimController {
 	public String getClaimAdd(Principal principal, Model model) {
 		UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
 		ResidentDTO resident = residentService.findByUserId(user.getUserId());
-		List<CompanyDTO.CompanyKindDTO> options= companyService.findAllKindType();
+		List<CompanyDTO.CompanyKindDTO> options = companyService.findAllKindType();
 		
 		model.addAttribute("user", user);
 		model.addAttribute("resident", resident);
