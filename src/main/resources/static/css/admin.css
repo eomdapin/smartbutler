@@ -53,7 +53,7 @@ header .logo-text {
 .container .bread-crum ul li {
     display: inline-block;
 }
-.container .bread-crum ul li a {
+.container .bread-crum ul li {
     color: #333333;
     font-size: 20px;
     font-weight: 600;
