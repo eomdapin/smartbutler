@@ -28,28 +28,28 @@
             <div class="content form-content" th:with="total = ${costDTO?.electricity} + ${costDTO?.repair} + ${costDTO?.upkeep} + ${costDTO?.consignment}">
 				<form th:action="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${buildId}, costId = ${costId})}" th:method="put">
 					<div class="row">
-					    <div class="col-2 mb-3"><label for="buildName" class="form-label">건물명</label></div>
+					    <div class="col-1 mb-3"><label for="buildName" class="form-label">건물명</label></div>
 					    <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" onChange="sumCost()" th:value="${build?.buildName}" readonly></div>
-					    
-					    <div class="col-2 mb-3"><label for="upkeep" class="form-label">유지관리비</label></div>
+					    <div class="col-1"></div>
+					    <div class="col-1 mb-3"><label for="upkeep" class="form-label">유지관리비</label></div>
 					    <div class="col-4 mb-3"><input type="number" id="upkeep" name="upkeep" class="form-control" onChange="sumCost()" th:value="${costDTO?.upkeep}" required></div>
 					</div>
 					<div class="row">
-					    <div class="col-2 mb-3"><label for="electricity" class="form-label">전기료</label></div>
+					    <div class="col-1 mb-3"><label for="electricity" class="form-label">전기료</label></div>
 					    <div class="col-4 mb-3"><input type="number" id="electricity" name="electricity" class="form-control" onChange="sumCost()" th:value="${costDTO?.electricity}" required></div>
-					    
-					    <div class="col-2 mb-3"><label for="consignment" class="form-label">전문위탁비</label></div>
+					    <div class="col-1"></div>
+					    <div class="col-1 mb-3"><label for="consignment" class="form-label">전문위탁비</label></div>
 					    <div class="col-4 mb-3"><input type="number" id="consignment" name="consignment" class="form-control" onChange="sumCost()" th:value="${costDTO?.consignment}" required></div>
 					</div>
 					<div class="row">
-						<div class="col-2 mb-3"><label for="repair" class="form-label">수선비</label></div>
+						<div class="col-1 mb-3"><label for="repair" class="form-label">수선비</label></div>
 						<div class="col-4 mb-3"><input type="number" id="repair" name="repair" class="form-control" onChange="sumCost()" th:value="${costDTO?.repair}" required></div>
-						
-						<div class="col-2 mb-3"><label for="date" class="form-label">관리비개월</label></div>
+						<div class="col-1"></div>
+						<div class="col-1 mb-3"><label for="date" class="form-label">관리비개월</label></div>
 						<div class="col-4 mb-3"><input type="date" name="date" class="form-control" th:value="${costDTO?.date}" readonly></div>
 					</div>
 					<div class="row">
-					    <div class="col-2 mb-3"><label for="total" class="form-label">합계금액</label></div>
+					    <div class="col-1 mb-3"><label for="total" class="form-label">합계금액</label></div>
 					    <div class="col-4 mb-3"><input type="text" id="total" name="total" class="form-control" th:value="${total}" disabled></div>
 					    <input type="hidden" name="send" class="form-control" value="1">
 					</div>
