@@ -50,12 +50,12 @@
                             	[[${#strings.substring(costs?.date, 0, 7)}]]
                            	</a></td>
                             <th:block th:with="total = ${costs?.electricity} + ${costs?.repair} + ${costs?.upkeep} + ${costs?.consignment}">
-                            <td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(total, 3, 'COMMA')}]]원</a></td>
+                            <td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(total, 1, 'COMMA')}]]원</a></td>
                             </th:block>
-                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.electricity, 3, 'COMMA')}]]원</a></td>
-                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.repair, 3, 'COMMA')}]]원</a></td>
-                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.upkeep, 3, 'COMMA')}]]원</a></td>
-                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.consignment, 3, 'COMMA')}]]원</a></td>
+                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.electricity, 1, 'COMMA')}]]원</a></td>
+                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.repair, 1, 'COMMA')}]]원</a></td>
+                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.upkeep, 1, 'COMMA')}]]원</a></td>
+                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.consignment, 1, 'COMMA')}]]원</a></td>
                             <td th:if="${costs?.send == 1}">배분 전</td>
                             <td th:unless="${costs?.send == 1}">배분 완료</td>
                         </tr>
