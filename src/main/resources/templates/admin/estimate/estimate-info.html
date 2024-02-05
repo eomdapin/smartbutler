@@ -20,9 +20,9 @@
         <div class="container">
         	<div class="bread-crum mb-4">
 				<ul class="">
-					<li><a href="#">HOME</a><span> ></span></li>
-					<li><a href="#">견적관리</a><span> ></span></li>
-					<li><a href="#">견적신청상세</a></li>
+					<li>HOME<span> ></span></li>
+					<li>견적관리<span> ></span></li>
+					<li>견적신청상세</li>
 				</ul>
 			</div>
 	        <div class="content form-content">
@@ -35,7 +35,8 @@
 						<div class="col-3">
 							<input type="text" name="estimateId" th:value="${estimate?.estimateId}" class="form-control bg-dark-subtle" readonly>
 						</div>
-						<div class="col-2">
+						<div class="col-1"></div>
+						<div class="col-1">
 							<label for="legDate" class="ms-5 fw-bold">작성 일자</label>
 						</div>
 						<div class="col-3">
@@ -49,6 +50,7 @@
 						<div class="col-3">
 							<input type="text" name="userName" th:value="${estimate?.userName}" class="form-control bg-dark-subtle" readonly>
 						</div>
+						<div class="col-1"></div>
 						<div class="col-2">
 							<label for="buildName" class="ms-5 fw-bold">건물명</label>
 						</div>
@@ -63,6 +65,7 @@
 						<div class="col-3">
 							<input type="text" name="period" th:value="${estimate?.period}" class="form-control bg-dark-subtle" readonly>
 						</div>
+						<div class="col-1"></div>
 						<div class="col-2">
 							<label for="toDate" class="ms-5 fw-bold">예상 입실일자</label>
 						</div>
@@ -77,6 +80,7 @@
 						<div class="col-3">
 							<input type="text" name="deposit" th:value="${estimate?.deposit}" class="form-control bg-dark-subtle" readonly>
 						</div>
+						<div class="col-1"></div>
 						<div class="col-2">
 							<label for="confirm" class="ms-5 fw-bold">계약 여부</label>
 						</div>
