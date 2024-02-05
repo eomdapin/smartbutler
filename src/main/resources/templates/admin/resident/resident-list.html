@@ -45,14 +45,14 @@
 					</thead>
 					<tbody>
 						<tr th:each ="residents: ${residents}">
-							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.buildName}]]</a></td>
-							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.residentNum}]]</a></td>
-							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.users?.userName}]]</a></td>
-							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.users?.phone}]]</a></td>
-							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.fromDate}]]</a></td>
-							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.toDate}]]</a></td>
-							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.deposit}]]</a></td>
-							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${residents?.residentId})}">[[${residents?.monthly}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${residents?.buildId}, residentId = ${residents?.residentId})}">[[${residents?.buildName}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${residents?.buildId}, residentId = ${residents?.residentId})}">[[${residents?.residentNum}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${residents?.buildId}, residentId = ${residents?.residentId})}">[[${residents?.users?.userName}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${residents?.buildId}, residentId = ${residents?.residentId})}">[[${residents?.users?.phone}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${residents?.buildId}, residentId = ${residents?.residentId})}">[[${residents?.fromDate}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${residents?.buildId}, residentId = ${residents?.residentId})}">[[${residents?.toDate}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${residents?.buildId}, residentId = ${residents?.residentId})}">[[${residents?.deposit}]]</a></td>
+							<td><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${residents?.buildId}, residentId = ${residents?.residentId})}">[[${residents?.monthly}]]</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -69,6 +69,9 @@
             form.submit();
         }
     </script>
-    <script type="text/javascript">document.getElementById('sub3').style.display = 'block';</script>
+	<script type="text/javascript">
+		document.getElementById('sub3').style.display = 'block';
+		document.querySelectorAll('#sub3 > li')[0].style.backgroundColor = '#003366';
+	</script>
 </body>
 </html>

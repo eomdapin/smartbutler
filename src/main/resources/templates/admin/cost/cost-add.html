@@ -86,6 +86,9 @@
             form.action = '/admin/buildings/' + buildId.value + '/costs/add';
         }
     </script>
-    <script type="text/javascript">document.getElementById('sub3').style.display = 'block';</script>
+	<script type="text/javascript">
+		document.getElementById('sub3').style.display = 'block';
+		document.querySelectorAll('#sub3 > li')[1].style.backgroundColor = '#003366';
+	</script>
 </body>
 </html>
