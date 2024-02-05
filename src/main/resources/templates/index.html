@@ -1,78 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>SMARTBUTLER</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/common.css">
-<link rel="stylesheet" href="/css/admin.css">
-<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-<link rel="manifest" href="/img/site.webmanifest">
+	<meta charset="UTF-8">
+	<title>SMARTBUTLER</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" as="style" crossorigin
+		href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/common.css">
+	<link rel="stylesheet" href="/css/index.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+	<link rel="manifest" href="/img/site.webmanifest">
 </head>
+
 <body>
-	<div id="wrap">
-		<div th:replace="~{common/fragments :: adminHeader}"></div>
-		<div th:replace="~{common/fragments :: adminSidebar}"></div>
+	<div id="wrap" class="text-center">
 		<div class="container">
-			<div>
-			  <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name"></span>!</h1>
-				<div>
-					<!-- 인증시 사용된 객체의 username (ID) -->
-					<span>🎁username : </span>
-					<span sec:authorize="isAuthenticated()" sec:authentication="name"></span>
-					<span> / </span>
-					<span sec:authorize="isAuthenticated()" sec:authentication="principal.username"></span>
+			<div class="row">
+				<div class="logo">
+					<img alt="로고" src="/img/logo.png" class="align-middle" width="64"
+						style="vertical-align: top!important;">
+					<h1 style="display: inline-block; font-weight: 900;">SMARTBUTLER</h1>
 				</div>
 			</div>
-			<h2>
-				<a href="/admin/join">sign up</a>
-			</h2>
-			<h2>
-				<a href="/admin/logout">sign out</a>
-			</h2>
-			<h2>테스트 링크</h2>
-			<h3>관리자</h3>
-			<ul>
-				<li><a href="/admin/login">로그인</a></li>
-				<li><a href="/admin/buildings">건물목록</a></li>
-				<li><a href="/admin/users">회원목록</a></li>
-				<li><a href="/admin/users/1">회원상세</a></li>
-				<li><a href="/admin/estimates">견적목록</a></li>
-				<li><a href="/admin/estimates/info">견적상세</a></li>
-				<li><a href="/admin/buildings/1/items">시설목록</a></li>
-				<li><a href="/admin/buildings/1/items/1">시설상세</a></li>
-				<li><a href="/admin/buildings/1/items/add">시설등록</a></li>
-				<li><a href="/admin/buildings/1/items/edit">시설수정</a></li>
-				<li><a href="/admin/buildings/1/jobs">작업목록</a></li>
-				<li><a href="/admin/buildings/1/residents/1">입주상세</a></li>
-				<li><a href="/admin/buildings/1/residents">입주목록</a></li>
-				<li><a href="/admin/buildings/1/residents/add">입주등록</a></li>
-				<li><a href="/admin/buildings/1/residents/1/update">입주수정</a></li>
-				<li><a href="/admin/buildings/1/residents/total">입주현황</a></li>
-				<li><a href="/admin/buildings/companies">업체현황</a></li>
-				<li><a href="/admin/buildings/companies/add">업체등록</a></li>
-				<li><a href="/admin/buildings/1/costs">관리비목록</a></li>
-				<li><a href="/admin/buildings/1/claims">민원목록</a></li>
-			</ul>
-			<h3>사용자</h3>
-			<ul>
-				<li><a href="/user/login">로그인</a></li>
-				<li><a href="/user/mypage">마이페이지</a></li>
-				<li><a href="/user/join">회원가입</a></li>
-				<li><a href="/user/estimate">견적신청</a></li>
-				<li><a href="/user/claims">민원목록</a></li>
-				<li><a href="/user/buildings/info">건물 정보 보기</a></li>
-				<li><a href="/user/cost">사용자 관리비 보기</a></li>
-			</ul>
-			<h3>작업자</h3>
-			<ul>
-				<li><a href="/worker/login">로그인</a></li>
-				<li><a href="/worker/jobs">작업목록</a></li>
-			</ul>
+			<div class="row justify-content-around my-5">
+				<div class="col-auto box">
+					<a href="/admin">
+						<img src="/img/">
+						<span>관리자</span>
+					</a>
+				</div>
+				<div class="col-auto box">
+					<a href="/user">
+						<img src="/img/">
+						<span>사용자</span>
+					</a>
+				</div>
+				<div class="col-auto box">
+					<a href="/worker">
+						<img src="/img/">
+						<span>작업자</span>
+					</a>
+				</div>
+			</div>
+			<div class="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
 		</div>
 	</div>
 </body>
