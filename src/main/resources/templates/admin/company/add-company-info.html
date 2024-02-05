@@ -4,17 +4,13 @@
 <meta charset="UTF-8">
 <title>SMARTBUTLER</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" as="style" crossorigin
-	href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/admin.css">
-<link rel="apple-touch-icon" sizes="180x180"
-	href="/img/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="/img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16"
-	href="/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
 <link rel="manifest" href="/img/site.webmanifest">
 </head>
 <body>
@@ -33,154 +29,95 @@
 				<form action="/admin/buildings/companies/add" method="post">
 					<div class="container fw-semibold">
 						<div class="row align-items-center mb-4">
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="companyId" class="col-form-label ms-3">업체번호</label>
-									</div>
-									<div class="col-8">
-										<input type="text" id="companyId" name="companyId"
-											class="form-control" disabled>
-									</div>
-								</div>
+							<div class="col-1">
+								<label for="companyId" class="col-form-label ms-3">업체번호</label>
 							</div>
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="password" class="col-form-label ms-3">비밀번호</label>
-									</div>
-									<div class="col-8">
-										<input type="password" id="password" name="password"
-											class="form-control">
-									</div>
-								</div>
+							<div class="col-4">
+								<input type="text" id="companyId" name="companyId" class="form-control" placeholder="자동생성됩니다" disabled>
 							</div>
-							<div class="col-2">
-								<div class="row g-3 align-items-center me-5">
-									<button type="button" class="col btn btn-outline-info">보기</button>
-								</div>
+							<div class="col-1"></div>
+
+							<div class="col-1">
+								<label for="password" class="col-form-label ms-3">비밀번호</label>
+							</div>
+							<div class="col-4">
+								<input type="password" id="password" name="password" class="form-control" placeholder="비밀번호를 입력하세요" required>
 							</div>
 						</div>
-
 						<div class="row align-items-center mb-4">
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="companyName" class="col-form-label ms-3">업체명</label>
-									</div>
-									<div class="col-8">
-										<input type="text" id="companyName" name="companyName"
-											class="form-control">
-									</div>
-								</div>
+							<div class="col-1">
+								<label for="companyName" class="col-form-label ms-3">업체명</label>
 							</div>
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="fromDate" class="col-form-label ms-3">계약시작일</label>
-									</div>
-									<div class="col-8">
-										<input type="date" id="fromDate" name="fromDate"
-											class="form-control">
-									</div>
-								</div>
+							<div class="col-4">
+								<input type="text" id="companyName" name="companyName" class="form-control" placeholder="업체명을 입력하세요" required>
+							</div>
+							<div class="col-1"></div>
+							<div class="col-1">
+								<label for="fromDate" class="col-form-label ms-3">계약시작일</label>
+							</div>
+							<div class="col-4">
+								<input type="date" id="fromDate" name="fromDate" class="form-control" required>
 							</div>
 						</div>
-
 						<div class="row align-items-center mb-4">
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="manager" class="col-form-label ms-3">담당자명</label>
-									</div>
-									<div class="col-8">
-										<input type="text" id="manager" name="manager"
-											class="form-control">
-									</div>
-								</div>
+							<div class="col-1">
+								<label for="manager" class="col-form-label ms-3">담당자명</label>
 							</div>
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="toDate" class="col-form-label ms-3">계약종료일</label>
-									</div>
-									<div class="col-8">
-										<input type="date" id="toDate" name="toDate"
-											class="form-control">
-									</div>
-								</div>
+							<div class="col-4">
+								<input type="text" id="manager" name="manager" class="form-control" placeholder="담당자명을 입력하세요" required>
+							</div>
+							<div class="col-1"></div>
+							<div class="col-1">
+								<label for="toDate" class="col-form-label ms-3">계약종료일</label>
+							</div>
+							<div class="col-4">
+								<input type="date" id="toDate" name="toDate" class="form-control" required>
 							</div>
 						</div>
-
 						<div class="row align-items-center mb-4">
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="phone" class="col-form-label ms-3">전화번호</label>
-									</div>
-									<div class="col-8">
-										<input type="text" id="phone" name="phone"
-											class="form-control">
-									</div>
-								</div>
+							<div class="col-1">
+								<label for="phone" class="col-form-label ms-3">전화번호</label>
 							</div>
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="kindName" class="col-form-label ms-3">담당업무</label>
-									</div>
-									<div class="col-8">
-										<select class="form-control" name="kindType" id="kindType">
-											<option value="0">업무명을 선택하세요</option>
-											<option th:each="companyKind : ${companyKinds}"
-												th:value="${companyKind.kindType}"
-												th:text="${companyKind.kindName}"></option>
-										</select>
-									</div>
-								</div>
+							<div class="col-4">
+								<input type="text" id="phone" name="phone" class="form-control" placeholder="전화번호를 입력하세요" required>
+							</div>
+							<div class="col-1"></div>
+							<div class="col-1">
+								<label for="kindName" class="col-form-label ms-3">담당업무</label>
+							</div>
+							<div class="col-4">
+								<select id="kindType" name="kindType" class="form-control" required>
+									<option value="0">업무명을 선택하세요</option>
+									<option th:each="companyKind : ${companyKinds}" th:value="${companyKind.kindType}" th:text="${companyKind.kindName}"></option>
+								</select>
 							</div>
 						</div>
-
 						<div class="row align-items-center mb-4">
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="cost" class="col-form-label ms-3">계약비용</label>
-									</div>
-									<div class="col-8">
-										<input type="text" id="cost" name="cost" class="form-control">
-									</div>
-								</div>
+							<div class="col-1">
+								<label for="cost" class="col-form-label ms-3">계약비용</label>
 							</div>
-							<div class="col-5">
-								<div class="row g-3 align-items-center">
-									<div class="col-4">
-										<label for="buildId" class="col-form-label ms-3">건물명</label>
-									</div>
-									<div class="col-8">
-										<select class="form-control" name="buildId" id="buildId">
-											<option value="0">건물명을 선택하세요</option>
-											<option th:each="buildDTO : ${buildDTOs}"
-												th:value="${buildDTO.buildId}"
-												th:text="${buildDTO.buildName}"></option>
-										</select>
-									</div>
-								</div>
+							<div class="col-3">
+								<input type="text" id="cost" name="cost" class="form-control" placeholder="계약비용을 입력하세요" required>
+							</div>
+							<div class="col-1">
+								<input class="form-control" type="text" th:value="원" id="currency" name="currency" style="background-color:white;" readonly disabled>
+							</div>
+							<div class="col-1"></div>
+							<div class="col-1">
+								<label for="buildId" class="col-form-label ms-3">건물명</label>
+							</div>
+							<div class="col-4">
+								<select id="buildId" name="buildId" class="form-control" required>
+									<option value="0">건물명을 선택하세요</option>
+									<option th:each="buildDTO : ${buildDTOs}" th:value="${buildDTO.buildId}" th:text="${buildDTO.buildName}"></option>
+								</select>
 							</div>
 						</div>
-
 						<div class="row align-items-center mt-5">
-							<div class="col-5"></div>
-							<div class="col-5">
-								<div class="row">
-									<div class="col-4"></div>
-									<div class="col-8 d-flex gap-4">
-										<input class="col btn btn-primary" type="submit" value="등록">
-										<button type="button"
-											class="col btn btn-lg btn-outline-primary"
-											onclick="history.back()">목록</button>
-									</div>
-								</div>
+							<div class="col-7"></div>
+							<div class="col-4 d-flex gap-4">
+								<input type="submit" class="col btn btn-primary" value="등록">
+								<button type="button" class="col btn btn-outline-primary" onclick="history.back()">목록</button>
 							</div>
 						</div>
 					</div>
