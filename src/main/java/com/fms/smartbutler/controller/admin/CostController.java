@@ -7,6 +7,10 @@ package com.fms.smartbutler.controller.admin;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.CostDTO;
@@ -35,8 +40,9 @@ public class CostController {
 	
 	// 관리비 목록
 	@GetMapping("/{buildId}/costs")
-	public String getCostList(@PathVariable Long buildId, Model model) {
-		List<CostDTO> costs = costService.findByBuildId(buildId);
+	public String getCostList(@PathVariable Long buildId,@RequestParam(defaultValue = "0") int page, Model model) {
+		Pageable pageable = PageRequest.of(page, 10, Sort.by("date").descending());
+		Page<CostDTO> costs = costService.findByBuildId(buildId, pageable);
 		List<BuildDTO> builds = buildService.findAll();
 		BuildDTO build = buildService.findById(buildId);
 		
