@@ -6,8 +6,11 @@ package com.fms.smartbutler.controller.admin;
 */
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,15 +39,16 @@ public class ItemController {
 	
 	// 시설 목록
 	@GetMapping
-	public String getItemList(@RequestParam(required = false) Long buildId, Model model) {
-		buildId = buildId == null ? 1 :buildId;
-		BuildDTO buildDTO = buildService.findById(buildId);
+	public String getItemList(@PathVariable Long buildId, @RequestParam(defaultValue = "0") int page, Model model) {
+		Pageable pageable = PageRequest.of(page, 10, Sort.by("itemId").descending());
 		List<BuildDTO> builds = buildService.findAll();
-		List<ItemDTO> items = itemService.findByBuildId(buildId);
+		BuildDTO build = buildService.findById(buildId);
+		Page<ItemDTO> items = itemService.findByBuildId(buildId, pageable);
 		
-		model.addAttribute("build", buildDTO);
+		model.addAttribute("list", items);
 		model.addAttribute("builds", builds);
-		model.addAttribute("items", items);
+		model.addAttribute("build", build);
+		model.addAttribute("buildId", (buildId == 0 || buildId == null) ? 0L : buildId);
 		
 		return "admin/item/item-list";
 	}
@@ -62,11 +66,14 @@ public class ItemController {
 	// 시설 등록 폼
 	@GetMapping("/add")
 	public String getItemAdd(@PathVariable Long buildId, Model model) {
-		Optional<ItemDTO> itemDTO = itemService.findById(buildId);
+		BuildDTO build = buildService.findById(buildId);
+		List<BuildDTO> builds = buildService.findAll();
 		List<ItemDTO.ItemKindDTO> itemKind = itemService.findAllItemKind();
 		
-		model.addAttribute("item", itemDTO.get());
+		model.addAttribute("build", build);
+		model.addAttribute("builds", builds);
 		model.addAttribute("itemKind", itemKind);
+		model.addAttribute("buildId", (buildId == 0 || buildId == null) ? 0L : buildId);
 		
 		return "admin/item/item-add";
 	}
@@ -76,7 +83,7 @@ public class ItemController {
 	public String postItemAdd(@PathVariable Long buildId, @ModelAttribute ItemDTO itemDTO) throws Exception {
 		itemService.insert(itemDTO);
 		
-		return "redirect:/admin/buildings/{buildId}/items";
+		return "redirect:/admin/buildings/0/items";
 	}
 	
 	// 시설 수정 폼
