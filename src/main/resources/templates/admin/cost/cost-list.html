@@ -50,17 +50,32 @@
                             	[[${#strings.substring(costs?.date, 0, 7)}]]
                            	</a></td>
                             <th:block th:with="total = ${costs?.electricity} + ${costs?.repair} + ${costs?.upkeep} + ${costs?.consignment}">
-                            <td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${total}]]</a></td>
+                            <td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(total, 3, 'COMMA')}]]원</a></td>
                             </th:block>
-                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${costs?.electricity}]]</a></td>
-                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${costs?.repair}]]</a></td>
-                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${costs?.upkeep}]]</a></td>
-                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${costs?.consignment}]]</a></td>
+                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.electricity, 3, 'COMMA')}]]원</a></td>
+                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.repair, 3, 'COMMA')}]]원</a></td>
+                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.upkeep, 3, 'COMMA')}]]원</a></td>
+                           	<td><a th:href="@{/admin/buildings/{buildId}/costs/{costId}(buildId = ${costs.buildId}, costId = ${costs?.costId})}">[[${#numbers.formatInteger(costs?.consignment, 3, 'COMMA')}]]원</a></td>
                             <td th:if="${costs?.send == 1}">배분 전</td>
                             <td th:unless="${costs?.send == 1}">배분 완료</td>
                         </tr>
                     </tbody>
                 </table>
+				<div class="mt-4" th:if="${!costs.isEmpty()}">
+					<nav>
+      					<ul class="pagination justify-content-center">
+            				<li th:class="${costs.first} ? 'disabled'" class="page-item">
+                				<a th:href="@{/admin/buildings/{buildId}/costs(buildId = ${buildId}, page = ${costs.number - 1})}" class="page-link">&laquo;</a>
+            				</li>
+            				<li th:each="page : ${#numbers.sequence(1, costs.totalPages)}" th:if="${page >= costs.number - 1 and page <= costs.number + 3}" class="page-item" th:class="${page == costs.number + 1} ? 'active'" >
+ 								<a th:href="@{/admin/buildings/{buildId}/costs(buildId = ${buildId}, page = ${page - 1})}" th:text="${page}" class="page-link"></a>
+ 							</li>
+            				<li th:class="${costs.last} ? 'disabled'" class="page-item" >
+                				<a th:href="@{/admin/buildings/{buildId}/costs(buildId = ${buildId}, page = ${costs.number + 1})}" class="page-link">&raquo;</a>
+            				</li>
+        				</ul>
+    				</nav>
+				</div>                
             </div>
         </div>
     </div>

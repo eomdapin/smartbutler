@@ -2,7 +2,7 @@ package com.fms.smartbutler.service;
 
 /**
 * @author 엄다빈
-* @editDate 2024-01-30 ~ 2024-01-31
+* @editDate 2024-01-30 ~ 2024-02-03
 */
 
 import java.time.LocalDate;
@@ -10,12 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
-
-/**
-* @author 엄다빈
-* @editDate 2024-01-30 ~ 2024-02-03
-*/
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Cost;
@@ -64,7 +60,17 @@ public class CostService {
 		return modelMapper.map(cost, CostDTO.class); 
 	}
 	
-	public List<CostDTO> findByBuildId(Long buildId) {
+	public Page<CostDTO> findByBuildId(Long buildId, Pageable pageable) {
+		if(buildId == null || buildId == 0) {
+			return costRepository.findAllByOrderByDateDesc(pageable)
+					.map(cost -> modelMapper.map(cost, CostDTO.class));
+		} else {
+			return costRepository.findAllByBuild_BuildIdOrderByDateDesc(buildId, pageable)
+					.map(cost -> modelMapper.map(cost, CostDTO.class));
+		}
+	}
+	
+	public List<CostDTO> findByBuildIdUser(Long buildId) {
 		if(buildId == null || buildId == 0) {
 			return costRepository.findAll().stream()
 					.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();

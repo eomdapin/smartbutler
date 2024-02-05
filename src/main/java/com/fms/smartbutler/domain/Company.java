@@ -1,5 +1,10 @@
 package com.fms.smartbutler.domain;
 
+/**
+ * @author 전종배
+ * @since 2024-02-01 to 2024-02-03
+ */
+
 import java.sql.Date;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,16 +23,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author 전종배
- * @since 2024-02-01 to 2024-02-03
- */
-
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Setter @Getter
+@AllArgsConstructor @NoArgsConstructor
+@Table(name = "company")
 public class Company {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,16 +65,9 @@ public class Company {
 	@Column(name = "role")
 	private String role;
 
-	/**
-	 * @author 전종배
-	 * @since 2024-02-01 to 2024-02-03
-	 */
-	
 	@Entity
-	@Getter
-	@Setter
-	@AllArgsConstructor
-	@NoArgsConstructor
+	@Setter @Getter
+	@AllArgsConstructor @NoArgsConstructor
 	@Table(name = "company_kind")
 	public static class CompanyKind {
 

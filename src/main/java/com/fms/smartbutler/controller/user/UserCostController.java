@@ -30,10 +30,10 @@ public class UserCostController {
 	@GetMapping("/user/cost")
 	public String getUserCost(@RequestParam(required = false) Long buildId, @RequestParam(required = false) Long costId, Model model) {
 		buildId = buildId == null ? 1 :buildId;
-		List<CostDTO> costs = costService.findByBuildId(buildId);
+		List<CostDTO> costs = costService.findByBuildIdUser(buildId);
 		BuildDTO build = buildService.findById(buildId);
 		
-		costId = costId == null ? costs.get(0).getCostId() :costId;
+		costId = costId == null ? costs.get(0).getCostId() : costId;
 		CostDTO cost = costService.findById(costId);
 		CostDTO prevCost = costService.findByBuildIdAndDate(buildId, cost.getDate().minusMonths(1));
 		

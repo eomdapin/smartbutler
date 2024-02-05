@@ -31,29 +31,29 @@
 				</div>            
 				<form id="costForm" th:action="@{/admin/buildings/{buildId}/costs/{costId}/send(buildId = ${buildId}, costId = ${costId})}" th:method="put">
 					<div class="row">
-					    <div class="col-2 mb-3"><label for="buildName" class="form-label">건물명</label></div>
+					    <div class="col-1 mb-3"><label for="buildName" class="form-label">건물명</label></div>
 					    <div class="col-4 mb-3"><input type="text" name="buildName" class="form-control" onChange="sumCost()" th:value="${build?.buildName}" readonly></div>
-					    
-					    <div class="col-2 mb-3"><label for="upkeep" class="form-label">유지관리비</label></div>
-					    <div class="col-4 mb-3"><input type="number" id="upkeep" name="upkeep" class="form-control" th:value="${costDTO?.upkeep}" readonly></div>
+					    <div class="col-1"></div>
+					    <div class="col-1 mb-3"><label for="upkeep" class="form-label">유지관리비</label></div>
+					    <div class="col-4 mb-3"><input type="text" id="upkeep" name="upkeep" class="form-control" th:value="${#numbers.formatInteger(costDTO?.upkeep, 3, 'COMMA') + '원'}" readonly></div>
 					</div>
 					<div class="row">
-					    <div class="col-2 mb-3"><label for="electricity" class="form-label">전기료</label></div>
-					    <div class="col-4 mb-3"><input type="number" id="electricity" name="electricity" class="form-control" th:value="${costDTO?.electricity}" readonly></div>
-					    
-					    <div class="col-2 mb-3"><label for="consignment" class="form-label">전문위탁비</label></div>
-					    <div class="col-4 mb-3"><input type="number" id="consignment" name="consignment" class="form-control" th:value="${costDTO?.consignment}" readonly></div>
+					    <div class="col-1 mb-3"><label for="electricity" class="form-label">전기료</label></div>
+					    <div class="col-4 mb-3"><input type="text" id="electricity" name="electricity" class="form-control" th:value="${#numbers.formatInteger(costDTO?.electricity, 3, 'COMMA') + '원'}" readonly></div>
+					    <div class="col-1"></div>
+					    <div class="col-1 mb-3"><label for="consignment" class="form-label">전문위탁비</label></div>
+					    <div class="col-4 mb-3"><input type="text" id="consignment" name="consignment" class="form-control" th:value="${#numbers.formatInteger(costDTO?.consignment, 3, 'COMMA') + '원'}" readonly></div>
 					</div>
 					<div class="row">
-						<div class="col-2 mb-3"><label for="repair" class="form-label">수선비</label></div>
-						<div class="col-4 mb-3"><input type="number" id="repair" name="repair" class="form-control" th:value="${costDTO?.repair}" readonly></div>
-						
-						<div class="col-2 mb-3"><label for="date" class="form-label">관리비개월</label></div>
+						<div class="col-1 mb-3"><label for="repair" class="form-label">수선비</label></div>
+						<div class="col-4 mb-3"><input type="text" id="repair" name="repair" class="form-control" th:value="${#numbers.formatInteger(costDTO?.repair, 3, 'COMMA') + '원'}" readonly></div>
+						<div class="col-1"></div>
+						<div class="col-1 mb-3"><label for="date" class="form-label">관리비개월</label></div>
 						<div class="col-4 mb-3"><input type="date" name="date" class="form-control" onChange="sumCost()" th:value="${costDTO?.date}" readonly></div>
 					</div>
 					<div class="row">
-					    <div class="col-2 mb-3"><label for="total" class="form-label">합계금액</label></div>
-					    <div class="col-4 mb-3"><input type="text" id="total" name="total" class="form-control" th:value="${total}" disabled></div>
+					    <div class="col-1 mb-3"><label for="total" class="form-label">합계금액</label></div>
+					    <div class="col-4 mb-3"><input type="text" id="total" name="total" class="form-control" th:value="${#numbers.formatInteger(total, 3, 'COMMA') + '원'}" disabled></div>
 					    <input type="hidden" name="send" class="form-control" value="2">
 					</div>
 					<th:block th:if="${costDTO?.send == 1}">
@@ -73,18 +73,18 @@
 							<h5>[[${#strings.substring(costDTO?.date, 0, 7)}]]월 기준 입주 세대 : [[${costDTO?.residentCnt}]] 세대</h5>
 						</div>
 						<div class="row">
-						    <div class="col-2 mb-3"><label for="" class="form-label">전기료</label></div>
-						    <div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatDecimal((costDTO?.electricity / avgCost / 30) * roomSize * 30, 1, 2)}" disabled></div>
-						    
-						    <div class="col-2 mb-3"><label for="" class="form-label">유지관리비</label></div>
-						    <div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatDecimal((costDTO?.upkeep / avgCost / 30) * roomSize * 30, 1, 2)}" disabled></div>
+						    <div class="col-1 mb-3"><label for="" class="form-label">전기료</label></div>
+						    <div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatInteger((costDTO?.electricity / avgCost / 30) * roomSize * 30, 3, 'COMMA') + '원'}" disabled></div>
+						    <div class="col-1"></div>
+						    <div class="col-1 mb-3"><label for="" class="form-label">유지관리비</label></div>
+						    <div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatInteger((costDTO?.upkeep / avgCost / 30) * roomSize * 30, 3, 'COMMA') + '원'}" disabled></div>
 						</div>
 						<div class="row">
-							<div class="col-2 mb-3"><label for="" class="form-label">수선비</label></div>
-							<div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatDecimal((costDTO?.repair / avgCost / 30) * roomSize * 30, 1, 2)}" disabled></div>
-						    
-						    <div class="col-2 mb-3"><label for="" class="form-label">전문위탁비</label></div>
-						    <div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatDecimal((costDTO?.consignment / avgCost / 30) * roomSize * 30, 1, 2)}" disabled></div>
+							<div class="col-1 mb-3"><label for="" class="form-label">수선비</label></div>
+							<div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatInteger((costDTO?.repair / avgCost / 30) * roomSize * 30, 3, 'COMMA') + '원'}" disabled></div>
+						    <div class="col-1"></div>
+						    <div class="col-1 mb-3"><label for="" class="form-label">전문위탁비</label></div>
+						    <div class="col-4 mb-3"><input type="text" class="form-control" th:value="${#numbers.formatInteger((costDTO?.consignment / avgCost / 30) * roomSize * 30, 3, 'COMMA') + '원'}" disabled></div>
 						</div>
 						<div class="row">
 							<div class="col-auto"><a onClick="history.back()" class="btn btn-lg btn-outline-dark">목록</a></div>

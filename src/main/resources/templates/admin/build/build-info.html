@@ -40,14 +40,14 @@
 						<label for="buildId" class="form-label">건물번호</label>
 					</div>
 					<div class="col-4 mb-3">
-						<input type="text" name="buildId" class="form-control" th:value="${build?.buildId}" readonly>
+						<input type="text" name="buildId" class="form-control" th:value="${build?.buildId}" placeholder="자동으로 입력됩니다." readonly>
 					</div>
 					<div class="col-1"></div>
 					<div class="col-1 mb-3">
 						<label for="room" class="form-label">칸수</label>
 					</div>
 					<div class="col-4 mb-3">
-						<input type="text" name="room" class="form-control" th:value="${build?.room}" required>
+						<input type="text" name="room" class="form-control" th:value="${build?.room}" placeholder="건물의 칸수를 입력해주세요." required>
 					</div>
 				</div>
 				<div class="row">
@@ -55,8 +55,7 @@
 						<label for="name" class="form-label">건물명</label>
 					</div>
 					<div class="col-4 mb-3">
-						<input type="text" name="buildName" class="form-control" th:value="${build?.buildName}"
-							required>
+						<input type="text" name="buildName" class="form-control" th:value="${build?.buildName}" placeholder="건물명을 입력해주세요." required>
 					</div>
 					<div class="col-1"></div>
 					<div class="col-1 mb-3">
@@ -76,15 +75,15 @@
 					</div>
 					<div class="col-4 mb-3">
 						<input type="text" id="address" name="address" class="form-control" th:value="${build?.address}"
-							onclick="sample4_execDaumPostcode()" required> <span id="guide"
-							style="color: #999; display: none;"></span>
+							onclick="sample4_execDaumPostcode()" placeholder="선택하여 주소를 입력해주세요." required>
+						<span id="guide" style="color: #999; display: none;"></span>
 					</div>
 					<div class="col-1"></div>
 					<div class="col-1 mb-3">
 						<label for="area" class="form-label">면적</label>
 					</div>
 					<div class="col-4 mb-3">
-						<input type="text" name="area" class="form-control" th:value="${build?.area}" required>
+						<input type="text" name="area" class="form-control" th:value="${build?.area}" placeholder="건물의 총 면적을 입력해주세요. (단위 : ㎡)" required>
 					</div>
 				</div>
 				<div class="row">
@@ -92,7 +91,7 @@
 						<label for="floor" class="form-label">층수</label>
 					</div>
 					<div class="col-4 mb-3">
-						<input type="text" name="floor" class="form-control" th:value=${build?.floor} required>
+						<input type="text" name="floor" class="form-control" th:value=${build?.floor} placeholder="건물의 전체 층수를 입력해주세요." required>
 					</div>
 					<div class="col-1"></div>
 					<div class="col-1 mb-3">
