@@ -53,7 +53,7 @@
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
 					<div class="col-7"><label for="content" class="col-form-label fw-bold">내용</label></div>
-					<div class="col-7 m-0"><textarea rows="5" name="content" class="form-control" th:text="${claim?.content}"></textarea></div>
+					<div class="col-7 m-0"><textarea rows="10" name="content" class="form-control" th:text="${claim?.content}" style="resize:none"></textarea></div>
 				</div>
 				<div class="row justify-content-center mt-3">
 					<button type="button" class="btn btn-lg btn-primary col-auto me-3" onClick="putClick(); return false;">완료</button>
