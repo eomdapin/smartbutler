@@ -29,134 +29,147 @@
 				<div class="container fw-semibold">
 				<form th:action="@{/admin/buildings/{buildId}/companies/{companyId}(buildId=${company.buildId} ,companyId=${company.companyId})}" th:method="delete">
 					<div class="row align-items-center mb-4">
-						<div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
+						<!-- <div class="col-5"> -->
+							<!-- <div class="row g-3 align-items-center"> -->
+								<div class="col-1">
 									<label for="company-id" class="col-form-label ms-3">업체번호</label>
 								</div>
-								<div class="col-8">
+								<div class="col-4">
 									<input class="form-control" type="text" th:value="${company.companyId}" id="companyId" name="companyId" readonly disabled>
 								</div>
-							</div>
-						</div>
-						<div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
+								
+								<div class="col-1"></div>
+					<!-- 		</div>
+						</div> -->
+						<!-- <div class="col-5"> -->
+						<!-- 	<div class="row g-3 align-items-center"> -->
+								<div class="col-1">
 									<label for="password" class="col-form-label ms-3">비밀번호</label>
 								</div>
-								<div class="col-8">
+								<div class="col-3">
 									<input class="form-control" type="password" th:value="${company.password}" id="password" name="password" readonly disabled>
 								</div>
-							</div>
-						</div>
-						<div class="col-2">
+								<div class="col-1">
+								<input class="form-control" type="button" value="보기" id="password" name="password">
+								<!-- 	<button type="button" class="col btn btn-outline-info">보기</button> -->
+								</div>
+					<!-- 		</div>
+						</div> -->
+					<!-- 	<div class="col-2">
 							<div class="row g-3 align-items-center me-5">
 								<button type="button" class="col btn btn-outline-info">보기</button>
 							</div>
-						</div>
+						</div> -->
 					</div>
 
 					<div class="row align-items-center mb-4">
-						<div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
+						<!-- <div class="col-5">
+							<div class="row g-3 align-items-center"> -->
+								<div class="col-1">
 									<label for="company-name" class="col-form-label ms-3">업체명</label>
 								</div>
-								<div class="col-8">
+								<div class="col-4">
 									<input class="form-control" type="text" th:value="${company.companyName}" readonly disabled>
 								</div>
-							</div>
-						</div>
-						<div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
+								
+								<div class="col-1"></div>
+						<!-- 	</div>
+						</div> -->
+						<!-- <div class="col-5">
+							<div class="row g-3 align-items-center"> -->
+								<div class="col-1">
 									<label for="from-date" class="col-form-label ms-3">계약시작일</label>
 								</div>
-								<div class="col-8">
+								<div class="col-4">
 									<input class="form-control" type="text" th:value="${company.fromDate}" id="fromDate" name="fromDate" readonly disabled>
 								</div>
-							</div>
-						</div>
+							<!-- </div>
+						</div> -->
 					</div>
 
 					<div class="row align-items-center mb-4">
-						<div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
+						<!-- <div class="col-5">
+							<div class="row g-3 align-items-center"> -->
+								<div class="col-1">
 									<label for="manager" class="col-form-label ms-3">담당자명</label>
 								</div>
-								<div class="col-8">
+								<div class="col-4">
 									<input class="form-control" type="text" th:value="${company.manager}" id="manager" name="manager" readonly disabled>
 								</div>
-							</div>
-						</div>
-						<div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
+							<!-- </div>
+						</div> -->
+						<div class="col-1"></div>
+						<!-- <div class="col-5">
+							<div class="row g-3 align-items-center"> -->
+								<div class="col-1">
 									<label for="to-date" class="col-form-label ms-3">계약종료일</label>
 								</div>
-								<div class="col-8">
+								<div class="col-4">
 									<input class="form-control" type="text" th:value="${company.toDate}" id="toDate" name="toDate" readonly disabled>
 								</div>
-							</div>
-						</div>
+							<!-- </div>
+						</div> -->
 					</div>
 
 					<div class="row align-items-center mb-4">
-						<div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
+						<!-- <div class="col-5">
+							<div class="row g-3 align-items-center"> -->
+								<div class="col-1">
 									<label for="phone" class="col-form-label ms-3">전화번호</label>
 								</div>
-								<div class="col-8">
+								<div class="col-4">
 									<input class="form-control" type="text" th:value="${company.phone}" id="phone" name="phone" readonly disabled>
 								</div>
-							</div>
-						</div>
-						<div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
+							<!-- </div>
+						</div> -->
+						<div class="col-1"></div>
+						<!-- <div class="col-5">
+							<div class="row g-3 align-items-center"> -->
+								<div class="col-1">
 									<label for="kind-name" class="col-form-label ms-3">담당업무</label>
 								</div>
-								<div class="col-8">
+								<div class="col-4">
 									<input class="form-control" type="text" th:value="${company.kindName}" id="kindName" name="kindName" readonly disabled>
 								</div>
-							</div>
-						</div>
+							<!-- </div>
+						</div> -->
 					</div>
 
 					<div class="row align-items-center mb-5">
-						<div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
+						<!-- <div class="col-5">
+							<div class="row g-3 align-items-center"> -->
+								<div class="col-1">
 									<label for="cost" class="col-form-label ms-3">계약비용</label>
 								</div>
-								<div class="col-8">
+								<div class="col-4">
 									<input class="form-control" type="text" th:value="${company.cost}" id="cost" name="cost" readonly disabled>
 								</div>
-							</div>
-						</div>
-						<div class="col-5">
-							<div class="row g-3 align-items-center">
-								<div class="col-4">
+							<!-- </div>
+						</div> -->
+						<div class="col-1"></div>
+						<!-- <div class="col-5">
+							<div class="row g-3 align-items-center"> -->
+								<div class="col-1">
 									<label for="cost" class="col-form-label ms-3">건물명</label>
 								</div>
-								<div class="col-8">
+								<div class="col-4">
 									<input class="form-control" type="text" th:value="${company.buildName}" id="buildName" name="buildName" readonly disabled>
 								</div>
-							</div>
-						</div>
+							<!-- </div>
+						</div> -->
 					</div>
 					
 					<div class="row">
-						<div class="col-5"></div>
-						<div class="col-5">
-							<div class="d-flex gap-4 justify-items-center">
+						<div class="col-7"></div>
+						<!-- <div class="col-2"></div> -->
+						<div class="col-4">
+							<div class="d-flex gap-4 justify-content-end">
 								<a class="col btn btn-primary" type="button" th:href="@{/admin/buildings/{buildId}/companies/{companyId}/update(buildId=${company.buildId}, companyId=${company.companyId})}">수정</a>
 								<button class="col btn btn-info text-white" type="submit">삭제</button>
 								<a class="col btn btn-outline-primary" type="button" href="/admin/buildings/companies">목록</a>
 							</div>
 						</div>
+						
 					</div>
 					</form>
 				</div>
