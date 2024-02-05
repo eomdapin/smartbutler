@@ -33,7 +33,7 @@ public class UserCostController {
 		List<CostDTO> costs = costService.findByBuildId(buildId);
 		BuildDTO build = buildService.findById(buildId);
 		
-		costId = costId == null ? costs.get(0).getCostId() :costId;
+		costId = costId == null ? costs.get(0).getCostId() : costId;
 		CostDTO cost = costService.findById(costId);
 		CostDTO prevCost = costService.findByBuildIdAndDate(buildId, cost.getDate().minusMonths(1));
 		
