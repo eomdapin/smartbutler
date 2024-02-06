@@ -1,12 +1,11 @@
 package com.fms.smartbutler.controller.user;
 
-import java.util.ArrayList;
-
 /**
 * @author 엄다빈
 * @editDate 2024-01-25 ~ 2024-01-29
 */
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.core.io.FileSystemResource;
@@ -25,7 +24,6 @@ import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ImageService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/user/buildings")

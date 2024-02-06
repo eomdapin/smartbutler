@@ -9,7 +9,7 @@ function Header() {
             </div>
             <div className="d-flex align-items-center" style={{ gap: "50px", marginRight: "200px" }}>
                 <div><a href="http://localhost:8080/user/mypage">마이페이지</a></div>
-                <div><a href="http://localhost:3000/user/buildings/info">건물 정보 보기</a></div>
+                <div><a href="http://localhost:8080/user/buildings/info">건물 정보 보기</a></div>
                 <div><a href="http://localhost:8080/user/estimate">견적 신청</a></div>
                 <div><a href="http://localhost:8080/user/claims">민원 신청</a></div>
             </div>
