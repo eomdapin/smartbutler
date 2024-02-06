@@ -7,6 +7,7 @@ import MapLoad from './api/MapLoad.js';
 function BuildInfo() {
     const [image, setImage] = useState([]);
     const [buildId, setBuildId] = useState(0);
+    const [isLogin, setIsLogin] = useState('');
     const [build, setBuild] = useState([
         {
             buildId: '',
@@ -22,6 +23,7 @@ function BuildInfo() {
             .then(response => {
                 setBuild(response.data[0])
                 setImage(response.data[1])
+                setIsLogin(response.data[3])
             })
             .catch(error => console.log(error));
     }, []);
@@ -43,7 +45,7 @@ function BuildInfo() {
 
     return (
         <>
-            <Header />
+            <Header isLogin={isLogin}/>
             <div className="container" style={{ float: "none" }}>
                 <div className="content form-content">
                     <h2 className="text-center mt-2">건물 정보</h2>

@@ -11,37 +11,21 @@ function FirstPage() {
                 </div>
                 <div className="row justify-content-around my-5">
                     <div className="col-auto box">
-                        <a href="http://localhost:8080/admin">
+                        <a href="/admin">
                             <img src="/img/adminLogin.png" />
                         </a>
                     </div>
                     <div className="col-auto box">
-                        <a href="http://localhost:8080/user">
+                        <a href="/user">
                             <img src="/img/userLogin.png" />
                         </a>
                     </div>
                     <div className="col-auto box">
-                        <a href="http://localhost:8080/worker">
+                        <a href="/worker">
                             <img src="/img/workerLogin.png" />
                         </a>
                     </div>
                 </div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
-                <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
                 <div className="row"><span>Copyright &copy; 2024 SMARTBUTLER</span></div>
             </div>
         </div>

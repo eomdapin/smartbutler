@@ -5,6 +5,7 @@ package com.fms.smartbutler.controller.user;
 * @editDate 2024-01-25 ~ 2024-01-29
 */
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,15 +36,17 @@ public class UserBuildController {
 	
 	// 건물 정보
 	@GetMapping("/build")
-	public ResponseEntity<List<Object>> getBuilds(@RequestParam(required = false) Long buildId) {
+	public ResponseEntity<List<Object>> getBuilds(@RequestParam(required = false) Long buildId, Principal principal) {
 		buildId = buildId == null ? 1 :buildId;
 		List<BuildDTO> builds = buildService.findAll();
 		List<ImageDTO> images = imageService.findByOutIdAndCoded(buildId, "b");
+		String isLogin = principal.getName();
 		
 		List<Object> content = new ArrayList<>();
 		content.add(builds);
 		content.add(images);
 		content.add(buildId);
+		content.add(isLogin);
 		
 		return ResponseEntity.status(200).body(content);
 	}
