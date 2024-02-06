@@ -34,7 +34,5 @@ public class ItemDTO {
 		
 		private String kindType;
 		private String kindName;
-		
 	}
-	
 }

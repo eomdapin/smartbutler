@@ -57,5 +57,4 @@ public class Estimate {
 	
 	@Column(name = "content")
 	private String content;
-	
 }

@@ -26,7 +26,6 @@
 					<div class="col-2">
 						<label for="buildName" class="ms-4 fw-bold">건물명</label>
 					</div>
-					
 					<div class="col-4">
                     	<select class="form-select" id="buildId" name="buildId" onChange="changeBuild()">
                     		<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
@@ -41,7 +40,7 @@
 						<label for="period" class="ms-4 fw-bold">예상 계약기간</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="period" class="form-control">
+						<input type="text" name="period" class="form-control" required>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -49,7 +48,7 @@
 						<label for="toDate" class="ms-4 fw-bold">예상 입주 날짜</label>
 					</div>
 					<div class="col-4">
-						<input type="date" name="toDate" class="form-control">
+						<input type="date" name="toDate" class="form-control" required>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -57,12 +56,12 @@
 						<label for="deposit" class="ms-4 fw-bold">보증금</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="deposit" class="form-control">
+						<input type="text" name="deposit" class="form-control" required>
 					</div>
 				</div>
 				<div class="row justify-content-center mt-5">
 					<input type="submit" value="신청" class="btn btn-primary col-auto me-3">
-					<input type="button" value="뒤로가기" class="btn btn-secondary col-auto me-3" onClick="history.back()">
+					<input type="button" value="뒤로가기" class="btn btn-secondary col-auto me-3" onClick="location.href='/user'">
 					<input type="hidden" name="confirm" value="1">
 					<input type="hidden" name="BuildId" th:value="${build?.buildId}">
 					<input type="hidden" name="userId" value="2">

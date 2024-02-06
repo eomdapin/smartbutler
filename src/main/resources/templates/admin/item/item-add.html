@@ -38,7 +38,7 @@
 							<label for="fromDate" class="ms-5 fw-bold">사용시작일</label>
 						</div>
 						<div class="col-4">
-							<input type="date" name="fromDate" class="form-control">
+							<input type="date" name="fromDate" class="form-control" required>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -50,13 +50,12 @@
 								<option class="form-option" th:each="builds: ${builds}" th:value="${builds?.buildId}"
 									th:selected="${build?.buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
 							</select>
-							<!-- <input type="text" name="buildName" th:value="${item?.buildName}" class="form-control" readonly> -->
 						</div>
 						<div class="col-2">
 							<label for="status" class="ms-5 fw-bold">상태</label>
 						</div>
 						<div class="col-4">
-							<select name="status" class="form-select" >
+							<select name="status" class="form-select">
 								<option value="1"> 정상 </option>
 								<option value="2"> 수리 </option>
 								<option value="3"> 폐기 </option>
@@ -68,13 +67,13 @@
 							<label for="itemName" class="ms-5 fw-bold">시설명</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="itemName" class="form-control">
+							<input type="text" name="itemName" class="form-control" required>
 						</div>
 						<div class="col-2">
 							<label for="checkDate" class="ms-5 fw-bold">점검날짜</label>
 						</div>
 						<div class="col-4">
-							<input type="date" name="checkDate" class="form-control">
+							<input type="date" name="checkDate" class="form-control" required>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -82,7 +81,7 @@
 							<label for="kindType" class="ms-5 fw-bold">시설종류</label>
 						</div>
 						<div class="col-4">
-							<select name="kindType" class="form-select" >
+							<select name="kindType" class="form-select" required>
 								<option value=""> -- 선택 -- </option>
 								<option th:each="itemKind : ${itemKind}" th:value="${itemKind?.kindType}" th:utext="${itemKind?.kindName}"></option>
 							</select>
@@ -91,7 +90,7 @@
 							<label for="checkCycle" class="ms-5 fw-bold">점검주기</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="checkCycle" class="form-control">
+							<input type="text" name="checkCycle" class="form-control" required>
 						</div>
 					</div>
 					<div class="row align-items-center mb-4">
@@ -99,7 +98,7 @@
 							<label for="location" class="ms-5 fw-bold">시설위치</label>
 						</div>
 						<div class="col-4">
-							<input type="text" name="location" class="form-control">
+							<input type="text" name="location" class="form-control" required>
 						</div>
 					</div>
 					<div class="row justify-content-end mt-3">
