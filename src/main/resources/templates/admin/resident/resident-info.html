@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<form id="infoForm" th:action="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${resident?.residentId})}" th:method="delete">
+				<form id="infoForm" th:action="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${resident?.residentId})}" onSubmit="outResident()" th:method="delete">
                     <div class="row">
                         <div class="col-1 mb-3"><label for="userName" class="col-form-label ms-3">고객명</label></div>
                         <div class="col-4 mb-3"><input type="text" name="userName" class="form-control" th:value="${resident?.users?.userName}" readonly></div>
@@ -70,6 +70,14 @@
 	<script type="text/javascript">
 		document.getElementById('sub3').style.display = 'block';
 		document.querySelectorAll('#sub3 > li')[0].style.backgroundColor = '#003366';
+		
+		function outResident() {
+				Array.from(document.getElementsByTagName('input')).forEach(element => {
+					element.value = element.value.replace(/원/g, "");
+					element.value = element.value.replace(/,/g, "");
+					console.log(element.value);
+				});
+		}
 	</script>
 </body>
 </html>
