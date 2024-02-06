@@ -1,0 +1,9 @@
+FROM openjdk:17-jdk-slim
+
+WORKDIR /smartbutler
+
+COPY build/libs/smartbutler-0.0.1-SNAPSHOT.jar ./smartbutler.jar
+
+COPY smartbutler.sh ./smartbutler.sh
+
+ENTRYPOINT [ "sh", "./smartbutler.sh" ]
