@@ -51,8 +51,14 @@ public class UserClaimController {
 	// 민원 목록
 	@GetMapping
 	public String getClaimList(@RequestParam(defaultValue = "0") int page, Principal principal, Model model) {
-		Pageable pageable = PageRequest.of(page, 10, Sort.by("claimId").descending());
 		UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
+		ResidentDTO resident = residentService.findByUserId(user.getUserId());
+		
+		if(resident.getResidentNum() <= 0) {
+			return "user/claim/claim-error";
+		}
+		
+		Pageable pageable = PageRequest.of(page, 10, Sort.by("claimId").descending());
 		Page<ClaimDTO> claims = claimService.findByUserId(user.getUserId(), pageable);
 		
 		model.addAttribute("list", claims);

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Header from './Header.js';
+import Footer from './Footer.js';
 import axios from 'axios';
 import MapLoad from './api/MapLoad.js';
 
@@ -41,6 +43,7 @@ function BuildInfo() {
 
     return (
         <>
+            <Header />
             <div className="container" style={{ float: "none" }}>
                 <div className="content form-content">
                     <h2 className="text-center mt-2">건물 정보</h2>
@@ -111,6 +114,7 @@ function BuildInfo() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 }

@@ -1,13 +1,17 @@
 @charset "UTF-8";
 
-.container {
+#wrapIndex {
+    width: 100%;
+    position: relative;
+}
+
+#wrapIndex .container {
     width: 1140px;
     float: none;
     margin: 200px auto 0;
-
 }
 
-.box {
+#wrapIndex .box {
     width: 250px;
     height: 300px;
     margin: 15px;
