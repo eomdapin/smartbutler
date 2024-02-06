@@ -39,7 +39,7 @@ public class ImageService {
 			if(os.contains("win")) {
 				filePath = "C:\\web-img\\";
 			} else {
-				filePath = "home\\ec2-user\\web-img\\";
+				filePath = "home/ec2-user/web-img/";
 			}
 			
 			File folder = new File(filePath);
