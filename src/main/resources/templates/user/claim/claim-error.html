@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SMARTBUTLER</title>
+</head>
+<body>
+	<form action="/user" id="costInfo" method="get">
+	</form>
+	<script>
+		window.onload = () => {
+			alert('입주 회원만 신청하실 수 있습니다.');
+			document.getElementById('costInfo').submit();
+		};
+	</script>
+</body>
+</html>
