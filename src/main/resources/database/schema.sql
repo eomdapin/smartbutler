@@ -1,4 +1,3 @@
-drop table if exists build;
 create table if not exists build (
 	build_id bigint not null auto_increment COMMENT '건물 고유 번호',
     build_name varchar(100) not null COMMENT '건물명',
@@ -10,7 +9,6 @@ create table if not exists build (
     primary key(build_id)
 );
 
-drop table if exists users;
 create table if not exists users (
 	user_id bigint not null auto_increment COMMENT '회원 고유 번호',
     user_name varchar(30) not null COMMENT '회원명',
@@ -22,7 +20,6 @@ create table if not exists users (
     primary key(user_id)
 );
 
-drop table if exists resident;
 create table if not exists resident (
 	resident_id bigint not null auto_increment COMMENT '입주 고유 번호',
     resident_num int not null COMMENT '방 번호',
@@ -38,7 +35,6 @@ create table if not exists resident (
     primary key(resident_id)
 );
 
-drop table if exists claim;
 create table if not exists claim (
 	claim_id bigint not null auto_increment COMMENT '민원 고유 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
@@ -54,14 +50,12 @@ create table if not exists claim (
     primary key(claim_id)
 );
 
-drop table if exists company_kind;
 create table if not exists company_kind (
 	kind_type bigint not null auto_increment COMMENT '업무 고유 번호',
     kind_name varchar(100) not null COMMENT '담당 업무명',
     primary key(kind_type)
 );
 
-drop table if exists company;
 create table if not exists company (
 	company_id bigint not null auto_increment COMMENT '업체 고유 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
@@ -79,7 +73,6 @@ create table if not exists company (
     primary key(company_id)
 );
 
-drop table if exists estimate;
 create table if not exists estimate (
     estimate_id bigint not null auto_increment COMMENT '견적 고유 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
@@ -95,7 +88,6 @@ create table if not exists estimate (
     primary key(estimate_id)
 );
 
-drop table if exists cost;
 create table if not exists cost (
 	cost_id bigint not null auto_increment COMMENT '관리비 고유 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
@@ -110,14 +102,12 @@ create table if not exists cost (
     primary key(cost_id)
 );
 
-drop table if exists item_kind;
 create table if not exists item_kind (
 	kind_type varchar(20) not null COMMENT '시설 종류 코드',
     kind_name varchar(100) not null COMMENT '시설 종류 이름',
     primary key(kind_type)
 );
 
-drop table if exists item;
 create table if not exists item (
 	item_id bigint not null auto_increment COMMENT '시설 고유 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
@@ -133,7 +123,6 @@ create table if not exists item (
     primary key(item_id)
 );
 
-drop table if exists job;
 create table if not exists job (
 	job_id bigint not null auto_increment COMMENT '작업 고유 번호',
     build_id bigint not null COMMENT '건물 고유 번호',
@@ -151,14 +140,12 @@ create table if not exists job (
     primary key(job_id)
 );
 
-drop table if exists image_category;
 create table if not exists image_category (
 	coded char(20) not null COMMENT '이미지 코드',
     code_name char(50) not null COMMENT '분류 이름',
     primary key(coded)
 );
 
-drop table if exists image;
 create table if not exists image (
 	image_id bigint not null auto_increment COMMENT '이미지 고유 번호',
     coded char(20) not null COMMENT '이미지 코드',
@@ -171,7 +158,6 @@ create table if not exists image (
     primary key(image_id)
 );
 
-drop table if exists admin;
 create table if not exists admin (
 	admin_id bigint not null auto_increment COMMENT '관리자 고유 번호',
     username varchar(255) not null COMMENT '관리자 아이디',
