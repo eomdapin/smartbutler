@@ -9,7 +9,11 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +25,7 @@ import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ImageService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/user/buildings")
@@ -43,5 +48,21 @@ public class UserBuildController {
 		content.add(buildId);
 		
 		return ResponseEntity.status(200).body(content);
+	}
+	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("/image")
+	public ResponseEntity<?> getImages(@RequestParam(required = false) String image) {
+		String filePath = "";
+		String os = System.getProperty("os.name").toLowerCase();
+		
+		if(os.contains("win")) {
+			filePath = "C:\\web-img\\";
+		} else {
+			filePath = "home\\ec2-user\\web-img\\";
+		}
+		Resource resource = new FileSystemResource(filePath + image);
+		
+		return new ResponseEntity<>(resource, HttpStatus.OK); 
 	}
 }

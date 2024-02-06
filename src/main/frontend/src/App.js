@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import BuildInfo from './component/BuildInfo.js';
 import FirstPage from './component/FirstPage.js';
 
