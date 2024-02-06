@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Header from './component/Header.js';
-import Footer from './component/Footer.js';
+import { BrowserRouter, Route, Routes, Switch } from 'react-router-dom';
 import BuildInfo from './component/BuildInfo.js';
+import FirstPage from './component/FirstPage.js';
 
 function App() {
     return (
         <>
-            <Header />
-            <BuildInfo />
-            <Footer />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<FirstPage />} />
+                    <Route path="/user/buildings/info" element={<BuildInfo />} />
+                </Routes>
+            </BrowserRouter>
         </>
     );
 }
