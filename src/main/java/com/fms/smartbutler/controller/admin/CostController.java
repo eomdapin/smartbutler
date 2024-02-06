@@ -73,7 +73,7 @@ public class CostController {
 		if(costService.save(costDTO)) {
 			model.addAttribute("costId", costDTO.getCostId());
 			model.addAttribute("buildId", buildId);
-			return "/admin/cost/cost-error";
+			return "admin/cost/cost-error";
 		}
 		
 		return "redirect:/admin/buildings/{buildId}/costs";
