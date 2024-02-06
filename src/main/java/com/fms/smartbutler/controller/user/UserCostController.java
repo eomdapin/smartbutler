@@ -42,6 +42,6 @@ public class UserCostController {
 		model.addAttribute("prevCost", prevCost);
 		model.addAttribute("build", build);
 		
-		return "/user/cost/cost-info";
+		return "user/cost/cost-info";
 	}
 }
