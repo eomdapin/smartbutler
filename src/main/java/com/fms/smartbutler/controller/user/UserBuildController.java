@@ -58,7 +58,7 @@ public class UserBuildController {
 		if(os.contains("win")) {
 			filePath = "C:\\web-img\\";
 		} else {
-			filePath = "home/ec2-user/web-img/";
+			filePath = "/home/ec2-user/web-img/";
 		}
 		Resource resource = new FileSystemResource(filePath + image);
 		
