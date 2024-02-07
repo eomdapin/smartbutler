@@ -100,7 +100,7 @@ function BuildInfo() {
                                 }
                                 return (
                                     <div className={carouselItem} key={Date() + index}>
-                                        <img src={`/web-img/${image.name}`} className="d-block" style={{ height: "800px", margin: "0 auto" }} alt="건물 사진" />
+                                        <img src={`/user/buildings/image?image=${image.name}`} className="d-block" style={{ height: "800px", margin: "0 auto" }} alt="건물 사진" />
                                     </div>
                                 );
                             })}

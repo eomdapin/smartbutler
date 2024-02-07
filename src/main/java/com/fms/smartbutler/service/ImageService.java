@@ -33,8 +33,22 @@ public class ImageService {
 		MultipartFile file = vo.getUploadFile();
 		
 		if(!file.isEmpty()) {
+			String filePath = "";
+			String os = System.getProperty("os.name").toLowerCase();
+			
+			if(os.contains("win")) {
+				filePath = "C:\\web-img\\";
+			} else {
+				filePath = "/home/ec2-user/web-img/";
+			}
+			
+			File folder = new File(filePath);
+			
+			if(!folder.exists()) {
+				folder.mkdirs();
+			}
+			
 			String originalFileName = file.getOriginalFilename();
-			String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\web-img\\";
 			UUID uuid = UUID.randomUUID();
 			String fileName = uuid + originalFileName;
 			
