@@ -56,6 +56,4 @@ public class UserEstimateController {
 	public String getEstimateSuccess(Model model) {
 		return "user/estimate/estimate-success";
 	}
-	
-
 }

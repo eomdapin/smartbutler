@@ -21,5 +21,4 @@ public class UsersDTO {
 	private int status;
 	private String pw;
 	private String role;
-	
 }

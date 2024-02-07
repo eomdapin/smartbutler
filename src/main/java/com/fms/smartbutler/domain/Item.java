@@ -70,6 +70,5 @@ public class Item {
 		
 		@Column(name = "kind_name")
 		private String kindName;
-		
 	}
 }
