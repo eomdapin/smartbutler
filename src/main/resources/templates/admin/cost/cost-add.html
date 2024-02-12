@@ -26,7 +26,7 @@
                 </ul>
             </div>
             <div class="content form-content">
-               	<form id="infoForm" th:action="@{/admin/buildings/{buildId}/costs/add(buildId = ${buildId})}" onSubmit="addCost()" method="POST">
+               	<form id="infoForm" th:action="@{/admin/buildings/{buildId}/costs/add(buildId = ${buildId})}" onSubmit="addCost()" method="POST" th:object="${costDTO}">
 					<div class="row">
 						<div class="col-1 mb-3"><label for="buildName" class="form-label">건물명</label></div>
 						<div class="col-4 mb-3">
@@ -37,21 +37,36 @@
 						</div>
                        <div class="col-1"></div>
                         <div class="col-1 mb-3"><label for="upkeep" class="form-label">유지관리비</label></div>
-                        <div class="col-4 mb-3"><input type="number" id="upkeep" name="upkeep" class="form-control" onChange="sumCost()" min="0" placeholder="금액을 입력해주세요. (단위 : 원)" required></div>
+                        <div class="col-4 mb-3">
+                        	<input type="number" id="upkeep" name="upkeep" class="form-control" onChange="sumCost()" min="0" placeholder="금액을 입력해주세요. (단위 : 원)" required>
+                        	<div th:if="${#fields.hasErrors('upkeep')}" th:errors="*{upkeep}" class="field-error"></div>
+                        </div>
                    </div>
                    <div class="row">
                         <div class="col-1 mb-3"><label for="electricity" class="form-label">전기료</label></div>
-                        <div class="col-4 mb-3"><input type="number" id="electricity" name="electricity" class="form-control" onChange="sumCost()" min="0" placeholder="금액을 입력해주세요. (단위 : 원)" required></div>
+                        <div class="col-4 mb-3">
+                        	<input type="number" id="electricity" name="electricity" class="form-control" onChange="sumCost()" min="0" placeholder="금액을 입력해주세요. (단위 : 원)" required>
+                        	<div th:if="${#fields.hasErrors('electricity')}" th:errors="*{electricity}" class="field-error"></div>
+                        </div>
                       	<div class="col-1"></div>
                         <div class="col-1 mb-3"><label for="consignment" class="form-label">전문위탁비</label></div>
-                        <div class="col-4 mb-3"><input type="number" id="consignment" name="consignment" class="form-control" onChange="sumCost()" min="0" placeholder="금액을 입력해주세요. (단위 : 원)" required></div>
+                        <div class="col-4 mb-3">
+                        	<input type="number" id="consignment" name="consignment" class="form-control" onChange="sumCost()" min="0" placeholder="금액을 입력해주세요. (단위 : 원)" required>
+                        	<div th:if="${#fields.hasErrors('consignment')}" th:errors="*{consignment}" class="field-error"></div>
+                        </div>
                    </div>
                    <div class="row">
                         <div class="col-1 mb-3"><label for="repair" class="form-label">수선비</label></div>
-                        <div class="col-4 mb-3"><input type="number" id="repair" name="repair" class="form-control" onChange="sumCost()" min="0" placeholder="금액을 입력해주세요. (단위 : 원)" required></div>
+                        <div class="col-4 mb-3">
+                        	<input type="number" id="repair" name="repair" class="form-control" onChange="sumCost()" min="0" placeholder="금액을 입력해주세요. (단위 : 원)" required>
+                        	<div th:if="${#fields.hasErrors('repair')}" th:errors="*{repair}" class="field-error"></div>
+                       	</div>
                        	<div class="col-1"></div>
-                        <div class="col-1 mb-3"><label for="date" class="form-label">관리비개월</label></div>
-                        <div class="col-4 mb-3"><input id="date" type="date" name="date" class="form-control" required></div>
+                        <div class="col-1 mb-3"><label for="date" class="form-label">월별 관리비</label></div>
+                        <div class="col-4 mb-3">
+                        	<input id="date" type="date" name="date" max="2099-12-31" class="form-control" required>
+                        	<div th:if="${#fields.hasErrors('repair')}" th:errors="*{repair}" class="field-error"></div>
+                        </div>
                    </div>
                    <div class="row">
                    		<div class="col-1 mb-3"><label for="total" class="form-label">합계금액</label></div>

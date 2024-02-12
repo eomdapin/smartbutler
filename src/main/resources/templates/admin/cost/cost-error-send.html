@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SMARTBUTLER</title>
+</head>
+<body>
+	<form th:action="@{/admin/buildings/0/costs}" id="costInfo" method="get">
+	</form>
+	<script>
+		window.onload = () => {
+			alert('입주민이 없는 경우 관리비 전송이 불가합니다.\n관리비 목록 화면으로 돌아갑니다.');
+			document.getElementById('costInfo').submit();
+		};
+	</script>
+</body>
+</html>

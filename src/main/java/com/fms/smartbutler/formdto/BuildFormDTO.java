@@ -28,11 +28,11 @@ public class BuildFormDTO {
 	private String address;
 	
 	@NotNull
-	@Range(min = 1, max = 99, message = "숫자 범위를 초과했습니다.")
+	@Range(min = 1, max = 99, message = "1부터 99까지의 숫자를 입력해주세요.")
 	private Integer floor;
 	
 	@NotNull
-	@Range(min = 1, max = 99, message = "숫자 범위를 초과했습니다.")
+	@Range(min = 1, max = 99, message = "1부터 99까지의 숫자를 입력해주세요.")
 	private Integer room;
 	
 	@NotNull
