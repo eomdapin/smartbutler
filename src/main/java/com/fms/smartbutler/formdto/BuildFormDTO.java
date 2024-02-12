@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Range;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,17 +27,18 @@ public class BuildFormDTO {
 	@NotBlank(message = "주소를 입력해주세요.")
 	private String address;
 	
-	@NotNull(message="숫자만 입력해주세요.")
+	@NotNull
 	@Range(min = 1, max = 99, message = "숫자 범위를 초과했습니다.")
 	private Integer floor;
 	
-	@NotNull(message="숫자만 입력해주세요.")
+	@NotNull
 	@Range(min = 1, max = 99, message = "숫자 범위를 초과했습니다.")
 	private Integer room;
 	
-	@NotNull(message="숫자만 입력해주세요.")
+	@NotNull
 	private Integer area;
 	
 	@NotBlank
+	@Pattern(regexp = "/^\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/", message = "연, 월, 일을 올바르게 입력해주세요.")
 	private String comDate;
 }

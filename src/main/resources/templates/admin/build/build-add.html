@@ -35,14 +35,14 @@
 							<label for="buildId" class="form-label">건물번호</label>
 						</div>
 						<div class="col-4 mb-3">
-							<input type="text" name="buildId" class="form-control" th:value="${build?.buildId}" placeholder="자동으로 입력됩니다." disabled>
+							<input type="text" name="buildId" class="form-control bg-dark-subtle" th:value="${build?.buildId}" placeholder="자동으로 입력됩니다." disabled>
 						</div>
 						<div class="col-1"></div>
 						<div class="col-1 mb-3">
-							<label for="room" class="form-label">칸수</label>
+							<label for="room" class="form-label">호실</label>
 						</div>
 						<div class="col-4 mb-3">
-							<input type="text" id="room" name="room" class="form-control" placeholder="건물의 칸수를 입력해주세요." required>
+							<input type="text" id="room" name="room" class="form-control" placeholder="층마다 호실 수를 입력해주세요." required>
 							<div th:if="${#fields.hasErrors('room')}" th:errors="*{room}" class="field-error"></div>
 						</div>
 					</div>
@@ -98,6 +98,7 @@
 						</div>
 						<div class="col-4 mb-3">
 							<input type="date" name="comDate" max="2099-12-31" class="form-control" th:value=${build?.comDate} required>
+							<div th:if="${#fields.hasErrors('comDate')}" th:errors="*{comDate}" class="field-error"></div>
 						</div>
 					</div>
 					<div class="text-end pt-3 row">

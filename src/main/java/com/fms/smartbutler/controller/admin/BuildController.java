@@ -97,8 +97,13 @@ public class BuildController {
 	
 	// 건물 정보 수정
 	@PutMapping("/{buildId}")
-	public String postBuildinsert(@ModelAttribute BuildDTO build, @ModelAttribute FileVo vo, Model model) throws Exception {
-//		buildService.insert(build);
+	public String postBuildinsert(@Valid @ModelAttribute("build") BuildFormDTO build, BindingResult bindingResult, @ModelAttribute FileVo vo, Model model) throws Exception {
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("build", build);
+			return "admin/build/build-info";
+		}
+		
+		buildService.insert(build);
 		
 		if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
 			ImageDTO imageDTO = new ImageDTO();
