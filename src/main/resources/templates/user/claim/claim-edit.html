@@ -33,8 +33,10 @@
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2"><label for="claimKind" class="col-form-label fw-bold">민원 종류</label></div>
 					<div class="col-5">
-						<select name="claimKind" class="form-select">
+						<select name="claimKind" class="form-select" required>
+							<option class="form-option" value="">선택</option>
 							<option th:each="option : ${options}" th:value="${option?.kindName}" th:text="${option?.kindName}" th:selected="${option?.kindName} == ${claim?.claimKind}"></option>
+							<option class="form-option" value="기타">기타</option>
 						</select>
 					</div>
 				</div>
@@ -49,11 +51,11 @@
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
 					<div class="col-7"><label for="title" class="col-form-label fw-bold">제목</label></div>
-					<div class="col-7 m-0"><input type="text" name="title" th:value="${claim?.title}" class="form-control"></div>
+					<div class="col-7 m-0"><input type="text" name="title" th:value="${claim?.title}" class="form-control" required></div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
 					<div class="col-7"><label for="content" class="col-form-label fw-bold">내용</label></div>
-					<div class="col-7 m-0"><textarea rows="10" name="content" class="form-control" th:text="${claim?.content}" style="resize:none"></textarea></div>
+					<div class="col-7 m-0"><textarea rows="10" name="content" class="form-control" th:text="${claim?.content}" style="resize:none" required></textarea></div>
 				</div>
 				<div class="row justify-content-center mt-3">
 					<button type="button" class="btn btn-lg btn-primary col-auto me-3" onClick="putClick(); return false;">완료</button>

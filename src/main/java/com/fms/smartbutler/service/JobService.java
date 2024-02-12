@@ -54,17 +54,13 @@ public class JobService {
 	}
 	
 	public Page<JobDTO> findByBuildId(Long buildId, Pageable pageable) {
-		Page<Job> jobList;
-		
 		if(buildId == 0) {
-			jobList = jobRepository.findAllByOrderByJobIdDesc(pageable);
+			return jobRepository.findAllByOrderByJobIdDesc(pageable)
+					.map(j -> modelMapper.map(j, JobDTO.class));
 		} else {
-			jobList = jobRepository.findByBuild_BuildIdOrderByJobIdDesc(buildId, pageable);
+			return jobRepository.findByBuild_BuildIdOrderByJobIdDesc(buildId, pageable)
+					.map(j -> modelMapper.map(j, JobDTO.class));
 		}
-		
-		Page<JobDTO> jobDTOList = jobList.map(j -> modelMapper.map(j, JobDTO.class));
-		
-		return jobDTOList;
 	}
 	
 	public Page<JobDTO> findByCompanyId(Long companyId, Pageable pageable) {

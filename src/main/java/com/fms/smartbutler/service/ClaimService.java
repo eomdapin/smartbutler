@@ -67,17 +67,13 @@ public class ClaimService {
 	}
 	
 	public Page<ClaimDTO> findByBuildId(Long buildId, Pageable pageable) {
-		Page<Claim> claimList;
-		
 		if(buildId == 0) {
-			claimList = claimRepository.findAllByOrderByClaimIdDesc(pageable);
+			return claimRepository.findAllByOrderByClaimIdDesc(pageable)
+					.map(c -> modelMapper.map(c, ClaimDTO.class));
 		} else {
-			claimList = claimRepository.findByBuild_BuildIdOrderByClaimIdDesc(buildId, pageable);
+			return claimRepository.findByBuild_BuildIdOrderByClaimIdDesc(buildId, pageable)
+					.map(c -> modelMapper.map(c, ClaimDTO.class));
 		}
-		
-		Page<ClaimDTO> claimDTOList = claimList.map(c -> modelMapper.map(c, ClaimDTO.class));
-		
-		return claimDTOList;
 	}
 	
 	public Page<ClaimDTO> findByUserId(Long userId, Pageable pageable) {

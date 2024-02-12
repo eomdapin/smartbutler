@@ -33,9 +33,10 @@
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2"><label for="claimKind" class="col-form-label fw-bold">민원 종류</label></div>
 					<div class="col-5">
-						<select name="claimKind" class="form-select">
+						<select name="claimKind" class="form-select" required>
 							<option class="form-option" value="">선택</option>
 							<option th:each="option : ${options}" th:value="${option?.kindName}" th:text="${option?.kindName}"></option>
+							<option class="form-option" value="기타">기타</option>
 						</select>
 					</div>
 				</div>
