@@ -39,6 +39,6 @@ public class BuildFormDTO {
 	private Integer area;
 	
 	@NotBlank
-	@Pattern(regexp = "/^\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/", message = "연, 월, 일을 올바르게 입력해주세요.")
+	@Pattern(regexp = "^\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", message = "연, 월, 일을 올바르게 입력해주세요.")
 	private String comDate;
 }
