@@ -58,5 +58,4 @@ public class EstimateController {
 		
 		return "redirect:/admin/estimates";
 	}
-	
 }

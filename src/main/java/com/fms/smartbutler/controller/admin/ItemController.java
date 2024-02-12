@@ -111,5 +111,4 @@ public class ItemController {
 		
 		return "redirect:/admin/buildings/{buildId}/items";
 	}
-	
 }

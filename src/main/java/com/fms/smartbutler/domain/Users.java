@@ -50,5 +50,4 @@ public class Users {
 	public void encodePassword(PasswordEncoder passwordEncoder) {
 		this.pw = passwordEncoder.encode(this.pw);
 	}
-
 }
