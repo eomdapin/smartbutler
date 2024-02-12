@@ -77,6 +77,11 @@ header .logo {
     padding: 30px 50px;
 }
 
+.field-error {
+	color: #f00;
+	font-size: 16px;
+}
+
 /* bootstrap fix */
 
 
