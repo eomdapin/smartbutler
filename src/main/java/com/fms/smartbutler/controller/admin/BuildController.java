@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,13 +19,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ImageDTO;
+import com.fms.smartbutler.formdto.BuildFormDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ImageService;
 import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.vo.FileVo;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin/buildings")
 @RequiredArgsConstructor
@@ -64,14 +69,20 @@ public class BuildController {
 	// 건물 정보 입력 폼
 	@GetMapping("/add")
 	public String getBuildAdd(Model model) {
-		model.addAttribute("build", new BuildDTO());
+		model.addAttribute("build", new BuildFormDTO());
 		
-		return "admin/build/build-info";
+		return "admin/build/build-add";
 	}
 	
 	// 건물 정보 저장
 	@PostMapping("/add")
-	public String postBuildAdd(@ModelAttribute BuildDTO build, @ModelAttribute FileVo vo, Model model) throws Exception {
+	public String postBuildAdd(@Valid @ModelAttribute("build") BuildFormDTO build, BindingResult bindingResult,
+			@ModelAttribute FileVo vo, Model model) throws Exception {
+		
+		if(bindingResult.hasErrors()) {
+			return "admin/build/build-add";
+		}
+		
 		buildService.insert(build);
 		residentService.addResidentDefault(build.getBuildId(), build.getFloor(), build.getRoom());
 		
@@ -87,7 +98,7 @@ public class BuildController {
 	// 건물 정보 수정
 	@PutMapping("/{buildId}")
 	public String postBuildinsert(@ModelAttribute BuildDTO build, @ModelAttribute FileVo vo, Model model) throws Exception {
-		buildService.insert(build);
+//		buildService.insert(build);
 		
 		if(vo.getFileName() != null && !vo.getFileName().isEmpty()) {
 			ImageDTO imageDTO = new ImageDTO();
