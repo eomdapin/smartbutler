@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 	        <div class="content form-content">
-		        <form th:action="@{/admin/estimates/{estimateId}(estimateId = ${estimate.estimateId})}" method="post" id="estimateFinForm">
+		        <form th:action="@{/admin/estimates/{estimateId}(estimateId = ${estimate.estimateId})}" method="post" id="estimateForm">
 		        	<div class="row align-items-center mb-4">
 			        	<div class="col-2">
 							<label for="estimateId" class="ms-5 fw-bold">견적 번호</label>
@@ -74,7 +74,7 @@
 							<label for="deposit" class="ms-5 fw-bold">보증금</label>
 						</div>
 						<div class="col-3">
-							<input type="text" name="deposit" th:value="${estimate?.deposit}" class="form-control bg-dark-subtle" readonly>
+							<input type="text" name="deposit" id="deposit" th:value="${#numbers.formatInteger(estimate?.deposit, 3, 'COMMA') + '원'}" class="form-control bg-dark-subtle" readonly>
 						</div>
 						<div class="col-2">
 							<label for="confirm" class="ms-5 fw-bold">계약 여부</label>
@@ -110,7 +110,7 @@
 					</div>
 					<div class="row col-10 justify-content-end mt-3">
 						<th:block th:if="${estimate.confirm == 1}">
-							<button type="button" class="btn btn-primary col-auto me-3" onclick="estimateFinClick(); return false;">완료</button>
+							<button type="button" class="btn btn-primary col-auto me-3" onclick="estimateFinClick()" value="완료">완료</button>
 						</th:block>
 						<button type="button" class="btn btn-outline-dark col-auto me-3" onclick="history.back()">목록</button>
 						<input type="hidden" name="buildId" th:value="${estimate.buildId}">

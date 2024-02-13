@@ -46,7 +46,7 @@
 							<td><a th:href="@{/admin/estimates/{estimateId}(estimateId = ${estimate.estimateId})}">[[${estimate.buildName}]]</a></td>
 							<td>[[${estimate.period}]]</td>
 							<td>[[${estimate.toDate}]]</td>
-							<td>[[${estimate.deposit}]]</td>
+							<td>[[${#numbers.formatInteger(estimate.deposit, 1, 'COMMA')}]]원</td>
 							<td>[[${estimate.regDate}]]</td>
 							<td th:if="${estimate.confirm == 1 }">신청</td>
 							<td th:if="${estimate.confirm == 2 }">승인</td>

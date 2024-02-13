@@ -34,13 +34,13 @@
 					</div>
 				</div>
 			</form>
-			<form action="/user/estimate/success" method="post">
+			<form action="/user/estimate/success" method="post" id="estimateForm">
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2">
 						<label for="period" class="ms-4 fw-bold">예상 계약기간</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="period" class="form-control" required>
+						<input type="text" name="period" class="form-control" maxlength="2" onkeyup="inputMonthFormat(this);" placeholder="월 수로 적어주세요 (예 : 12개월)" required>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -56,11 +56,11 @@
 						<label for="deposit" class="ms-4 fw-bold">보증금</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="deposit" class="form-control" required>
+						<input type="text" name="deposit" class="form-control" maxlength="13" onkeyup="inputNumberFormat(this);" required>
 					</div>
 				</div>
 				<div class="row justify-content-center mt-5">
-					<input type="submit" value="신청" class="btn btn-primary col-auto me-3">
+					<input type="button" value="신청" onclick="sendEstimate()" class="btn btn-primary col-auto me-3">
 					<input type="button" value="뒤로가기" class="btn btn-secondary col-auto me-3" onClick="location.href='/user'">
 					<input type="hidden" name="confirm" value="1">
 					<input type="hidden" name="BuildId" th:value="${build?.buildId}">
@@ -77,6 +77,62 @@
 		
 		formId.submit();
 	}
+	</script>
+	<script>
+	function month(str) {
+	    str = String(str);
+	    if (/^\d{2}$/.test(str)) {
+	        return str + '개월';
+	    } else {
+	        return str;
+	    }
+	}
+	
+	function inputMonthFormat(obj) {
+	    if (event && event.code === 'Backspace') {
+	        if (obj.value.endsWith('개월')) {
+	            obj.value = obj.value.slice(0, -2);
+	        }
+	    } else {
+	        if (!obj.value.includes('개월')) {
+	            obj.value = month(obj.value);
+	        }
+	    }
+	}
+	
+    function comma(str) {
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,') + '원';
+    }
+
+    function uncomma(str) {
+        str = String(str);
+        return str.replace(/[^\d]+/g, '');
+    } 
+    
+    function inputNumberFormat(obj) {
+        obj.value = comma(uncomma(obj.value));
+    }
+    
+    function inputOnlyNumberFormat(obj) {
+        obj.value = onlynumber(uncomma(obj.value));
+    }
+    
+    function onlynumber(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
+	}
+    
+    function sendEstimate() {
+    	if (confirm("견적 신청을 하시겠습니까?")) {
+    		Array.from(document.getElementsByTagName('input')).forEach(element => {
+    			element.value = element.value.replace(/원/g, "");
+    			element.value = element.value.replace(/,/g, "");
+    		});
+
+    		document.getElementById('estimateForm').submit();
+    	}
+    }
 	</script>
 </body>
 </html>
