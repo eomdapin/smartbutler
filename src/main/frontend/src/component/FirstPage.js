@@ -11,18 +11,18 @@ function FirstPage() {
                 </div>
                 <div className="row justify-content-around my-5">
                     <div className="col-auto box">
-                        <a href="http://localhost:8080/admin">
-                            <img src="/img/adminLogin.png" />
+                        <a href="/admin">
+                            <img src="/img/adminLogin.png" alt="관리자" />
                         </a>
                     </div>
                     <div className="col-auto box">
-                        <a href="http://localhost:8080/user">
-                            <img src="/img/userLogin.png" />
+                        <a href="/user">
+                            <img src="/img/userLogin.png" alt="사용자" />
                         </a>
                     </div>
                     <div className="col-auto box">
-                        <a href="http://localhost:8080/worker">
-                            <img src="/img/workerLogin.png" />
+                        <a href="/worker">
+                            <img src="/img/workerLogin.png" alt="작업자" />
                         </a>
                     </div>
                 </div>
