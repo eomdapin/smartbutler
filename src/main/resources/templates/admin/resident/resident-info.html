@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<form id="infoForm" th:action="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${resident?.residentId})}" onSubmit="outResident()" th:method="delete">
+				<form id="infoForm" th:action="@{/admin/buildings/{buildId}/residents/{residentId}(buildId = ${buildId}, residentId = ${resident?.residentId})}" th:method="delete">
                     <div class="row">
                         <div class="col-1 mb-3"><label for="userName" class="col-form-label ms-3">고객명</label></div>
                         <div class="col-4 mb-3"><input type="text" name="userName" class="form-control" th:value="${resident?.users?.userName}" readonly></div>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="text-end pt-3 row">
 	                   <div class="col-auto"><a th:href="@{/admin/buildings/{buildId}/residents/{residentId}/update(buildId = ${buildId}, residentId = ${resident?.residentId})}" class="btn btn-lg btn-primary">수정</a></div>
-	                   <div class="col-auto"><input type="submit" class="btn btn-lg btn-primary" value="퇴실"></div>
+	                   <div class="col-auto"><input type="button" onClick="outResident()" class="btn btn-lg btn-primary" value="퇴실"></div>
 	                   <div class="col-auto"><a onClick="history.back()" class="btn btn-lg btn-outline-dark">목록</a></div>
                    </div>
 				</form>
@@ -70,13 +70,16 @@
 	<script type="text/javascript">
 		document.getElementById('sub3').style.display = 'block';
 		document.querySelectorAll('#sub3 > li')[0].style.backgroundColor = '#003366';
+		infoFrom = document.getElementById('infoForm');
 		
 		function outResident() {
+			if(confirm("퇴실 처리 하시겠습니까?\n처리 후 복구는 불가합니다.")) {
 				Array.from(document.getElementsByTagName('input')).forEach(element => {
 					element.value = element.value.replace(/원/g, "");
 					element.value = element.value.replace(/,/g, "");
-					console.log(element.value);
-				});
+					infoFrom.submit();
+				});				
+			}
 		}
 	</script>
 </body>

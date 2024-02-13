@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SMARTBUTLER</title>
+</head>
+<body>
+	<form th:action="@{/user}" id="costInfo" method="get">
+	</form>
+	<script>
+		window.onload = () => {
+			alert('입주 회원만 확인가능한 페이지입니다.\n메인화면으로 돌아갑니다.');
+			document.getElementById('costInfo').submit();
+		};
+	</script>
+</body>
+</html>

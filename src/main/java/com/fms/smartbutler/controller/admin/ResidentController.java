@@ -58,10 +58,8 @@ public class ResidentController {
 	public String getResidentInfoForm(@PathVariable Long buildId, Model model) {
 		List<UsersDTO> users = usersService.findAll();
 		List<BuildDTO> builds = buildService.findAll();
-		List<ResidentDTO> residents = residentService.findAllByEnteredAndBuildId(1L, buildId);
 		
 		model.addAttribute("resident", new ResidentFormDTO());
-		model.addAttribute("residents", residents);
 		model.addAttribute("buildId", buildId);
 		model.addAttribute("users", users);
 		model.addAttribute("builds", builds); 
@@ -76,9 +74,7 @@ public class ResidentController {
 		if(bindingResult.hasErrors()) {
 			List<UsersDTO> users = usersService.findAll();
 			List<BuildDTO> builds = buildService.findAll();
-			List<ResidentDTO> residents = residentService.findAllByEnteredAndBuildId(1L, buildId);
 			
-			model.addAttribute("residents", residents);
 			model.addAttribute("buildId", buildId);
 			model.addAttribute("users", users);
 			model.addAttribute("builds", builds);

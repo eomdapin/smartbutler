@@ -32,7 +32,7 @@ public class ResidentFormDTO {
 	private Build build = new Build();
 	
 	@NotNull(message = "세대 번호를 입력해주세요.")
-	private int residentNum;
+	private Integer residentNum;
 	
 	@NotNull(message = "보증금을 입력해주세요.")
 	@Range(min = 1, message = "1 이상의 숫자를 입력해주세요.")
