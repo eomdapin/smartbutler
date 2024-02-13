@@ -5,12 +5,12 @@
 <title>SMARTBUTLER</title>
 </head>
 <body>
-	<form action="/user" id="claimInfo" method="get">
+	<form th:action="@{/user}" id="costInfo" method="get">
 	</form>
 	<script>
 		window.onload = () => {
-			alert('입주 회원만 신청하실 수 있습니다.');
-			document.getElementById('claimInfo').submit();
+			alert('입주 회원만 확인가능한 페이지입니다.\n메인화면으로 돌아갑니다.');
+			document.getElementById('costInfo').submit();
 		};
 	</script>
 </body>

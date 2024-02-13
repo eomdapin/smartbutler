@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Claim;
 import com.fms.smartbutler.dto.ClaimDTO;
+import com.fms.smartbutler.formdto.ClaimFormDTO;
 import com.fms.smartbutler.repository.ClaimRepository;
 
 import jakarta.transaction.Transactional;
@@ -30,7 +31,7 @@ public class ClaimService {
 	private final ClaimRepository claimRepository;
 	private final ModelMapper modelMapper;
 	
-	public void insert(ClaimDTO claimDTO) {
+	public void insert(ClaimFormDTO claimDTO) {
 		Claim claim = modelMapper.map(claimDTO, Claim.class);
 		
 		claimRepository.save(claim);
@@ -67,17 +68,13 @@ public class ClaimService {
 	}
 	
 	public Page<ClaimDTO> findByBuildId(Long buildId, Pageable pageable) {
-		Page<Claim> claimList;
-		
 		if(buildId == 0) {
-			claimList = claimRepository.findAllByOrderByClaimIdDesc(pageable);
+			return claimRepository.findAllByOrderByClaimIdDesc(pageable)
+					.map(c -> modelMapper.map(c, ClaimDTO.class));
 		} else {
-			claimList = claimRepository.findByBuild_BuildIdOrderByClaimIdDesc(buildId, pageable);
+			return claimRepository.findByBuild_BuildIdOrderByClaimIdDesc(buildId, pageable)
+					.map(c -> modelMapper.map(c, ClaimDTO.class));
 		}
-		
-		Page<ClaimDTO> claimDTOList = claimList.map(c -> modelMapper.map(c, ClaimDTO.class));
-		
-		return claimDTOList;
 	}
 	
 	public Page<ClaimDTO> findByUserId(Long userId, Pageable pageable) {

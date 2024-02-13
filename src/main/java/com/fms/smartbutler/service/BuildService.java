@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Build;
 import com.fms.smartbutler.dto.BuildDTO;
+import com.fms.smartbutler.formdto.BuildFormDTO;
 import com.fms.smartbutler.repository.BuildRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class BuildService {
 	private final BuildRepository buildRepository;
 	private final ModelMapper modelMapper;
 	
-	public void insert(BuildDTO buildDTO) {
+	public void insert(BuildFormDTO buildDTO) {
 		Build build = modelMapper.map(buildDTO, Build.class);
 		buildRepository.save(build);
 		buildDTO.setBuildId(build.getBuildId());

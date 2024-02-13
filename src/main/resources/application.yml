@@ -3,7 +3,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://smartbutler-db:3306/smartbutler?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
-    #url: jdbc:mysql://127.0.0.1:3306/smartbutler?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://127.0.0.1:3306/smartbutler?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
     username: root
     password: 1111
   thymeleaf:
@@ -29,6 +29,10 @@ spring:
       - classpath:database/schema.sql
       data-locations:
       - classpath:database/data.sql
+
+  #valid message
+  messages:
+    basename: errors
     
   # put, delete mapping 설정
   mvc:

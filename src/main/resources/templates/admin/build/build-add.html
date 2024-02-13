@@ -25,25 +25,25 @@
                 <ul class="">
                     <li>HOME<span> ></span></li>
                     <li>건물정보<span> ></span></li>
-                    <li>건물상세</li>
+                    <li>건물등록</li>
                 </ul>
             </div>
 			<div class="content form-content">
-				<form th:action="@{/admin/buildings/{buildId}(buildId = ${build.buildId})}" th:method="put" th:object="${build}" encType="multipart/form-data">
+				<form th:action="@{/admin/buildings/add}" method="POST" encType="multipart/form-data" th:object="${build}">
 					<div class="row">
 						<div class="col-1 mb-3">
 							<label for="buildId" class="form-label">건물번호</label>
 						</div>
 						<div class="col-4 mb-3">
-							<input type="text" name="buildId" class="form-control bg-dark-subtle" th:value="${build?.buildId}" placeholder="자동으로 입력됩니다." readonly>
+							<input type="text" name="buildId" class="form-control bg-dark-subtle" th:value="${build?.buildId}" placeholder="자동으로 입력됩니다." disabled>
 						</div>
 						<div class="col-1"></div>
 						<div class="col-1 mb-3">
 							<label for="room" class="form-label">전체 세대 수</label>
 						</div>
 						<div class="col-4 mb-3">
-							<input type="text" name="room" class="form-control bg-dark-subtle" th:value="${build?.room}"
-							placeholder="총 입주 가능한 세대 수를 입력해주세요." readonly required>
+							<input type="text" id="room" name="room" class="form-control" placeholder="총 입주 가능한 세대 수를 숫자만 입력해주세요." required>
+							<div th:if="${#fields.hasErrors('room')}" th:errors="*{room}" class="field-error"></div>
 						</div>
 					</div>
 					<div class="row">
@@ -52,6 +52,7 @@
 						</div>
 						<div class="col-4 mb-3">
 							<input type="text" name="buildName" class="form-control" th:value="${build?.buildName}" placeholder="건물명을 입력해주세요." required>
+							<div th:if="${#fields.hasErrors('buildName')}" th:errors="*{buildName}" class="field-error"></div>
 						</div>
 						<div class="col-1"></div>
 						<div class="col-1 mb-3">
@@ -71,7 +72,7 @@
 						</div>
 						<div class="col-4 mb-3">
 							<input type="text" id="address" name="address" class="form-control" th:value="${build?.address}"
-								onclick="sample4_execDaumPostcode()" placeholder="선택하여 주소를 입력해주세요." readonly required>
+								onclick="sample4_execDaumPostcode()" placeholder="선택하여 주소를 입력해주세요." required>
 							<span id="guide" style="color: #999; display: none;"></span>
 						</div>
 						<div class="col-1"></div>
@@ -79,7 +80,8 @@
 							<label for="area" class="form-label">면적</label>
 						</div>
 						<div class="col-4 mb-3">
-							<input type="text" name="area" class="form-control bg-dark-subtle" th:value="${build?.area}" placeholder="건물의 총 면적을 입력해주세요. (단위 : ㎡)" readonly required>
+							<input type="text" name="area" class="form-control" th:value="${build?.area}" placeholder="건물의 총 면적을 입력해주세요. (단위 : ㎡)" required>
+							<div th:if="${#fields.hasErrors('area')}" th:errors="*{area}" class="field-error"></div>
 						</div>
 					</div>
 					<div class="row">
@@ -87,21 +89,22 @@
 							<label for="floor" class="form-label">층수</label>
 						</div>
 						<div class="col-4 mb-3">
-							<input type="text" name="floor" class="form-control bg-dark-subtle" th:value=${build?.floor} placeholder="건물의 전체 층수를 입력해주세요." readonly required>
+							<input type="text" name="floor" class="form-control" placeholder="건물의 전체 층수를 입력해주세요." required>
+							<div th:if="${#fields.hasErrors('floor')}" th:errors="*{floor}" class="field-error"></div>
 						</div>
 						<div class="col-1"></div>
 						<div class="col-1 mb-3">
 							<label for="comDate" class="form-label">준공일</label>
 						</div>
 						<div class="col-4 mb-3">
-							<input type="date" name="comDate" class="form-control" th:value=${build?.comDate} required>
+							<input type="date" name="comDate" max="2099-12-31" class="form-control" th:value=${build?.comDate} required>
 							<div th:if="${#fields.hasErrors('comDate')}" th:errors="*{comDate}" class="field-error"></div>
 						</div>
 					</div>
 					<div class="text-end pt-3 row">
 						<div class="col-4 d-flex gap-4">
 							<div class="col-auto">
-								<input type="submit" class="btn btn-lg btn-primary" value="수정">
+								<input type="submit" class="btn btn-lg btn-primary" value="저장">
 							</div>
 							<div class="col-auto">
 								<a href="/admin/buildings" class="btn btn-lg btn-outline-dark">목록</a>

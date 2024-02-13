@@ -18,24 +18,25 @@
 	<div class="container" style="float: none;">
 		<div class="content form-content">
 			<h1 class="text-center mt-4">민원 신청</h1>
-			<form action="/user/claims/add" method="post" enctype="multipart/form-data">
+			<form action="/user/claims/add" method="post" enctype="multipart/form-data" th:object="${claim}">
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-3">
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4 mt-2">
 					<div class="col-2"><label for="residentId" class="col-form-label fw-bold">세대 번호</label></div>
-					<div class="col-5"><input type="number" th:value="${resident?.residentNum}" class="form-control" readonly></div>
+					<div class="col-5"><input type="number" th:value="${resident?.residentNum}" class="form-control bg-dark-subtle" readonly></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2"><label for="askDate" class="col-form-label fw-bold">신청 날짜</label></div>
-					<div class="col-5"><input type="text" name="askDate" th:value="${#dates.format(#dates.createToday(), 'yyyy-MM-dd')}" class="form-control" readonly></div>
+					<div class="col-5"><input type="text" name="askDate" th:value="${#dates.format(#dates.createToday(), 'yyyy-MM-dd')}" class="form-control bg-dark-subtle" readonly></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2"><label for="claimKind" class="col-form-label fw-bold">민원 종류</label></div>
 					<div class="col-5">
-						<select name="claimKind" class="form-select">
+						<select name="claimKind" class="form-select" required>
 							<option class="form-option" value="">선택</option>
 							<option th:each="option : ${options}" th:value="${option?.kindName}" th:text="${option?.kindName}"></option>
+							<option class="form-option" value="기타">기타</option>
 						</select>
 					</div>
 				</div>
@@ -50,11 +51,17 @@
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
 					<div class="col-7"><label for="title" class="col-form-label fw-bold">제목</label></div>
-					<div class="col-7 m-0"><input type="text" name="title" class="form-control" required></div>
+					<div class="col-7 m-0">
+						<input type="text" id="title" name="title" class="form-control" required>
+						<div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="field-error"></div>
+					</div>
 				</div>
 				<div class="row row-cols-1 g-3 justify-content-center align-items-center mb-4">
 					<div class="col-7"><label for="content" class="col-form-label fw-bold">내용</label></div>
-					<div class="col-7 m-0"><textarea rows="10" name="content" class="form-control" style="resize:none" required></textarea></div>
+					<div class="col-7 m-0">
+						<textarea rows="10" id="content" name="content" class="form-control" style="resize:none" required></textarea>
+						<div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="field-error"></div>
+					</div>
 				</div>
 				<div class="row justify-content-center mt-3">
 					<input type="submit" value="완료" class="btn btn-lg btn-primary col-auto me-3">

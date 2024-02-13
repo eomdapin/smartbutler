@@ -56,8 +56,6 @@ insert into cost(build_id, cost_date, electricity, repair, upkeep, consignment, 
 
 insert into resident(resident_id, resident_num, build_id, user_id, entered, from_date, to_date, deposit, monthly)
 value('1', '101', '1','1','2','2024-01-01','2024-12-31','100000000','10000000');
-insert into resident(resident_num, build_id)
-values(102,1), (103,1), (104,1), (105,1), (106,1), (107,1), (108,1),	(109,1),	(110,1),	(201,1),	(202,1),	(203,1),	(204,1),	(205,1),	(206,1),	(207,1),	(208,1),	(209,1),	(210,1),	(301,1),	(302,1),	(303,1),	(304,1),	(305,1),	(306,1),	(307,1),	(308,1),	(309,1),	(310,1),	(401,1),	(402,1),	(403,1),	(404,1),	(405,1),	(406,1),	(407,1),	(408,1),	(409,1),	(410,1),	(501,1),	(502,1),	(503,1),	(504,1),	(505,1),	(506,1),	(507,1),	(508,1),	(509,1),	(510,1);
 
 insert into company_kind(kind_type, kind_name) values('1', '청소');
 insert into company_kind(kind_type, kind_name) values('2', '전기');
@@ -76,3 +74,16 @@ insert into company(company_id, build_id, kind_type, company_name, manager, phon
 insert into company(company_id, build_id, kind_type, company_name, manager, phone, from_date, to_date, cost, pw, role) values('10006', '2', '6', '오티스', '윤과장', '010-6666-7777', '2019-09-22', '2024-09-21', '1900000', '{noop}1111', 'WORKER');
 insert into company(company_id, build_id, kind_type, company_name, manager, phone, from_date, to_date, cost, pw, role) values('10007', '3', '7', '우주환경', '김과장', '010-7777-8888', '2019-09-22', '2024-09-21', '1900000', '{noop}1111', 'WORKER');
 insert into company(company_id, build_id, kind_type, company_name, manager, phone, from_date, to_date, cost, pw, role) values('10008', '4', '8', '대영소방', '정과장', '010-8888-9999', '2019-09-22', '2024-09-21', '1900000', '{noop}1111', 'WORKER');
+
+insert into claim(claim_id, build_id, user_id, title, claim_kind, content, ask_date, fin_date, status) values
+(null, 1, 1, "엘리베이터 문이 잘 안닫힙니다.", "엘리베이터", "닫힘 버튼을 눌러도 문이 안 닫히는 경우가 종종 있습니다.", "2022-10-24", "2022-10-31", 2),
+(null, 1, 2, "엘리베이터 운행 중 정지", "엘리베이터", "운행 도중 중간에 멈추는 일이 발생합니다.", "2022-11-12", "2022-11-19", 2),
+(null, 1, 3, "난방기가 따뜻하지가 않아요.", "공조", "난방 성능이 예전보다 떨어진 것 같습니다.", "2022-12-27", "2022-12-28", 2),
+(null, 2, 1, "난방기가 안켜져요.", "공조", "난방기가 작동하지 않습니다.", "2023-01-18", "2023-01-20", 2),
+(null, 2, 2, "수도꼭지에서 물이 샙니다.", "수도", "수도꼭지에서 물이 한방울씩 샙니다.", "2023-06-10", "2023-06-15", 2),
+(null, 2, 3, "에어컨 냉방 성능 저하", "공조", "에어컨을 세게 틀어도 시원해지는데 너무 오래 걸립니다.", "2023-07-15", "2023-07-17", 2),
+(null, 3, 1, "물 세기가 약해졌어요", "수도", "물을 최대로 틀어도 나오는게 졸졸졸 나옵니다.", "2023-09-28", "2023-10-02", 2),
+(null, 3, 2, "인터넷이 자꾸 끊깁니다.", "인터넷", "특정 시간대에 인터넷이 끊기는 현상이 있습니다.", "2023-10-12", "2023-10-16", 2),
+(null, 3, 3, "바닥이 너무 미끄러워요", "청소", "바닥이 너무 미끄러운데 조치 부탁드립니다.", "2023-12-09", null, 1),
+(null, 4, 1, "인터넷 속도가 느립니다.", "인터넷", "인터넷 속도가 이전보다 많이 느려졌습니다.", "2024-01-05", null, 1),
+(null, 4, 2, "건물 내 악취좀 해결해주세요.", "청소", "며칠 동안 건물 내부에서 악취가 납니다.", "2024-02-01", null, 1);

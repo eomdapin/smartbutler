@@ -27,7 +27,6 @@ function sendCost() {
 		Array.from(document.getElementsByTagName('input')).forEach(element => {
 			element.value = element.value.replace(/원/g, "");
 			element.value = element.value.replace(/,/g, "");
-			console.log(element.value);
 		});
 
 		document.getElementById('costForm').submit();
@@ -41,10 +40,12 @@ window.onload = () => {
 		if (Number(element.innerText) < 0) {
 			element.style.color = 'blue';
 			element.innerText = element.innerText.substring(1);
-			element.innerText = '▼' + element.innerText;
+			element.innerText = Number(element.innerText).toLocaleString();
+			element.innerText = '▼' + element.innerText + '원';
 		} else if (Number(element.innerText) > 0) {
 			element.style.color = 'red';
-			element.innerText = '▲' + element.innerText;
+			element.innerText = Number(element.innerText).toLocaleString();
+			element.innerText = '▲' + element.innerText + '원';
 		}
 	});
 }

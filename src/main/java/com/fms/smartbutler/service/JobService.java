@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Job;
 import com.fms.smartbutler.dto.JobDTO;
+import com.fms.smartbutler.formdto.JobFormDTO;
 import com.fms.smartbutler.repository.JobRepository;
 
 import jakarta.transaction.Transactional;
@@ -29,7 +30,7 @@ public class JobService {
 	private final JobRepository jobRepository;
 	private final ModelMapper modelMapper;
 	
-	public void insert(JobDTO jobDTO) {
+	public void insert(JobFormDTO jobDTO) {
 		Job job = modelMapper.map(jobDTO, Job.class);
 		
 		jobRepository.save(job);
@@ -54,17 +55,13 @@ public class JobService {
 	}
 	
 	public Page<JobDTO> findByBuildId(Long buildId, Pageable pageable) {
-		Page<Job> jobList;
-		
 		if(buildId == 0) {
-			jobList = jobRepository.findAllByOrderByJobIdDesc(pageable);
+			return jobRepository.findAllByOrderByJobIdDesc(pageable)
+					.map(j -> modelMapper.map(j, JobDTO.class));
 		} else {
-			jobList = jobRepository.findByBuild_BuildIdOrderByJobIdDesc(buildId, pageable);
+			return jobRepository.findByBuild_BuildIdOrderByJobIdDesc(buildId, pageable)
+					.map(j -> modelMapper.map(j, JobDTO.class));
 		}
-		
-		Page<JobDTO> jobDTOList = jobList.map(j -> modelMapper.map(j, JobDTO.class));
-		
-		return jobDTOList;
 	}
 	
 	public Page<JobDTO> findByCompanyId(Long companyId, Pageable pageable) {

@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,6 +29,7 @@ import com.fms.smartbutler.dto.CompanyDTO;
 import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.dto.ResidentDTO;
 import com.fms.smartbutler.dto.UsersDTO;
+import com.fms.smartbutler.formdto.ClaimFormDTO;
 import com.fms.smartbutler.service.ClaimService;
 import com.fms.smartbutler.service.CompanyService;
 import com.fms.smartbutler.service.ImageService;
@@ -35,6 +37,7 @@ import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.service.UsersService;
 import com.fms.smartbutler.vo.FileVo;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -91,6 +94,7 @@ public class UserClaimController {
 		ResidentDTO resident = residentService.findByUserId(user.getUserId());
 		List<CompanyDTO.CompanyKindDTO> options = companyService.findAllKindType();
 		
+		model.addAttribute("claim", new ClaimFormDTO());
 		model.addAttribute("user", user);
 		model.addAttribute("resident", resident);
 		model.addAttribute("options", options);
@@ -100,7 +104,20 @@ public class UserClaimController {
 	
 	// 민원 등록
 	@PostMapping("/add")
-	public String postClaimAdd(@ModelAttribute ClaimDTO claimDTO, @ModelAttribute FileVo vo) throws Exception {
+	public String postClaimAdd(@Valid @ModelAttribute("claim") ClaimFormDTO claimDTO, BindingResult bindingResult,
+			@ModelAttribute FileVo vo, Principal principal, Model model) throws Exception {
+		if(bindingResult.hasErrors()) {
+			UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
+			ResidentDTO resident = residentService.findByUserId(user.getUserId());
+			List<CompanyDTO.CompanyKindDTO> options = companyService.findAllKindType();
+			
+			model.addAttribute("user", user);
+			model.addAttribute("resident", resident);
+			model.addAttribute("options", options);
+			
+			return "user/claim/claim-add";
+		}
+		
 		claimService.insert(claimDTO);
 		
 		if(!vo.getFileName().isEmpty()) {

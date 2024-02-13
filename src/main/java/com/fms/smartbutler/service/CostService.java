@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Cost;
 import com.fms.smartbutler.dto.CostDTO;
+import com.fms.smartbutler.formdto.CostFormDTO;
 import com.fms.smartbutler.repository.CostRepository;
 
 import jakarta.transaction.Transactional;
@@ -34,7 +35,7 @@ public class CostService {
 				.map(cost -> modelMapper.map(cost, CostDTO.class)).toList();
 	}
 	
-	public boolean save(CostDTO costDTO) {
+	public boolean save(CostFormDTO costDTO) {
 		Optional<Cost> findCost = costRepository.findByBuild_BuildIdAndDate(costDTO.getBuildId(), costDTO.getDate());
 		
 		if(findCost.isEmpty()) {
@@ -48,10 +49,16 @@ public class CostService {
 		return false;
 	}
 	
-	public void updateCost(CostDTO costDTO) {
+	public boolean updateCost(CostDTO costDTO) {
+		if(costDTO.getResidentCnt() != null && costDTO.getResidentCnt() < 1) {
+			return false;
+		}
+		
 		Cost cost = modelMapper.map(costDTO, Cost.class);
 		
 		costRepository.save(cost);
+		
+		return true;
 	}
 	
 	public CostDTO findById(Long costId) {

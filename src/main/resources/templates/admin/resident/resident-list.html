@@ -28,7 +28,7 @@
 			<div class="content">
                 <div th:replace="~{common/fragments :: buildSearch}"></div>
 				<div class="d-flex justify-content-end mb-3">
-					<a class="col-2 btn btn-primary" type="button" th:href="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}">신규등록</a>
+					<a class="btn btn-lg btn-primary" type="button" th:href="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}">신규등록</a>
 				</div>
 				<table class="table table-hover">
 					<thead>

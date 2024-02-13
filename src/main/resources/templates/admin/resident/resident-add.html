@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<form id="addForm" th:action="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}" method="post">
+				<form id="addForm" th:action="@{/admin/buildings/{buildId}/residents/add(buildId = ${buildId})}" th:object="${resident}" method="post">
                     <div class="row">
                         <div class="col-1 mb-3"><label for="userName" class="form-label">고객명</label></div>
                         <div class="col-4 mb-3">
@@ -36,36 +36,47 @@
                        	</div>
                         <div class="col-1"></div>
                         <div class="col-1 mb-3"><label for="fromDate" class="form-label">계약시작일</label></div>
-                        <div class="col-4 mb-3"><input type="date" name="fromDate" class="form-control" th:value="${resident?.fromDate}" required></div>
+                        <div class="col-4 mb-3">
+                        	<input type="date" name="fromDate" class="form-control" max="2099-12-31" required>
+                        	<div th:if="${#fields.hasErrors('fromDate')}" th:errors="*{fromDate}" class="field-error"></div>
+                       	</div>
                     </div>
 					<div class="row">
                         <div class="col-1 mb-3"><label for="buildName" class="form-label">건물명</label></div>
 						<div class="col-4 mb-3">
-                        	<select id="buildId" name="buildId" class="form-select" onChange="buildChange()">
+                        	<select id="buildId" name="buildId" class="form-select">
                         		<option th:each="builds: ${builds}" th:value="${builds?.buildId}"
                         		th:selected="${buildId} == ${builds?.buildId}">[[${builds?.buildName}]]</option>
                         	</select>
                        	</div>
                         <div class="col-1"></div>
                         <div class="col-1 mb-3"><label for="toDate" class="form-label">계약 종료일</label></div>
-                        <div class="col-4 mb-3"><input type="date" name="toDate" class="form-control" th:value="${resident?.toDate}" required></div>
+                        <div class="col-4 mb-3">
+                        	<input type="date" name="toDate" class="form-control" max="2099-12-31" required>
+                        	<div th:if="${#fields.hasErrors('toDate')}" th:errors="*{toDate}" class="field-error"></div>
+                       	</div>
                     </div>
 					<div class="row">
-                        <div class="col-1 mb-3"><label for="residentNum" class="form-label">입주 호실</label></div>
+                        <div class="col-1 mb-3"><label for="residentNum" class="form-label">세대 번호</label></div>
                         <div class="col-4 mb-3">
-                        	<select id="residentId" name="residentId" class="form-select" onChange="residentChange()">
-                        		<option th:each="residents: ${residents}" th:value="${residents?.residentId}">[[${residents?.residentNum} + '호']]</option>
-                        	</select>
+                        	<input type="text" name="residentNum" class="form-control" placeholder="입주 세대 번호를 숫자만 입력해주세요." required>
+                        	<div th:if="${#fields.hasErrors('residentNum')}" th:errors="*{residentNum}" class="field-error"></div>                        
                        	</div>
                         <div class="col-1"></div>
                         <div class="col-1 mb-3"><label for="monthly" class="form-label">월세</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="monthly" class="form-control" th:value="${resident?.monthly}" placeholder="월세를 입력해주세요. (단위 : 원)" required></div>
+                        <div class="col-4 mb-3">
+                        	<input type="text" name="monthly" class="form-control" th:value="${resident?.monthly}" placeholder="월세를 입력해주세요. (단위 : 원)" required>
+                        	<div th:if="${#fields.hasErrors('monthly')}" th:errors="*{monthly}" class="field-error"></div>
+                        </div>
                         <input type="hidden" name="entered" th:value="2">
                         <input type="hidden" id="residentNum" name="residentNum" value="">
                     </div>
                     <div class="row">
                         <div class="col-1 mb-3"><label for="deposit" class="form-label">보증금</label></div>
-                        <div class="col-4 mb-3"><input type="text" name="deposit" class="form-control" th:value="${resident?.deposit}" placeholder="보증금을 입력해주세요. (단위 : 원)" required></div>
+                        <div class="col-4 mb-3">
+                        	<input type="text" name="deposit" class="form-control" th:value="${resident?.deposit}" placeholder="보증금을 입력해주세요. (단위 : 원)" required>
+                        	<div th:if="${#fields.hasErrors('deposit')}" th:errors="*{deposit}" class="field-error"></div>
+                        </div>
                     </div>
                     <div class="text-end pt-3 row">
 	                   <div class="col-auto"><input type="submit" class="btn btn-lg btn-primary" value="저장"></div>
@@ -80,13 +91,6 @@
 	function residentChange() {
 		let residentId = document.querySelector("select[name=residentId] option:checked").innerText
 		document.getElementById('residentNum').value = residentId.substring(-1, residentId.length-1);
-	}
-	function buildChange() {
-		let form = document.getElementById('addForm');
-		let buildId = document.getElementById('buildId').value;
-		form.action = '/admin/buildings/' + buildId + '/residents/add'
-		form.method = 'get';
-		form.submit();
 	}
 	</script>
 	<script type="text/javascript">

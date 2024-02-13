@@ -62,26 +62,26 @@
                    			sumConsignment = ${consignment} - ${prevConsignment}">	
                   			<tr>
                     			<th scope="row">전기료</th>
-                    			<td>[[${prevElectricity}]]</td>
-                    			<td>[[${electricity}]]</td>
+                    			<td>[[${#numbers.formatInteger(prevElectricity, 1, 'COMMA') + '원'}]]</td>
+                    			<td>[[${#numbers.formatInteger(electricity, 1, 'COMMA') + '원'}]]</td>
                     			<td class="sumCost">[[${sumElectricity}]]</td>
                    			</tr>
                    			<tr>
                     			<th scope="row">유지관리비</th>
-                    			<td>[[${prevRepair}]]</td>
-                    			<td>[[${repair}]]</td>
+                    			<td>[[${#numbers.formatInteger(prevRepair, 1, 'COMMA') + '원'}]]</td>
+                    			<td>[[${#numbers.formatInteger(repair, 1, 'COMMA') + '원'}]]</td>
                     			<td class="sumCost">[[${sumRepair}]]</td>
                    			</tr>
                    			<tr>
                     			<th scope="row">수선비</th>
-                    			<td>[[${prevUpkeep}]]</td>
-                    			<td>[[${upkeep}]]</td>
+                    			<td>[[${#numbers.formatInteger(prevUpkeep, 1, 'COMMA') + '원'}]]</td>
+                    			<td>[[${#numbers.formatInteger(upkeep, 1, 'COMMA') + '원'}]]</td>
                     			<td class="sumCost">[[${sumUpkeep}]]</td>
                    			</tr>
                    			<tr>
                     			<th scope="row">전문위탁비</th>
-                    			<td>[[${prevConsignment}]]</td>
-                    			<td>[[${consignment}]]</td>
+                    			<td>[[${#numbers.formatInteger(prevConsignment, 1, 'COMMA') + '원'}]]</td>
+                    			<td>[[${#numbers.formatInteger(consignment, 1, 'COMMA') + '원'}]]</td>
                     			<td class="sumCost">[[${sumConsignment}]]</td>
                    			</tr>
                    		</tbody>
@@ -105,25 +105,25 @@
                    			<tr>
                     			<th scope="row">전기료</th>
                     			<td>[[${prevElectricity}]]</td>
-                    			<td>[[${electricity}]]</td>
+                    			<td>[[${#numbers.formatInteger(electricity, 1, 'COMMA') + '원'}]]</td>
                     			<td class="sumCost">[[${sumElectricity}]]</td>
                    			</tr>
                    			<tr>
                     			<th scope="row">유지관리비</th>
                     			<td>[[${prevRepair}]]</td>
-                    			<td>[[${repair}]]</td>
+                    			<td>[[${#numbers.formatInteger(repair, 1, 'COMMA') + '원'}]]</td>
                     			<td class="sumCost">[[${sumRepair}]]</td>
                    			</tr>
                    			<tr>
                     			<th scope="row">수선비</th>
                     			<td>[[${prevUpkeep}]]</td>
-                    			<td>[[${upkeep}]]</td>
+                    			<td>[[${#numbers.formatInteger(upkeep, 1, 'COMMA') + '원'}]]</td>
                     			<td class="sumCost">[[${sumUpkeep}]]</td>
                    			</tr>
                    			<tr>
                     			<th scope="row">전문위탁비</th>
                     			<td>[[${prevConsignment}]]</td>
-                    			<td>[[${consignment}]]</td>
+                    			<td>[[${#numbers.formatInteger(consignment, 1, 'COMMA') + '원'}]]</td>
                     			<td class="sumCost">[[${sumConsignment}]]</td>
                    			</tr>
                    		</tbody>
