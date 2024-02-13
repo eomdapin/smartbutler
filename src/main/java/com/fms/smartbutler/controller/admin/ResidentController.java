@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.ResidentDTO;
 import com.fms.smartbutler.dto.UsersDTO;
+import com.fms.smartbutler.formdto.ResidentFormDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.service.UsersService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -57,22 +60,36 @@ public class ResidentController {
 		List<BuildDTO> builds = buildService.findAll();
 		List<ResidentDTO> residents = residentService.findAllByEnteredAndBuildId(1L, buildId);
 		
-		model.addAttribute("resident", new ResidentDTO());
+		model.addAttribute("resident", new ResidentFormDTO());
 		model.addAttribute("residents", residents);
 		model.addAttribute("buildId", buildId);
 		model.addAttribute("users", users);
-		model.addAttribute("builds", builds);
+		model.addAttribute("builds", builds); 
 		
 		return "admin/resident/resident-add";
 	}
 	
 	// 입주 등록
 	@PostMapping("/{buildId}/residents/add")
-	public String postResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
-		UsersDTO updateUser = usersService.findById(residentDTO.getUserId()).orElseGet(UsersDTO::new);
+	public String postResidentInfo(@Valid @ModelAttribute("resident") ResidentFormDTO resident,
+			BindingResult bindingResult, @PathVariable Long buildId, Model model) {
+		if(bindingResult.hasErrors()) {
+			List<UsersDTO> users = usersService.findAll();
+			List<BuildDTO> builds = buildService.findAll();
+			List<ResidentDTO> residents = residentService.findAllByEnteredAndBuildId(1L, buildId);
+			
+			model.addAttribute("residents", residents);
+			model.addAttribute("buildId", buildId);
+			model.addAttribute("users", users);
+			model.addAttribute("builds", builds);
+			
+			return "admin/resident/resident-add";
+		}
+		
+		UsersDTO updateUser = usersService.findById(resident.getUserId()).orElseGet(UsersDTO::new);
 		
 		updateUser.setStatus(2);
-		residentService.save(residentDTO);
+		residentService.save(resident);
 		usersService.updateStatus(updateUser);
 		
 		return "redirect:/admin/buildings/{buildId}/residents";
@@ -100,8 +117,13 @@ public class ResidentController {
 	
 	// 입주 수정
 	@PutMapping("/{buildId}/residents/{residentId}")
-	public String postUpdateResidentInfo(@ModelAttribute ResidentDTO residentDTO, @PathVariable Long buildId) {
-		residentService.save(residentDTO);
+	public String postUpdateResidentInfo(@Valid @ModelAttribute("resident") ResidentFormDTO resident,
+			BindingResult bindingResult, @PathVariable Long buildId, @PathVariable Long residentId, Model model) {
+		if(bindingResult.hasErrors()) {
+			return "admin/resident/resident-edit";
+		}
+		
+		residentService.save(resident);
 		
 		return "redirect:/admin/buildings/{buildId}/residents";
 	}
@@ -112,17 +134,5 @@ public class ResidentController {
 		residentService.deleteResident(residentDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/residents";
-	}
-	
-	// 입주 현황
-	@GetMapping("/{buildId}/residents/total")
-	public String getResidentsTotal(@PathVariable Long buildId, Model model) {
-		List<BuildDTO> builds = buildService.findAll();
-		BuildDTO build = buildService.findById(buildId);
-		
-		model.addAttribute("builds", builds);
-		model.addAttribute("build", build);
-		
-		return "admin/resident/resident-total";
 	}
 }

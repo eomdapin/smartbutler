@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Resident;
 import com.fms.smartbutler.dto.ResidentDTO;
+import com.fms.smartbutler.formdto.ResidentFormDTO;
 import com.fms.smartbutler.repository.ResidentRepository;
 
 import jakarta.transaction.Transactional;
@@ -26,7 +27,7 @@ public class ResidentService {
 	private final ResidentRepository residentRepository;
 	private final ModelMapper modelMapper;
 	
-	public void save(ResidentDTO residentDTO) {
+	public void save(ResidentFormDTO residentDTO) {
 		residentDTO.getBuild().setBuildId(residentDTO.getBuildId());
 		residentDTO.getUsers().setUserId(residentDTO.getUserId());
 		
