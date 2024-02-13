@@ -5,6 +5,8 @@ package com.fms.smartbutler.controller.user;
 * @editDate 2024-01-30 ~ 2024-01-31
 */
 
+import java.security.Principal;
+
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.CostDTO;
+import com.fms.smartbutler.dto.UsersDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.CostService;
+import com.fms.smartbutler.service.UsersService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,10 +29,18 @@ public class UserCostController {
 	
 	private final CostService costService;
 	private final BuildService buildService;
+	private final UsersService usersService;
 	
 	// 사용자 관리비 조회
 	@GetMapping("/user/cost")
-	public String getUserCost(@RequestParam(required = false) Long buildId, @RequestParam(required = false) Long costId, Model model) {
+	public String getUserCost(@RequestParam(required = false) Long buildId, Principal principal,
+			@RequestParam(required = false) Long costId, Model model) {
+		UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
+		
+		if(user.getStatus() < 2) {
+			return "user/cost/cost-error";
+		}
+		
 		buildId = buildId == null ? 1 :buildId;
 		List<CostDTO> costs = costService.findByBuildIdUser(buildId);
 		BuildDTO build = buildService.findById(buildId);

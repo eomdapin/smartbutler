@@ -39,10 +39,11 @@
 						</div>
 						<div class="col-1"></div>
 						<div class="col-1 mb-3">
-							<label for="room" class="form-label">호실</label>
+							<label for="room" class="form-label">전체 세대 수</label>
 						</div>
 						<div class="col-4 mb-3">
-							<input type="text" name="room" class="form-control bg-dark-subtle" th:value="${build?.room}" placeholder="건물의 칸수를 입력해주세요." readonly required>
+							<input type="text" name="room" class="form-control bg-dark-subtle" th:value="${build?.room}"
+							placeholder="총 입주 가능한 세대 수를 입력해주세요." readonly required>
 						</div>
 					</div>
 					<div class="row">

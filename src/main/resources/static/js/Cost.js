@@ -27,7 +27,6 @@ function sendCost() {
 		Array.from(document.getElementsByTagName('input')).forEach(element => {
 			element.value = element.value.replace(/원/g, "");
 			element.value = element.value.replace(/,/g, "");
-			console.log(element.value);
 		});
 
 		document.getElementById('costForm').submit();

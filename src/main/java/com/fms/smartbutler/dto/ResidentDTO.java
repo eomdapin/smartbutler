@@ -21,9 +21,9 @@ public class ResidentDTO {
 	private Long buildId;
 	private String buildName;
 	private Long userId;
-	private String userName;
+	private String usersName;
 	private int residentNum;
-	private String phone;
+	private String usersPhone;
 	private int entered;
 	private String fromDate;
 	private String toDate;

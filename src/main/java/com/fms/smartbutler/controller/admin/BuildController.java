@@ -22,7 +22,6 @@ import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.formdto.BuildFormDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.ImageService;
-import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.vo.FileVo;
 
 import jakarta.validation.Valid;
@@ -35,7 +34,6 @@ public class BuildController {
 	
 	private final BuildService buildService;
 	private final ImageService imageService;
-	private final ResidentService residentService;
 	
 	// 건물 정보
 	@GetMapping
@@ -82,7 +80,6 @@ public class BuildController {
 		}
 		
 		buildService.insert(build);
-		residentService.addResidentDefault(build.getBuildId(), build.getFloor(), build.getRoom());
 		
 		if(!vo.getFileName().isEmpty()) {
 			ImageDTO imageDTO = new ImageDTO();
