@@ -24,9 +24,7 @@ import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.service.UsersService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class UserCostController {	
@@ -47,10 +45,7 @@ public class UserCostController {
 		}
 		
 		ResidentDTO resident = residentService.findByUserId(user.getUserId());
-		log.info("{}", resident);
 		Long buildId = resident.getBuildId();
-		log.info("{}", buildId);
-		
 		List<CostDTO> costs = costService.findByBuildIdUser(buildId);
 		
 		if(costs.size() < 1) {
