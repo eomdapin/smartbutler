@@ -10,8 +10,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Company;
 import com.fms.smartbutler.dto.CompanyDTO;
+import com.fms.smartbutler.repository.BuildRepository;
 import com.fms.smartbutler.repository.CompanyKindRepository;
 import com.fms.smartbutler.repository.CompanyRepository;
 
@@ -31,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class CompanyService implements UserDetailsService {
 
-//	private final BuildRepository buildRepository;
+	private final BuildRepository buildRepository;
 	private final CompanyKindRepository companyKindRepository;
 	private final CompanyRepository companyRepository;
 	private final ModelMapper modelMapper;
@@ -53,14 +52,14 @@ public class CompanyService implements UserDetailsService {
 	}
 	
 	public void save(CompanyDTO companyDTO) {
-//		Long kindType = companyDTO.getKindType();
-//		String kindName = companyKindRepository.findById(kindType).get().getKindName();
-//		Long buildId = companyDTO.getBuildId();
-//		String buildName = buildRepository.findById(buildId).get().getBuildName();
+		Long kindType = companyDTO.getKindType();
+		String kindName = companyKindRepository.findById(kindType).get().getKindName();
+		Long buildId = companyDTO.getBuildId();
+		String buildName = buildRepository.findById(buildId).get().getBuildName();
 		
 		companyDTO.setRole("WORKER");
-//		companyDTO.setKindName(kindName);
-//		companyDTO.setBuildName(buildName);
+		companyDTO.setKindName(kindName);
+		companyDTO.setBuildName(buildName);
 		
 		Company company = modelMapper.map(companyDTO, Company.class);
 		
@@ -80,17 +79,6 @@ public class CompanyService implements UserDetailsService {
 
 		List<CompanyDTO> companiesDTO = companies.stream().map(company -> modelMapper.map(company, CompanyDTO.class))
 				.collect(Collectors.toList());
-
-		return companiesDTO;
-	}
-	
-	public Page<CompanyDTO> findAllElements(Pageable pageable) {
-		Page<Company> companies = companyRepository.findAll(pageable);
-
-//		Page<CompanyDTO> companiesDTO = companies.stream().map(company -> modelMapper.map(company, CompanyDTO.class))
-//				.collect(Collectors.toList());
-		
-		Page<CompanyDTO> companiesDTO = companies.map(company -> modelMapper.map(company, CompanyDTO.class));
 
 		return companiesDTO;
 	}
