@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,6 +28,8 @@ import com.fms.smartbutler.dto.CompanyDTO;
 import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.dto.ItemDTO;
 import com.fms.smartbutler.dto.JobDTO;
+import com.fms.smartbutler.formdto.ClaimFormDTO;
+import com.fms.smartbutler.formdto.JobFormDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.CompanyService;
 import com.fms.smartbutler.service.ImageService;
@@ -34,6 +37,7 @@ import com.fms.smartbutler.service.ItemService;
 import com.fms.smartbutler.service.JobService;
 import com.fms.smartbutler.vo.FileVo;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -89,6 +93,7 @@ public class JobController {
 		List<BuildDTO> builds = buildService.findAll();
 		List<CompanyDTO> companies = companyService.findAll();
 		
+		model.addAttribute("job", new JobFormDTO());
 		model.addAttribute("build", build);
 		model.addAttribute("items", items);
 		model.addAttribute("builds", builds);
@@ -100,7 +105,23 @@ public class JobController {
 	
 	// 작업 등록
 	@PostMapping("/{buildId}/jobs/add")
-	public String postJobAdd(@PathVariable Long buildId, @ModelAttribute JobDTO jobDTO) {
+	public String postJobAdd(@PathVariable Long buildId, @Valid @ModelAttribute("job") JobFormDTO jobDTO,
+			BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			BuildDTO build = buildService.findById(buildId);
+			List<ItemDTO> items = itemService.findAll();
+			List<BuildDTO> builds = buildService.findAll();
+			List<CompanyDTO> companies = companyService.findAll();
+			
+			model.addAttribute("build", build);
+			model.addAttribute("items", items);
+			model.addAttribute("builds", builds);
+			model.addAttribute("companies", companies);
+			model.addAttribute("buildId", (buildId == 0 || buildId == null) ? 0L : buildId);
+			
+			return "admin/job/job-add";
+		}
+		
 		jobService.insert(jobDTO);
 		
 		return "redirect:/admin/buildings/{buildId}/jobs";

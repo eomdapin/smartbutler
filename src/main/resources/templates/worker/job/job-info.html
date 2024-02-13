@@ -28,36 +28,36 @@
 				<form th:action="@{/worker/jobs/{jobId}(jobId = ${job.jobId})}" th:method="put" id="reportForm" enctype="multipart/form-data">
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">요청번호</label></div>
-						<div class="col-4"><input type="text" name="jobId" th:value="${job?.jobId}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="jobId" th:value="${job?.jobId}" class="form-control bg-dark-subtle" readonly></div>
 						<div class="col-1"></div>
 						<div class="col-1"><label class="col-form-label fw-bold">요청날짜</label></div>
-						<div class="col-4"><input type="text" name="askDate" th:value="${job?.askDate}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="askDate" th:value="${job?.askDate}" class="form-control bg-dark-subtle" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">시설명</label></div>
-						<div class="col-4"><input type="text" name="itemName" th:value="${job?.itemName}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="itemName" th:value="${job?.itemName}" class="form-control bg-dark-subtle" readonly></div>
 						<div class="col-1"></div>
 						<div class="col-1"><label class="col-form-label fw-bold">점검업체</label></div>
-						<div class="col-4"><input type="text" name="companyName" th:value="${job?.companyName}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="companyName" th:value="${job?.companyName}" class="form-control bg-dark-subtle" readonly></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">건물명</label></div>
-						<div class="col-4"><input type="text" name="buildName" th:value="${job?.buildName}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="buildName" th:value="${job?.buildName}" class="form-control bg-dark-subtle" readonly></div>
 						<div class="col-1"></div>
 						<div class="col-1"><label class="col-form-label fw-bold">처리상태</label></div>
-						<div class="col-4"><input type="text" th:value="${job.status == 1} ? '신청' : '완료'" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" th:value="${job.status == 1} ? '신청' : '완료'" class="form-control bg-dark-subtle" readonly></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col-11"><label class="col-form-label fw-bold">제목</label></div>
-						<div class="col-11 m-0"><input type="text" name="title" th:value="${job?.title}" class="form-control" readonly></div>
+						<div class="col-11 m-0"><input type="text" name="title" th:value="${job?.title}" class="form-control bg-dark-subtle" readonly></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col-11"><label class="col-form-label fw-bold">요청내용</label></div>
-						<div class="col-11 m-0"><textarea rows="3" name="content" th:text="${job?.content}" class="form-control" style="resize:none" readonly></textarea></div>
+						<div class="col-11 m-0"><textarea rows="3" name="content" th:text="${job?.content}" class="form-control bg-dark-subtle" style="resize:none" readonly></textarea></div>
 					</div>
 					<div class="row g-3 align-items-center mb-2 mt-4">
 						<div class="col-1"><label class="col-form-label fw-bold">작업자</label></div>
-						<div class="col-4"><input type="text" name="manager" th:value="${company?.manager}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" name="manager" th:value="${company?.manager}" class="form-control bg-dark-subtle" readonly></div>
 						<div class="col-1"><label class="col-form-label fw-bold">이미지</label></div>
 						<div class="col-1"></div>
 						<th:block th:if="${job.status == 1}">
@@ -81,7 +81,7 @@
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col-1"><label class="col-form-label fw-bold">처리날짜</label></div>
-						<div class="col-4"><input type="text" th:value="${job?.finDate}" class="form-control" readonly></div>
+						<div class="col-4"><input type="text" th:value="${job?.finDate}" class="form-control bg-dark-subtle" placeholder="자동으로 입력됩니다." readonly></div>
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col-11"><label class="col-form-label fw-bold">처리내용</label></div>
@@ -91,7 +91,7 @@
 					<input type="hidden" th:value="${job?.companyId}" name="companyId">
 					<input type="hidden" th:value="${job?.itemId}" name="itemId">
 				</form>
-				<div class="row justify-content-end mt-3">
+				<div class="row col-11 justify-content-end mt-3">
 					<th:block th:if="${job.status == 1}">
 						<button type="button" class="btn btn-lg btn-primary col-auto me-3" onclick="reportClick(); return false;">보고</button>
 					</th:block>

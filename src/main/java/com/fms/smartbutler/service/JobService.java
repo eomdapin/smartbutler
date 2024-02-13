@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Job;
 import com.fms.smartbutler.dto.JobDTO;
+import com.fms.smartbutler.formdto.JobFormDTO;
 import com.fms.smartbutler.repository.JobRepository;
 
 import jakarta.transaction.Transactional;
@@ -29,7 +30,7 @@ public class JobService {
 	private final JobRepository jobRepository;
 	private final ModelMapper modelMapper;
 	
-	public void insert(JobDTO jobDTO) {
+	public void insert(JobFormDTO jobDTO) {
 		Job job = modelMapper.map(jobDTO, Job.class);
 		
 		jobRepository.save(job);
