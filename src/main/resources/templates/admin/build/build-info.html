@@ -94,7 +94,7 @@
 							<label for="comDate" class="form-label">준공일</label>
 						</div>
 						<div class="col-4 mb-3">
-							<input type="date" name="comDate" class="form-control" th:value=${build?.comDate} required>
+							<input type="date" name="comDate" class="form-control bg-dark-subtle" th:value=${build?.comDate} readonly>
 							<div th:if="${#fields.hasErrors('comDate')}" th:errors="*{comDate}" class="field-error"></div>
 						</div>
 					</div>
