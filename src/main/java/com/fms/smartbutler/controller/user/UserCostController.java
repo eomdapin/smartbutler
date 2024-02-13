@@ -16,13 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fms.smartbutler.dto.BuildDTO;
 import com.fms.smartbutler.dto.CostDTO;
+import com.fms.smartbutler.dto.ResidentDTO;
 import com.fms.smartbutler.dto.UsersDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.CostService;
+import com.fms.smartbutler.service.ResidentService;
 import com.fms.smartbutler.service.UsersService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class UserCostController {	
@@ -30,10 +34,11 @@ public class UserCostController {
 	private final CostService costService;
 	private final BuildService buildService;
 	private final UsersService usersService;
+	private final ResidentService residentService;
 	
 	// 사용자 관리비 조회
 	@GetMapping("/user/cost")
-	public String getUserCost(@RequestParam(required = false) Long buildId, Principal principal,
+	public String getUserCost(Principal principal,
 			@RequestParam(required = false) Long costId, Model model) {
 		UsersDTO user = usersService.findByEmail(principal.getName()).orElseGet(UsersDTO::new);
 		
@@ -41,8 +46,17 @@ public class UserCostController {
 			return "user/cost/cost-error";
 		}
 		
-		buildId = buildId == null ? 1 :buildId;
+		ResidentDTO resident = residentService.findByUserId(user.getUserId());
+		log.info("{}", resident);
+		Long buildId = resident.getBuildId();
+		log.info("{}", buildId);
+		
 		List<CostDTO> costs = costService.findByBuildIdUser(buildId);
+		
+		if(costs.size() < 1) {
+			return "user/cost/cost-error-no-send";
+		}
+		
 		BuildDTO build = buildService.findById(buildId);
 		
 		costId = costId == null ? costs.get(0).getCostId() : costId;

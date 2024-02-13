@@ -22,7 +22,7 @@
 					<div class="col-7 mt-3 border-top border-5 border-black"></div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center">
-                    <div class="col-auto"><label for="buildId" class="form-label">관리비 일자 선택</label></div>
+                    <div class="col-auto"><label for="costId" class="form-label">관리비 일자 선택</label></div>
                 </div>
                 <div class="row g-3 justify-content-center align-items-center mb-4">
                     <form id="infoForm" class="infoForm col-auto" action="" method="get">
@@ -33,7 +33,7 @@
                     </form>
                 </div>
                 <div class="row g-3 justify-content-center align-items-center mb-4">
-                   	<table th:with="roomSize = ${build?.area} / (${build?.floor} * ${build?.room}),
+                   	<table th:with="roomSize = ${build?.area} / ${build?.room},
 									avgCost = (${roomSize} * 30)"
 									class="table table-bordered text-center" style="width: 600px;">
                    		<thead>

@@ -234,13 +234,13 @@ values('빅보검', '010-2222-2222', 'mail2@mail.com', '{noop}1111', '1', 'USER'
 
 ###########################################################################
 insert into build(build_name, address, floor, room, area, com_date)
-values('신촌점', '서울 서대문구 연세로 8-1', '5', '10', '100000', '2020-01-01');
+values('신촌점', '서울 서대문구 연세로 8-1', '5', '50', '100000', '2020-01-01');
 insert into build(build_name, address, floor, room, area, com_date)
-values('서울역점', '서울 용산구 한강대로 405', '10', '15', '80000', '2020-01-01');
+values('서울역점', '서울 용산구 한강대로 405', '10', '150', '80000', '2020-01-01');
 insert into build(build_name, address, floor, room, area, com_date)
-values('홍대입구점', '서울 마포구 양화로 지하 160', '8', '5', '120000', '2020-01-01');
+values('홍대입구점', '서울 마포구 양화로 지하 160', '8', '40', '120000', '2020-01-01');
 insert into build(build_name, address, floor, room, area, com_date)
-values('인사동점', '서울 종로구 율곡로 지하 62', '3', '5', '70000', '2020-01-01');
+values('인사동점', '서울 종로구 율곡로 지하 62', '3', '15', '70000', '2020-01-01');
 
 #########################################################################
 insert into item_kind(kind_type, kind_name)

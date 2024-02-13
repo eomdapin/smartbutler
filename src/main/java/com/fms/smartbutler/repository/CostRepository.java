@@ -17,7 +17,7 @@ import com.fms.smartbutler.domain.Cost;
 
 public interface CostRepository extends JpaRepository<Cost, Long>{
 	Optional<Cost> findByBuild_BuildIdAndDate(Long buildId, LocalDate date);
-	List<Cost> findByBuild_BuildIdOrderByDateDesc(Long buildId);
+	List<Cost> findByBuild_BuildIdAndSendOrderByDateDesc(Long buildId, Integer send);
 	List<Cost> findAllByDate(LocalDate date);
 	Page<Cost> findAllByBuild_BuildIdOrderByDateDesc(Long buildId, Pageable pageable);
 	Page<Cost> findAllByOrderByDateDesc(Pageable pageable);
