@@ -41,6 +41,9 @@
 							</tr>
 						</tbody>
 					</table>
+					<div class="mt-4 text-center" th:if="${list.isEmpty()}">
+						<b>등록된 민원이 없습니다.</b>
+					</div>
 					<div class="mt-4" th:if="${!list.isEmpty()}">
 						<nav>
       						<ul class="pagination justify-content-center">

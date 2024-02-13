@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Claim;
 import com.fms.smartbutler.dto.ClaimDTO;
+import com.fms.smartbutler.formdto.ClaimFormDTO;
 import com.fms.smartbutler.repository.ClaimRepository;
 
 import jakarta.transaction.Transactional;
@@ -30,7 +31,7 @@ public class ClaimService {
 	private final ClaimRepository claimRepository;
 	private final ModelMapper modelMapper;
 	
-	public void insert(ClaimDTO claimDTO) {
+	public void insert(ClaimFormDTO claimDTO) {
 		Claim claim = modelMapper.map(claimDTO, Claim.class);
 		
 		claimRepository.save(claim);
