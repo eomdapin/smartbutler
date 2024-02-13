@@ -17,8 +17,8 @@
 	<div id="wrap">
 		<div th:replace="~{common/fragments :: adminHeader}"></div>
 		<div class="form-signin w-25 mx-auto" style="margin-top: 25vh;">
-			<div th:if="${param.error}">아이디 또는 비밀번호가 유효하지 않습니다.</div>
-			<div th:if="${param.logout}">로그아웃되었습니다.</div>
+			<div th:if="${param.error}">Invalid username and password.</div>
+			<div th:if="${param.logout}">You have been logged out.</div>
 			<form action="/admin/login" method="post">
 				<div class="form-floating">
 					<input type="text" class="form-control mb-3" id="username"
