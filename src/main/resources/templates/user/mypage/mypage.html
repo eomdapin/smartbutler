@@ -27,7 +27,7 @@
 						<label for="email">이메일</label>
 					</div>
 					<div class="col-4">
-						<input type="email" name="email" class="form-control" th:value=${user?.email} readonly>
+						<input type="email" name="email" class="form-control" th:value="${user?.email}" readonly>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -35,7 +35,7 @@
 						<label for="userName">이름</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="userName" class="form-control" th:value=${user?.userName} readonly>
+						<input type="text" name="userName" class="form-control" th:value="${user?.userName}" readonly>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -43,7 +43,7 @@
 						<label for="phone">휴대폰 번호</label>
 					</div>
 					<div class="col-4">
-						<input type="tel" name="phone" class="form-control" th:value=${user?.phone} readonly>
+						<input type="tel" name="phone" class="form-control" th:value="${user?.phone}" readonly>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -54,7 +54,7 @@
 						<label for="build_name">건물명</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="buildName" class="form-control" th:value=${resident?.buildName} disabled>
+						<input type="text" name="buildName" class="form-control" th:value="${resident?.buildName}" disabled>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -62,15 +62,23 @@
 						<label for="resident_id">세대 번호</label>
 					</div>
 					<div class="col-4">
-						<input type="text" name="" class="form-control" disabled>
+						<input type="text" name="residentNum" class="form-control" th:value="${resident?.residentNum}" disabled>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
 					<div class="col-2 fw-bold">
-						<label>계약기간</label>
+						<label>계약 시작 일</label>
 					</div>
 					<div class="col-4">
-						<input type="text" class="form-control" disabled>
+						<input type="text" name="fromDate" class="form-control" th:value="${resident?.fromDate}" disabled>
+					</div>
+				</div>
+				<div class="row g-3 justify-content-center align-items-center mb-4">
+					<div class="col-2 fw-bold">
+						<label>계약 종료 일</label>
+					</div>
+					<div class="col-4">
+						<input type="text" name="toDate" class="form-control" th:value="${resident?.toDate}" disabled>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -78,7 +86,7 @@
 						<label>월 사용료</label>
 					</div>
 					<div class="col-4">
-						<input type="text" class="form-control" disabled>
+						<input type="text" name="monthly" class="form-control" th:value="${#numbers.formatInteger(resident?.monthly, 3, 'COMMA') + '원'}" disabled>
 					</div>
 				</div>
 				<div class="row g-3 justify-content-center align-items-center mb-4">
@@ -86,7 +94,7 @@
 						<label>보증금</label>
 					</div>
 					<div class="col-4">
-						<input type="text" class="form-control" disabled>
+						<input type="text" name="deposit" class="form-control" th:value="${#numbers.formatInteger(resident?.deposit, 3, 'COMMA') + '원'}" disabled>
 					</div>
 				</div>
 				<div>
