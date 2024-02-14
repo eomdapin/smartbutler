@@ -34,7 +34,6 @@ public class JobService {
 		Job job = modelMapper.map(jobDTO, Job.class);
 		
 		jobRepository.save(job);
-		jobDTO.setJobId(job.getJobId());
 	}
 	
 	public void update(JobDTO jobDTO) {
