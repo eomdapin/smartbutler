@@ -94,8 +94,9 @@
 	            obj.value = obj.value.slice(0, -2);
 	        }
 	    } else {
-	        if (!obj.value.includes('개월')) {
-	            obj.value = month(obj.value);
+	    	let inputValue = obj.value.replace(/\D/g, '');
+	        if (/^\d{0,2}$/.test(inputValue)) {
+	        	obj.value = inputValue.length > 1 ? inputValue.slice(0, 2) + '개월' : inputValue;
 	        }
 	    }
 	}
