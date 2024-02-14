@@ -58,8 +58,8 @@
 					<div class="row g-3 align-items-center mb-2 mt-4">
 						<div class="col-1"><label class="col-form-label fw-bold">작업자</label></div>
 						<div class="col-4"><input type="text" name="manager" th:value="${company?.manager}" class="form-control bg-dark-subtle" readonly></div>
-						<div class="col-1"><label class="col-form-label fw-bold">이미지</label></div>
 						<div class="col-1"></div>
+						<div class="col-1"><label class="col-form-label fw-bold">이미지</label></div>
 						<th:block th:if="${job.status == 1}">
 							<div class="col-4 d-flex">
 								<input type="file" id="uploadFile" name="uploadFile" class="form-control" style="display: none;" onchange="ChangeFileName()">
@@ -85,7 +85,14 @@
 					</div>
 					<div class="row row-cols-1 g-3 align-items-center mb-2">
 						<div class="col-11"><label class="col-form-label fw-bold">처리내용</label></div>
-						<div class="col-11 m-0"><textarea rows="3" name="reportContent" th:text="${job?.reportContent}" class="form-control" style="resize:none" required></textarea></div>
+						<div class="col-11 m-0">
+							<th:block th:if="${job.status == 1}">
+								<textarea rows="3" name="reportContent" th:text="${job?.reportContent}" class="form-control" style="resize:none" required></textarea>
+							</th:block>
+							<th:block th:if="${job.status == 2}">
+								<textarea rows="3" name="reportContent" th:text="${job?.reportContent}" class="form-control bg-dark-subtle" style="resize:none" readonly></textarea>
+							</th:block>
+						</div>
 					</div>
 					<input type="hidden" th:value="${job?.buildId}" name="buildId">
 					<input type="hidden" th:value="${job?.companyId}" name="companyId">
