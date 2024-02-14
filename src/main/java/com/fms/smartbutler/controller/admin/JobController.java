@@ -28,7 +28,6 @@ import com.fms.smartbutler.dto.CompanyDTO;
 import com.fms.smartbutler.dto.ImageDTO;
 import com.fms.smartbutler.dto.ItemDTO;
 import com.fms.smartbutler.dto.JobDTO;
-import com.fms.smartbutler.formdto.ClaimFormDTO;
 import com.fms.smartbutler.formdto.JobFormDTO;
 import com.fms.smartbutler.service.BuildService;
 import com.fms.smartbutler.service.CompanyService;
