@@ -24,10 +24,6 @@ public class SecurityConfig {
 		auth.userDetailsService(adminService);
 		auth.userDetailsService(usersService);
 		auth.userDetailsService(companyService);
-		
-		
-//		auth.inMemoryAuthentication()
-//		.withUser("1").password("{noop}1").roles("WORKER");
 	}
 	
 	@Configuration
