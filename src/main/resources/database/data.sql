@@ -8,10 +8,10 @@ insert into users(user_name, phone, email, pw, status, role)
 values('홍길동', '010-0000-0000', 'mail@mail.com', '{noop}1111', '2', 'USER');
 
 insert into users(user_name, phone, email, pw, status, role)
-values('홍박사', '010-1111-1111', 'mail1@mail.com', '{noop}1111','1', 'USER');
+values('박보검', '010-1111-1111', 'mail1@mail.com', '{noop}1111','1', 'USER');
 
 insert into users(user_name, phone, email, pw, status, role)
-values('빅보검', '010-2222-2222', 'mail2@mail.com', '{noop}1111', '1', 'USER');
+values('이미자', '010-2222-2222', 'mail2@mail.com', '{noop}1111', '1', 'USER');
 
 insert into build(build_name, address, floor, room, area, com_date)
 values('신촌점', '서울 서대문구 연세로 8-1', '5', '50', '100000', '2020-01-01');
