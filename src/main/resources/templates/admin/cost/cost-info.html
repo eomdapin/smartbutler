@@ -64,7 +64,7 @@
 						</div>
 					</th:block>
 					<th:block th:unless="${costDTO?.send == 1}"
-						th:with="roomSize = ${build?.area} / * ${build?.room},
+						th:with="roomSize = ${build?.area} / ${build?.room},
 								avgCost = (${roomSize} * ${costDTO?.residentCnt})">
 						<div class="row my-3">
 							<h2>세대 계산 금액</h2>

@@ -43,8 +43,5 @@ public class CostFormDTO {
 	
 	private Integer send;
 	private String buildName;
-	
-	@NotNull
-	@Range(min = 1, message = "입주 세대가 없다면 전송이 불가합니다.")
 	private Integer residentCnt;
 }
