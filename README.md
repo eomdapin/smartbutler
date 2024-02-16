@@ -15,7 +15,7 @@
 
 - 개발 기간 : 2024-01-15 ~ 2024-02-15
 
-- 개발 환경 : ![image](https://github.com/eomdapin/smartbutler/assets/146176667/289dfa0f-702e-4704-b787-2cc015d97dbd)
+- 개발 환경 : ![image](https://github.com/eomdapin/smartbutler/assets/146176667/1082e95a-60b0-400c-89b4-c426c53580d7)
 - FrontEnd : HTML5, CSS3, JS, BootStrap 5.3, React
 - BackEnd : Java 17, JPA, Spring Security 6, MySQL 8.0.22, Lombok 1.18.30
 - Tool : STS4 4.21.0, VS code, SourceTree
