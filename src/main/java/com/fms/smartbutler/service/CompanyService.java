@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fms.smartbutler.domain.Company;
@@ -34,6 +35,7 @@ public class CompanyService implements UserDetailsService {
 	private final CompanyKindRepository companyKindRepository;
 	private final CompanyRepository companyRepository;
 	private final ModelMapper modelMapper;
+	private final PasswordEncoder passwordEncoder;
 	
 	@Override
 	public UserDetails loadUserByUsername(String companyName) throws UsernameNotFoundException {
@@ -62,6 +64,7 @@ public class CompanyService implements UserDetailsService {
 		companyDTO.setBuildName(buildName);
 		
 		Company company = modelMapper.map(companyDTO, Company.class);
+		company.encodePassword(passwordEncoder);
 		
 		companyRepository.save(company);
 	}
