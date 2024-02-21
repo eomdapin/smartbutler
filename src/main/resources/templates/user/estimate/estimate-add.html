@@ -127,8 +127,11 @@
     function sendEstimate() {
     	if (confirm("견적 신청을 하시겠습니까?")) {
     		Array.from(document.getElementsByTagName('input')).forEach(element => {
-    			element.value = element.value.replace(/원/g, "");
     			element.value = element.value.replace(/,/g, "");
+    		});
+    		
+    		Array.from(document.getElementsByTagName('input')).forEach(element => {
+    			element.value = element.value.replace(/원/g, "");
     		});
 
     		document.getElementById('estimateForm').submit();
